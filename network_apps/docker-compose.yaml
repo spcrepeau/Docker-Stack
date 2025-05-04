@@ -1,0 +1,26 @@
+name: network_apps
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    environment:
+      # Config located at /etc/pihole/pihole.toml
+      PIHOLE_GID: ${DOCKER_GID}
+      PIHOLE_UID: ${DOCKER_UID}
+      TZ: ${TZ}
+      WEBPASSWORD_FILE: /run/secrets/pihole_WebServerAPIPassword
+      FTLCONF_dns_listeningMode: all
+    network_mode: bridge
+    ports:
+      - 53:53/tcp # DNS
+      - 53:53/udp # DNS
+      - ${PIHOLE_PORT_80}:80 # Web GUI HTTP
+      - ${PIHOLE_PORT_443}:443 # Web GUI HTTPS
+    restart: unless-stopped
+    secrets:
+      - pihole_WebServerAPIPassword
+    volumes:
+      - ./pihole/etc-pihole:/etc/pihole
+secrets:
+  pihole_WebServerAPIPassword:
+    file: ./secrets/pihole_WebServerAPIPassword.txt
