@@ -1,0 +1,47 @@
+name: container_management
+x-default_container: &default_container
+  security_opt: ['no-new-privileges:true']
+  restart: unless-stopped
+services:
+  watchtower:
+    <<: *default_container
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    environment:
+      TZ: ${TZ}
+      WATCHTOWER_SCHEDULE: "0 0 3 * * *"
+      WATCHTOWER_CLEANUP: true
+      DOCKER_HOST: "tcp://socket-proxy:2375"
+    networks:
+      - watchtower
+      - proxynet
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    working_dir: /
+    labels:
+      com.centurylinklabs.watchtower: true
+  socket-proxy:
+    <<: *default_container
+    image: lscr.io/linuxserver/socket-proxy:latest
+    container_name: socket-proxy-watchtower
+    environment:
+      ALLOW_START: "1"
+      ALLOW_STOP: "1"
+      ALLOW_RESTARTS: "1"
+      CONTAINERS: "1"
+      IMAGES: "1"
+      NETWORKS: "1"
+      POST: "1"
+    networks:
+      - proxynet
+    read_only: true
+    tmpfs:
+      - /run
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: true
+networks:
+  proxynet:
+    internal: true
+  watchtower:
