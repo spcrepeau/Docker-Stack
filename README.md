@@ -9,12 +9,29 @@
 - media_app/
   - docker-compse.yaml
   - .env simlinked to ../.env
+  - secrets
+    - romm_IGDBClientID.txt
+    - romm_IGDBClientSecret.txt
+    - romm_RommAuthSecretKey.txt
+    - romm_SteamGrimDBAPIKey.txt
+    - romm-db_MySQLPassword.txt
 - media_manangement/
   - docker-compse.yaml
   - .env simlinked to ../.env
+  - recyclarr/
+    - recyclarr.yaml
+    - secrets.yaml
+    - includes/
+      - sonarr.yaml
+      - radarr.yaml
 - network_apps/
   - docker-compse.yaml
   - .env simlinked to ../.env
+  - secrets
+    - pihole_WebServerAPIPassword.txt
 - plex_apps/
   - docker-compse.yaml
   - .env simlinked to ../.env
+  - kometa/
+    - config.yaml
+    - .env
