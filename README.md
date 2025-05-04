@@ -35,3 +35,5 @@
   - kometa/
     - config.yaml
     - .env
+  - plexautolanguages/
+    - config.yaml
