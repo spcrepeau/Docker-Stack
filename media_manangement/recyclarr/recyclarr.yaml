@@ -1,0 +1,20 @@
+# https://recyclarr.dev/wiki/
+# base_url and api_key automatically imported from secrets.yml in /config, https://recyclarr.dev/wiki/yaml/secrets-reference/
+sonarr:
+  sonarr_main:
+    include: 
+      - config: sonarr.yaml
+    quality_definition:
+      type: series
+  sonarr_anime:
+    include: 
+      - config: sonarr.yaml
+    quality_definition:
+      type: anime
+radarr:
+  radarr_main:
+    include: 
+      - config: radarr.yaml
+  radarr_4k:
+    include: 
+      - config: radarr.yaml
