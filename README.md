@@ -2,13 +2,13 @@
 - .env
 - container_management/
   - docker-compse.yaml
-  - .env simlinked to ../.env
+  - .env (simlinked to ../.env)
 - general_apps/
   - docker-compse.yaml
-  - .env simlinked to ../.env
+  - .env (simlinked to ../.env)
 - media_app/
   - docker-compse.yaml
-  - .env simlinked to ../.env
+  - .env (simlinked to ../.env)
   - secrets
     - romm_IGDBClientID.txt
     - romm_IGDBClientSecret.txt
@@ -17,7 +17,7 @@
     - romm-db_MySQLPassword.txt
 - media_manangement/
   - docker-compse.yaml
-  - .env simlinked to ../.env
+  - .env (simlinked to ../.env)
   - recyclarr/
     - recyclarr.yaml
     - secrets.yaml
@@ -26,12 +26,12 @@
       - radarr.yaml
 - network_apps/
   - docker-compse.yaml
-  - .env simlinked to ../.env
+  - .env (simlinked to ../.env)
   - secrets
     - pihole_WebServerAPIPassword.txt
 - plex_apps/
   - docker-compse.yaml
-  - .env simlinked to ../.env
+  - .env (simlinked to ../.env)
   - kometa/
     - config.yaml
     - .env
