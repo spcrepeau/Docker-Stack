@@ -1,0 +1,149 @@
+name: media_manangement
+x-default_container: &default_container
+  network_mode: bridge
+  security_opt: ['no-new-privileges:true']
+  restart: unless-stopped
+x-default_environment: &default_environment
+  PGID: ${DOCKER_GID}
+  PUID: ${DOCKER_UID}
+  TZ: ${TZ}
+services:
+  lidarr:
+    <<: *default_container
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    depends_on:
+      - prowlarr
+      - sabnzbd
+    environment:
+      <<: *default_environment
+      DOCKER_MODS: ghcr.io/themepark-dev/theme.park:lidarr
+      TP_ADDON: lidarr-darker
+    ports:
+      - ${LIDARR_PORT_8686}:8686 # Web GUI HTTP
+    volumes:
+      - ./lidarr:/config
+      - ${DATA_DIR}/usenet:/downloads
+      - ${DATA_DIR}/media/music:/music
+      - ${DATA_DIR}/trash/lidarr:/recycle
+  overseerr:
+    <<: *default_container
+    image: lscr.io/linuxserver/overseerr:latest
+    container_name: overseerr
+    depends_on:
+      - radarr
+      - radarr-4K
+      - sonarr
+    environment:
+      <<: *default_environment
+    ports:
+      - ${OVERSEERR_PORT_5055}:5055 # Web GUI HTTP
+    volumes:
+      - ./overseerr:/config
+  prowlarr:
+    <<: *default_container
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    depends_on:
+      - sabnzbd
+    environment:
+      <<: *default_environment
+      DOCKER_MODS: ghcr.io/themepark-dev/theme.park:prowlarr
+      TP_ADDON: prowlarr-text-logo|prowlarr-darker
+    ports:
+      - ${PROWLARR_PORT_9696}:9696 # Web GUI HTTP
+    volumes:
+      - ./prowlarr:/config
+  radarr:
+    <<: *default_container
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    depends_on:
+      - prowlarr
+      - sabnzbd
+    environment:
+      <<: *default_environment
+      DOCKER_MODS: ghcr.io/themepark-dev/theme.park:radarr
+      TP_ADDON: radarr-darker
+    ports:
+      - ${RADARR_PORT_7878}:7878 # Web GUI HTTP
+    volumes:
+      - ./radarr:/config
+      - ${DATA_DIR}/usenet:/downloads
+      - ${DATA_DIR}/media/movies:/movies
+      - ${DATA_DIR}/trash/radarr:/recycle
+  radarr-4K:
+    <<: *default_container
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr-4K
+    depends_on:
+      - prowlarr
+      - sabnzbd
+    environment:
+      <<: *default_environment
+      DOCKER_MODS: ghcr.io/themepark-dev/theme.park:radarr
+      TP_ADDON: radarr-4k-logo|radarr-4k-favicon|radarr-darker
+    ports:
+      - ${RADARR4K_PORT_7878}:7878 # Web GUI HTTP
+    volumes:
+      - ./radarr-4K:/config
+      - ${DATA_DIR}/usenet:/downloads
+      - ${DATA_DIR}/media/movies-4K:/movies
+      - ${DATA_DIR}/trash/radarr-4K:/recycle
+  recyclarr:
+    <<: *default_container
+    image: recyclarr/recyclarr:latest
+    container_name: recyclarr
+    environment:
+      TZ: ${TZ}
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./recyclarr:/config
+  sabnzbd:
+    <<: *default_container
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      <<: *default_environment
+    ports:
+      - ${SABNZBD_PORT_8080}:8080 # Web GUI HTTP
+    volumes:
+      - ./sabnzbd:/config
+      - ${DATA_DIR}/usenet:/downloads
+  sonarr:
+    <<: *default_container
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    depends_on:
+      - prowlarr
+      - sabnzbd
+    environment:
+      <<: *default_environment
+      DOCKER_MODS: ghcr.io/themepark-dev/theme.park:sonarr
+      TP_ADDON: sonarr-text-logo|sonarr-darker
+    ports:
+      - ${SONARR_PORT_8989}:8989 # Web GUI HTTP
+    volumes:
+      - ./sonarr:/config
+      - ${DATA_DIR}/usenet:/downloads
+      - ${DATA_DIR}/media/tv:/tv
+      - ${DATA_DIR}/media/tv-kids:/tv-kids
+      - ${DATA_DIR}/trash/sonarr:/recycle
+  sonarr-anime:
+    <<: *default_container
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr-anime
+    depends_on:
+      - prowlarr
+      - sabnzbd
+    environment:
+      <<: *default_environment
+      DOCKER_MODS: ghcr.io/themepark-dev/theme.park:sonarr
+      TP_ADDON: sonarr-anime-text-logo|sonarr-anime-favicon|sonarr-darker
+    ports:
+      - ${SONARRANIME_PORT_8989}:8989 # Web GUI HTTP
+    volumes:
+      - ./sonarr-anime:/config
+      - ${DATA_DIR}/usenet:/downloads
+      - ${DATA_DIR}/media/anime:/anime
+      - ${DATA_DIR}/trash/sonarr-anime:/recycle
