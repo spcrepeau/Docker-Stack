@@ -1,0 +1,55 @@
+name: general_apps
+x-default_container: &default_container
+  network_mode: bridge
+  security_opt: ['no-new-privileges:true']
+  restart: unless-stopped
+x-default_environment: &default_environment
+  PGID: ${DOCKER_GID}
+  PUID: ${DOCKER_UID}
+  TZ: ${TZ}
+services:
+  heimdall:
+    <<: *default_container
+    image: lscr.io/linuxserver/heimdall:latest
+    container_name: heimdall
+    environment:
+      <<: *default_environment
+    ports:
+      - ${HEIMDALL_PORT_80}:80 # Web GUI HTTP
+      - ${HEIMDALL_PORT_443}:443 # Web GUI HTTPS
+    volumes:
+      - ./heimdall:/config
+  librespeed:
+    <<: *default_container
+    image: lscr.io/linuxserver/librespeed:latest
+    container_name: librespeed
+    environment:
+      <<: *default_environment
+      DOCKER_MODS: ghcr.io/themepark-dev/theme.park:librespeed
+      TP_THEME: dark
+    ports:
+      - ${LIBRESPEED_PORT_80}:80 # Web GUI HTTP
+      - ${LIBRESPEED_PORT_443}:443 # Web GUI HTTPS
+    volumes:
+      - ./librespeed:/config
+  organizr:
+    <<: *default_container
+    image: organizr/organizr:latest
+    container_name: organizr
+    environment:
+      <<: *default_environment
+    ports:
+      - ${ORGANIZR_PORT_80}:80 # Web GUI HTTP
+    volumes:
+      - ./organizr:/config
+  theme-park:
+    <<: *default_container
+    image: ghcr.io/themepark-dev/theme.park:latest
+    container_name: theme-park
+    environment:
+      <<: *default_environment
+    ports:
+      - ${THEMEPARK_PORT_80}:80 # Web GUI HTTP
+      - ${THEMEPARK_PORT_443}:443 # Web GUI HTTPS
+    volumes:
+      - ./theme-park:/config
