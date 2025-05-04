@@ -1,0 +1,54 @@
+name: plex_apps
+x-default_container: &default_container
+  network_mode: bridge
+  security_opt: ['no-new-privileges:true']
+  restart: unless-stopped
+x-default_environment: &default_environment
+  PGID: ${DOCKER_GID}
+  PUID: ${DOCKER_UID}
+  TZ: ${TZ}
+services:
+  kometa:
+    <<: *default_container
+    image: lscr.io/linuxserver/kometa:latest
+    container_name: kometa
+    environment:
+      <<: *default_environment
+      KOMETA_CONFIG: /config/config.yaml
+      KOMETA_TIME: "21:00"
+      KOMETA_RUN: false
+      KOMETA_TEST: false
+      KOMETA_NO_MISSING: false
+    volumes:
+      - ./kometa:/config
+  plexautolanguages:
+    <<: *default_container
+    image: journeyover/plex-auto-languages:latest
+    container_name: plexautolanguages
+    environment:
+      # PLEX_TOKEN_FILE set in config located at /config/config.yaml
+      # PLEX_URL_FILE set in config located at /config/config.yaml
+      TZ: ${TZ}
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./plexautolanguages:/config
+  tautulli:
+    <<: *default_container
+    image: lscr.io/linuxserver/tautulli:latest
+    container_name: tautulli
+    environment:
+      <<: *default_environment
+    ports:
+      - ${TAUTULLI_PORT_8181}:8181 # Web GUI HTTP
+    volumes:
+      - ./tautulli:/config
+  wizarr:
+    <<: *default_container
+    image: ghcr.io/wizarrrr/wizarr:latest
+    container_name: wizarr
+    environment:
+      TZ: ${TZ}
+    ports:
+      - ${WIZARR_PORT_5690}:5690 # Web GUI HTTP
+    volumes:
+      - ./wizarr/database:/data/database
