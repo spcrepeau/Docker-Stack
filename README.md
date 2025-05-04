@@ -1,8 +1,20 @@
 # Docker-Stack
-.env is simlinked to each subfolder.
-container_management
-general_apps
-media_apps
-media_manangement
-network_apps
-plex_apps
+- .env
+- container_management/
+  - docker-compse.yaml
+  - .env simlinked to ../.env
+- general_apps/
+  - docker-compse.yaml
+  - .env simlinked to ../.env
+- media_app/
+  - docker-compse.yaml
+  - .env simlinked to ../.env
+- media_manangement/
+  - docker-compse.yaml
+  - .env simlinked to ../.env
+- network_apps/
+  - docker-compse.yaml
+  - .env simlinked to ../.env
+- plex_apps/
+  - docker-compse.yaml
+  - .env simlinked to ../.env
