@@ -1,5 +1,5 @@
 # kometa
-** .env
+## .env
 * The file has been stripped of all personal information.
 * The KOMETA_PLEXURL value should be in the https://#-#-#-#.##########.plex.direct:32400 format.
 * The KOMETA_TAUTULLIURL value should be in the http://hostname:port format.
