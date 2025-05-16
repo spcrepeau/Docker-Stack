@@ -88,6 +88,8 @@ libraries:
               - BONES
             Nut:
               - NUT
+            Gonzo:
+              - GONZO
             Shaft:
               - SHAFT
             Studio Massket:
