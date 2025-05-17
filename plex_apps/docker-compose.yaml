@@ -32,6 +32,18 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./plexautolanguages:/config
+  quickstart:
+    <<: *default_container
+    image: kometateam/quickstart:latest
+    container_name: quickstart
+    depends_on:
+      - kometa
+    environment:
+      <<: *default_environment
+    ports:
+      - ${QUICKSTART_PORT_7171}:7171
+    volumes:
+      - ./quickstart:/config
   tautulli:
     <<: *default_container
     image: lscr.io/linuxserver/tautulli:latest
