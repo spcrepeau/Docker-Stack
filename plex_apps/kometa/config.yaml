@@ -194,7 +194,7 @@ plex: # https://kometa.wiki/en/latest/config/plex/
 tmdb: # https://kometa.wiki/en/latest/config/tmdb/
   apikey: <<TMBDAPIKEY>>
   language: en
-  region:
+  region: US
   cache_expiration: 60
 mdblist: # https://kometa.wiki/en/latest/config/mdblist/
   apikey: <<MDBLISTAPIKEY>>
