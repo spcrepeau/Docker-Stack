@@ -158,6 +158,7 @@ settings: # https://kometa.wiki/en/latest/config/settings/
   show_unmanaged: true
   show_unconfigured: true
   show_filtered: false
+  show_unfiltered: false
   show_options: true
   show_missing: true
   show_missing_assets: true
