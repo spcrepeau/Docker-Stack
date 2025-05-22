@@ -176,58 +176,58 @@ settings: # https://kometa.wiki/en/latest/config/settings/
   overlay_artwork_filetype: jpg
   overlay_artwork_quality: 75
 # Secrets variables loaded from .env file also located at /config. Variables in file have KOMETA_ prefix and can't contain any other underscores.
-# webhooks: # https://kometa.wiki/en/latest/config/webhooks/
-#   error:
-#   version:
-#   run_start:
-#   run_end:
-#   changes:
-#   delete:
-# plex: # https://kometa.wiki/en/latest/config/plex/
-#   url: <<PLEXURL>>
-#   token: <<PLEXTOKEN>>
-#   timeout: 60
-#   db_cache: 4096
-#   clean_bundles: false
-#   empty_trash: false
-#   optimize: false
-#   verify_ssl:
-# tmdb: # https://kometa.wiki/en/latest/config/tmdb/
-#   apikey: <<TMBDAPIKEY>>
-#   language: en
-#   region: US
-#   cache_expiration: 60
-# mdblist: # https://kometa.wiki/en/latest/config/mdblist/
-#   apikey: <<MDBLISTAPIKEY>>
-#   cache_expiration: 60
-# tautulli: # https://kometa.wiki/en/latest/config/tautulli/
-#   url: <<TAUTULLIURL>>
-#   apikey: <<TAUTULLIAPIKEY>>
-# mal: # https://kometa.wiki/en/latest/config/myanimelist/
-#   client_id: <<MALCLIENTID>>
-#   client_secret: <<MALCLIENTSECRET>>
-#   localhost_url: <<MALLOCALHOSTURL>>
-#   cache_expiration: 60
-#   authorization:
-#     access_token: <<MALACCESSTOKEN>>
-#     token_type: Bearer
-#     expires_in: 2678400
-#     refresh_token: <<MALREFRESHTOKEN>>
-# trakt: # https://kometa.wiki/en/latest/config/trakt/
-#   client_id: <<TRAKTCLIENTID>>
-#   client_secret: <<TRAKTCLIENTSECRET>>
-#   pin:
-#   authorization:
-#     access_token: <<TRAKTACCESSTOKEN>>
-#     token_type: Bearer
-#     expires_in: 7889237
-#     refresh_token: <<TRAKTREFRESHTOKEN>>
-#     scope: public
-#     created_at: 1740177626
-# anidb: # https://kometa.wiki/en/latest/config/anidb/
-#   client: <<ANIDBCLIENT>>
-#   version: 1
-#   language: en
-#   cache_expiration: 60
-#   username: <<ANIDBUSERNAME>>
-#   password: <<ANIDBPASSWORD>>
+webhooks: # https://kometa.wiki/en/latest/config/webhooks/
+  error:
+  version:
+  run_start:
+  run_end:
+  changes:
+  delete:
+plex: # https://kometa.wiki/en/latest/config/plex/
+  url: <<PLEXURL>>
+  token: <<PLEXTOKEN>>
+  timeout: 60
+  db_cache: 4096
+  clean_bundles: false
+  empty_trash: false
+  optimize: false
+  verify_ssl:
+tmdb: # https://kometa.wiki/en/latest/config/tmdb/
+  apikey: <<TMBDAPIKEY>>
+  language: en
+  region: US
+  cache_expiration: 60
+mdblist: # https://kometa.wiki/en/latest/config/mdblist/
+  apikey: <<MDBLISTAPIKEY>>
+  cache_expiration: 60
+tautulli: # https://kometa.wiki/en/latest/config/tautulli/
+  url: <<TAUTULLIURL>>
+  apikey: <<TAUTULLIAPIKEY>>
+mal: # https://kometa.wiki/en/latest/config/myanimelist/
+  client_id: <<MALCLIENTID>>
+  client_secret: <<MALCLIENTSECRET>>
+  localhost_url: <<MALLOCALHOSTURL>>
+  cache_expiration: 60
+  authorization:
+    access_token: <<MALACCESSTOKEN>>
+    token_type: Bearer
+    expires_in: 2678400
+    refresh_token: <<MALREFRESHTOKEN>>
+trakt: # https://kometa.wiki/en/latest/config/trakt/
+  client_id: <<TRAKTCLIENTID>>
+  client_secret: <<TRAKTCLIENTSECRET>>
+  pin:
+  authorization:
+    access_token: <<TRAKTACCESSTOKEN>>
+    token_type: Bearer
+    expires_in: 7889237
+    refresh_token: <<TRAKTREFRESHTOKEN>>
+    scope: public
+    created_at: 1740177626
+anidb: # https://kometa.wiki/en/latest/config/anidb/
+  client: <<ANIDBCLIENT>>
+  version: 1
+  language: en
+  cache_expiration: 60
+  username: <<ANIDBUSERNAME>>
+  password: <<ANIDBPASSWORD>>
