@@ -60,8 +60,11 @@ services:
     image: ghcr.io/wizarrrr/wizarr:latest
     container_name: wizarr
     environment:
-      TZ: ${TZ}
+      <<: *default_environment
+      APP_URL: ${WIZARR_APP_URL}
+      DISABLE_BUILTIN_AUTH: false
     ports:
       - ${WIZARR_PORT_5690}:5690 # Web GUI HTTP
     volumes:
       - ./wizarr/database:/data/database
+      - ./wizarr/wizard:/data/wizard_steps
