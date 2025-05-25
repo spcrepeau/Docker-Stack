@@ -34,6 +34,7 @@ services:
       - radarr
       - radarr-4K
       - sonarr
+      - sonarr-anime
     environment:
       <<: *default_environment
     ports:
