@@ -3,8 +3,12 @@ delete_old_custom_formats: false
 replace_existing_custom_formats: true
 custom_formats:
   - trash_ids:
-    ##########
     ########## Video Sources, scores using 100,000's ##########
+    # Remux (in radarr-4K)
+    # Bluray
+    # WebDL
+    # WebRip
+    # TV
     ########## HDR Formats, scores using 10,000's ##########
     - c53085ddbd027d9624b320627748612f # DV HDR10Plus
     - e23edd2482476e595fb990b12e7c609c # DV HDR10
@@ -52,6 +56,9 @@ custom_formats:
     - b8cd450cbfa689c0259a01d9e29ba3d6 # 3D
     - eecf3a857724171f968a66cb5719e152 # IMAX
     - 9f6cbff8cfe4ebbc1bde14c7b7bec0de # IMAX Enhanced
+    # Remux (in radarr)
+    # Not 1080p (in radarr)
+    # Not 2160p (in radarr-4K)
 media_naming:
   folder: plex-tmdb 
   movie:

@@ -1,0 +1,15 @@
+{
+  "name": "TV",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "TV",
+      "implementation": "SourceSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": 1
+      }
+    }
+  ]
+}

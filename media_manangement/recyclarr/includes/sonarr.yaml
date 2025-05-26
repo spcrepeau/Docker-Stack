@@ -4,7 +4,12 @@ replace_existing_custom_formats: true
 custom_formats:
   - trash_ids:
     ########## Anime Dual Audio, scores at 1,000,000 ##########
+    # Dual Audio (in sonarr-anime)
     ########## Video Sources, scores using 100,000's ##########
+    # Bluray
+    # WebDL
+    # WebRip
+    # TV
     ########## HDR Formats, scores using 10,000's ##########
     - 2b239ed870daba8126a53bd5dc8dc1c8 # DV HDR10Plus
     - 7878c33f1963fefb3d6c8657d46c2f0a # DV HDR10
@@ -49,6 +54,9 @@ custom_formats:
     - 90501962793d580d011511155c97e4e5 # VP9
     - 041d90b435ebd773271cea047a457a6a # x266
     ########## Unwanted, scores at -10,000,000 ##########
+    # Non-English Dual Audio (in sonarr-anime)
+    # Remux
+    # Not 1080p
 media_naming:
   series: plex-tvdb
   season: default
