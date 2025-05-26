@@ -63,8 +63,7 @@ services:
     image: journeyover/plex-auto-languages:latest
     container_name: plexautolanguages
     environment:
-      # PLEX_TOKEN_FILE set in config located at /config/config.yaml
-      # PLEX_URL_FILE set in config located at /config/config.yaml
+      # PLEX_TOKEN and PLEX_URL set in config located at /config/config.yaml
       TZ: ${TZ}
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
