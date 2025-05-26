@@ -12,11 +12,10 @@ services:
     <<: *default_container
     image: lscr.io/linuxserver/kometa:latest
     container_name: kometa
-    #env_file: ./kometa/secrets.env
     environment:
       <<: *default_environment
       KOMETA_CONFIG: /config/config.yaml
-      KOMETA_TIME: "16:45"
+      KOMETA_TIME: "10:00"
       KOMETA_RUN: false
       KOMETA_TEST: false
       KOMETA_NO_MISSING: false
