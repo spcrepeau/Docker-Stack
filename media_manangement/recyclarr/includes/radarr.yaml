@@ -3,8 +3,9 @@ delete_old_custom_formats: false
 replace_existing_custom_formats: true
 custom_formats:
   - trash_ids:
-    # Video Sources, scores using 100,000's
-    # HDR Formats, scores using 10,000's
+    ##########
+    ########## Video Sources, scores using 100,000's ##########
+    ########## HDR Formats, scores using 10,000's ##########
     - c53085ddbd027d9624b320627748612f # DV HDR10Plus
     - e23edd2482476e595fb990b12e7c609c # DV HDR10
     - 58d6a88f13e2db7f5059c41047876f00 # DV
@@ -16,7 +17,7 @@ custom_formats:
     - 2a4d9069cc1fe3242ff9bdaebed239bb # HDR (undefined)
     - 08d6d8834ad9ec87b1dc7ec8148e7a1f # PQ
     - 9364dd386c9b4a1100dde8264690add7 # HLG
-    # Audio Formats, scores using 100-1,000's
+    ########## Audio Formats, scores using 100-1,000's ##########
     - 496f355514737f7d83bf7aa4d24f8169 # TrueHD ATMOS
     - 2f22d89048b01681dde8afe203bf2e95 # DTS X
     - 417804f7f2c4308c1f4c5d380d4c4475 # ATMOS (undefined)
@@ -33,7 +34,7 @@ custom_formats:
     - c2998bd0d90ed5621d8df281e839436e # DD
     - 6ba9033150e7896bdc9ec4b44f2b230f # MP3
     - a061e2e700f81932daf888599f8a8273 # Opus
-    # Audio Channels, scores using 10's
+    ########## Audio Channels, scores using 10's ##########
     - e77382bcfeba57cb83744c9c5449b401 # 7.1 Surround
     - 6fd7b090c3f7317502ab3b63cc7f51e3 # 6.1 Surround
     - 77ff61788dfe1097194fd8743d7b4524 # 5.1 Surround
@@ -41,13 +42,13 @@ custom_formats:
     - 205125755c411c3b8622ca3175d27b37 # 3.0 Sound
     - 89dac1be53d5268a7e10a19d3c896826 # 2.0 Stereo
     - b124be9b146540f8e62f98fe32e49a2a # 1.0 Mono
-    # Encoding Formats, scores using 1's
+    ########## Encoding Formats, scores using 1's ##########
     - cae4ca30163749b891686f95532519bd # AV1
     - 390455c22a9cac81a738f6cbad705c3c # x265
     - 2899d84dc9372de3408e6d8cc18e9666 # x264
     - ae4cfaa9283a4f2150ac3da08e388723 # VP9
     - 9170d55c319f4fe40da8711ba9d8050d # x266
-    # Unwanted, scores at -10,000,000 
+    ########## Unwanted, scores at -10,000,000 ##########
     - b8cd450cbfa689c0259a01d9e29ba3d6 # 3D
     - eecf3a857724171f968a66cb5719e152 # IMAX
     - 9f6cbff8cfe4ebbc1bde14c7b7bec0de # IMAX Enhanced
