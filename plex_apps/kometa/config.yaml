@@ -1,10 +1,10 @@
 common_movies: &common_movies
   collection_files: # https://kometa.wiki/en/latest/defaults/collections/
-    - default: imdb   # https://kometa.wiki/en/latest/defaults/chart/imdb/
-    - default: universe   # https://kometa.wiki/en/latest/defaults/both/universe/
-    - default: seasonal   # https://kometa.wiki/en/latest/defaults/movie/seasonal/
+    - default: imdb # https://kometa.wiki/en/latest/defaults/chart/imdb/
+    - default: universe # https://kometa.wiki/en/latest/defaults/both/universe/
+    - default: seasonal # https://kometa.wiki/en/latest/defaults/movie/seasonal/
   overlay_files: # https://kometa.wiki/en/latest/defaults/overlays/
-    - default: ratings   # https://kometa.wiki/en/latest/defaults/overlays/ratings/
+    - default: ratings # https://kometa.wiki/en/latest/defaults/overlays/ratings/
       template_variables:
         horizontal_position: right
         vertical_align: bottom
@@ -18,13 +18,13 @@ common_movies: &common_movies
     mass_audience_rating_update: mdb_tomatoesaudience
 common_tv_anime_status_variables: &common_tv_anime_status_variables
   text_airing: airing
-  back_color_airing: '#A8E4A0'   # green
+  back_color_airing: '#A8E4A0' # green
   text_returning: coming back
-  back_color_returning: '#A8E4A0'   # green
+  back_color_returning: '#A8E4A0' # green
   text_canceled: cancelled
-  back_color_canceled: '#f85845'   # red
+  back_color_canceled: '#f85845' # red
   text_ended: ended
-  back_color_ended: '#f85845'   # red
+  back_color_ended: '#f85845' # red
   font_color: '#000000FF'
   font_size: 75
   back_width:
@@ -51,19 +51,19 @@ libraries:
   TV Shows: # https://kometa.wiki/en/latest/config/libraries/
     report_path: /config/missing/missing_tv_shows.yaml
     collection_files: # https://kometa.wiki/en/latest/defaults/collections/
-      - default: imdb   # https://kometa.wiki/en/latest/defaults/chart/imdb/
-      - default: emmy   # https://kometa.wiki/en/latest/defaults/award/emmy/
-      - default: universe   # https://kometa.wiki/en/latest/defaults/both/universe/
-      - default: franchise   # https://kometa.wiki/en/latest/defaults/show/franchise/
+      - default: imdb # https://kometa.wiki/en/latest/defaults/chart/imdb/
+      - default: emmy # https://kometa.wiki/en/latest/defaults/award/emmy/
+      - default: universe # https://kometa.wiki/en/latest/defaults/both/universe/
+      - default: franchise # https://kometa.wiki/en/latest/defaults/show/franchise/
     overlay_files: # https://kometa.wiki/en/latest/defaults/overlays/
-      - default: status   # https://kometa.wiki/en/latest/defaults/overlays/status/
+      - default: status # https://kometa.wiki/en/latest/defaults/overlays/status/
         template_variables:
           <<: *common_tv_anime_status_variables
-      - default: network   # https://kometa.wiki/en/latest/defaults/overlays/network
+      - default: network # https://kometa.wiki/en/latest/defaults/overlays/network
         template_variables:
           <<: *common_tv_network_anime_studio_variables
           style: color
-      - default: ratings   # https://kometa.wiki/en/latest/defaults/overlays/ratings/
+      - default: ratings # https://kometa.wiki/en/latest/defaults/overlays/ratings/
         template_variables:
           horizontal_position: right
           vertical_align: bottom
@@ -78,10 +78,10 @@ libraries:
   Anime: # https://kometa.wiki/en/latest/config/libraries/
     report_path: /config/missing/missing_anime.yaml
     collection_files: # https://kometa.wiki/en/latest/defaults/collections/
-      - default: myanimelist   # https://kometa.wiki/en/latest/defaults/chart/myanimelist/
-      - default: universe   # https://kometa.wiki/en/latest/defaults/both/universe/
-      - default: franchise   # https://kometa.wiki/en/latest/defaults/show/franchise/
-      - default: studio   # https://kometa.wiki/en/latest/defaults/both/studio/
+      - default: myanimelist # https://kometa.wiki/en/latest/defaults/chart/myanimelist/
+      - default: universe # https://kometa.wiki/en/latest/defaults/both/universe/
+      - default: franchise # https://kometa.wiki/en/latest/defaults/show/franchise/
+      - default: studio # https://kometa.wiki/en/latest/defaults/both/studio/
         template_variables:
           append_addons:
             Bones:
@@ -102,19 +102,19 @@ libraries:
               - WIT STUDIO
           minimum_items: 1
     overlay_files: # https://kometa.wiki/en/latest/defaults/overlays/
-      - default: status   # https://kometa.wiki/en/latest/defaults/overlays/status/
+      - default: status # https://kometa.wiki/en/latest/defaults/overlays/status/
         template_variables:
           <<: *common_tv_anime_status_variables
-      - default: studio   # https://kometa.wiki/en/latest/defaults/overlays/studio/
+      - default: studio # https://kometa.wiki/en/latest/defaults/overlays/studio/
         template_variables:
           <<: *common_tv_network_anime_studio_variables
           style: bigger
-      - default: studio   # https://kometa.wiki/en/latest/defaults/overlays/studio/
+      - default: studio # https://kometa.wiki/en/latest/defaults/overlays/studio/
         template_variables:
           builder_level: season
           <<: *common_tv_network_anime_studio_variables
           style: bigger
-      - default: ratings   # https://kometa.wiki/en/latest/defaults/overlays/ratings/
+      - default: ratings # https://kometa.wiki/en/latest/defaults/overlays/ratings/
         template_variables:
           horizontal_position: right
           vertical_align: bottom
@@ -175,7 +175,7 @@ settings: # https://kometa.wiki/en/latest/config/settings/
   custom_repo:
   overlay_artwork_filetype: jpg
   overlay_artwork_quality: 75
-# Secrets variables loaded from .env file also located at /config. Variables in file have KOMETA_ prefix and can't contain any other underscores.
+# <<VARIABLES>> loaded from enviroment variables which have KOMETA_ prefix and can't contain any other underscores. The FILE__ prefix is used to call secrets files.
 webhooks: # https://kometa.wiki/en/latest/config/webhooks/
   error:
   version:
