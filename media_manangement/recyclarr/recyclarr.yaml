@@ -1,5 +1,4 @@
-# https://recyclarr.dev/wiki/
-# base_url and api_key automatically imported from secrets.yml in /config, https://recyclarr.dev/wiki/yaml/secrets-reference/
+# INSTANCE_base_url and INSTANCE_api_key automatically imported from secrets.yaml in /config, https://recyclarr.dev/wiki/yaml/secrets-reference/
 sonarr:
   sonarr_main:
     include: 
