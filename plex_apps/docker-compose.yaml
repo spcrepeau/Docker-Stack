@@ -63,11 +63,14 @@ services:
     image: journeyover/plex-auto-languages:latest
     container_name: plexautolanguages
     environment:
-      # PLEX_TOKEN and PLEX_URL set in config located at /config/config.yaml
+      PLEX_URL: ${PLEXAUTOLANGUAGES_PLEXURL}
+      PLEX_TOKEN_FILE: /run/secrets/KOMETA_PLEXTOKEN
       TZ: ${TZ}
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./plexautolanguages:/config
+    secrets:
+      - KOMETA_PLEXTOKEN
   quickstart:
     <<: *default_container
     image: kometateam/quickstart:latest
