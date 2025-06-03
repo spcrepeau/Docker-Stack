@@ -2,18 +2,14 @@
 sonarr:
   sonarr_main:
     include: 
-      - config: sonarr.yaml
-    quality_definition:
-      type: series
+      - config: sonarr_main.yaml
   sonarr_anime:
     include: 
-      - config: sonarr.yaml
-    quality_definition:
-      type: anime
+      - config: sonarr_anime.yaml
 radarr:
   radarr_main:
     include: 
-      - config: radarr.yaml
+      - config: radarr_main.yaml
   radarr_4k:
     include: 
-      - config: radarr.yaml
+      - config: radarr_4k.yaml
