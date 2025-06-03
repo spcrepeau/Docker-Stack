@@ -1,0 +1,219 @@
+# Work-in-progress to auto-assign custom format scores in the profile. Likely needs separate files for each instance.
+
+# https://trash-guides.info/Sonarr/sonarr-collection-of-custom-formats/
+delete_old_custom_formats: false
+replace_existing_custom_formats: true
+custom_formats:
+  ########## Anime Dual Audio, scores at 1,000,000 ##########
+  # Dual Audio (in sonarr-anime)
+  ########## Video Sources, scores using 100,000's ##########
+  # Bluray
+  #   score: 400000
+  # WebDL
+  #   score: 300000
+  # WebRip
+  #   score: 200000
+  # TV
+  #   score: 100000
+  ########## HDR Formats, scores using 10,000's ##########
+  - trash_ids:
+    - 2b239ed870daba8126a53bd5dc8dc1c8 # DV HDR10Plus
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 50000
+  - trash_ids:
+    - 7878c33f1963fefb3d6c8657d46c2f0a # DV HDR10
+    - 1f733af03141f068a540eec352589a89 # DV HLG
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 40000
+  - trash_ids:
+    - a3d82cbef5039f8d295478d28a887159 # HDR10Plus
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 30000
+  - trash_ids: 
+    - 3497799d29a085e2ac2df9d468413c94 # HDR10
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 20000
+  - trash_ids:
+    - 3e2c4e748b64a1a1118e0ea3f4cf6875 # HDR
+    - bb019e1cd00f304f80971c965de064dc # HDR (undefined)
+    - 2a7e3be05d3861d6df7171ec74cad727 # PQ
+    - 17e889ce13117940092308f48b48b45b # HLG
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 10000
+  - trash_ids:
+    - 6d0d8de7b57e35518ac0308b0ddf404e # DV
+    - 27954b0a80aab882522a88a4d9eae1cd # DV SDR
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 0
+  ########## Audio Formats, scores using 100-1,000's ##########
+  - trash_ids:
+    - 0d7824bb924701997f874e7ff7d4844a # TrueHD ATMOS
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 1500
+  - trash_ids:
+    - 9d00418ba386a083fbf4d58235fc37ef # DTS X
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 1400
+  - trash_ids:
+    - b6fbafa7942952a13e17e2b1152b539a # ATMOS (undefined)
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 1300
+  - trash_ids:
+    - 4232a509ce60c4e208d13825b7c06264 # DDPlus ATMOS
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 1200
+  - trash_ids:
+    - 1808e4b9cee74e064dfae3f1db99dbfe # TrueHD
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 1100
+  - trash_ids:
+    - c429417a57ea8c41d57e6990a8b0033f # DTS-HD MA
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 1000
+  - trash_ids:
+    - 851bd64e04c9374c51102be3dd9ae4cc # FLAC
+    - 30f70576671ca933adbdcfc736a69718 # PCM
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 900
+  - trash_ids:
+    - cfa5fbd8f02a86fc55d8d223d06a5e1f # DTS-HD HRA
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 800
+  - trash_ids:
+    - 63487786a8b01b7f20dd2bc90dd4a477 # DDPlus
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 700
+  - trash_ids:
+    - c1a25cd67b5d2e08287c957b1eb903ec # DTS-ES
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 600
+  - trash_ids:
+    - 5964f2a8b3be407d083498e4459d05d0 # DTS
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 500
+  - trash_ids:
+    - a50b8a0c62274a7c38b09a9619ba9d86 # AAC
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 400
+  - trash_ids:
+    - dbe00161b08a25ac6154c55f95e6318d # DD
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 300
+  - trash_ids:
+    - 3e8b714263b26f486972ee1e0fe7606c # MP3
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 200
+  - trash_ids:
+    - 28f6ef16d61e2d1adfce3156ed8257e3 # Opus
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 100
+  ########## Audio Channels, scores using 10's ##########
+  - trash_ids:
+    - 204c8c3e7315bb0ea81332774fa888d6 # 7.1 Surround
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 70
+  - trash_ids:
+    - 9fb6d778592c293467437593ef394bf1 # 6.1 Surround
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 60
+  - trash_ids:
+    - 3fbafa924f361e66fbc6187af82dfa85 # 5.1 Surround
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 50
+  - trash_ids:
+    - 1895195e84767de180653914ce207245 # 4.0 Sound
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 40
+  - trash_ids:
+    - 42cba7e38c7947a6d1d0a62580ee6d62 # 3.0 Sound
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 30
+  - trash_ids:
+    - 834e534f103938853ffced4203b53e72 # 2.0 Stereo
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 20
+  - trash_ids:
+    - bd6dd5e043aa27ff4696a08d011c7d96 # 1.0 Mono
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 10
+  ########## Encoding Formats, scores using 1's ##########
+  - trash_ids:
+    - 15a05bc7c1a36e2b57fd628f8977e2fc # AV1
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 3
+  - trash_ids:
+    - c9eafd50846d299b862ca9bb6ea91950 # x265
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 2
+  - trash_ids:
+    - cddfb4e32db826151d97352b8e37c648 # x264
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 1
+  - trash_ids:
+    - 041d90b435ebd773271cea047a457a6a # x266
+    - 90501962793d580d011511155c97e4e5 # VP9
+    assign_scores_to:
+      - name: 1080p - TV
+        score: 0
+  ########## Unwanted, scores at -10,000,000 ##########
+  # Non-English Dual Audio (in sonarr-anime)
+  # Remux
+  # Not 1080p
+media_naming:
+  series: plex-tvdb
+  season: default
+  episodes:
+    rename: true
+    standard: default
+    daily: default
+    anime: default
+quality_definition:
+  type: series
+quality_profiles:
+  - name: 1080p - TV
+    reset_unmatched_scores:
+      enabled: false
+    upgrade:
+      allowed: true
+      until_quality: 1080p
+      until_score: 451573
+    min_format_score: 100000
+    quality_sort: bottom
+    qualities:
+      - name: 1080p
+        qualities:
+          - Bluray-1080p
+          - WEBRip-1080p
+          - WEBDL-1080p
+          - HDTV-1080p
