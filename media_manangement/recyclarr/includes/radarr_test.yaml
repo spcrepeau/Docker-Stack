@@ -5,8 +5,6 @@ delete_old_custom_formats: false
 replace_existing_custom_formats: true
 custom_formats:
   ########## Video Sources, scores using 100,000's ##########
-  # Remux (in radarr-4K)
-  #   score: 500000
   # Bluray
   #   score: 400000
   # WebDL
@@ -194,9 +192,8 @@ custom_formats:
     assign_scores_to:
       - name: 1080p
         score: -1000000
-  # Remux (in radarr)
-  # Not 1080p (in radarr)
-  # Not 2160p (in radarr-4K)
+  # Remux
+  # Not 1080p
 media_naming:
   folder: plex-tmdb 
   movie:

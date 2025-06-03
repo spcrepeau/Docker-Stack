@@ -1,0 +1,15 @@
+# INSTANCE_base_url and INSTANCE_api_key automatically imported from secrets.yaml in /config, https://recyclarr.dev/wiki/yaml/secrets-reference/
+sonarr:
+  sonarr_main:
+    include: 
+      - config: sonarr.yaml
+  sonarr_anime:
+    include: 
+      - config: sonarr_anime.yaml
+radarr:
+  radarr_main:
+    include: 
+      - config: radarr.yaml
+  radarr_4k:
+    include: 
+      - config: radarr_4k.yaml
