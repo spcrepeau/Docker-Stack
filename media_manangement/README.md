@@ -14,7 +14,7 @@
 
 ### secrets.yaml
 
-* The *_base_url values should be in the http://hostname:port format
+* The *_base_url values should be in the <http://hostname:port> format
 
 ### radarr.yaml and sonarr.yaml
 
