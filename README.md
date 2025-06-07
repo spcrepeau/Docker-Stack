@@ -3,26 +3,25 @@
 * Please see the Wiki for all information
 * env and secrets files have been stripped of all personal information, edit REPLACE_ME in each to reflect your enviroment.
 
-## container_management
-
+## [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
 * Containers: watchtower, socket-proxy-watchtower
 
-## general_apps
+## [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
 
 * Containers: heimdall, librespeed, organizr, theme-park
 
-## media_apps
+## [media_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/media_apps)
 
 * Containers: calibre, calibre-web, romm, romm-db
 
-## media_management
+## [media_management](https://github.com/spcrepeau/Docker-Stack/tree/main/media_manangement)
 
 * Containers: lidarr, overseerr, prowlarr, radarr, radarr-4K, recyclarr, sabnzbd, sonarr, sonarr-anime
 
-## network_apps
+## [network_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/network_apps)
 
 * Containers: pihole
 
-## plex_apps
+## [plex_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/plex_apps)
 
 * Containers: plexautolanguages, quickstart, tautulli, wizarr
