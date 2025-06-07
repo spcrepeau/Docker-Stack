@@ -4,6 +4,7 @@
 * env and secrets files have been stripped of all personal information, edit REPLACE_ME in each to reflect your enviroment.
 
 ## [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
+
 * Containers: watchtower, socket-proxy-watchtower
 
 ## [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
