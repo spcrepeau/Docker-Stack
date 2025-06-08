@@ -98,14 +98,15 @@ services:
     image: ghcr.io/wizarrrr/wizarr:latest
     container_name: wizarr
     environment:
-      <<: *default_environment
-      APP_URL: ${WIZARR_APP_URL}
+      TZ: ${TZ}
       DISABLE_BUILTIN_AUTH: false
     ports:
       - ${WIZARR_PORT_5690}:5690 # Web GUI HTTP
+    user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./wizarr/database:/data/database
       - ./wizarr/wizard:/data/wizard_steps
+      - ./wizarr/cache:/.cache # Needed for now due to bug in 2025.06.1
 secrets:
   KOMETA_PLEXURL:
     file: ./secrets/KOMETA_PLEXURL.txt
