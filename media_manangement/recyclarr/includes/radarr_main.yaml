@@ -211,7 +211,7 @@ quality_profiles:
       until_quality: 1080p
       until_score: 451573
     min_format_score: 100000
-    quality_sort: bottom
+    quality_sort: top
     qualities:
       - name: 1080p
         qualities:

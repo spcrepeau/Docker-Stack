@@ -211,7 +211,7 @@ quality_profiles:
       until_quality: 2160p
       until_score: 551573
     min_format_score: 100000
-    quality_sort: bottom
+    quality_sort: top
     qualities:
       - name: 2160p
         qualities:
