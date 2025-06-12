@@ -18,7 +18,7 @@
 
 ### radarr.yaml and sonarr.yaml
 
-* Old versions being maintanined for when setting quality profiles through recyclarr is no longer desired.
+* Old versions being maintained for when setting quality profiles through recyclarr is no longer desired.
 
 ## sabnzbd
 

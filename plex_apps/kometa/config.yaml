@@ -175,7 +175,7 @@ settings: # https://kometa.wiki/en/latest/config/settings/
   custom_repo:
   overlay_artwork_filetype: jpg
   overlay_artwork_quality: 75
-# <<VARIABLES>> loaded from enviroment variables which have KOMETA_ prefix and can't contain any other underscores. The FILE__ prefix is used to call secrets files.
+# <<VARIABLES>> loaded from environment variables which have KOMETA_ prefix and can't contain any other underscores. The FILE__ prefix is used to call secrets files.
 webhooks: # https://kometa.wiki/en/latest/config/webhooks/
   error:
   version:
@@ -211,7 +211,7 @@ mal: # https://kometa.wiki/en/latest/config/myanimelist/
   authorization:
     access_token: <<MALACCESSTOKEN>>
     token_type: Bearer
-    expires_in: 2678400 # This value will change for your enviroment
+    expires_in: 2678400 # This value will change for your environment
     refresh_token: <<MALREFRESHTOKEN>>
 trakt: # https://kometa.wiki/en/latest/config/trakt/
   client_id: <<TRAKTCLIENTID>>
@@ -220,10 +220,10 @@ trakt: # https://kometa.wiki/en/latest/config/trakt/
   authorization:
     access_token: <<TRAKTACCESSTOKEN>>
     token_type: Bearer
-    expires_in: 7889237 # This value will change for your enviroment
+    expires_in: 7889237 # This value will change for your environment
     refresh_token: <<TRAKTREFRESHTOKEN>>
     scope: public
-    created_at: 1740177626 # This value will change for your enviroment
+    created_at: 1740177626 # This value will change for your environment
 anidb: # https://kometa.wiki/en/latest/config/anidb/
   client: <<ANIDBCLIENT>>
   version: 1

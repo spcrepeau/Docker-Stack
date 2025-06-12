@@ -1,7 +1,7 @@
 # Docker-Stack
 
 * Please see the Wiki for all information
-* env and secrets files have been stripped of all personal information, edit REPLACE_ME in each to reflect your enviroment.
+* env and secrets files have been stripped of all personal information, edit REPLACE_ME in each to reflect your environment.
 
 ## [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
 
@@ -15,7 +15,7 @@
 
 * Containers: calibre, calibre-web, romm, romm-db
 
-## [media_management](https://github.com/spcrepeau/Docker-Stack/tree/main/media_manangement)
+## [media_management](https://github.com/spcrepeau/Docker-Stack/tree/main/media_management)
 
 * Containers: lidarr, overseerr, prowlarr, radarr, radarr-4K, recyclarr, sabnzbd, sonarr, sonarr-anime
 

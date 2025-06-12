@@ -1,4 +1,4 @@
-name: media_manangement
+name: media_management
 x-default_container: &default_container
   network_mode: bridge
   security_opt: ['no-new-privileges:true']
