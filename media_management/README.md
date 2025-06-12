@@ -12,6 +12,8 @@
 
 ## recyclarr
 
+* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
+
 ### secrets.yaml
 
 * The *_base_url values should be in the <http://hostname:port> format

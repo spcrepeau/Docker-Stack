@@ -10,6 +10,8 @@
 
 ## plexautolanguages
 
+* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
+
 ## quickstart
 
 ## tautulli

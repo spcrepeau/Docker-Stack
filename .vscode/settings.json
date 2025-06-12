@@ -68,5 +68,8 @@
         "WEBPASSWORD",
         "wizarr",
         "wizarrrr"
-    ]
+    ],
+    "markdown-preview-enhanced.previewTheme": "github-dark.css",
+    "markdown-preview-enhanced.codeBlockTheme": "github-dark.css",
+    "markdown-preview-enhanced.useGitHubStylePipedLink": true
 }
