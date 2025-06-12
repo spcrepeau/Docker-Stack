@@ -13,6 +13,14 @@
 ## recyclarr
 
 * Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
+* Manually run watchtower with these commands:
+
+```bash
+# To enter the recyclarr container
+sudo docker exec -it recyclarr bash
+# Run the sync command in the recyclarr shell
+recyclarr sync
+```
 
 ### secrets.yaml
 
