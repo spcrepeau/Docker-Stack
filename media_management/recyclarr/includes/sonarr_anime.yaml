@@ -194,6 +194,8 @@ custom_formats:
   ########## Unwanted, scores at -10,000,000 ##########
   # Non-English Dual Audio (JSON file must be manually imported)
   #   score: -10000000
+  # ToonsHub No Subs (JSON file must be manually imported)
+  #   score: -10000000
   # Remux (JSON file must be manually imported)
   #   score: -10000000
   # Not 1080p (JSON file must be manually imported)
