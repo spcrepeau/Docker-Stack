@@ -54,7 +54,9 @@ custom_formats:
     - 90501962793d580d011511155c97e4e5 # VP9
     - 041d90b435ebd773271cea047a457a6a # x266
     ########## Unwanted, scores at -10,000,000 ##########
+    - 9c14d194486c4014d422adc64092d794 # Dubs Only
     # Non-English Dual Audio (in sonarr-anime)
+    # ToonsHub No Subs (in sonarr-anime)
     # Remux
     # Not 1080p
 media_naming:
