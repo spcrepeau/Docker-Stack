@@ -39,3 +39,5 @@ recyclarr sync
 ## custom format files
 
 * These JSON files should be imported into every instance of sonarr and radarr. Recyclarr will build the rest.
+
+* This folder and its files do not need to exists here and be be copied elsewhere or deleted once they've been imported.
