@@ -86,6 +86,8 @@ libraries:
           append_addons:
             Bones:
               - BONES
+            Bones Film:
+              - BONES Film
             Nut:
               - NUT
             Gonzo:
