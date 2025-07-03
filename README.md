@@ -25,4 +25,4 @@
 
 ## [plex_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/plex_apps)
 
-* Containers: plexautolanguages, quickstart, tautulli, wizarr
+* Containers: kometa, plexautolanguages, quickstart, tautulli, wizarr
