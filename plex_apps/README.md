@@ -5,7 +5,7 @@
 ### Links
 
 * Documentation: <https://kometa.wiki/en/latest/>
-* LSCR: <https://docs.linuxserver.io/images/docker-kometa/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-kometa/>
 
 ### Examples for how the config processes posters for movies, TV shows, and anime
 
@@ -38,7 +38,7 @@
 ### Links
 
 * Documentation: <https://tautulli.com/>
-* LSCR: <https://docs.linuxserver.io/images/docker-tautulli/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-tautulli/>
 
 ## wizarr
 
