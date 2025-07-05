@@ -26,3 +26,15 @@
 ## [plex_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/plex_apps)
 
 * Containers: kometa, plexautolanguages, quickstart, tautulli, wizarr
+
+## VSCode Exentions
+
+* Code Spell Checker by Street Side Software
+* indent-rainbow by oderwat
+* json by ZainChen
+* Markdown Preview Enhanced by Yiyi Wang
+* markdownlint by David Anson
+* Notepad++ keymap by Microsoft
+* PowerShell by Microsoft
+* YAML by Red Hat
+  
