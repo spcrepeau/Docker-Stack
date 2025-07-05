@@ -20,4 +20,4 @@ sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock containrrr/wat
 
 ### Links
 
-* LSCR: <https://docs.linuxserver.io/images/docker-socket-proxy/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-socket-proxy/>
