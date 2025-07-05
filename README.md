@@ -37,4 +37,3 @@
 * Notepad++ keymap by Microsoft
 * PowerShell by Microsoft
 * YAML by Red Hat
-  
