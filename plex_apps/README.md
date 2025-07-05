@@ -2,6 +2,12 @@
 
 ## kometa
 
+![Movie Poster Example](image-url)
+
+![TV Show Poster Example](image-url)
+
+![Anime Poster Example](image-url)
+
 ### variables
 
 * The KOMETA_PLEXURL value should be in the <https://#-#-#-#.##########.plex.direct:32400> format.
