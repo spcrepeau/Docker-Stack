@@ -4,13 +4,13 @@
 
 ### Links
 
-* LSCR: <https://docs.linuxserver.io/images/docker-heimdall/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-heimdall/>
 
 ## librespeed
 
 ### Links
 
-* LSCR: <https://docs.linuxserver.io/images/docker-librespeed/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-librespeed/>
 
 ## organizr
 
