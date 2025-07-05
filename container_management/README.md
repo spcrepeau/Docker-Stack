@@ -2,6 +2,13 @@
 
 ## watchtower
 
+### Links
+
+* Documentation: <https://containrrr.dev/watchtower/>
+* GitHub: <https://github.com/containrrr/watchtower>
+
+### Notes
+
 * Manually run watchtower with this command:
 
 ```bash
@@ -10,3 +17,7 @@ sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock containrrr/wat
 ```
 
 ## socket-proxy-watchtower
+
+### Links
+
+* LSCR: <https://docs.linuxserver.io/images/docker-socket-proxy/>
