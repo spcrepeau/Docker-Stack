@@ -2,11 +2,11 @@
 
 ## kometa
 
-![Movie Poster Example](image-url)
+![Movie Poster Example](https://github.com/spcrepeau/Docker-Stack/blob/main/.images/kometa_movie.jpg)
 
-![TV Show Poster Example](image-url)
+![TV Show Poster Example](https://github.com/spcrepeau/Docker-Stack/blob/main/.images/kometa_tv_show.jpg)
 
-![Anime Poster Example](image-url)
+![Anime Poster Example](https://github.com/spcrepeau/Docker-Stack/blob/main/.images/kometa_anime.jpg)
 
 ### variables
 
