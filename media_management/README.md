@@ -5,28 +5,28 @@
 ### Links
 
 * Documentation: <https://lidarr.audio/>
-* LSCR: <https://docs.linuxserver.io/images/docker-lidarr/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-lidarr/>
 
 ## overseerr
 
 ### Links
 
 * Documentation: <https://overseerr.dev/>
-* LSCR: <https://docs.linuxserver.io/images/docker-overseerr/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-overseerr/>
 
 ## prowlarr
 
 ### Links
 
 * Documentation: <https://prowlarr.com/>
-* LSCR: <https://docs.linuxserver.io/images/docker-prowlarr/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-prowlarr/>
 
 ## radarr & radarr-4K
 
 ### Links
 
 * Documentation: <https://radarr.video/>
-* LSCR: <https://docs.linuxserver.io/images/docker-prowlarr/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-prowlarr/>
 
 ## recyclarr
 
@@ -60,14 +60,14 @@ recyclarr sync
 ### Links
 
 * Documentation: <https://sabnzbd.org/>
-* LSCR: <https://docs.linuxserver.io/images/docker-sabnzbd/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-sabnzbd/>
 
 ## sonarr & sonarr-anime
 
 ### Links
 
 * Documentation: <https://sonarr.tv/>
-* LSCR: <https://docs.linuxserver.io/images/docker-sonarr/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-sonarr/>
 
 ## custom format files
 
