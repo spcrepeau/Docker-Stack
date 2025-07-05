@@ -4,7 +4,7 @@
 
 ### Links
 
-* Documenatation: <https://pi-hole.net/>
+* Documentation: <https://pi-hole.net/>
 * GitHub: <https://github.com/pi-hole/pi-hole>
 
 ### Notes
