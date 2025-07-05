@@ -4,13 +4,13 @@
 
 ### Links
 
-* LSCR: <https://docs.linuxserver.io/images/docker-calibre/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-calibre/>
 
 ## calibre-web
 
 ### Links
 
-* LSCR: <https://docs.linuxserver.io/images/docker-calibre-web/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-calibre-web/>
 
 ## romm
 
@@ -27,4 +27,4 @@
 
 ### Links
 
-* LSCR: <https://docs.linuxserver.io/images/docker-mariadb/>
+* LinuxServer: <https://docs.linuxserver.io/images/docker-mariadb/>
