@@ -2,11 +2,9 @@
 
 ## kometa
 
-![Movie Poster Example](https://github.com/spcrepeau/Docker-Stack/blob/main/.images/kometa_movie.jpg)
+### Examples for how the config processes movies, TV shows, and anime:
 
-![TV Show Poster Example](https://github.com/spcrepeau/Docker-Stack/blob/main/.images/kometa_tv_show.jpg)
-
-![Anime Poster Example](https://github.com/spcrepeau/Docker-Stack/blob/main/.images/kometa_anime.jpg)
+![Movie Poster Example](https://github.com/spcrepeau/Docker-Stack/blob/main/.images/kometa_movie.jpg) ![TV Show Poster Example](https://github.com/spcrepeau/Docker-Stack/blob/main/.images/kometa_tv_show.jpg) ![Anime Poster Example](https://github.com/spcrepeau/Docker-Stack/blob/main/.images/kometa_anime.jpg)
 
 ### variables
 
