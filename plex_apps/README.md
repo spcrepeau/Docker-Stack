@@ -5,7 +5,8 @@
 ### Links
 
 * Documentation: <https://kometa.wiki/en/latest/>
-* GitHub: <https://github.com/Kometa-Team/Kometa>
+* GitHub: <https://github.com/Kometa-Team/Kometa/>
+* LSCR: <https://docs.linuxserver.io/images/docker-kometa/>
 
 ### Examples for how the config processes posters for movies, TV shows, and anime
 
@@ -21,7 +22,7 @@
 
 ### Links
 
-* DockerHub: <https://hub.docker.com/r/journeyover/plex-auto-languages>
+* DockerHub: <https://hub.docker.com/r/journeyover/plex-auto-languages/>
 
 ### Notes
 
@@ -31,18 +32,19 @@
 
 ### Links
 
-* GitHub: <https://github.com/Kometa-Team/Quickstart>
+* GitHub: <https://github.com/Kometa-Team/Quickstart/>
 
 ## tautulli
 
 ### Links
 
 * Documentation: <https://tautulli.com/>
-* GitHub: <https://github.com/Tautulli/Tautulli>
+* GitHub: <https://github.com/Tautulli/Tautulli/>
+* LSCR: <https://docs.linuxserver.io/images/docker-tautulli/>
 
 ## wizarr
 
 ### Links
 
 * Documentation: <https://docs.wizarr.dev/>
-* GitHub: <https://github.com/wizarrrr/wizarr>
+* GitHub: <https://github.com/wizarrrr/wizarr/>
