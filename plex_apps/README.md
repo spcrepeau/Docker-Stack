@@ -40,9 +40,17 @@
 * Documentation: <https://tautulli.com/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-tautulli/>
 
+### Notes
+
+* Setup reverse proxy for this app.
+
 ## wizarr
 
 ### Links
 
 * Documentation: <https://docs.wizarr.dev/>
 * GitHub: <https://github.com/wizarrrr/wizarr/>
+
+### Notes
+
+* Setup reverse proxy for this app.
