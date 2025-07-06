@@ -80,7 +80,7 @@ services:
     environment:
       <<: *default_environment
     ports:
-      - ${QUICKSTART_PORT_7171}:7171
+      - ${QUICKSTART_PORT_7171}:7171 # Web GUI HTTP
     volumes:
       - ./quickstart:/config
   tautulli:
