@@ -28,9 +28,6 @@
 ### Notes
 
 * Setup reverse proxy for this app.
-
-### Notes
-
 * Setup the dashboard with public Synology reverse proxy URLs.
 
 ## theme-park
