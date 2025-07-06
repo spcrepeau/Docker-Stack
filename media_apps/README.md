@@ -6,11 +6,19 @@
 
 * LinuxServer: <https://docs.linuxserver.io/images/docker-calibre/>
 
+### Notes
+
+* Setup reverse proxy for this app.
+
 ## calibre-web
 
 ### Links
 
 * LinuxServer: <https://docs.linuxserver.io/images/docker-calibre-web/>
+
+### Notes
+
+* Setup reverse proxy for this app.
 
 ## romm
 
@@ -18,6 +26,10 @@
 
 * Documentation: <https://romm.app/>
 * GitHub: <https://github.com/rommapp/romm/>
+
+### Notes
+
+* Setup reverse proxy for this app.
 
 ### Notes
 
