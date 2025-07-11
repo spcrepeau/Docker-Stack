@@ -104,7 +104,6 @@ services:
       - ${WIZARR_PORT_5690}:5690 # Web GUI HTTP
     volumes:
       - ./wizarr/database:/data/database
-      - ./wizarr/wizard:/data/wizard_steps
 secrets:
   KOMETA_PLEXURL:
     file: ./secrets/KOMETA_PLEXURL.txt
