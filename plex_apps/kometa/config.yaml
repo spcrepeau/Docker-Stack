@@ -83,9 +83,13 @@ libraries:
       - default: franchise # https://kometa.wiki/en/latest/defaults/show/franchise/
       - default: studio # https://kometa.wiki/en/latest/defaults/both/studio/
         template_variables:
+          append_include:
+            - Bones Film
+            - Studio Massket
           append_addons:
             Bones:
               - BONES
+            Bones Film:
               - BONES Film
             Nut:
               - NUT
