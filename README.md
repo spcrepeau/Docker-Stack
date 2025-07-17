@@ -29,7 +29,7 @@
 
 * Containers: kometa, plexautolanguages, quickstart, tautulli, wizarr
 
-## VSCode Exentions
+## VSCode Extensions
 
 * Code Spell Checker by Street Side Software
 * indent-rainbow by oderwat
