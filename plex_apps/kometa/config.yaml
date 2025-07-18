@@ -85,12 +85,15 @@ libraries:
         template_variables:
           append_include:
             - Bones Film
+            - Enishiya
             - Studio Massket
           append_addons:
             Bones:
               - BONES
             Bones Film:
               - BONES Film
+            Enishiya:
+              - ENISHIYA
             Nut:
               - NUT
             Gonzo:
