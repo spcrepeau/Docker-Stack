@@ -6,9 +6,18 @@
       "name": "Bad Release Groups",
       "implementation": "ReleaseTitleSpecification",
       "negate": false,
-      "required": true,
+      "required": false,
       "fields": {
         "value": "AMB3R|anipakku|anitsu|Moozzi|OLYMPUS|RiPER"
+      }
+    },
+    {
+      "name": "Unwanted Languages",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": false,
+      "fields": {
+        "value": "\\[ITA\\]"
       }
     }
   ]
