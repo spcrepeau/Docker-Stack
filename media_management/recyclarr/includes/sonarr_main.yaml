@@ -13,40 +13,12 @@ custom_formats:
   #   score: 100000
   ########## HDR Formats, scores using 10,000's ##########
   - trash_ids:
-    - 2b239ed870daba8126a53bd5dc8dc1c8 # DV HDR10Plus
-    assign_scores_to:
-      - name: 1080p - TV
-        score: 50000
-  - trash_ids:
-    - 7878c33f1963fefb3d6c8657d46c2f0a # DV HDR10
-    - 1f733af03141f068a540eec352589a89 # DV HLG
-    assign_scores_to:
-      - name: 1080p - TV
-        score: 40000
-  - trash_ids:
-    - a3d82cbef5039f8d295478d28a887159 # HDR10Plus
-    assign_scores_to:
-      - name: 1080p - TV
-        score: 30000
-  - trash_ids: 
-    - 3497799d29a085e2ac2df9d468413c94 # HDR10
-    assign_scores_to:
-      - name: 1080p - TV
-        score: 20000
-  - trash_ids:
-    - 3e2c4e748b64a1a1118e0ea3f4cf6875 # HDR
-    - bb019e1cd00f304f80971c965de064dc # HDR (undefined)
-    - 2a7e3be05d3861d6df7171ec74cad727 # PQ
-    - 17e889ce13117940092308f48b48b45b # HLG
+    - 7c3a61a9c6cb04f52f1544be6d44a026 # DV
+    - 505d871304820ba7106b693be6fe4a9e # HDR
+    - 0c4b99df9206d2cfac3c05ab897dd62a # HDR10Plus
     assign_scores_to:
       - name: 1080p - TV
         score: 10000
-  - trash_ids:
-    - 6d0d8de7b57e35518ac0308b0ddf404e # DV
-    - 27954b0a80aab882522a88a4d9eae1cd # DV SDR
-    assign_scores_to:
-      - name: 1080p - TV
-        score: 0
   ########## Audio Formats, scores using 100-1,000's ##########
   - trash_ids:
     - 0d7824bb924701997f874e7ff7d4844a # TrueHD ATMOS

@@ -15,40 +15,12 @@ custom_formats:
   #   score: 100000
   ########## HDR Formats, scores using 10,000's ##########
   - trash_ids:
-    - c53085ddbd027d9624b320627748612f # DV HDR10Plus
-    assign_scores_to:
-      - name: 2160p
-        score: 50000
-  - trash_ids:
-    - e23edd2482476e595fb990b12e7c609c # DV HDR10
-    - 55d53828b9d81cbe20b02efd00aa0efd # DV HLG
-    assign_scores_to:
-      - name: 2160p
-        score: 40000
-  - trash_ids:
-    - b974a6cd08c1066250f1f177d7aa1225 # HDR10Plus
-    assign_scores_to:
-      - name: 2160p
-        score: 30000
-  - trash_ids:
-    - dfb86d5941bc9075d6af23b09c2aeecd # HDR10
-    assign_scores_to:
-      - name: 2160p
-        score: 20000
-  - trash_ids:
-    - e61e28db95d22bedcadf030b8f156d96 # HDR
-    - 2a4d9069cc1fe3242ff9bdaebed239bb # HDR (undefined)
-    - 08d6d8834ad9ec87b1dc7ec8148e7a1f # PQ
-    - 9364dd386c9b4a1100dde8264690add7 # HLG
+    - b337d6812e06c200ec9a2d3cfa9d20a7 # DV
+    - 493b6d1dbec3c3364c59d7607f7e3405 # HDR
+    - caa37d0df9c348912df1fb1d88f9273a # HDR10Plus
     assign_scores_to:
       - name: 2160p
         score: 10000
-  - trash_ids:
-    - 58d6a88f13e2db7f5059c41047876f00 # DV
-    - a3e19f8f627608af0211acd02bf89735 # DV SDR
-    assign_scores_to:
-      - name: 2160p
-        score: 0
   ########## Audio Formats, scores using 100-1,000's ##########
   - trash_ids:
     - 496f355514737f7d83bf7aa4d24f8169 # TrueHD ATMOS

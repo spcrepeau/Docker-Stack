@@ -11,17 +11,9 @@ custom_formats:
     # WebRip
     # TV
     ########## HDR Formats, scores using 10,000's ##########
-    - 2b239ed870daba8126a53bd5dc8dc1c8 # DV HDR10Plus
-    - 7878c33f1963fefb3d6c8657d46c2f0a # DV HDR10
-    - 6d0d8de7b57e35518ac0308b0ddf404e # DV
-    - 1f733af03141f068a540eec352589a89 # DV HLG
-    - 27954b0a80aab882522a88a4d9eae1cd # DV SDR
-    - a3d82cbef5039f8d295478d28a887159 # HDR10Plus
-    - 3497799d29a085e2ac2df9d468413c94 # HDR10
-    - 3e2c4e748b64a1a1118e0ea3f4cf6875 # HDR
-    - bb019e1cd00f304f80971c965de064dc # HDR (undefined)
-    - 2a7e3be05d3861d6df7171ec74cad727 # PQ
-    - 17e889ce13117940092308f48b48b45b # HLG
+    - 7c3a61a9c6cb04f52f1544be6d44a026 # DV
+    - 505d871304820ba7106b693be6fe4a9e # HDR
+    - 0c4b99df9206d2cfac3c05ab897dd62a # HDR10Plus
     ########## Audio Formats, scores using 100-1,000's ##########
     - 0d7824bb924701997f874e7ff7d4844a # TrueHD ATMOS
     - 9d00418ba386a083fbf4d58235fc37ef # DTS X
