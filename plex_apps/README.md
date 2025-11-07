@@ -1,5 +1,15 @@
 # plex_apps
 
+## agregarr
+
+### Links
+
+* GitHub: <https://github.com/agregarr/agregarr>
+
+### Notes
+
+* Setup reverse proxy for this app.
+
 ## kometa
 
 ### Links

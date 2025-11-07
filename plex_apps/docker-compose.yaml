@@ -8,6 +8,23 @@ x-default_environment: &default_environment
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
 services:
+  agregarr:
+    <<: *default_container
+    image: agregarr/agregarr:latest
+    container_name: agregarr
+    environment:
+      TZ: ${TZ}
+    ports:
+      - ${AGREGARR_PORT_7171}:7171 # Web GUI HTTP
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./agregarr:/app/config
+      # Optional: For Coming Soon feature, mount media matching Radarr/Sonarr paths
+      - ${DATA_DIR}/media/movies:/data/movies:ro # radarr
+      - ${DATA_DIR}/media/movies-4K:/data/movies:ro # radarr-4K
+      - ${DATA_DIR}/media/tv:/data/tv:ro # sonarr
+      - ${DATA_DIR}/media/tv-kids:/data/tv-kids:ro # sonarr
+      - ${DATA_DIR}/media/anime:/data/anime:ro # sonarr-anime
   kometa:
     <<: *default_container
     image: lscr.io/linuxserver/kometa:latest
