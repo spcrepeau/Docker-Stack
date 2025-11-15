@@ -7,7 +7,7 @@
 
 ### [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
 
-* Containers: watchtower, socket-proxy-watchtower
+* Containers: portainer, socket-proxy, watchtower
 
 ### [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
 
