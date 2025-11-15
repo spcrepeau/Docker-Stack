@@ -2,36 +2,43 @@ name: container_management
 x-default_container: &default_container
   security_opt: ['no-new-privileges:true']
   restart: unless-stopped
+x-default_environment: &default_environment
+  PGID: ${DOCKER_GID}
+  PUID: ${DOCKER_UID}
+  TZ: ${TZ}
 services:
-  watchtower:
+  portainer:
     <<: *default_container
-    image: containrrr/watchtower:latest
-    container_name: watchtower
+    image: portainer/portainer-ce:latest
+    command: -H tcp://socket-proxy:2375
+    container_name: portainer
+    depends_on:
+      - socket-proxy
     environment:
-      TZ: ${TZ}
-      WATCHTOWER_SCHEDULE: "0 0 3 * * *"
-      WATCHTOWER_CLEANUP: true
-      DOCKER_HOST: "tcp://socket-proxy:2375"
+      <<: *default_environment
     networks:
-      - watchtower
+      - default
       - proxynet
+    ports:
+      - ${PORTAINER_PORT_9000}:9000 # Web GUI HTTP
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-    working_dir: /
-    labels:
-      com.centurylinklabs.watchtower: true
+      - ./portainer:/data
   socket-proxy:
     <<: *default_container
     image: lscr.io/linuxserver/socket-proxy:latest
-    container_name: socket-proxy-watchtower
+    container_name: socket-proxy
     environment:
       ALLOW_START: "1"
       ALLOW_STOP: "1"
       ALLOW_RESTARTS: "1"
       CONTAINERS: "1"
       IMAGES: "1"
+      INFO: "1"
       NETWORKS: "1"
       POST: "1"
+      SERVICES: "1"
+      TASKS: "1"
+      VOLUMES: "1"
     networks:
       - proxynet
     read_only: true
@@ -41,7 +48,24 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
       com.centurylinklabs.watchtower.monitor-only: true
+  watchtower:
+    <<: *default_container
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    depends_on:
+      - socket-proxy
+    environment:
+      TZ: ${TZ}
+      WATCHTOWER_SCHEDULE: "0 0 3 * * *"
+      WATCHTOWER_CLEANUP: true
+      DOCKER_HOST: "tcp://socket-proxy:2375"
+    networks:
+      - default
+      - proxynet
+    working_dir: /
+    labels:
+      com.centurylinklabs.watchtower: true
 networks:
+  default:
   proxynet:
     internal: true
-  watchtower:
