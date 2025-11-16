@@ -10,7 +10,7 @@ x-default_environment: &default_environment
 services:
   lidarr:
     <<: *default_container
-    image: lscr.io/linuxserver/lidarr:latest
+    image: ghcr.io/linuxserver/lidarr:latest
     container_name: lidarr
     depends_on:
       - prowlarr
@@ -26,9 +26,12 @@ services:
       - ${DATA_DIR}/usenet:/downloads
       - ${DATA_DIR}/media/music:/music
       - ${DATA_DIR}/trash/lidarr:/recycle
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   overseerr:
     <<: *default_container
-    image: lscr.io/linuxserver/overseerr:latest
+    image: ghcr.io/linuxserver/overseerr:latest
     container_name: overseerr
     depends_on:
       - radarr
@@ -41,9 +44,12 @@ services:
       - ${OVERSEERR_PORT_5055}:5055 # Web GUI HTTP
     volumes:
       - ./overseerr:/config
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   prowlarr:
     <<: *default_container
-    image: lscr.io/linuxserver/prowlarr:latest
+    image: ghcr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
     depends_on:
       - sabnzbd
@@ -55,9 +61,12 @@ services:
       - ${PROWLARR_PORT_9696}:9696 # Web GUI HTTP
     volumes:
       - ./prowlarr:/config
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   radarr:
     <<: *default_container
-    image: lscr.io/linuxserver/radarr:latest
+    image: ghcr.io/linuxserver/radarr:latest
     container_name: radarr
     depends_on:
       - prowlarr
@@ -73,9 +82,12 @@ services:
       - ${DATA_DIR}/usenet:/downloads
       - ${DATA_DIR}/media/movies:/movies
       - ${DATA_DIR}/trash/radarr:/recycle
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   radarr-4K:
     <<: *default_container
-    image: lscr.io/linuxserver/radarr:latest
+    image: ghcr.io/linuxserver/radarr:latest
     container_name: radarr-4K
     depends_on:
       - prowlarr
@@ -91,6 +103,9 @@ services:
       - ${DATA_DIR}/usenet:/downloads
       - ${DATA_DIR}/media/movies-4K:/movies
       - ${DATA_DIR}/trash/radarr-4K:/recycle
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   recyclarr:
     <<: *default_container
     image: recyclarr/recyclarr:latest
@@ -100,9 +115,12 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./recyclarr:/config
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   sabnzbd:
     <<: *default_container
-    image: lscr.io/linuxserver/sabnzbd:latest
+    image: ghcr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
     environment:
       <<: *default_environment
@@ -111,9 +129,12 @@ services:
     volumes:
       - ./sabnzbd:/config
       - ${DATA_DIR}/usenet:/downloads
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   sonarr:
     <<: *default_container
-    image: lscr.io/linuxserver/sonarr:latest
+    image: ghcr.io/linuxserver/sonarr:latest
     container_name: sonarr
     depends_on:
       - prowlarr
@@ -130,9 +151,12 @@ services:
       - ${DATA_DIR}/media/tv:/tv
       - ${DATA_DIR}/media/tv-kids:/tv-kids
       - ${DATA_DIR}/trash/sonarr:/recycle
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   sonarr-anime:
     <<: *default_container
-    image: lscr.io/linuxserver/sonarr:latest
+    image: ghcr.io/linuxserver/sonarr:latest
     container_name: sonarr-anime
     depends_on:
       - prowlarr
@@ -148,3 +172,6 @@ services:
       - ${DATA_DIR}/usenet:/downloads
       - ${DATA_DIR}/media/anime:/anime
       - ${DATA_DIR}/trash/sonarr-anime:/recycle
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true

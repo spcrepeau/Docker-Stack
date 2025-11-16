@@ -10,7 +10,7 @@ x-default_environment: &default_environment
 services:
   calibre:
     <<: *default_container
-    image: lscr.io/linuxserver/calibre:latest
+    image: ghcr.io/linuxserver/calibre:latest
     container_name: calibre
     environment:
       <<: *default_environment
@@ -20,9 +20,12 @@ services:
     volumes:
       - ./calibre:/config
       - ${DATA_DIR}/media/books:/books
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   calibre-web:
     <<: *default_container
-    image: lscr.io/linuxserver/calibre-web:latest
+    image: ghcr.io/linuxserver/calibre-web:latest
     container_name: calibre-web
     environment:
       <<: *default_environment
@@ -32,6 +35,9 @@ services:
     volumes:
       - ./calibre-web:/config
       - ${DATA_DIR}/media/books:/books
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   romm:
     <<: *default_container
     image: rommapp/romm:latest
@@ -62,9 +68,12 @@ services:
       - ./romm/redis-data:/redis-data
       - ./romm/resources:/romm/resources
       - ${DATA_DIR}/media/emulation:/romm/library
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   romm-db:
     <<: *default_container
-    image: lscr.io/linuxserver/mariadb:latest
+    image: ghcr.io/linuxserver/mariadb:latest
     container_name: romm-db
     environment:
       <<: *default_environment
@@ -78,6 +87,9 @@ services:
       - romm-db_MySQLPassword
     volumes:
       - ./romm-db:/config
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
 secrets:
   romm_IGDBClientID:
     file: ./secrets/romm_IGDBClientID.txt

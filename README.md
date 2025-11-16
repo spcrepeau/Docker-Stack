@@ -2,12 +2,13 @@
 
 * Please see the Wiki for all information
 * env and secrets files have been stripped of all personal information, edit REPLACE_ME in each to reflect your environment.
+* When using wud to update your containers, change the lscr.io in the image field to ghcr.io.
 
 ## Projects
 
 ### [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
 
-* Containers: portainer, socket-proxy, watchtower
+* Containers: portainer, socket-proxy, watchtower, wud
 
 ### [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
 

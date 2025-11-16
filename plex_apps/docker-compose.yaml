@@ -25,9 +25,12 @@ services:
       - ${DATA_DIR}/media/tv:/data/tv:ro # sonarr
       - ${DATA_DIR}/media/tv-kids:/data/tv-kids:ro # sonarr
       - ${DATA_DIR}/media/anime:/data/anime:ro # sonarr-anime
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   kometa:
     <<: *default_container
-    image: lscr.io/linuxserver/kometa:latest
+    image: ghcr.io/linuxserver/kometa:latest
     container_name: kometa
     environment:
       <<: *default_environment
@@ -75,6 +78,9 @@ services:
       - KOMETA_ANIDBCLIENT
       - KOMETA_ANIDBUSERNAME
       - KOMETA_ANIDBPASSWORD
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   plexautolanguages:
     <<: *default_container
     image: journeyover/plex-auto-languages:latest
@@ -88,6 +94,9 @@ services:
       - ./plexautolanguages:/config
     secrets:
       - KOMETA_PLEXTOKEN
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   quickstart:
     <<: *default_container
     image: kometateam/quickstart:develop
@@ -100,9 +109,12 @@ services:
       - ${QUICKSTART_PORT_7171}:7171 # Web GUI HTTP
     volumes:
       - ./quickstart:/config
+    labels:
+      wud.tag.include: "develop"
+      wud.watch.digest: true
   tautulli:
     <<: *default_container
-    image: lscr.io/linuxserver/tautulli:latest
+    image: ghcr.io/linuxserver/tautulli:latest
     container_name: tautulli
     environment:
       <<: *default_environment
@@ -110,6 +122,9 @@ services:
       - ${TAUTULLI_PORT_8181}:8181 # Web GUI HTTP
     volumes:
       - ./tautulli:/config
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   wizarr:
     <<: *default_container
     image: ghcr.io/wizarrrr/wizarr:latest
@@ -121,6 +136,9 @@ services:
       - ${WIZARR_PORT_5690}:5690 # Web GUI HTTP
     volumes:
       - ./wizarr/database:/data/database
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
 secrets:
   KOMETA_PLEXURL:
     file: ./secrets/KOMETA_PLEXURL.txt

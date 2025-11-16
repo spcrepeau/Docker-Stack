@@ -72,6 +72,8 @@
         "TRAKTREFRESHTOKEN",
         "tvdb",
         "unconfigured",
+        "WATCHALL",
+        "WATCHBYDEFAULT",
         "WEBDL",
         "WEBPASSWORD",
         "whatsupdocker",

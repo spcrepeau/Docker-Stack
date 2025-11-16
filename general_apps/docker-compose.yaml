@@ -10,7 +10,7 @@ x-default_environment: &default_environment
 services:
   heimdall:
     <<: *default_container
-    image: lscr.io/linuxserver/heimdall:latest
+    image: ghcr.io/linuxserver/heimdall:latest
     container_name: heimdall
     environment:
       <<: *default_environment
@@ -19,9 +19,12 @@ services:
       - ${HEIMDALL_PORT_443}:443 # Web GUI HTTPS
     volumes:
       - ./heimdall:/config
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   librespeed:
     <<: *default_container
-    image: lscr.io/linuxserver/librespeed:latest
+    image: ghcr.io/linuxserver/librespeed:latest
     container_name: librespeed
     environment:
       <<: *default_environment
@@ -32,6 +35,9 @@ services:
       - ${LIBRESPEED_PORT_443}:443 # Web GUI HTTPS
     volumes:
       - ./librespeed:/config
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   organizr:
     <<: *default_container
     image: organizr/organizr:latest
@@ -42,6 +48,9 @@ services:
       - ${ORGANIZR_PORT_80}:80 # Web GUI HTTP
     volumes:
       - ./organizr:/config
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   theme-park:
     <<: *default_container
     image: ghcr.io/themepark-dev/theme.park:latest
@@ -53,3 +62,6 @@ services:
       - ${THEMEPARK_PORT_443}:443 # Web GUI HTTPS
     volumes:
       - ./theme-park:/config
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true

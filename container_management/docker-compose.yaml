@@ -23,9 +23,12 @@ services:
       - ${PORTAINER_PORT_9000}:9000 # Web GUI HTTP
     volumes:
       - ./portainer:/data
+    labels:
+      wud.tag.include: "latest"
+      wud.watch.digest: true
   socket-proxy:
     <<: *default_container
-    image: lscr.io/linuxserver/socket-proxy:latest
+    image: ghcr.io/linuxserver/socket-proxy:latest
     container_name: socket-proxy
     environment:
       ALLOW_START: "1"
@@ -47,25 +50,64 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
-      com.centurylinklabs.watchtower.monitor-only: true
-  watchtower:
+      # com.centurylinklabs.watchtower.monitor-only: true
+      wud.tag.include: "latest"
+      wud.trigger.exclude: "docker.local"
+      wud.watch.digest: true
+  # watchtower:
+  #   <<: *default_container
+  #   image: containrrr/watchtower:latest
+  #   container_name: watchtower
+  #   depends_on:
+  #     - socket-proxy
+  #   environment:
+  #     TZ: ${TZ}
+  #     WATCHTOWER_SCHEDULE: "0 0 3 * * *"
+  #     WATCHTOWER_CLEANUP: true
+  #     DOCKER_HOST: "tcp://socket-proxy:2375"
+  #   networks:
+  #     - default
+  #     - proxynet
+  #   read_only: true
+  #   working_dir: /
+  #   labels:
+    #     com.centurylinklabs.watchtower: true
+  wud:
     <<: *default_container
-    image: containrrr/watchtower:latest
-    container_name: watchtower
+    image: getwud/wud:latest
+    container_name: wud
     depends_on:
       - socket-proxy
     environment:
       TZ: ${TZ}
-      WATCHTOWER_SCHEDULE: "0 0 3 * * *"
-      WATCHTOWER_CLEANUP: true
       DOCKER_HOST: "tcp://socket-proxy:2375"
+      WUD_AUTH_BASIC_MY_USER__FILE: /run/secrets/wud_WUDAuthBasicMyUser
+      WUD_AUTH_BASIC_MY_HASH__FILE: /run/secrets/wud_WUDAuthBasicMyHash
+      WUD_WATCHER_LOCAL_CRON: "0 3 * * *"
+      WUD_WATCHER_LOCAL_WATCHALL: true
+      WUD_WATCHER_LOCAL_WATCHBYDEFAULT: true
+      WUD_TRIGGER_DOCKER_LOCAL_PRUNE: true
     networks:
       - default
       - proxynet
-    working_dir: /
+    ports:
+      - ${WUD_PORT_3000}:3000 # Web GUI HTTP
+    read_only: true
+    volumes:
+      - ./wud:/store
+    secrets:
+      - wud_WUDAuthBasicMyUser
+      - wud_WUDAuthBasicMyHash
     labels:
-      com.centurylinklabs.watchtower: true
+      wud.tag.include: "latest"
+      wud.trigger.exclude: "docker.local"
+      wud.watch.digest: true
 networks:
   default:
   proxynet:
     internal: true
+secrets:
+  wud_WUDAuthBasicMyUser:
+    file: ./secrets/wud_WUDAuthBasicMyUser.txt
+  wud_WUDAuthBasicMyHash:
+    file: ./secrets/wud_WUDAuthBasicMyHash.txt
