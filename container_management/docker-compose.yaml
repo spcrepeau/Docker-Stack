@@ -52,7 +52,7 @@ services:
     labels:
       # com.centurylinklabs.watchtower.monitor-only: true
       wud.tag.include: "latest"
-      wud.trigger.exclude: "docker.local"
+      wud.trigger.exclude: "docker.update"
       wud.watch.digest: true
   # watchtower:
   #   <<: *default_container
@@ -86,7 +86,14 @@ services:
       WUD_WATCHER_LOCAL_CRON: "0 3 * * *"
       WUD_WATCHER_LOCAL_WATCHALL: true
       WUD_WATCHER_LOCAL_WATCHBYDEFAULT: true
-      WUD_TRIGGER_DOCKER_LOCAL_PRUNE: true
+      WUD_TRIGGER_DOCKER_UPDATE_PRUNE: true
+      WUD_TRIGGER_SMTP_GMAIL_HOST: "smtp.gmail.com"
+      WUD_TRIGGER_SMTP_GMAIL_PORT: "465"
+      WUD_TRIGGER_SMTP_GMAIL_USER__FILE: /run/secrets/wud_WUDTriggerSMTPEmail
+      WUD_TRIGGER_SMTP_GMAIL_PASS__FILE: /run/secrets/wud_WUDTriggerSMTPPass
+      WUD_TRIGGER_SMTP_GMAIL_FROM__FILE: /run/secrets/wud_WUDTriggerSMTPEmail
+      WUD_TRIGGER_SMTP_GMAIL_TO__FILE: /run/secrets/wud_WUDTriggerSMTPEmail
+      WUD_TRIGGER_SMTP_GMAIL_TLS_ENABLED: true 
     networks:
       - default
       - proxynet
@@ -98,9 +105,11 @@ services:
     secrets:
       - wud_WUDAuthBasicMyUser
       - wud_WUDAuthBasicMyHash
+      - wud_WUDTriggerSMTPEmail
+      - wud_WUDTriggerSMTPPass
     labels:
       wud.tag.include: "latest"
-      wud.trigger.exclude: "docker.local"
+      wud.trigger.exclude: "docker.update"
       wud.watch.digest: true
 networks:
   default:
@@ -111,3 +120,7 @@ secrets:
     file: ./secrets/wud_WUDAuthBasicMyUser.txt
   wud_WUDAuthBasicMyHash:
     file: ./secrets/wud_WUDAuthBasicMyHash.txt
+  wud_WUDTriggerSMTPEmail:
+    file: ./secrets/wud_WUDTriggerSMTPEmail.txt
+  wud_WUDTriggerSMTPPass:
+    file: ./secrets/wud_WUDTriggerSMTPPass.txt
