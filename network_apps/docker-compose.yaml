@@ -22,8 +22,9 @@ services:
     volumes:
       - ./pihole/etc-pihole:/etc/pihole
     labels:
+      wud.display.icon: si:pihole
       wud.tag.include: "latest"
-      wud.watch.digest: true
+      wud.watch.digest: "true"
 secrets:
   pihole_WebServerAPIPassword:
     file: ./secrets/pihole_WebServerAPIPassword.txt

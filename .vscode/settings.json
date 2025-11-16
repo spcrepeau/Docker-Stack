@@ -74,6 +74,7 @@
         "unconfigured",
         "WATCHALL",
         "WATCHBYDEFAULT",
+        "WATCHDIGEST",
         "WEBDL",
         "WEBPASSWORD",
         "whatsupdocker",

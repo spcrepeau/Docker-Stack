@@ -24,8 +24,9 @@ services:
     volumes:
       - ./portainer:/data
     labels:
+      wud.display.icon: si:portainer
       wud.tag.include: "latest"
-      wud.watch.digest: true
+      wud.watch.digest: "true"
   socket-proxy:
     <<: *default_container
     image: ghcr.io/linuxserver/socket-proxy:latest
@@ -53,7 +54,7 @@ services:
       # com.centurylinklabs.watchtower.monitor-only: true
       wud.tag.include: "latest"
       wud.trigger.exclude: "docker.update"
-      wud.watch.digest: true
+      wud.watch.digest: "true"
   # watchtower:
   #   <<: *default_container
   #   image: containrrr/watchtower:latest
@@ -86,6 +87,7 @@ services:
       WUD_WATCHER_LOCAL_CRON: "0 3 * * *"
       WUD_WATCHER_LOCAL_WATCHALL: true
       WUD_WATCHER_LOCAL_WATCHBYDEFAULT: true
+      WUD_WATCHER_LOCAL_WATCHDIGEST: true
       WUD_TRIGGER_DOCKER_UPDATE_PRUNE: true
       WUD_TRIGGER_SMTP_GMAIL_HOST: "smtp.gmail.com"
       WUD_TRIGGER_SMTP_GMAIL_PORT: "465"
@@ -110,7 +112,7 @@ services:
     labels:
       wud.tag.include: "latest"
       wud.trigger.exclude: "docker.update"
-      wud.watch.digest: true
+      wud.watch.digest: "true"
 networks:
   default:
   proxynet:

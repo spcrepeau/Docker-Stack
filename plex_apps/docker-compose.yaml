@@ -26,8 +26,9 @@ services:
       - ${DATA_DIR}/media/tv-kids:/data/tv-kids:ro # sonarr
       - ${DATA_DIR}/media/anime:/data/anime:ro # sonarr-anime
     labels:
+      wud.display.icon: mdi:plex
       wud.tag.include: "latest"
-      wud.watch.digest: true
+      wud.watch.digest: "true"
   kometa:
     <<: *default_container
     image: ghcr.io/linuxserver/kometa:latest
@@ -79,8 +80,9 @@ services:
       - KOMETA_ANIDBUSERNAME
       - KOMETA_ANIDBPASSWORD
     labels:
+      wud.display.icon: mdi:plex
       wud.tag.include: "latest"
-      wud.watch.digest: true
+      wud.watch.digest: "true"
   plexautolanguages:
     <<: *default_container
     image: journeyover/plex-auto-languages:latest
@@ -95,8 +97,9 @@ services:
     secrets:
       - KOMETA_PLEXTOKEN
     labels:
+      wud.display.icon: mdi:plex
       wud.tag.include: "latest"
-      wud.watch.digest: true
+      wud.watch.digest: "true"
   quickstart:
     <<: *default_container
     image: kometateam/quickstart:develop
@@ -110,8 +113,9 @@ services:
     volumes:
       - ./quickstart:/config
     labels:
+      wud.display.icon: mdi:plex
       wud.tag.include: "develop"
-      wud.watch.digest: true
+      wud.watch.digest: "true"
   tautulli:
     <<: *default_container
     image: ghcr.io/linuxserver/tautulli:latest
@@ -123,8 +127,9 @@ services:
     volumes:
       - ./tautulli:/config
     labels:
+      wud.display.icon: mdi:plex
       wud.tag.include: "latest"
-      wud.watch.digest: true
+      wud.watch.digest: "true"
   wizarr:
     <<: *default_container
     image: ghcr.io/wizarrrr/wizarr:latest
@@ -137,8 +142,9 @@ services:
     volumes:
       - ./wizarr/database:/data/database
     labels:
+      wud.display.icon: mdi:plex
       wud.tag.include: "latest"
-      wud.watch.digest: true
+      wud.watch.digest: "true"
 secrets:
   KOMETA_PLEXURL:
     file: ./secrets/KOMETA_PLEXURL.txt
