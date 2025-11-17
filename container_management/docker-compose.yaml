@@ -72,7 +72,7 @@ services:
   #   read_only: true
   #   working_dir: /
   #   labels:
-    #     com.centurylinklabs.watchtower: true
+  #     com.centurylinklabs.watchtower: true
   wud:
     <<: *default_container
     image: getwud/wud:latest
@@ -87,7 +87,6 @@ services:
       WUD_WATCHER_LOCAL_CRON: "0 3 * * *"
       WUD_WATCHER_LOCAL_WATCHALL: true
       WUD_WATCHER_LOCAL_WATCHBYDEFAULT: true
-      WUD_WATCHER_LOCAL_WATCHDIGEST: true
       WUD_TRIGGER_DOCKER_UPDATE_PRUNE: true
       WUD_TRIGGER_SMTP_GMAIL_HOST: "smtp.gmail.com"
       WUD_TRIGGER_SMTP_GMAIL_PORT: "465"
