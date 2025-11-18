@@ -25,6 +25,7 @@ services:
       - ./portainer:/data
     labels:
       wud.display.icon: si:portainer
+      wud.display.name: "portainer"
       wud.tag.include: "latest"
       wud.watch.digest: "true"
   socket-proxy:
@@ -52,6 +53,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
       # com.centurylinklabs.watchtower.monitor-only: true
+      wud.display.name: "socket-proxy"
       wud.tag.include: "latest"
       wud.trigger.exclude: "docker.update"
       wud.watch.digest: "true"
@@ -101,14 +103,15 @@ services:
     ports:
       - ${WUD_PORT_3000}:3000 # Web GUI HTTP
     read_only: true
-    volumes:
-      - ./wud:/store
+    # volumes:
+    #   - ./wud:/store
     secrets:
       - wud_WUDAuthBasicMyUser
       - wud_WUDAuthBasicMyHash
       - wud_WUDTriggerSMTPEmail
       - wud_WUDTriggerSMTPPass
     labels:
+      wud.display.name: "wud"
       wud.tag.include: "latest"
       wud.trigger.exclude: "docker.update"
       wud.watch.digest: "true"

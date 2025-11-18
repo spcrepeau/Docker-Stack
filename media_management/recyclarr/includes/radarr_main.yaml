@@ -181,7 +181,7 @@ quality_profiles:
     upgrade:
       allowed: true
       until_quality: 1080p
-      until_score: 451573
+      until_score: 431573
     min_format_score: 100000
     quality_sort: top
     qualities:
