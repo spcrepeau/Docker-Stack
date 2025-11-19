@@ -21,7 +21,7 @@ services:
       - ./heimdall:/config
     labels:
       wud.display.icon: mdi:view-dashboard
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   librespeed:
     <<: *default_container
@@ -38,7 +38,7 @@ services:
       - ./librespeed:/config
     labels:
       wud.display.icon: mdi:speedometer
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   organizr:
     <<: *default_container
@@ -52,7 +52,7 @@ services:
       - ./organizr:/config
     labels:
       wud.display.icon: mdi:view-dashboard
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   theme-park:
     <<: *default_container
@@ -67,5 +67,5 @@ services:
       - ./theme-park:/config
     labels:
       wud.display.icon: mdi:brush
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"

@@ -23,7 +23,7 @@ services:
       - ./pihole/etc-pihole:/etc/pihole
     labels:
       wud.display.icon: si:pihole
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
 secrets:
   pihole_WebServerAPIPassword:

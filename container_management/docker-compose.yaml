@@ -26,7 +26,7 @@ services:
     labels:
       wud.display.icon: si:portainer
       wud.display.name: "portainer"
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   socket-proxy:
     <<: *default_container
@@ -54,7 +54,7 @@ services:
     labels:
       # com.centurylinklabs.watchtower.monitor-only: true
       wud.display.name: "socket-proxy"
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.trigger.exclude: "docker.update"
       wud.watch.digest: "true"
   # watchtower:
@@ -112,7 +112,7 @@ services:
       - wud_WUDTriggerSMTPPass
     labels:
       wud.display.name: "wud"
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.trigger.exclude: "docker.update"
       wud.watch.digest: "true"
 networks:

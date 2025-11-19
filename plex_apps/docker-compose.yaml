@@ -27,7 +27,7 @@ services:
       - ${DATA_DIR}/media/anime:/data/anime:ro # sonarr-anime
     labels:
       wud.display.icon: mdi:plex
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   kometa:
     <<: *default_container
@@ -81,7 +81,7 @@ services:
       - KOMETA_ANIDBPASSWORD
     labels:
       wud.display.icon: mdi:plex
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   plexautolanguages:
     <<: *default_container
@@ -98,7 +98,7 @@ services:
       - KOMETA_PLEXTOKEN
     labels:
       wud.display.icon: mdi:plex
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   quickstart:
     <<: *default_container
@@ -128,7 +128,7 @@ services:
       - ./tautulli:/config
     labels:
       wud.display.icon: mdi:plex
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   wizarr:
     <<: *default_container
@@ -143,7 +143,7 @@ services:
       - ./wizarr/database:/data/database
     labels:
       wud.display.icon: mdi:plex
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
 secrets:
   KOMETA_PLEXURL:

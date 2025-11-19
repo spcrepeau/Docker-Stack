@@ -22,7 +22,7 @@ services:
       - ${DATA_DIR}/media/books:/books
     labels:
       wud.display.icon: si:calibreweb
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   calibre-web:
     <<: *default_container
@@ -38,7 +38,7 @@ services:
       - ${DATA_DIR}/media/books:/books
     labels:
       wud.display.icon: si:calibreweb
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   romm:
     <<: *default_container
@@ -72,7 +72,7 @@ services:
       - ${DATA_DIR}/media/emulation:/romm/library
     labels:
       wud.display.icon: mdi:controller
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   romm-db:
     <<: *default_container
@@ -92,7 +92,7 @@ services:
       - ./romm-db:/config
     labels:
       wud.display.icon: si:mariadb
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
 secrets:
   romm_IGDBClientID:

@@ -28,7 +28,7 @@ services:
       - ${DATA_DIR}/trash/lidarr:/recycle
     labels:
       wud.display.icon: mdi:music
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   overseerr:
     <<: *default_container
@@ -47,7 +47,7 @@ services:
       - ./overseerr:/config
     labels:
       wud.display.icon: mdi:view-dashboard
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   prowlarr:
     <<: *default_container
@@ -65,7 +65,7 @@ services:
       - ./prowlarr:/config
     labels:
       wud.display.icon: mdi:download
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   radarr:
     <<: *default_container
@@ -87,7 +87,7 @@ services:
       - ${DATA_DIR}/trash/radarr:/recycle
     labels:
       wud.display.icon: si:radarr
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   radarr-4K:
     <<: *default_container
@@ -109,7 +109,7 @@ services:
       - ${DATA_DIR}/trash/radarr-4K:/recycle
     labels:
       wud.display.icon: si:radarr
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   recyclarr:
     <<: *default_container
@@ -122,7 +122,7 @@ services:
       - ./recyclarr:/config
     labels:
       wud.display.icon: mdi:cog
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   sabnzbd:
     <<: *default_container
@@ -137,7 +137,7 @@ services:
       - ${DATA_DIR}/usenet:/downloads
     labels:
       wud.display.icon: mdi:download
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   sonarr:
     <<: *default_container
@@ -160,7 +160,7 @@ services:
       - ${DATA_DIR}/trash/sonarr:/recycle
     labels:
       wud.display.icon: si:sonarr
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
   sonarr-anime:
     <<: *default_container
@@ -182,5 +182,5 @@ services:
       - ${DATA_DIR}/trash/sonarr-anime:/recycle
     labels:
       wud.display.icon: si:sonarr
-      wud.tag.include: "latest"
+      wud.tag.include: "^latest$"
       wud.watch.digest: "true"
