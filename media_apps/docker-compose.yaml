@@ -7,6 +7,9 @@ x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
+x-default_labels: &default_labels
+  wud.tag.include: "^latest$"
+  wud.watch.digest: "true"
 services:
   calibre:
     <<: *default_container
@@ -15,15 +18,16 @@ services:
     environment:
       <<: *default_environment
     ports:
-      - ${CALIBRE_PORT_8080}:8080 # Web GUI HTTP
+      - ${CALIBRE_PORT_8080}:8080 # Web GUI HTTP (only for reverse proxy access)
+      - ${CALIBRE_PORT_8181}:8181 # Web GUI HTTPS
       - ${CALIBRE_PORT_8081}:8081 # Server Connection, configured in Web GUI settings
     volumes:
       - ./calibre:/config
       - ${DATA_DIR}/media/books:/books
     labels:
-      wud.display.icon: si:calibreweb
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "si:calibreweb"
+      wud.display.name: "calibre"
   calibre-web:
     <<: *default_container
     image: ghcr.io/linuxserver/calibre-web:latest
@@ -37,9 +41,9 @@ services:
       - ./calibre-web:/config
       - ${DATA_DIR}/media/books:/books
     labels:
-      wud.display.icon: si:calibreweb
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "si:calibreweb"
+      wud.display.name: "calibre-web"
   romm:
     <<: *default_container
     image: rommapp/romm:latest
@@ -51,17 +55,17 @@ services:
       DB_HOST: ${HOST}
       DB_USER: romm-user
       DB_PASSWD_FILE: /run/secrets/romm-db_MySQLPassword
-      ROMM_AUTH_SECRET_KEY_FILE: /run/secrets/romm_RommAuthSecretKey
-      IGDB_CLIENT_ID_FILE: /run/secrets/romm_IGDBClientID
-      IGDB_CLIENT_SECRET_FILE: /run/secrets/romm_IGDBClientSecret
-      STEAMGRIDDB_API_KEY_FILE: /run/secrets/romm_SteamGrimDBAPIKey
+      ROMM_AUTH_SECRET_KEY_FILE: /run/secrets/romm_AuthSecretKey
+      IGDB_CLIENT_ID_FILE: /run/secrets/external_IGDBClientID
+      IGDB_CLIENT_SECRET_FILE: /run/secrets/external_IGDBClientSecret
+      STEAMGRIDDB_API_KEY_FILE: /run/secrets/external_SteamGrimDBAPI
     ports:
       - ${ROMM_PORT_8080}:8080 # Web GUI HTTP
     secrets:
-      - romm_IGDBClientID
-      - romm_IGDBClientSecret
-      - romm_RommAuthSecretKey
-      - romm_SteamGrimDBAPIKey
+      - external_IGDBClientID
+      - external_IGDBClientSecret
+      - romm_AuthSecretKey
+      - external_SteamGrimDBAPI
       - romm-db_MySQLPassword
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
@@ -71,9 +75,9 @@ services:
       - ./romm/resources:/romm/resources
       - ${DATA_DIR}/media/emulation:/romm/library
     labels:
-      wud.display.icon: mdi:controller
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:controller"
+      wud.display.name: "romm"
   romm-db:
     <<: *default_container
     image: ghcr.io/linuxserver/mariadb:latest
@@ -91,17 +95,17 @@ services:
     volumes:
       - ./romm-db:/config
     labels:
-      wud.display.icon: si:mariadb
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "si:mariadb"
+      wud.display.name: "romm-db"
 secrets:
-  romm_IGDBClientID:
-    file: ./secrets/romm_IGDBClientID.txt
-  romm_IGDBClientSecret:
-    file: ./secrets/romm_IGDBClientSecret.txt
-  romm_RommAuthSecretKey:
-    file: ./secrets/romm_RommAuthSecretKey.txt
-  romm_SteamGrimDBAPIKey:
-    file: ./secrets/romm_SteamGrimDBAPIKey.txt
+  external_IGDBClientID:
+    file: ${SECRETS_DIR}/external_IGDBClientID.txt
+  external_IGDBClientSecret:
+    file: ${SECRETS_DIR}/external_IGDBClientSecret.txt
+  romm_AuthSecretKey:
+    file: ${SECRETS_DIR}/romm_AuthSecretKey.txt
+  external_SteamGrimDBAPI:
+    file: ${SECRETS_DIR}/external_SteamGrimDBAPI.txt
   romm-db_MySQLPassword:
-    file: ./secrets/romm-db_MySQLPassword.txt
+    file: ${SECRETS_DIR}/romm-db_MySQLPassword.txt

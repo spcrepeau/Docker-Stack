@@ -12,7 +12,7 @@
 
 ### [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
 
-* Containers: heimdall, librespeed, organizr, theme-park
+* Containers: heimdall, homepage, librespeed, organizr, theme-park
 
 ### [media_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/media_apps)
 

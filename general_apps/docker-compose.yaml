@@ -7,6 +7,9 @@ x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
+x-default_labels: &default_labels
+  wud.tag.include: "^latest$"
+  wud.watch.digest: "true"
 services:
   heimdall:
     <<: *default_container
@@ -20,9 +23,91 @@ services:
     volumes:
       - ./heimdall:/config
     labels:
-      wud.display.icon: mdi:view-dashboard
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:view-dashboard"
+      wud.display.name: "heimdall"
+  homepage:
+    <<: *default_container
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    environment:
+      <<: *default_environment
+      HOMEPAGE_ALLOWED_HOSTS: ${HOST}:${HOMEPAGE_PORT_3000} # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+      HOMEPAGE_FILE_COMMON_USERNAME: /run/secrets/common_Username
+      # bookmarks
+      HOMEPAGE_VAR_NAS_URL: "https://${HOST}:${HOST_DSM_HTTPS_PORT}"
+      # container_management
+      HOMEPAGE_VAR_PORTAINER_URL: "http://${HOST}:${PORTAINER_PORT_9000}"
+      HOMEPAGE_FILE_PORTAINER_API: /run/secrets/portainer_API
+      HOMEPAGE_VAR_WUD_URL: "http://${HOST}:${WUD_PORT_3000}"
+      HOMEPAGE_FILE_WUD_PASSWORD: /run/secrets/wud_Password
+      # general_apps
+      HOMEPAGE_VAR_ORGANIZR_URL: "http://${HOST}:${ORGANIZR_PORT_80}"
+      HOMEPAGE_VAR_LIBRESPEED_URL: "http://${HOST}:${LIBRESPEED_PORT_80}"
+      # media_apps
+      HOMEPAGE_VAR_CALIBRE_URL: https://${HOST}:${CALIBRE_PORT_8181}
+      HOMEPAGE_VAR_CALIBREWEB_URL: http://${HOST}:${CALIBREWEB_PORT_8083}
+      HOMEPAGE_FILE_CALIBREWEB_PASSWORD: /run/secrets/calibre-web_Password
+      HOMEPAGE_VAR_ROMM_URL: http://${HOST}:${ROMM_PORT_8080}
+      # media_management
+      HOMEPAGE_VAR_LIDARR_URL: http://${HOST}:${LIDARR_PORT_8686}
+      HOMEPAGE_FILE_LIDARR_API: /run/secrets/lidarr_API
+      HOMEPAGE_VAR_PROWLARR_URL: http://${HOST}:${PROWLARR_PORT_9696}
+      HOMEPAGE_FILE_PROWLARR_API: /run/secrets/prowlarr_API
+      HOMEPAGE_VAR_OVERSEERR_URL: http://${HOST}:${OVERSEERR_PORT_5055}
+      HOMEPAGE_FILE_OVERSEERR_API: /run/secrets/overseer_API
+      HOMEPAGE_VAR_RADARR_URL: http://${HOST}:${RADARR_PORT_7878}
+      HOMEPAGE_FILE_RADARR_API: /run/secrets/radarr_API
+      HOMEPAGE_VAR_RADARR4K_URL: http://${HOST}:${RADARR4K_PORT_7878}
+      HOMEPAGE_FILE_RADARR4K_API: /run/secrets/radarr-4k_API
+      HOMEPAGE_VAR_SABNZBD_URL: http://${HOST}:${SABNZBD_PORT_8080}
+      HOMEPAGE_FILE_SABNZBD_API: /run/secrets/sabnzbd_API
+      HOMEPAGE_VAR_SONARR_URL: http://${HOST}:${SONARR_PORT_8989}
+      HOMEPAGE_FILE_SONARR_API: /run/secrets/sonarr_API
+      HOMEPAGE_VAR_SONARRANIME_URL: http://${HOST}:${SONARRANIME_PORT_8989}
+      HOMEPAGE_FILE_SONARRANIME_API: /run/secrets/sonar-anime_API
+      # network_apps
+      HOMEPAGE_VAR_PIHOLE_URL: https://${HOST}:${PIHOLE_PORT_443}
+      HOMEPAGE_FILE_PIHOLE_API: /run/secrets/pihole_API
+      # plex_apps
+      HOMEPAGE_FILE_PLEX_URL: /run/secrets/plex_URL
+      HOMEPAGE_FILE_PLEX_TOKEN: /run/secrets/plex_Token
+      HOMEPAGE_VAR_AGREGARR_URL: "http://${HOST}:${AGREGARR_PORT_7171}"
+      HOMEPAGE_VAR_QUICKSTART_URL: "http://${HOST}:${QUICKSTART_PORT_7171}"
+      HOMEPAGE_VAR_TAUTULLI_URL: "http://${HOST}:${TAUTULLI_PORT_8181}"
+      HOMEPAGE_FILE_TAUTULLI_API: /run/secrets/tautulli_API
+      HOMEPAGE_VAR_WIZARR_URL: "http://${HOST}:${WIZARR_PORT_5690}"
+    ports:
+      - ${HOMEPAGE_PORT_3000}:3000 # Web GUI HTTP
+    volumes:
+      - ./homepage/config:/app/config
+      - ./homepage/images:/app/public/images
+    secrets:
+      - common_Username
+      # container_management
+      - portainer_API
+      - wud_Password
+      # media_apps
+      - calibre-web_Password
+      # media_management
+      - lidarr_API
+      - overseer_API
+      - prowlarr_API
+      - radarr_API
+      - radarr-4k_API
+      - sabnzbd_API
+      - sonarr_API
+      - sonar-anime_API
+      # network_apps
+      - pihole_API
+      # plex_apps
+      - plex_URL
+      - plex_Token
+      - tautulli_API
+    labels:
+      <<: *default_labels
+      wud.display.icon: "mdi:view-dashboard"
+      wud.display.name: "homepage"
   librespeed:
     <<: *default_container
     image: ghcr.io/linuxserver/librespeed:latest
@@ -37,9 +122,9 @@ services:
     volumes:
       - ./librespeed:/config
     labels:
-      wud.display.icon: mdi:speedometer
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:speedometer"
+      wud.display.name: "librespeed"
   organizr:
     <<: *default_container
     image: organizr/organizr:latest
@@ -51,9 +136,9 @@ services:
     volumes:
       - ./organizr:/config
     labels:
-      wud.display.icon: mdi:view-dashboard
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:view-dashboard"
+      wud.display.name: "organizr"
   theme-park:
     <<: *default_container
     image: ghcr.io/themepark-dev/theme.park:latest
@@ -66,6 +151,44 @@ services:
     volumes:
       - ./theme-park:/config
     labels:
-      wud.display.icon: mdi:brush
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:brush"
+      wud.display.name: "theme-park"
+secrets:
+  common_Username:
+    file: ${SECRETS_DIR}/common_Username.txt
+  # homepage container_management
+  portainer_API:
+    file: ${SECRETS_DIR}/portainer_API.txt
+  wud_Password:
+    file: ${SECRETS_DIR}/wud_Password.txt
+  # homepage media_apps
+  calibre-web_Password:
+    file: ${SECRETS_DIR}/calibre-web_Password.txt
+  # homepage media_management
+  lidarr_API:
+    file: ${SECRETS_DIR}/lidarr_API.txt
+  overseer_API:
+    file: ${SECRETS_DIR}/overseer_API.txt
+  prowlarr_API:
+    file: ${SECRETS_DIR}/prowlarr_API.txt
+  radarr_API:
+    file: ${SECRETS_DIR}/radarr_API.txt
+  radarr-4k_API:
+    file: ${SECRETS_DIR}/radarr-4k_API.txt
+  sabnzbd_API:
+    file: ${SECRETS_DIR}/sabnzbd_API.txt
+  sonarr_API:
+    file: ${SECRETS_DIR}/sonarr_API.txt
+  sonar-anime_API:
+    file: ${SECRETS_DIR}/sonar-anime_API.txt
+  # homepage network_apps
+  pihole_API:
+    file: ${SECRETS_DIR}/pihole_API.txt
+  # homepage plex_apps
+  plex_URL:
+    file: ${SECRETS_DIR}/plex_URL.txt
+  plex_Token:
+    file: ${SECRETS_DIR}/plex_Token.txt
+  tautulli_API:
+    file: ${SECRETS_DIR}/tautulli_API.txt

@@ -1,0 +1,11 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+
+- Bookmarks:
+    - NAS:
+        - abbr: NAS
+          href: {{HOMEPAGE_VAR_NAS_URL}}
+    - GitHub - spcrepeau - Docker-Stack:
+        - abbr: GH
+          href: https://github.com/spcrepeau/Docker-Stack

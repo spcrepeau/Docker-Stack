@@ -6,10 +6,6 @@
 
 * LinuxServer: <https://docs.linuxserver.io/images/docker-calibre/>
 
-### Notes
-
-* Setup reverse proxy for this app.
-
 ## calibre-web
 
 ### Links

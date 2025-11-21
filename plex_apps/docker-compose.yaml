@@ -7,6 +7,9 @@ x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
+x-default_labels: &default_labels
+  wud.tag.include: "^latest$"
+  wud.watch.digest: "true"
 services:
   agregarr:
     <<: *default_container
@@ -26,9 +29,9 @@ services:
       - ${DATA_DIR}/media/tv-kids:/data/tv-kids:ro # sonarr
       - ${DATA_DIR}/media/anime:/data/anime:ro # sonarr-anime
     labels:
-      wud.display.icon: mdi:plex
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:plex"
+      wud.display.name: "agregarr"
   kometa:
     <<: *default_container
     image: ghcr.io/linuxserver/kometa:latest
@@ -40,69 +43,67 @@ services:
       KOMETA_RUN: false
       KOMETA_TEST: false
       KOMETA_NO_MISSING: false
-      FILE__KOMETA_PLEXURL: /run/secrets/KOMETA_PLEXURL
-      FILE__KOMETA_PLEXTOKEN: /run/secrets/KOMETA_PLEXTOKEN
-      FILE__KOMETA_TMBDAPIKEY: /run/secrets/KOMETA_TMBDAPIKEY
-      FILE__KOMETA_MDBLISTAPIKEY: /run/secrets/KOMETA_MDBLISTAPIKEY
-      FILE__KOMETA_TAUTULLIURL: /run/secrets/KOMETA_TAUTULLIURL
-      FILE__KOMETA_TAUTULLIAPIKEY: /run/secrets/KOMETA_TAUTULLIAPIKEY
-      FILE__KOMETA_MALCLIENTID: /run/secrets/KOMETA_MALCLIENTID
-      FILE__KOMETA_MALCLIENTSECRET: /run/secrets/KOMETA_MALCLIENTSECRET
-      FILE__KOMETA_MALLOCALHOSTURL: /run/secrets/KOMETA_MALLOCALHOSTURL
-      FILE__KOMETA_MALACCESSTOKEN: /run/secrets/KOMETA_MALACCESSTOKEN
-      FILE__KOMETA_MALREFRESHTOKEN: /run/secrets/KOMETA_MALREFRESHTOKEN
-      FILE__KOMETA_TRAKTCLIENTID: /run/secrets/KOMETA_TRAKTCLIENTID
-      FILE__KOMETA_TRAKTCLIENTSECRET: /run/secrets/KOMETA_TRAKTCLIENTSECRET
-      FILE__KOMETA_TRAKTACCESSTOKEN: /run/secrets/KOMETA_TRAKTACCESSTOKEN
-      FILE__KOMETA_TRAKTREFRESHTOKEN: /run/secrets/KOMETA_TRAKTREFRESHTOKEN
-      FILE__KOMETA_ANIDBCLIENT: /run/secrets/KOMETA_ANIDBCLIENT
-      FILE__KOMETA_ANIDBUSERNAME: /run/secrets/KOMETA_ANIDBUSERNAME
-      FILE__KOMETA_ANIDBPASSWORD: /run/secrets/KOMETA_ANIDBPASSWORD
+      FILE__KOMETA_PLEXURL: /run/secrets/plex_URL
+      FILE__KOMETA_PLEXTOKEN: /run/secrets/plex_Token
+      KOMETA_TAUTULLIURL: "http://${HOST}:${TAUTULLI_PORT_8181}"
+      FILE__KOMETA_TAUTULLIAPIKEY: /run/secrets/tautulli_API
+      FILE__KOMETA_ANIDBCLIENT: /run/secrets/external_AniDBClientID
+      FILE__KOMETA_ANIDBUSERNAME: /run/secrets/common_Username
+      FILE__KOMETA_ANIDBPASSWORD: /run/secrets/external_AniDBPassword
+      FILE__KOMETA_MALCLIENTID: /run/secrets/external_MALClientID
+      FILE__KOMETA_MALCLIENTSECRET: /run/secrets/external_MALClientSecret
+      FILE__KOMETA_MALLOCALHOSTURL: /run/secrets/external_MALLocalHostURL
+      FILE__KOMETA_MALACCESSTOKEN: /run/secrets/external_MALAccessToken
+      FILE__KOMETA_MALREFRESHTOKEN: /run/secrets/external_MALRefreshToken
+      FILE__KOMETA_MDBLISTAPIKEY: /run/secrets/external_MDBListAPI
+      FILE__KOMETA_TMBDAPIKEY: /run/secrets/external_TMBDAPI
+      FILE__KOMETA_TRAKTCLIENTID: /run/secrets/external_TraktClientID
+      FILE__KOMETA_TRAKTCLIENTSECRET: /run/secrets/external_TraktClientSecret
+      FILE__KOMETA_TRAKTACCESSTOKEN: /run/secrets/external_TraktAccessToken
+      FILE__KOMETA_TRAKTREFRESHTOKEN: /run/secrets/external_TraktRefreshToken
     volumes:
       - ./kometa:/config
     secrets:
-      - KOMETA_PLEXURL
-      - KOMETA_PLEXTOKEN
-      - KOMETA_TMBDAPIKEY
-      - KOMETA_MDBLISTAPIKEY
-      - KOMETA_TAUTULLIURL
-      - KOMETA_TAUTULLIAPIKEY
-      - KOMETA_MALCLIENTID
-      - KOMETA_MALCLIENTSECRET
-      - KOMETA_MALLOCALHOSTURL
-      - KOMETA_MALACCESSTOKEN
-      - KOMETA_MALREFRESHTOKEN
-      - KOMETA_TRAKTCLIENTID
-      - KOMETA_TRAKTCLIENTSECRET
-      - KOMETA_TRAKTACCESSTOKEN
-      - KOMETA_TRAKTREFRESHTOKEN
-      - KOMETA_ANIDBCLIENT
-      - KOMETA_ANIDBUSERNAME
-      - KOMETA_ANIDBPASSWORD
+      - common_Username
+      - plex_URL
+      - plex_Token
+      - tautulli_API
+      - external_AniDBClientID
+      - external_AniDBPassword
+      - external_MALClientID
+      - external_MALClientSecret
+      - external_MALLocalHostURL
+      - external_MALAccessToken
+      - external_MALRefreshToken
+      - external_MDBListAPI
+      - external_TMBDAPI
+      - external_TraktClientID
+      - external_TraktClientSecret
+      - external_TraktAccessToken
+      - external_TraktRefreshToken
     labels:
-      wud.display.icon: mdi:plex
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:plex"
+      wud.display.name: "kometa"
   plexautolanguages:
     <<: *default_container
     image: journeyover/plex-auto-languages:latest
     container_name: plexautolanguages
     environment:
       PLEX_URL: ${PLEXAUTOLANGUAGES_PLEXURL}
-      PLEX_TOKEN_FILE: /run/secrets/KOMETA_PLEXTOKEN
+      PLEX_TOKEN_FILE: /run/secrets/plex_Token
       TZ: ${TZ}
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./plexautolanguages:/config
     secrets:
-      - KOMETA_PLEXTOKEN
+      - plex_Token
     labels:
-      wud.display.icon: mdi:plex
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:plex"
   quickstart:
     <<: *default_container
-    image: kometateam/quickstart:develop
+    image: kometateam/quickstart:latest
     container_name: quickstart
     depends_on:
       - kometa
@@ -113,9 +114,8 @@ services:
     volumes:
       - ./quickstart:/config
     labels:
-      wud.display.icon: mdi:plex
-      wud.tag.include: "develop"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:plex"
   tautulli:
     <<: *default_container
     image: ghcr.io/linuxserver/tautulli:latest
@@ -127,9 +127,9 @@ services:
     volumes:
       - ./tautulli:/config
     labels:
-      wud.display.icon: mdi:plex
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:plex"
+      wud.display.name: "quickstart"
   wizarr:
     <<: *default_container
     image: ghcr.io/wizarrrr/wizarr:latest
@@ -142,43 +142,41 @@ services:
     volumes:
       - ./wizarr/database:/data/database
     labels:
-      wud.display.icon: mdi:plex
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:plex"
+      wud.display.name: "wizarr"
 secrets:
-  KOMETA_PLEXURL:
-    file: ./secrets/KOMETA_PLEXURL.txt
-  KOMETA_PLEXTOKEN:
-    file: ./secrets/KOMETA_PLEXTOKEN.txt
-  KOMETA_TMBDAPIKEY:
-    file: ./secrets/KOMETA_TMBDAPIKEY.txt
-  KOMETA_MDBLISTAPIKEY:
-    file: ./secrets/KOMETA_MDBLISTAPIKEY.txt
-  KOMETA_TAUTULLIURL:
-    file: ./secrets/KOMETA_TAUTULLIURL.txt
-  KOMETA_TAUTULLIAPIKEY:
-    file: ./secrets/KOMETA_TAUTULLIAPIKEY.txt
-  KOMETA_MALCLIENTID:
-    file: ./secrets/KOMETA_MALCLIENTID.txt
-  KOMETA_MALCLIENTSECRET:
-    file: ./secrets/KOMETA_MALCLIENTSECRET.txt
-  KOMETA_MALLOCALHOSTURL:
-    file: ./secrets/KOMETA_MALLOCALHOSTURL.txt
-  KOMETA_MALACCESSTOKEN:
-    file: ./secrets/KOMETA_MALACCESSTOKEN.txt
-  KOMETA_MALREFRESHTOKEN:
-    file: ./secrets/KOMETA_MALREFRESHTOKEN.txt
-  KOMETA_TRAKTCLIENTID:
-    file: ./secrets/KOMETA_TRAKTCLIENTID.txt
-  KOMETA_TRAKTCLIENTSECRET:
-    file: ./secrets/KOMETA_TRAKTCLIENTSECRET.txt
-  KOMETA_TRAKTACCESSTOKEN:
-    file: ./secrets/KOMETA_TRAKTACCESSTOKEN.txt
-  KOMETA_TRAKTREFRESHTOKEN:
-    file: ./secrets/KOMETA_TRAKTREFRESHTOKEN.txt
-  KOMETA_ANIDBCLIENT:
-    file: ./secrets/KOMETA_ANIDBCLIENT.txt
-  KOMETA_ANIDBUSERNAME:
-    file: ./secrets/KOMETA_ANIDBUSERNAME.txt
-  KOMETA_ANIDBPASSWORD:
-    file: ./secrets/KOMETA_ANIDBPASSWORD.txt
+  common_Username:
+    file: ${SECRETS_DIR}/common_Username.txt
+  plex_URL:
+    file: ${SECRETS_DIR}/plex_URL.txt
+  plex_Token:
+    file: ${SECRETS_DIR}/plex_Token.txt
+  tautulli_API:
+    file: ${SECRETS_DIR}/tautulli_API.txt
+  external_AniDBClientID:
+    file: ${SECRETS_DIR}/external_AniDBClientID.txt
+  external_AniDBPassword:
+    file: ${SECRETS_DIR}/external_AniDBPassword.txt
+  external_MALClientID:
+    file: ${SECRETS_DIR}/external_MALClientID.txt
+  external_MALClientSecret:
+    file: ${SECRETS_DIR}/external_MALClientSecret.txt
+  external_MALLocalHostURL:
+    file: ${SECRETS_DIR}/external_MALLocalHostURL.txt
+  external_MALAccessToken:
+    file: ${SECRETS_DIR}/external_MALAccessToken.txt
+  external_MALRefreshToken:
+    file: ${SECRETS_DIR}/external_MALRefreshToken.txt
+  external_MDBListAPI:
+    file: ${SECRETS_DIR}/external_MDBListAPI.txt
+  external_TMBDAPI:
+    file: ${SECRETS_DIR}/external_TMBDAPI.txt
+  external_TraktClientID:
+    file: ${SECRETS_DIR}/external_TraktClientID.txt
+  external_TraktClientSecret:
+    file: ${SECRETS_DIR}/external_TraktClientSecret.txt
+  external_TraktAccessToken:
+    file: ${SECRETS_DIR}/external_TraktAccessToken.txt
+  external_TraktRefreshToken:
+    file: ${SECRETS_DIR}/external_TraktRefreshToken.txt

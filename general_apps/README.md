@@ -12,6 +12,13 @@
 
 * Setup the dashboard with local <http://hostname:port> URLs.
 
+## homepage
+
+### Links
+
+* Documentation: <https://gethomepage.dev/>
+* GitHub: <https://github.com/gethomepage/homepage/>
+
 ## librespeed
 
 ### Links
@@ -34,5 +41,4 @@
 
 ### Links
 
-* Documentation: <https://docs.theme-park.dev/>
-* GitHub: <https://github.com/themepark-dev/theme.park/>
+c

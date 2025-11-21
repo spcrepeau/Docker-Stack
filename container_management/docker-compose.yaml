@@ -6,6 +6,9 @@ x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
+x-default_labels: &default_labels
+  wud.tag.include: "^latest$"
+  wud.watch.digest: "true"
 services:
   portainer:
     <<: *default_container
@@ -24,10 +27,9 @@ services:
     volumes:
       - ./portainer:/data
     labels:
-      wud.display.icon: si:portainer
+      <<: *default_labels
+      wud.display.icon: "si:portainer"
       wud.display.name: "portainer"
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
   socket-proxy:
     <<: *default_container
     image: ghcr.io/linuxserver/socket-proxy:latest
@@ -52,11 +54,10 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
+      <<: *default_labels
       # com.centurylinklabs.watchtower.monitor-only: true
       wud.display.name: "socket-proxy"
-      wud.tag.include: "^latest$"
       wud.trigger.exclude: "docker.update"
-      wud.watch.digest: "true"
   # watchtower:
   #   <<: *default_container
   #   image: containrrr/watchtower:latest
@@ -84,18 +85,18 @@ services:
     environment:
       TZ: ${TZ}
       DOCKER_HOST: "tcp://socket-proxy:2375"
-      WUD_AUTH_BASIC_MY_USER__FILE: /run/secrets/wud_WUDAuthBasicMyUser
-      WUD_AUTH_BASIC_MY_HASH__FILE: /run/secrets/wud_WUDAuthBasicMyHash
+      WUD_AUTH_BASIC_MY_USER__FILE: /run/secrets/common_Username
+      WUD_AUTH_BASIC_MY_HASH__FILE: /run/secrets/wud_AuthBasicMyHash
       WUD_WATCHER_LOCAL_CRON: "0 3 * * *"
       WUD_WATCHER_LOCAL_WATCHALL: true
       WUD_WATCHER_LOCAL_WATCHBYDEFAULT: true
       WUD_TRIGGER_DOCKER_UPDATE_PRUNE: true
       WUD_TRIGGER_SMTP_GMAIL_HOST: "smtp.gmail.com"
       WUD_TRIGGER_SMTP_GMAIL_PORT: "465"
-      WUD_TRIGGER_SMTP_GMAIL_USER__FILE: /run/secrets/wud_WUDTriggerSMTPEmail
-      WUD_TRIGGER_SMTP_GMAIL_PASS__FILE: /run/secrets/wud_WUDTriggerSMTPPass
-      WUD_TRIGGER_SMTP_GMAIL_FROM__FILE: /run/secrets/wud_WUDTriggerSMTPEmail
-      WUD_TRIGGER_SMTP_GMAIL_TO__FILE: /run/secrets/wud_WUDTriggerSMTPEmail
+      WUD_TRIGGER_SMTP_GMAIL_USER__FILE: /run/secrets/common_EmailAddress
+      WUD_TRIGGER_SMTP_GMAIL_PASS__FILE: /run/secrets/wud_TriggerSMTPPassword
+      WUD_TRIGGER_SMTP_GMAIL_FROM__FILE: /run/secrets/common_EmailAddress
+      WUD_TRIGGER_SMTP_GMAIL_TO__FILE: /run/secrets/common_EmailAddress
       WUD_TRIGGER_SMTP_GMAIL_TLS_ENABLED: true 
     networks:
       - default
@@ -103,28 +104,27 @@ services:
     ports:
       - ${WUD_PORT_3000}:3000 # Web GUI HTTP
     read_only: true
-    # volumes:
-    #   - ./wud:/store
+    volumes:
+      - ./wud:/store
     secrets:
-      - wud_WUDAuthBasicMyUser
-      - wud_WUDAuthBasicMyHash
-      - wud_WUDTriggerSMTPEmail
-      - wud_WUDTriggerSMTPPass
+      - common_Username
+      - wud_AuthBasicMyHash
+      - common_EmailAddress
+      - wud_TriggerSMTPPassword
     labels:
+      <<: *default_labels
       wud.display.name: "wud"
-      wud.tag.include: "^latest$"
       wud.trigger.exclude: "docker.update"
-      wud.watch.digest: "true"
 networks:
   default:
   proxynet:
     internal: true
 secrets:
-  wud_WUDAuthBasicMyUser:
-    file: ./secrets/wud_WUDAuthBasicMyUser.txt
-  wud_WUDAuthBasicMyHash:
-    file: ./secrets/wud_WUDAuthBasicMyHash.txt
-  wud_WUDTriggerSMTPEmail:
-    file: ./secrets/wud_WUDTriggerSMTPEmail.txt
-  wud_WUDTriggerSMTPPass:
-    file: ./secrets/wud_WUDTriggerSMTPPass.txt
+  common_Username:
+    file: ${SECRETS_DIR}/common_Username.txt
+  wud_AuthBasicMyHash:
+    file: ${SECRETS_DIR}/wud_AuthBasicMyHash.txt
+  common_EmailAddress:
+    file: ${SECRETS_DIR}/common_EmailAddress.txt
+  wud_TriggerSMTPPassword:
+    file: ${SECRETS_DIR}/wud_TriggerSMTPPassword.txt

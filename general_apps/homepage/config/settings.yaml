@@ -1,0 +1,41 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+
+title: sean-nas
+
+headerStyle: boxed
+
+background:
+  image: /images/background.jpg
+  #blur: sm # sm, "", md, xl... see https://tailwindcss.com/docs/backdrop-blur
+  #saturate: 50 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
+  #brightness: 50 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
+  opacity: 75 # 0-100
+
+cardBlur: xl # xs, md, etc... see https://tailwindcss.com/docs/backdrop-blur
+
+theme: dark
+
+color: slate
+
+hideVersion: true
+
+useEqualHeights: true
+
+layout:
+  Server Applications:
+    style: row
+    columns: 3
+  Download Applications:
+    style: row
+    columns: 4
+  Media Applications:
+    style: row
+    columns: 4
+  Misc Applications:
+    style: row
+    columns: 6
+  Bookmarks:
+    style: row
+    columns: 4

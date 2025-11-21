@@ -7,6 +7,9 @@ x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
+x-default_labels: &default_labels
+  wud.tag.include: "^latest$"
+  wud.watch.digest: "true"
 services:
   lidarr:
     <<: *default_container
@@ -27,9 +30,9 @@ services:
       - ${DATA_DIR}/media/music:/music
       - ${DATA_DIR}/trash/lidarr:/recycle
     labels:
-      wud.display.icon: mdi:music
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:music"
+      wud.display.name: "lidarr"
   overseerr:
     <<: *default_container
     image: ghcr.io/linuxserver/overseerr:latest
@@ -46,9 +49,9 @@ services:
     volumes:
       - ./overseerr:/config
     labels:
-      wud.display.icon: mdi:view-dashboard
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:view-dashboard"
+      wud.display.name: "overseer"
   prowlarr:
     <<: *default_container
     image: ghcr.io/linuxserver/prowlarr:latest
@@ -64,9 +67,9 @@ services:
     volumes:
       - ./prowlarr:/config
     labels:
-      wud.display.icon: mdi:download
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:download"
+      wud.display.name: "prowlarr"
   radarr:
     <<: *default_container
     image: ghcr.io/linuxserver/radarr:latest
@@ -86,9 +89,9 @@ services:
       - ${DATA_DIR}/media/movies:/movies
       - ${DATA_DIR}/trash/radarr:/recycle
     labels:
-      wud.display.icon: si:radarr
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "si:radarr"
+      wud.display.name: "radarr"
   radarr-4K:
     <<: *default_container
     image: ghcr.io/linuxserver/radarr:latest
@@ -108,9 +111,9 @@ services:
       - ${DATA_DIR}/media/movies-4K:/movies
       - ${DATA_DIR}/trash/radarr-4K:/recycle
     labels:
-      wud.display.icon: si:radarr
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "si:radarr"
+      wud.display.name: "radarr-4K"
   recyclarr:
     <<: *default_container
     image: recyclarr/recyclarr:latest
@@ -121,9 +124,9 @@ services:
     volumes:
       - ./recyclarr:/config
     labels:
-      wud.display.icon: mdi:cog
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:cog"
+      wud.display.name: "recyclarr"
   sabnzbd:
     <<: *default_container
     image: ghcr.io/linuxserver/sabnzbd:latest
@@ -136,9 +139,9 @@ services:
       - ./sabnzbd:/config
       - ${DATA_DIR}/usenet:/downloads
     labels:
-      wud.display.icon: mdi:download
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "mdi:download"
+      wud.display.name: "sabnzbd"
   sonarr:
     <<: *default_container
     image: ghcr.io/linuxserver/sonarr:latest
@@ -159,9 +162,9 @@ services:
       - ${DATA_DIR}/media/tv-kids:/tv-kids
       - ${DATA_DIR}/trash/sonarr:/recycle
     labels:
-      wud.display.icon: si:sonarr
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "si:sonarr"
+      wud.display.name: "sonarr"
   sonarr-anime:
     <<: *default_container
     image: ghcr.io/linuxserver/sonarr:latest
@@ -181,6 +184,6 @@ services:
       - ${DATA_DIR}/media/anime:/anime
       - ${DATA_DIR}/trash/sonarr-anime:/recycle
     labels:
-      wud.display.icon: si:sonarr
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+      <<: *default_labels
+      wud.display.icon: "si:sonarr"
+      wud.display.name: "sonarr-anime"

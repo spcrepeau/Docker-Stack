@@ -1,0 +1,146 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Server Applications:
+    - portainer:
+        href: {{HOMEPAGE_VAR_PORTAINER_URL}}
+        icon: portainer
+        widget: # https://gethomepage.dev/widgets/services/portainer/
+            type: portainer
+            url: {{HOMEPAGE_VAR_PORTAINER_URL}}
+            env: 29
+            #kubernetes: true # optional, defaults to false
+            key: {{HOMEPAGE_FILE_PORTAINER_API}}
+    - wud:
+        href: {{HOMEPAGE_VAR_WUD_URL}}
+        icon: whats-up-docker
+        widget: # https://gethomepage.dev/widgets/services/whatsupdocker/
+            type: whatsupdocker
+            url: {{HOMEPAGE_VAR_WUD_URL}}
+            username: {{HOMEPAGE_FILE_COMMON_USERNAME}} # optional
+            password: {{HOMEPAGE_FILE_WUD_PASSWORD}} # optional
+    - pihole:
+        href: "{{HOMEPAGE_VAR_PIHOLE_URL}}/admin"
+        icon: pi-hole
+        widget: # https://gethomepage.dev/widgets/services/pihole/
+            type: pihole
+            url: {{HOMEPAGE_VAR_PIHOLE_URL}}
+            version: 6 # required if running v6 or higher, defaults to 5
+            key: {{HOMEPAGE_FILE_PIHOLE_API}} # optional, in v6 can be your password or app password
+
+- Download Applications:
+    - sabnzbd:
+        href: {{HOMEPAGE_VAR_SABNZBD_URL}}
+        icon: sabnzbd
+        widget: # https://gethomepage.dev/widgets/services/sabnzbd/
+            type: sabnzbd
+            url: {{HOMEPAGE_VAR_SABNZBD_URL}}
+            key: {{HOMEPAGE_FILE_SABNZBD_API}}
+    - overseerr:
+        href: {{HOMEPAGE_VAR_OVERSEERR_URL}}
+        icon: overseerr
+        widget: # https://gethomepage.dev/widgets/services/overseerr/
+            type: overseerr
+            url: {{HOMEPAGE_VAR_OVERSEERR_URL}}
+            key: {{HOMEPAGE_FILE_OVERSEERR_API}}
+    - sonarr:
+        href: {{HOMEPAGE_VAR_SONARR_URL}}
+        icon: sonarr
+        widget: # https://gethomepage.dev/widgets/services/sonarr/
+            type: sonarr
+            url: {{HOMEPAGE_VAR_SONARR_URL}}
+            key: {{HOMEPAGE_FILE_SONARR_API}}
+            #enableQueue: true # optional, defaults to false
+    - sonarr-anime:
+        href: {{HOMEPAGE_VAR_SONARRANIME_URL}}
+        icon: sonarr
+        widget: # https://gethomepage.dev/widgets/services/sonarr/
+            type: sonarr
+            url: {{HOMEPAGE_VAR_SONARRANIME_URL}}
+            key: {{HOMEPAGE_FILE_SONARRANIME_API}}
+            #enableQueue: true # optional, defaults to false
+    - radarr:
+        href: {{HOMEPAGE_VAR_RADARR_URL}}
+        icon: radarr
+        widget: # https://gethomepage.dev/widgets/services/radarr/
+            type: radarr
+            url: {{HOMEPAGE_VAR_RADARR_URL}}
+            key: {{HOMEPAGE_FILE_RADARR_API}}
+            #enableQueue: true # optional, defaults to false
+    - radarr-4K:
+        href: {{HOMEPAGE_VAR_RADARR4K_URL}}
+        icon: radarr
+        widget: # https://gethomepage.dev/widgets/services/radarr/
+            type: radarr
+            url: {{HOMEPAGE_VAR_RADARR4K_URL}}
+            key: {{HOMEPAGE_FILE_RADARR4K_API}}
+            #enableQueue: true # optional, defaults to false
+    - lidarr:
+        href: {{HOMEPAGE_VAR_LIDARR_URL}}
+        icon: lidarr
+        widget: # https://gethomepage.dev/widgets/services/lidarr/
+            type: lidarr
+            url: {{HOMEPAGE_VAR_LIDARR_URL}}
+            key: {{HOMEPAGE_FILE_LIDARR_API}}
+    - prowlarr:
+        href: {{HOMEPAGE_VAR_PROWLARR_URL}}
+        icon: prowlarr
+        widget: # https://gethomepage.dev/widgets/services/prowlarr/
+            type: prowlarr
+            url: {{HOMEPAGE_VAR_PROWLARR_URL}}
+            key: {{HOMEPAGE_FILE_PROWLARR_API}}
+
+- Media Applications:
+    - plex:
+        href: {{HOMEPAGE_FILE_PLEX_URL}}
+        icon: plex
+        widget: # https://gethomepage.dev/widgets/services/plex/
+            type: plex
+            url: {{HOMEPAGE_FILE_PLEX_URL}}
+            key: {{HOMEPAGE_FILE_PLEX_TOKEN}} # see https://www.plexopedia.com/plex-media-server/general/plex-token/
+    - tautulli:
+        href: {{HOMEPAGE_VAR_TAUTULLI_URL}}
+        icon: tautulli
+        widget: # https://gethomepage.dev/widgets/services/plex-tautulli/
+            type: tautulli
+            url: {{HOMEPAGE_VAR_TAUTULLI_URL}}
+            key: {{HOMEPAGE_FILE_TAUTULLI_API}}
+            enableUser: true # optional, defaults to false
+            showEpisodeNumber: true # optional, defaults to false
+            expandOneStreamToTwoRows: false # optional, defaults to true
+    - calibre-web:
+        href: {{HOMEPAGE_VAR_CALIBREWEB_URL}}
+        icon: calibre-web
+        widget: # https://gethomepage.dev/widgets/services/calibre-web/
+            type: calibreweb
+            url: {{HOMEPAGE_VAR_CALIBREWEB_URL}}
+            username: {{HOMEPAGE_FILE_COMMON_USERNAME}}
+            password: {{HOMEPAGE_FILE_CALIBREWEB_PASSWORD}}
+    - romm:
+        href: {{HOMEPAGE_VAR_ROMM_URL}}
+        icon: romm
+        widget: # https://gethomepage.dev/widgets/services/romm/
+            type: romm
+            url: {{HOMEPAGE_VAR_ROMM_URL}}
+            fields: ["platforms", "totalRoms", "saves", "states"] # optional - default fields shown
+
+- Misc Applications:
+    - agregarr:
+        href: {{HOMEPAGE_VAR_AGREGARR_URL}}
+        icon: agregarr
+    - quickstart:
+        href: {{HOMEPAGE_VAR_QUICKSTART_URL}}
+        icon: kometa
+    - wizarr:
+        href: {{HOMEPAGE_VAR_WIZARR_URL}}
+        icon: wizarr
+    - organizr:
+        href: {{HOMEPAGE_VAR_ORGANIZR_URL}}
+        icon: organizr
+    - librespeed:
+        href: {{HOMEPAGE_VAR_LIBRESPEED_URL}}
+        icon: librespeed
+    - calibre:
+        href: {{HOMEPAGE_VAR_CALIBRE_URL}}
+        icon: calibre
