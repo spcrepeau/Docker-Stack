@@ -30,7 +30,7 @@
 
 ### Links
 
-* DockerHub: <https://hub.docker.com/r/journeyover/plex-auto-languages/>
+* GitHub: <https://github.com/JourneyDocker/Plex-Auto-Languages>
 
 ### Notes
 

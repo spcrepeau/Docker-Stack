@@ -6,12 +6,13 @@
     cpu: true
     memory: true
     disk: /
-
 - search:
     provider: duckduckgo
     target: _blank
-
+    showSearchSuggestions: true
+    focus: true
 - datetime:
     text_size: xl
     format:
         timeStyle: short
+        hourCycle: h23

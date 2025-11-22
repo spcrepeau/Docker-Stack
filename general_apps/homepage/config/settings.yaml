@@ -2,25 +2,18 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/settings/
 
-title: sean-nas
-
+favicon: /images/favicon.ico
 headerStyle: boxed
 
+theme: dark
+color: slate
+cardBlur: xl # xs, md, etc... see https://tailwindcss.com/docs/backdrop-blur
 background:
   image: /images/background.jpg
-  #blur: sm # sm, "", md, xl... see https://tailwindcss.com/docs/backdrop-blur
-  #saturate: 50 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
-  #brightness: 50 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
   opacity: 75 # 0-100
 
-cardBlur: xl # xs, md, etc... see https://tailwindcss.com/docs/backdrop-blur
-
-theme: dark
-
-color: slate
-
+# layout global variables
 hideVersion: true
-
 useEqualHeights: true
 
 layout:

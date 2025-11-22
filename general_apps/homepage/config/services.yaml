@@ -28,7 +28,6 @@
             url: {{HOMEPAGE_VAR_PIHOLE_URL}}
             version: 6 # required if running v6 or higher, defaults to 5
             key: {{HOMEPAGE_FILE_PIHOLE_API}} # optional, in v6 can be your password or app password
-
 - Download Applications:
     - sabnzbd:
         href: {{HOMEPAGE_VAR_SABNZBD_URL}}
@@ -90,7 +89,6 @@
             type: prowlarr
             url: {{HOMEPAGE_VAR_PROWLARR_URL}}
             key: {{HOMEPAGE_FILE_PROWLARR_API}}
-
 - Media Applications:
     - plex:
         href: {{HOMEPAGE_FILE_PLEX_URL}}
@@ -123,8 +121,6 @@
         widget: # https://gethomepage.dev/widgets/services/romm/
             type: romm
             url: {{HOMEPAGE_VAR_ROMM_URL}}
-            fields: ["platforms", "totalRoms", "saves", "states"] # optional - default fields shown
-
 - Misc Applications:
     - agregarr:
         href: {{HOMEPAGE_VAR_AGREGARR_URL}}
