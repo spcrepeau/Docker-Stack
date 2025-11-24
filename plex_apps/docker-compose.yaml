@@ -1,7 +1,7 @@
 name: plex_apps
 x-default_container: &default_container
-  network_mode: bridge
-  security_opt: ['no-new-privileges:true']
+  networks: ["default"]
+  security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
 x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
@@ -90,23 +90,23 @@ services:
     image: journeyover/plex-auto-languages:latest
     container_name: plexautolanguages
     environment:
-      PLEX_URL: ${PLEXAUTOLANGUAGES_PLEXURL}
+      PLEX_URL_FILE: /run/secrets/plex_URL
       PLEX_TOKEN_FILE: /run/secrets/plex_Token
       TZ: ${TZ}
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./plexautolanguages:/config
     secrets:
+      - plex_URL
       - plex_Token
     labels:
       <<: *default_labels
       wud.display.icon: "mdi:plex"
+      wud.display.name: "plexautolanguages"
   quickstart:
     <<: *default_container
     image: kometateam/quickstart:latest
     container_name: quickstart
-    depends_on:
-      - kometa
     environment:
       <<: *default_environment
     ports:
@@ -116,6 +116,7 @@ services:
     labels:
       <<: *default_labels
       wud.display.icon: "mdi:plex"
+      wud.display.name: "quickstart"
   tautulli:
     <<: *default_container
     image: ghcr.io/linuxserver/tautulli:latest
@@ -145,6 +146,8 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:plex"
       wud.display.name: "wizarr"
+networks:
+  default:
 secrets:
   common_Username:
     file: ${SECRETS_DIR}/common_Username.txt

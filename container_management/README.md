@@ -13,22 +13,6 @@
 
 * LinuxServer: <https://docs.linuxserver.io/images/docker-socket-proxy/>
 
-## watchtower
-
-### Links
-
-* Documentation: <https://containrrr.dev/watchtower/>
-* GitHub: <https://github.com/containrrr/watchtower>
-
-### Notes
-
-* Manually run watchtower with this command:
-
-```bash
-# This will create a new watchtower container, run it once, and then remove the container
-sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --run-once
-```
-
 ## wud
 
 ### Links
@@ -40,3 +24,4 @@ sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock containrrr/wat
 
 * WUD_AUTH_BASIC_MY_HASH: Each \$ character must be replaced with $$.
 * WUD_AUTH_BASIC_MY_HASH__FILE: Leave the \$ as a single character.
+* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.

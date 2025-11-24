@@ -1,6 +1,17 @@
 name: network_apps
+x-default_container: &default_container
+  networks: ["default"]
+  restart: unless-stopped
+# x-default_environment: &default_environment
+#   PGID: ${DOCKER_GID}
+#   PUID: ${DOCKER_UID}
+#   TZ: ${TZ}
+x-default_labels: &default_labels
+  wud.tag.include: "^latest$"
+  wud.watch.digest: "true"
 services:
   pihole:
+    <<: *default_container
     image: pihole/pihole:latest
     container_name: pihole
     environment:
@@ -10,22 +21,21 @@ services:
       TZ: ${TZ}
       WEBPASSWORD_FILE: /run/secrets/pihole_WebServerAPIPassword
       FTLCONF_dns_listeningMode: all
-    network_mode: bridge
     ports:
       - 53:53/tcp # DNS
       - 53:53/udp # DNS
       - ${PIHOLE_PORT_80}:80 # Web GUI HTTP
       - ${PIHOLE_PORT_443}:443 # Web GUI HTTPS
-    restart: unless-stopped
-    secrets:
-      - pihole_WebServerAPIPassword
     volumes:
       - ./pihole/etc-pihole:/etc/pihole
+    secrets:
+      - pihole_WebServerAPIPassword
     labels:
+      <<: *default_labels
       wud.display.icon: "si:pihole"
       wud.display.name: "pihole"
-      wud.tag.include: "^latest$"
-      wud.watch.digest: "true"
+networks:
+  default:
 secrets:
   pihole_WebServerAPIPassword:
     file: ${SECRETS_DIR}/pihole_WebServerAPIPassword.txt

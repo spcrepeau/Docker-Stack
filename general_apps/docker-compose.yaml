@@ -1,7 +1,7 @@
 name: general_apps
 x-default_container: &default_container
-  network_mode: bridge
-  security_opt: ['no-new-privileges:true']
+  networks: ["default"]
+  security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
 x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
@@ -11,29 +11,17 @@ x-default_labels: &default_labels
   wud.tag.include: "^latest$"
   wud.watch.digest: "true"
 services:
-  heimdall:
-    <<: *default_container
-    image: ghcr.io/linuxserver/heimdall:latest
-    container_name: heimdall
-    environment:
-      <<: *default_environment
-    ports:
-      - ${HEIMDALL_PORT_80}:80 # Web GUI HTTP
-      - ${HEIMDALL_PORT_443}:443 # Web GUI HTTPS
-    volumes:
-      - ./heimdall:/config
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:view-dashboard"
-      wud.display.name: "heimdall"
   homepage:
     <<: *default_container
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     environment:
       <<: *default_environment
-      HOMEPAGE_ALLOWED_HOSTS: ${HOST}:${HOMEPAGE_PORT_3000} # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+      HOMEPAGE_ALLOWED_HOSTS: ${HOST}:${HOMEPAGE_PORT_3000},socket-proxy:2375 # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+      # common
       HOMEPAGE_FILE_COMMON_USERNAME: /run/secrets/common_Username
+      HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX: /run/secrets/common_PublicDNSSuffix
+      HOMEPAGE_VAR_TZ: ${TZ}
       # bookmarks
       HOMEPAGE_VAR_NAS_URL: "https://${HOST}:${HOST_DSM_HTTPS_PORT}"
       # container_management
@@ -77,13 +65,18 @@ services:
       HOMEPAGE_VAR_TAUTULLI_URL: "http://${HOST}:${TAUTULLI_PORT_8181}"
       HOMEPAGE_FILE_TAUTULLI_API: /run/secrets/tautulli_API
       HOMEPAGE_VAR_WIZARR_URL: "http://${HOST}:${WIZARR_PORT_5690}"
+    networks:
+      - default
+      - container_management_proxynet
     ports:
       - ${HOMEPAGE_PORT_3000}:3000 # Web GUI HTTP
     volumes:
       - ./homepage/config:/app/config
       - ./homepage/images:/app/public/images
     secrets:
+      # common
       - common_Username
+      - common_PublicDNSSuffix
       # container_management
       - portainer_API
       - wud_Password
@@ -125,20 +118,6 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:speedometer"
       wud.display.name: "librespeed"
-  organizr:
-    <<: *default_container
-    image: organizr/organizr:latest
-    container_name: organizr
-    environment:
-      <<: *default_environment
-    ports:
-      - ${ORGANIZR_PORT_80}:80 # Web GUI HTTP
-    volumes:
-      - ./organizr:/config
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:view-dashboard"
-      wud.display.name: "organizr"
   theme-park:
     <<: *default_container
     image: ghcr.io/themepark-dev/theme.park:latest
@@ -154,9 +133,16 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:brush"
       wud.display.name: "theme-park"
+networks:
+  default:
+  container_management_proxynet:
+    external: true
 secrets:
+  # homepage common
   common_Username:
     file: ${SECRETS_DIR}/common_Username.txt
+  common_PublicDNSSuffix:
+    file: ${SECRETS_DIR}/common_PublicDNSSuffix.txt
   # homepage container_management
   portainer_API:
     file: ${SECRETS_DIR}/portainer_API.txt

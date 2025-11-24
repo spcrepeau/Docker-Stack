@@ -1,7 +1,7 @@
 name: media_apps
 x-default_container: &default_container
-  network_mode: bridge
-  security_opt: ['no-new-privileges:true']
+  networks: ["default"]
+  security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
 x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
@@ -52,13 +52,16 @@ services:
       - romm-db
     environment:
       TZ: ${TZ}
-      DB_HOST: ${HOST}
+      DB_HOST: romm-db
       DB_USER: romm-user
       DB_PASSWD_FILE: /run/secrets/romm-db_MySQLPassword
       ROMM_AUTH_SECRET_KEY_FILE: /run/secrets/romm_AuthSecretKey
       IGDB_CLIENT_ID_FILE: /run/secrets/external_IGDBClientID
       IGDB_CLIENT_SECRET_FILE: /run/secrets/external_IGDBClientSecret
       STEAMGRIDDB_API_KEY_FILE: /run/secrets/external_SteamGrimDBAPI
+    networks:
+      - default
+      - rommnet
     ports:
       - ${ROMM_PORT_8080}:8080 # Web GUI HTTP
     secrets:
@@ -88,6 +91,8 @@ services:
       MYSQL_DATABASE: romm
       MYSQL_USER: romm-user
       MYSQL_PASSWORD_FILE: /run/secrets/romm-db_MySQLPassword
+    networks:
+      - rommnet
     ports:
       - ${ROMMDB_PORT_3306}:3306 # DB Connection
     secrets:
@@ -98,6 +103,10 @@ services:
       <<: *default_labels
       wud.display.icon: "si:mariadb"
       wud.display.name: "romm-db"
+networks:
+  default:
+  rommnet:
+    internal: true
 secrets:
   external_IGDBClientID:
     file: ${SECRETS_DIR}/external_IGDBClientID.txt

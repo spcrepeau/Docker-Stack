@@ -8,11 +8,11 @@
 
 ### [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
 
-* Containers: portainer, socket-proxy, watchtower, wud
+* Containers: portainer, socket-proxy, wud
 
 ### [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
 
-* Containers: heimdall, homepage, librespeed, organizr, theme-park
+* Containers: homepage, librespeed, theme-park
 
 ### [media_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/media_apps)
 
@@ -28,7 +28,7 @@
 
 ### [plex_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/plex_apps)
 
-* Containers: kometa, plexautolanguages, quickstart, tautulli, wizarr
+* Containers: agregarr, kometa, plexautolanguages, quickstart, tautulli, wizarr
 
 ## VSCode Extensions
 

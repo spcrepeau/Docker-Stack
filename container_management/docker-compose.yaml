@@ -1,6 +1,6 @@
 name: container_management
 x-default_container: &default_container
-  security_opt: ['no-new-privileges:true']
+  security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
 x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
@@ -35,6 +35,7 @@ services:
     image: ghcr.io/linuxserver/socket-proxy:latest
     container_name: socket-proxy
     environment:
+      TZ: ${TZ}
       ALLOW_START: "1"
       ALLOW_STOP: "1"
       ALLOW_RESTARTS: "1"
@@ -55,27 +56,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
       <<: *default_labels
-      # com.centurylinklabs.watchtower.monitor-only: true
       wud.display.name: "socket-proxy"
-      wud.trigger.exclude: "docker.update"
-  # watchtower:
-  #   <<: *default_container
-  #   image: containrrr/watchtower:latest
-  #   container_name: watchtower
-  #   depends_on:
-  #     - socket-proxy
-  #   environment:
-  #     TZ: ${TZ}
-  #     WATCHTOWER_SCHEDULE: "0 0 3 * * *"
-  #     WATCHTOWER_CLEANUP: true
-  #     DOCKER_HOST: "tcp://socket-proxy:2375"
-  #   networks:
-  #     - default
-  #     - proxynet
-  #   read_only: true
-  #   working_dir: /
-  #   labels:
-  #     com.centurylinklabs.watchtower: true
+      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, update manually
   wud:
     <<: *default_container
     image: getwud/wud:latest
@@ -103,7 +85,7 @@ services:
       - proxynet
     ports:
       - ${WUD_PORT_3000}:3000 # Web GUI HTTP
-    read_only: true
+    user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./wud:/store
     secrets:
@@ -114,7 +96,7 @@ services:
     labels:
       <<: *default_labels
       wud.display.name: "wud"
-      wud.trigger.exclude: "docker.update"
+      wud.trigger.exclude: "docker.update" # Prevents WUD from updating itself, update manually
 networks:
   default:
   proxynet:
