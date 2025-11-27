@@ -1,4 +1,5 @@
 name: container_management
+
 x-default_container: &default_container
   security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
@@ -9,6 +10,7 @@ x-default_environment: &default_environment
 x-default_labels: &default_labels
   wud.tag.include: "^latest$"
   wud.watch.digest: "true"
+
 services:
   portainer:
     <<: *default_container
@@ -30,6 +32,7 @@ services:
       <<: *default_labels
       wud.display.icon: "si:portainer"
       wud.display.name: "portainer"
+
   socket-proxy:
     <<: *default_container
     image: ghcr.io/linuxserver/socket-proxy:latest
@@ -57,7 +60,8 @@ services:
     labels:
       <<: *default_labels
       wud.display.name: "socket-proxy"
-      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, update manually
+      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, manually clean and rebuild project
+
   wud:
     <<: *default_container
     image: getwud/wud:latest
@@ -73,6 +77,7 @@ services:
       WUD_WATCHER_LOCAL_WATCHALL: true
       WUD_WATCHER_LOCAL_WATCHBYDEFAULT: true
       WUD_TRIGGER_DOCKER_UPDATE_PRUNE: true
+      WUD_TRIGGER_DOCKER_DOWNLOAD_DRYRUN: true # Downloads new images, needed for socket-proxy and wud
       WUD_TRIGGER_SMTP_GMAIL_HOST: "smtp.gmail.com"
       WUD_TRIGGER_SMTP_GMAIL_PORT: "465"
       WUD_TRIGGER_SMTP_GMAIL_USER__FILE: /run/secrets/common_EmailAddress
@@ -96,11 +101,13 @@ services:
     labels:
       <<: *default_labels
       wud.display.name: "wud"
-      wud.trigger.exclude: "docker.update" # Prevents WUD from updating itself, update manually
+      wud.trigger.exclude: "docker.update" # Prevents WUD from updating itself, manually clean and rebuild project
+
 networks:
   default:
   proxynet:
     internal: true
+
 secrets:
   common_Username:
     file: ${SECRETS_DIR}/common_Username.txt

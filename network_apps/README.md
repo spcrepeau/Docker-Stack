@@ -1,5 +1,30 @@
 # network_apps
 
+## authentik_database
+
+### Links
+
+* Documentation: <https://docs.goauthentik.io/>
+* GitHub: <https://github.com/goauthentik/authentik>
+
+## authentik_server
+
+### Links
+
+* Documentation: <https://docs.goauthentik.io/>
+* GitHub: <https://github.com/goauthentik/authentik>
+
+### Notes
+
+* Setup reverse proxy for this app.
+
+## authentik_worker
+
+### Links
+
+* Documentation: <https://docs.goauthentik.io/>
+* GitHub: <https://github.com/goauthentik/authentik>
+
 ## pihole
 
 ### Links

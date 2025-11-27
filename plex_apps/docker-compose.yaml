@@ -1,4 +1,5 @@
 name: plex_apps
+
 x-default_container: &default_container
   networks: ["default"]
   security_opt: ["no-new-privileges:true"]
@@ -10,6 +11,7 @@ x-default_environment: &default_environment
 x-default_labels: &default_labels
   wud.tag.include: "^latest$"
   wud.watch.digest: "true"
+
 services:
   agregarr:
     <<: *default_container
@@ -32,6 +34,7 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:plex"
       wud.display.name: "agregarr"
+
   kometa:
     <<: *default_container
     image: ghcr.io/linuxserver/kometa:latest
@@ -85,12 +88,14 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:plex"
       wud.display.name: "kometa"
+
   plexautolanguages:
     <<: *default_container
     image: journeyover/plex-auto-languages:latest
     container_name: plexautolanguages
     environment:
-      PLEX_URL_FILE: /run/secrets/plex_URL
+      PLEX_URL: ${PLEXAUTOLANGUAGES_PLEXURL}
+      #PLEX_URL_FILE: /run/secrets/plex_URL # waiting for this to make it to latest tag
       PLEX_TOKEN_FILE: /run/secrets/plex_Token
       TZ: ${TZ}
     user: ${DOCKER_UID}:${DOCKER_GID}
@@ -103,6 +108,7 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:plex"
       wud.display.name: "plexautolanguages"
+
   quickstart:
     <<: *default_container
     image: kometateam/quickstart:latest
@@ -117,6 +123,7 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:plex"
       wud.display.name: "quickstart"
+
   tautulli:
     <<: *default_container
     image: ghcr.io/linuxserver/tautulli:latest
@@ -131,6 +138,7 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:plex"
       wud.display.name: "quickstart"
+
   wizarr:
     <<: *default_container
     image: ghcr.io/wizarrrr/wizarr:latest
@@ -146,8 +154,10 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:plex"
       wud.display.name: "wizarr"
+
 networks:
   default:
+
 secrets:
   common_Username:
     file: ${SECRETS_DIR}/common_Username.txt

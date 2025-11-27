@@ -1,8 +1,11 @@
 # general_apps
 
-* Using both heimdall and organizr isn't required. If only one is used, setup two instances, one for local URLs and one for public URLs.
-
 ## homepage
+
+### Notes
+
+* This application does not have any built-in authentication and we'll use authentik to do so.
+* Setup reverse proxy for this app, but point to the authentik public URL.
 
 ### Links
 

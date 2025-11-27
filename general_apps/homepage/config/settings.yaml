@@ -33,7 +33,7 @@ layout:
       header: false
   Server Applications:
     style: row
-    columns: 3
+    columns: 5
     tab: Local
     header: false
   Media Applications:
@@ -48,15 +48,15 @@ layout:
     header: false
   Service Applications:
     style: row
-    columns: 6
-    tab: Local
-    header: false
-  Bookmarks:
-    style: row
-    columns: 4
+    columns: 5
     tab: Local
     header: false
 
+  Most Recent:
+    style: row
+    columns: 5
+    tab: Download Queues
+    header: false
   Download Queues:
     tab: Download Queues
     header: false
@@ -65,4 +65,9 @@ layout:
     style: row
     columns: 5
     tab: Public
-    header: false
+    header: true
+  Bookmarks:
+    style: row
+    columns: 4
+    tab: Public
+    header: true

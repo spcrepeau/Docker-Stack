@@ -1,15 +1,95 @@
 name: network_apps
+
 x-default_container: &default_container
-  networks: ["default"]
   restart: unless-stopped
-# x-default_environment: &default_environment
-#   PGID: ${DOCKER_GID}
-#   PUID: ${DOCKER_UID}
-#   TZ: ${TZ}
 x-default_labels: &default_labels
   wud.tag.include: "^latest$"
   wud.watch.digest: "true"
+
 services:
+  authentik_database:
+    <<: *default_container
+    image: docker.io/library/postgres:16-alpine
+    container_name: authentik_database
+    environment:
+      POSTGRES_DB: authentik
+      POSTGRES_PASSWORD: file:///run/secrets/authentik_DatabasePass
+      POSTGRES_USER: authentik
+    healthcheck:
+      interval: 30s
+      retries: 5
+      start_period: 20s
+      test:
+        - CMD-SHELL
+        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      timeout: 5s
+    networks:
+      - authentiknet
+    volumes:
+      - ./authentik/database:/var/lib/postgresql/data
+    secrets:
+      - authentik_DatabasePass
+    labels:
+      wud.watch: false
+
+  authentik_server:
+    <<: *default_container
+    image: ghcr.io/goauthentik/server:2025.10.2
+    container_name: authentik_server
+    command: server
+    depends_on:
+      authentik_database:
+        condition: service_healthy
+    environment:
+      AUTHENTIK_POSTGRESQL__HOST: authentik_database
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePass
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_SecretKey
+    networks:
+      - default
+      - authentiknet
+    ports:
+      - ${AUTHENTIK_PORT_9000}:9000
+      - ${AUTHENTIK_PORT_9443}:9443
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./authentik/media:/media
+      - ./authentik/custom-templates:/templates
+    secrets:
+      - authentik_DatabasePass
+      - authentik_SecretKey
+    labels:
+      wud.watch: false
+
+  authentik_worker:
+    <<: *default_container
+    image: ghcr.io/goauthentik/server:2025.10.2
+    container_name: authentik_worker
+    command: worker
+    depends_on:
+      authentik_database:
+        condition: service_healthy
+    environment:
+      AUTHENTIK_POSTGRESQL__HOST: authentik_database
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePass
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_SecretKey
+    networks:
+      - authentiknet
+      - container_management_proxynet
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./authentik/media:/media
+      - ./authentik/certs:/certs
+      - ./authentik/custom-templates:/templates
+    secrets:
+      - authentik_DatabasePass
+      - authentik_SecretKey
+    labels:
+      wud.watch: false
+
   pihole:
     <<: *default_container
     image: pihole/pihole:latest
@@ -34,8 +114,18 @@ services:
       <<: *default_labels
       wud.display.icon: "si:pihole"
       wud.display.name: "pihole"
+
 networks:
   default:
+  authentiknet:
+    internal: true
+  container_management_proxynet:
+    external: true
+
 secrets:
+  authentik_DatabasePass:
+    file: ${SECRETS_DIR}/authentik_DatabasePass.txt
+  authentik_SecretKey:
+    file: ${SECRETS_DIR}/authentik_SecretKey.txt
   pihole_WebServerAPIPassword:
     file: ${SECRETS_DIR}/pihole_WebServerAPIPassword.txt

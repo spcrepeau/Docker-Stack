@@ -1,4 +1,5 @@
 name: general_apps
+
 x-default_container: &default_container
   networks: ["default"]
   security_opt: ["no-new-privileges:true"]
@@ -10,6 +11,7 @@ x-default_environment: &default_environment
 x-default_labels: &default_labels
   wud.tag.include: "^latest$"
   wud.watch.digest: "true"
+
 services:
   homepage:
     <<: *default_container
@@ -17,11 +19,14 @@ services:
     container_name: homepage
     environment:
       <<: *default_environment
-      HOMEPAGE_ALLOWED_HOSTS: ${HOST}:${HOMEPAGE_PORT_3000},socket-proxy:2375 # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+      HOMEPAGE_ALLOWED_HOSTS: ${HOST}:${HOMEPAGE_PORT_3000},homepage.${HOST_DSM_PUBLIC_DNS_SUFFIX} # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
       # common
       HOMEPAGE_FILE_COMMON_USERNAME: /run/secrets/common_Username
-      HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX: /run/secrets/common_PublicDNSSuffix
+      HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX: ${HOST_DSM_PUBLIC_DNS_SUFFIX}
       HOMEPAGE_VAR_TZ: ${TZ}
+      # synology
+      HOMEPAGE_FILE_SYNOLOGY_USERNAME: /run/secrets/synology_Username
+      HOMEPAGE_FILE_SYNOLOGY_PASSWORD: /run/secrets/synology_Password
       # bookmarks
       HOMEPAGE_VAR_NAS_URL: "https://${HOST}:${HOST_DSM_HTTPS_PORT}"
       # container_management
@@ -30,7 +35,6 @@ services:
       HOMEPAGE_VAR_WUD_URL: "http://${HOST}:${WUD_PORT_3000}"
       HOMEPAGE_FILE_WUD_PASSWORD: /run/secrets/wud_Password
       # general_apps
-      HOMEPAGE_VAR_ORGANIZR_URL: "http://${HOST}:${ORGANIZR_PORT_80}"
       HOMEPAGE_VAR_LIBRESPEED_URL: "http://${HOST}:${LIBRESPEED_PORT_80}"
       # media_apps
       HOMEPAGE_VAR_CALIBRE_URL: https://${HOST}:${CALIBRE_PORT_8181}
@@ -55,6 +59,8 @@ services:
       HOMEPAGE_VAR_SONARRANIME_URL: http://${HOST}:${SONARRANIME_PORT_8989}
       HOMEPAGE_FILE_SONARRANIME_API: /run/secrets/sonar-anime_API
       # network_apps
+      HOMEPAGE_VAR_AUTHENTIK_URL: https://${HOST}:${AUTHENTIK_PORT_9443}
+      HOMEPAGE_FILE_AUTHENTIK_API: /run/secrets/authentik_API
       HOMEPAGE_VAR_PIHOLE_URL: https://${HOST}:${PIHOLE_PORT_443}
       HOMEPAGE_FILE_PIHOLE_API: /run/secrets/pihole_API
       # plex_apps
@@ -72,11 +78,14 @@ services:
       - ${HOMEPAGE_PORT_3000}:3000 # Web GUI HTTP
     volumes:
       - ./homepage/config:/app/config
-      - ./homepage/images:/app/public/images
+      - ./homepage/images:/app/public/images # Used to add background image and favicon
+      - ./homepage/icons:/app/public/icons # Used to add service icons
     secrets:
       # common
       - common_Username
-      - common_PublicDNSSuffix
+      # synology
+      - synology_Username
+      - synology_Password
       # container_management
       - portainer_API
       - wud_Password
@@ -92,6 +101,7 @@ services:
       - sonarr_API
       - sonar-anime_API
       # network_apps
+      - authentik_API
       - pihole_API
       # plex_apps
       - plex_URL
@@ -101,6 +111,7 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:view-dashboard"
       wud.display.name: "homepage"
+
   librespeed:
     <<: *default_container
     image: ghcr.io/linuxserver/librespeed:latest
@@ -118,6 +129,7 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:speedometer"
       wud.display.name: "librespeed"
+
   theme-park:
     <<: *default_container
     image: ghcr.io/themepark-dev/theme.park:latest
@@ -133,16 +145,21 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:brush"
       wud.display.name: "theme-park"
+
 networks:
   default:
   container_management_proxynet:
     external: true
+
 secrets:
   # homepage common
   common_Username:
     file: ${SECRETS_DIR}/common_Username.txt
-  common_PublicDNSSuffix:
-    file: ${SECRETS_DIR}/common_PublicDNSSuffix.txt
+  # homepage synology
+  synology_Username:
+    file: ${SECRETS_DIR}/synology_Username.txt
+  synology_Password:
+    file: ${SECRETS_DIR}/synology_Password.txt
   # homepage container_management
   portainer_API:
     file: ${SECRETS_DIR}/portainer_API.txt
@@ -169,6 +186,8 @@ secrets:
   sonar-anime_API:
     file: ${SECRETS_DIR}/sonar-anime_API.txt
   # homepage network_apps
+  authentik_API:
+    file: ${SECRETS_DIR}/authentik_API.txt
   pihole_API:
     file: ${SECRETS_DIR}/pihole_API.txt
   # homepage plex_apps

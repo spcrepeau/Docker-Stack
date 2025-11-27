@@ -9,7 +9,7 @@
           type: calendar # https://gethomepage.dev/widgets/services/calendar/
           firstDayInWeek: sunday # optional - defaults to monday
           view: agenda # optional - possible values monthly, agenda
-          maxEvents: 10 # optional - defaults to 10
+          maxEvents: 11 # optional - defaults to 10
           showTime: true # optional - show time for event happening today - defaults to false
           timezone: America/New_York # optional and only when timezone is not detected properly (slightly slower performance) - force timezone for ical events (if it's the same - no change, if missing or different in ical - will be converted to this timezone)
           integrations: &common_integrations # optional
@@ -42,6 +42,7 @@
           showTime: true # optional - show time for event happening today - defaults to false
           timezone: America/New_York # optional and only when timezone is not detected properly (slightly slower performance) - force timezone for ical events (if it's the same - no change, if missing or different in ical - will be converted to this timezone)
           integrations: *common_integrations
+
   - Download Applications:
     - sabnzbd:
         href: {{HOMEPAGE_VAR_SABNZBD_URL}}
@@ -61,24 +62,6 @@
           type: overseerr # https://gethomepage.dev/widgets/services/overseerr/
           url: {{HOMEPAGE_VAR_OVERSEERR_URL}}
           key: {{HOMEPAGE_FILE_OVERSEERR_API}}
-    - sonarr:
-        href: {{HOMEPAGE_VAR_SONARR_URL}}
-        icon: sonarr
-        server: my-docker
-        container: sonarr
-        widget: &sonarr_widget
-          type: sonarr # https://gethomepage.dev/widgets/services/sonarr/
-          url: {{HOMEPAGE_VAR_SONARR_URL}}
-          key: {{HOMEPAGE_FILE_SONARR_API}}
-    - sonarr-anime:
-        href: {{HOMEPAGE_VAR_SONARRANIME_URL}}
-        icon: sonarr
-        server: my-docker
-        container: sonarr-anime
-        widget: &sonarranime_widget
-          type: sonarr # https://gethomepage.dev/widgets/services/sonarr/
-          url: {{HOMEPAGE_VAR_SONARRANIME_URL}}
-          key: {{HOMEPAGE_FILE_SONARRANIME_API}}
     - radarr:
         href: {{HOMEPAGE_VAR_RADARR_URL}}
         icon: radarr
@@ -90,13 +73,31 @@
           key: {{HOMEPAGE_FILE_RADARR_API}}
     - radarr-4K:
         href: {{HOMEPAGE_VAR_RADARR4K_URL}}
-        icon: radarr
+        icon: radarr-4k
         server: my-docker
         container: radarr-4K
         widget: &radarr-4K_widget
           type: radarr # https://gethomepage.dev/widgets/services/radarr/
           url: {{HOMEPAGE_VAR_RADARR4K_URL}}
           key: {{HOMEPAGE_FILE_RADARR4K_API}}
+    - sonarr:
+        href: {{HOMEPAGE_VAR_SONARR_URL}}
+        icon: sonarr
+        server: my-docker
+        container: sonarr
+        widget: &sonarr_widget
+          type: sonarr # https://gethomepage.dev/widgets/services/sonarr/
+          url: {{HOMEPAGE_VAR_SONARR_URL}}
+          key: {{HOMEPAGE_FILE_SONARR_API}}
+    - sonarr-anime:
+        href: {{HOMEPAGE_VAR_SONARRANIME_URL}}
+        icon: /icons/sonarr-anime.png
+        server: my-docker
+        container: sonarr-anime
+        widget: &sonarranime_widget
+          type: sonarr # https://gethomepage.dev/widgets/services/sonarr/
+          url: {{HOMEPAGE_VAR_SONARRANIME_URL}}
+          key: {{HOMEPAGE_FILE_SONARRANIME_API}}
     - lidarr:
         href: {{HOMEPAGE_VAR_LIDARR_URL}}
         icon: lidarr
@@ -115,7 +116,18 @@
           type: prowlarr # https://gethomepage.dev/widgets/services/prowlarr/
           url: {{HOMEPAGE_VAR_PROWLARR_URL}}
           key: {{HOMEPAGE_FILE_PROWLARR_API}}
+
 - Server Applications:
+  - synology:
+      icon: synology
+      href: {{HOMEPAGE_VAR_NAS_URL}}
+      siteMonitor: {{HOMEPAGE_VAR_NAS_URL}}
+      ping: {{HOMEPAGE_VAR_NAS_URL}}
+      widget:
+        type: diskstation # https://gethomepage.dev/widgets/services/diskstation/
+        url: {{HOMEPAGE_VAR_NAS_URL}}
+        username: {{HOMEPAGE_FILE_SYNOLOGY_USERNAME}}
+        password: {{HOMEPAGE_FILE_SYNOLOGY_PASSWORD}}
   - portainer:
       href: {{HOMEPAGE_VAR_PORTAINER_URL}}
       icon: portainer
@@ -137,6 +149,16 @@
         url: {{HOMEPAGE_VAR_WUD_URL}}
         username: {{HOMEPAGE_FILE_COMMON_USERNAME}} # optional
         password: {{HOMEPAGE_FILE_WUD_PASSWORD}} # optional
+  - authentik_server:
+      href: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
+      icon: authentik
+      server: my-docker
+      container: authentik_server
+      widget:
+        type: authentik # https://gethomepage.dev/widgets/services/authentik/
+        url: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
+        key: {{HOMEPAGE_FILE_AUTHENTIK_API}}
+        version: 2 # optional, default is 1
   - pihole:
       href: "{{HOMEPAGE_VAR_PIHOLE_URL}}/admin"
       icon: pi-hole
@@ -147,6 +169,7 @@
         url: {{HOMEPAGE_VAR_PIHOLE_URL}}
         version: 6 # required if running v6 or higher, defaults to 5
         key: {{HOMEPAGE_FILE_PIHOLE_API}} # optional, in v6 can be your password or app password
+
 - Media Applications:
   - plex:
       href: {{HOMEPAGE_FILE_PLEX_URL}}
@@ -187,6 +210,7 @@
       widget:
         type: romm # https://gethomepage.dev/widgets/services/romm/
         url: {{HOMEPAGE_VAR_ROMM_URL}}
+
 - Misc Applications:
   - agregarr:
       href: {{HOMEPAGE_VAR_AGREGARR_URL}}
@@ -214,62 +238,168 @@
       server: my-docker
       container: calibre
 - Service Applications:
-  - kometa:
+  - status:authentik_database:
+      icon: authentik
+      server: my-docker
+      container: authentik_database
+  - status:authentik_worker:
+      icon: authentik
+      server: my-docker
+      container: authentik_worker
+  - status:kometa:
       icon: kometa
       server: my-docker
       container: kometa
-  - plexautolanguages:
+  - status:plexautolanguages:
       icon: plex
       server: my-docker
       container: plexautolanguages
-  - recyclarr:
+  - status :recyclarr:
       icon: recyclarr
       server: my-docker
       container: recyclarr
-  - romm-db:
+  - status:romm-db:
       icon: mariadb
       server: my-docker
       container: romm-db
-  - socket-proxy:
+  - status:socket-proxy:
       icon: docker
       server: my-docker
       container: socket-proxy
-  - theme-park:
+  - status:theme-park:
       icon: themepark
       server: my-docker
       container: theme-park
 
-- Download Queues:
-  - sonarr queue:
-      href: {{HOMEPAGE_VAR_SONARR_URL}}
-      icon: sonarr
-      widget: 
-        <<: *sonarr_widget
-        enableQueue: true # optional, defaults to false
-        fields: [""]
-  - sonarr-anime queue:
-      href: {{HOMEPAGE_VAR_SONARRANIME_URL}}
-      icon: sonarr
+# To get section_id, run {{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_libraries
+- Most Recent:
+  - recently added movies:
+      icon: radarr
+      href: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/library?section_id=1"
       widget:
-        <<: *sonarranime_widget
-        enableQueue: true # optional, defaults to false
-        fields: [""]
+        type: customapi
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=1&count=6"
+        display: list
+        mappings: &recent_movies-music_mappings
+          - field: response.data.recently_added[0].title
+            additionalField: &recent_common_additionalField
+              field: response.data.recently_added[0].added_at
+              scale: 1000
+              format: relativeDate # if date, uncomment dateStyle & timeStyle if required
+              locale: en-US
+              numeric: auto
+              style: narrow # long, short, narrow
+              # dateStyle: medium # ["full", "long", "medium", "short"]
+              # timeStyle: medium # ["full", "long", "medium", "short"]
+              color: theme
+          - field: response.data.recently_added[1].title
+            additionalField:
+              <<: *recent_common_additionalField
+              field: response.data.recently_added[1].added_at
+          - field: response.data.recently_added[2].title
+            additionalField:
+              <<: *recent_common_additionalField
+              field: response.data.recently_added[2].added_at
+          - field: response.data.recently_added[3].title
+            additionalField:
+              <<: *recent_common_additionalField
+              field: response.data.recently_added[3].added_at
+          - field: response.data.recently_added[4].title
+            additionalField:
+              <<: *recent_common_additionalField
+              field: response.data.recently_added[4].added_at
+          - field: response.data.recently_added[5].title
+            additionalField:
+              <<: *recent_common_additionalField
+              field: response.data.recently_added[5].added_at
+  - recently added 4k movies:
+      icon: radarr-4k
+      href: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/library?section_id=4"
+      widget:
+        type: customapi
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=4&count=6"
+        display: list
+        mappings: *recent_movies-music_mappings
+  - recently added tv:
+      icon: sonarr
+      href: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/library?section_id=2"
+      widget:
+        type: customapi
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=2&count=6"
+        display: list
+        mappings: &recent_show_mappings
+          - field: response.data.recently_added[0].grandparent_title
+            additionalField:
+              <<: *recent_common_additionalField
+              field: response.data.recently_added[0].added_at
+          - field: response.data.recently_added[1].grandparent_title
+            additionalField:
+              <<: *recent_common_additionalField
+              field: response.data.recently_added[1].added_at
+          - field: response.data.recently_added[2].grandparent_title
+            additionalField:
+              <<: *recent_common_additionalField
+              field: response.data.recently_added[2].added_at
+          - field: response.data.recently_added[3].grandparent_title
+            additionalField:
+              <<: *recent_common_additionalField
+              field: response.data.recently_added[3].added_at
+          - field: response.data.recently_added[4].grandparent_title
+            additionalField:
+              <<: *recent_common_additionalField
+              field: response.data.recently_added[4].added_at
+          - field: response.data.recently_added[5].grandparent_title
+            additionalField:
+              <<: *recent_common_additionalField
+              field: response.data.recently_added[5].added_at
+  - recently added anime:
+      icon: /icons/sonarr-anime.png
+      href: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/library?section_id=3"
+      widget:
+        type: customapi
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=3&count=6"
+        display: list
+        mappings: *recent_show_mappings
+  - recently added music:
+      icon: lidarr
+      href: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/library?section_id=5"
+      widget:
+        type: customapi
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=5&count=6"
+        display: list
+        mappings: *recent_movies-music_mappings
+
+- Download Queues:
   - radarr queue:
-      href: {{HOMEPAGE_VAR_RADARR_URL}}
+      href: "{{HOMEPAGE_VAR_RADARR_URL}}/activity/queue"
       icon: radarr
       widget:
         <<: *radarr_widget
         enableQueue: true # optional, defaults to false
         fields: [""]
   - radarr-4K queue:
-      href: {{HOMEPAGE_VAR_RADARR4K_URL}}
-      icon: radarr
+      href: "{{HOMEPAGE_VAR_RADARR4K_URL}}/activity/queue"
+      icon: radarr-4k
       widget:
         <<: *radarr-4K_widget
         enableQueue: true # optional, defaults to false
         fields: [""]
+  - sonarr queue:
+      href: "{{HOMEPAGE_VAR_SONARR_URL}}/activity/queue"
+      icon: sonarr
+      widget: 
+        <<: *sonarr_widget
+        enableQueue: true # optional, defaults to false
+        fields: [""]
+  - sonarr-anime queue:
+      href: "{{HOMEPAGE_VAR_SONARRANIME_URL}}/activity/queue"
+      icon: /icons/sonarr-anime.png
+      widget:
+        <<: *sonarranime_widget
+        enableQueue: true # optional, defaults to false
+        fields: [""]
   - lidarr queue:
-      href: {{HOMEPAGE_VAR_LIDARR_URL}}
+      href: "{{HOMEPAGE_VAR_LIDARR_URL}}/activity/queue"
       icon: lidarr
       widget:
         <<: *lidarr_widget
@@ -277,45 +407,51 @@
         fields: [""]
 
 - Public URLs:
+  - homepage:
+      href: "https://homepage.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      icon: homepage
+  - authentik:
+      href: "https://authentik.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      icon: authentik
   - pihole:
-      href: "https://pihole.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}/admin"
+      href: "https://pihole.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/admin"
       icon: pi-hole
   - sabnzbd:
-      href: "https://sabnzbd.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
+      href: "https://sabnzbd.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: sabnzbd
   - overseerr:
-      href: "https://requests.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
+      href: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: overseerr
-  - sonarr:
-      href: "https://sonarr.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
-      icon: sonarr
-  - sonarr-anime:
-      href: "https://sonarr-anime.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
-      icon: sonarr
   - radarr:
-      href: "https://radarr.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
+      href: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: radarr
   - radarr-4K:
-      href: "https://radarr4K.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
-      icon: radarr
+      href: "https://radarr4K.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      icon: radarr-4k
+  - sonarr:
+      href: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      icon: sonarr
+  - sonarr-anime:
+      href: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      icon: /icons/sonarr-anime.png
   - lidarr:
-      href: "https://lidarr.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
+      href: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: lidarr
   - prowlarr:
-      href: "https://prowlarr.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
+      href: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: prowlarr
   - tautulli:
-      href: "https://tautulli.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
+      href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: tautulli
   - calibre-web:
-      href: "https://calibreweb.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
+      href: "https://calibreweb.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: calibre-web
   - romm:
-      href: "https://romm.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
+      href: "https://romm.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: romm
   - agregarr:
-      href: "https://agregarr.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
+      href: "https://agregarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: agregarr
   - wizarr:
-      href: "https://wizarr.{{HOMEPAGE_FILE_PUBLIC_DNS_SUFFIX}}"
+      href: "https://wizarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: wizarr

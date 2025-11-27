@@ -1,15 +1,24 @@
-# INSTANCE_base_url and INSTANCE_api_key automatically imported from secrets.yaml in /config, https://recyclarr.dev/wiki/yaml/secrets-reference/
+# Waiting on !file to be put into latest tag
+# Comments in base_url and api_key are to prevent vscode from complaining
 sonarr:
   sonarr_main:
+    base_url: #!env_var SONARR_URL
+    api_key: #!file /run/secrets/sonarr_API
     include: 
       - config: sonarr_main.yaml
   sonarr_anime:
+    base_url: #!env_var SONARRANIME_URL
+    api_key: #!file /run/secrets/sonar-anime_API
     include: 
       - config: sonarr_anime.yaml
 radarr:
   radarr_main:
+    base_url: #!env_var RADARR_URL
+    api_key: #!file /run/secrets/radarr_API
     include: 
       - config: radarr_main.yaml
   radarr_4k:
+    base_url: #!env_var RADARR4K_URL
+    api_key: #!file /run/secrets/radarr-4k_API
     include: 
       - config: radarr_4k.yaml

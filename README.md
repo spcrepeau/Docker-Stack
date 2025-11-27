@@ -24,7 +24,7 @@
 
 ### [network_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/network_apps)
 
-* Containers: pihole
+* Containers: authentik_database,authentik_server,authentik_worker,pihole
 
 ### [plex_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/plex_apps)
 
