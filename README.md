@@ -4,6 +4,11 @@
 * env and secrets files have been stripped of all personal information, edit REPLACE_ME in each to reflect your environment.
 * When using wud to update your containers, change the lscr.io in the image field to ghcr.io.
 
+## To-Do's
+
+* Waiting on recyclarr to support docker secrets !file tag.
+* Waiting on plexautolanguages to add PLEX_URL_FILE docker secret support.
+
 ## Projects
 
 ### [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)

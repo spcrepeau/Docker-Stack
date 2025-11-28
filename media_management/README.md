@@ -63,10 +63,6 @@ sudo docker exec -it recyclarr bash
 recyclarr sync
 ```
 
-#### secrets.yaml
-
-* The *_base_url values should be in the <http://hostname:port> format
-
 #### radarr.yaml and sonarr.yaml
 
 * Old versions being maintained for when setting quality profiles through recyclarr is no longer desired.
