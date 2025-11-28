@@ -48,7 +48,7 @@ services:
       KOMETA_NO_MISSING: false
       FILE__KOMETA_PLEXURL: /run/secrets/plex_URL
       FILE__KOMETA_PLEXTOKEN: /run/secrets/plex_Token
-      KOMETA_TAUTULLIURL: "http://${HOST}:${TAUTULLI_PORT_8181}"
+      KOMETA_TAUTULLIURL: "http://${HOST_DSM_HOSTNAME}:${TAUTULLI_PORT_8181}"
       FILE__KOMETA_TAUTULLIAPIKEY: /run/secrets/tautulli_API
       FILE__KOMETA_ANIDBCLIENT: /run/secrets/external_AniDBClientID
       FILE__KOMETA_ANIDBUSERNAME: /run/secrets/common_Username
@@ -123,6 +123,22 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:plex"
       wud.display.name: "quickstart"
+
+  shinkro:
+    <<: *default_container
+    image: ghcr.io/varoop/shinkro:latest
+    container_name: shinkro
+    environment:
+      TZ: ${TZ}
+    ports:
+      - ${SHINKRO_PORT_7011}:7011 # Web GUI HTTP
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./shinkro/config:/config
+    labels:
+      <<: *default_labels
+      wud.display.icon: "si:myanimelist"
+      wud.display.name: "shinkro"
 
   tautulli:
     <<: *default_container

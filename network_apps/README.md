@@ -17,6 +17,7 @@
 ### Notes
 
 * Setup reverse proxy for this app.
+* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
 
 ## authentik_worker
 
@@ -24,6 +25,10 @@
 
 * Documentation: <https://docs.goauthentik.io/>
 * GitHub: <https://github.com/goauthentik/authentik>
+
+### Notes
+
+* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
 
 ## pihole
 

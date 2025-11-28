@@ -8,27 +8,51 @@
 
 ### [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
 
-* Containers: portainer, socket-proxy, wud
+* portainer
+* socket-proxy
+* wud/whatsupdocker
 
 ### [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
 
-* Containers: homepage, librespeed, theme-park
+* homepage
+* librespeed
+* theme-park
 
 ### [media_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/media_apps)
 
-* Containers: calibre, calibre-web, romm, romm-db
+* calibre
+* calibre-web
+* romm
+* romm-db (mariadb)
 
 ### [media_management](https://github.com/spcrepeau/Docker-Stack/tree/main/media_management)
 
-* Containers: lidarr, overseerr, prowlarr, radarr, radarr-4K, recyclarr, sabnzbd, sonarr, sonarr-anime
+* lidarr
+* overseerr
+* prowlarr
+* radarr
+* radarr-4K (radarr)
+* recyclarr
+* sabnzbd
+* sonarr
+* sonarr-anime (sonarr)
 
 ### [network_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/network_apps)
 
-* Containers: authentik_database,authentik_server,authentik_worker,pihole
+* authentik_database (postgres)
+* authentik_server
+* authentik_worker
+* pihole
 
 ### [plex_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/plex_apps)
 
-* Containers: agregarr, kometa, plexautolanguages, quickstart, tautulli, wizarr
+* agregarr
+* kometa
+* plexautolanguages
+* quickstart
+* shinkro
+* tautulli
+* wizarr
 
 ## VSCode Extensions
 

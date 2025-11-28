@@ -9,11 +9,11 @@ x-default_labels: &default_labels
 services:
   authentik_database:
     <<: *default_container
-    image: docker.io/library/postgres:16-alpine
+    image: postgres:16-alpine
     container_name: authentik_database
     environment:
       POSTGRES_DB: authentik
-      POSTGRES_PASSWORD: file:///run/secrets/authentik_DatabasePass
+      POSTGRES_PASSWORD: file:///run/secrets/authentik_DatabasePassword
       POSTGRES_USER: authentik
     healthcheck:
       interval: 30s
@@ -28,7 +28,7 @@ services:
     volumes:
       - ./authentik/database:/var/lib/postgresql/data
     secrets:
-      - authentik_DatabasePass
+      - authentik_DatabasePassword
     labels:
       wud.watch: false
 
@@ -43,21 +43,21 @@ services:
     environment:
       AUTHENTIK_POSTGRESQL__HOST: authentik_database
       AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePass
+      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePassword
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_SecretKey
     networks:
       - default
       - authentiknet
     ports:
-      - ${AUTHENTIK_PORT_9000}:9000
-      - ${AUTHENTIK_PORT_9443}:9443
+      - ${AUTHENTIK_PORT_9000}:9000 # Web GUI HTTP
+      - ${AUTHENTIK_PORT_9443}:9443 # Web GUI HTTPS
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./authentik/media:/media
       - ./authentik/custom-templates:/templates
     secrets:
-      - authentik_DatabasePass
+      - authentik_DatabasePassword
       - authentik_SecretKey
     labels:
       wud.watch: false
@@ -73,7 +73,7 @@ services:
     environment:
       AUTHENTIK_POSTGRESQL__HOST: authentik_database
       AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePass
+      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePassword
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_SecretKey
     networks:
@@ -85,7 +85,7 @@ services:
       - ./authentik/certs:/certs
       - ./authentik/custom-templates:/templates
     secrets:
-      - authentik_DatabasePass
+      - authentik_DatabasePassword
       - authentik_SecretKey
     labels:
       wud.watch: false
@@ -101,6 +101,8 @@ services:
       TZ: ${TZ}
       WEBPASSWORD_FILE: /run/secrets/pihole_WebServerAPIPassword
       FTLCONF_dns_listeningMode: all
+    networks:
+      - default
     ports:
       - 53:53/tcp # DNS
       - 53:53/udp # DNS
@@ -123,8 +125,8 @@ networks:
     external: true
 
 secrets:
-  authentik_DatabasePass:
-    file: ${SECRETS_DIR}/authentik_DatabasePass.txt
+  authentik_DatabasePassword:
+    file: ${SECRETS_DIR}/authentik_DatabasePassword.txt
   authentik_SecretKey:
     file: ${SECRETS_DIR}/authentik_SecretKey.txt
   pihole_WebServerAPIPassword:

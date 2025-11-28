@@ -42,6 +42,17 @@
 
 * GitHub: <https://github.com/Kometa-Team/Quickstart/>
 
+## shinkro
+
+### Links
+
+* Documentation: <https://docs.shinkro.com/>
+* GitHub: <https://github.com/varoOP/shinkro>
+
+### Notes
+
+* Setup reverse proxy for this app.
+
 ## tautulli
 
 ### Links

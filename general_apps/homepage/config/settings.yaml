@@ -43,12 +43,12 @@ layout:
     header: false
   Misc Applications:
     style: row
-    columns: 5
+    columns: 6
     tab: Local
     header: false
   Service Applications:
     style: row
-    columns: 5
+    columns: 4
     tab: Local
     header: false
 
