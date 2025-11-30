@@ -7,10 +7,6 @@
 * Documentation: <https://lidarr.audio/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-lidarr/>
 
-### Notes
-
-* Setup reverse proxy for this app.
-
 ## overseerr
 
 ### Links
@@ -29,20 +25,12 @@
 * Documentation: <https://prowlarr.com/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-prowlarr/>
 
-### Notes
-
-* Setup reverse proxy for this app.
-
 ## radarr & radarr-4K
 
 ### Links
 
 * Documentation: <https://radarr.video/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-prowlarr/>
-
-### Notes
-
-* Setup reverse proxy for this app.
 
 ## recyclarr
 
@@ -74,20 +62,12 @@ recyclarr sync
 * Documentation: <https://sabnzbd.org/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-sabnzbd/>
 
-### Notes
-
-* Setup reverse proxy for this app.
-
 ## sonarr & sonarr-anime
 
 ### Links
 
 * Documentation: <https://sonarr.tv/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-sonarr/>
-
-### Notes
-
-* Setup reverse proxy for this app.
 
 ## custom format files
 

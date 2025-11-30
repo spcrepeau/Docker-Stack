@@ -411,10 +411,10 @@
         fields: [""]
 
 - Public URLs:
-  - agregarr:
-      href: "https://agregarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: agregarr
-      siteMonitor: "https://agregarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  # - agregarr:
+  #     href: "https://agregarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  #     icon: agregarr
+  #     siteMonitor: "https://agregarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
   - authentik:
       href: "https://authentik.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: authentik
@@ -427,54 +427,54 @@
       href: "https://homepage.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: homepage
       siteMonitor: "https://homepage.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - lidarr:
-      href: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: lidarr
-      siteMonitor: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  # - lidarr:
+  #     href: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  #     icon: lidarr
+  #     siteMonitor: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
   - overseerr:
       href: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: overseerr
       siteMonitor: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - pihole:
-      href: "https://pihole.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/admin"
-      icon: pi-hole
-      siteMonitor: "https://pihole.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/admin"
-  - prowlarr:
-      href: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: prowlarr
-      siteMonitor: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - radarr:
-      href: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: radarr
-      siteMonitor: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - radarr-4K:
-      href: "https://radarr4K.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: radarr-4k
-      siteMonitor: "https://radarr4K.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  # - pihole:
+  #     href: "https://pihole.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/admin"
+  #     icon: pi-hole
+  #     siteMonitor: "https://pihole.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/admin"
+  # - prowlarr:
+  #     href: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  #     icon: prowlarr
+  #     siteMonitor: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  # - radarr:
+  #     href: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  #     icon: radarr
+  #     siteMonitor: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  # - radarr-4K:
+  #     href: "https://radarr4K.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  #     icon: radarr-4k
+  #     siteMonitor: "https://radarr4K.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
   - romm:
       href: "https://romm.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: romm
       siteMonitor: "https://romm.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - sabnzbd:
-      href: "https://sabnzbd.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: sabnzbd
-      siteMonitor: "https://sabnzbd.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  # - sabnzbd:
+  #     href: "https://sabnzbd.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  #     icon: sabnzbd
+  #     siteMonitor: "https://sabnzbd.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
   - shinkro:
       href: "https://shinkro.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: shinkro
       siteMonitor: "https://shinkro.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - sonarr:
-      href: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: sonarr
-      siteMonitor: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - sonarr-anime:
-      href: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: /icons/sonarr-anime.png
-      siteMonitor: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - tautulli:
-      href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: tautulli
-      siteMonitor: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  # - sonarr:
+  #     href: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  #     icon: sonarr
+  #     siteMonitor: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  # - sonarr-anime:
+  #     href: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  #     icon: /icons/sonarr-anime.png
+  #     siteMonitor: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  # - tautulli:
+  #     href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+  #     icon: tautulli
+  #     siteMonitor: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
   - wizarr:
       href: "https://wizarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: wizarr

@@ -6,7 +6,6 @@
 
 ## To-Do's
 
-* Waiting on recyclarr to support docker secrets !file tag.
 * Waiting on plexautolanguages to add PLEX_URL_FILE docker secret support.
 
 ## Projects

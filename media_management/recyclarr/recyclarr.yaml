@@ -1,4 +1,3 @@
-# Waiting on !file to be put into latest tag
 # Comments in base_url and api_key are to prevent vscode from complaining
 sonarr:
   sonarr_main:

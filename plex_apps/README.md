@@ -6,10 +6,6 @@
 
 * GitHub: <https://github.com/agregarr/agregarr>
 
-### Notes
-
-* Setup reverse proxy for this app.
-
 ## kometa
 
 ### Links
@@ -59,10 +55,6 @@
 
 * Documentation: <https://tautulli.com/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-tautulli/>
-
-### Notes
-
-* Setup reverse proxy for this app.
 
 ## wizarr
 
