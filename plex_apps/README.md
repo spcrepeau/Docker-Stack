@@ -56,6 +56,11 @@
 * Documentation: <https://tautulli.com/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-tautulli/>
 
+### Notes
+
+* Setup reverse proxy for this app if you're using remote apps like nzb360.
+* Uses Plex SSO.
+
 ## wizarr
 
 ### Links

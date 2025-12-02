@@ -71,20 +71,28 @@ services:
     environment:
       TZ: ${TZ}
       DOCKER_HOST: "tcp://socket-proxy:2375"
+      # Basic Authentication https://getwud.github.io/wud/#/configuration/authentications/basic/
       WUD_AUTH_BASIC_MY_USER__FILE: /run/secrets/common_Username
       WUD_AUTH_BASIC_MY_HASH__FILE: /run/secrets/wud_AuthBasicMyHash
-      WUD_WATCHER_LOCAL_CRON: "0 3 * * *"
+      # Openid Connect Authentication https://getwud.github.io/wud/#/configuration/authentications/oidc/?id=openid-connect-authentication
+      WUD_AUTH_OIDC_AUTHENTIK_CLIENTID__FILE: /run/secrets/authentik_WUDClientID
+      WUD_AUTH_OIDC_AUTHENTIK_CLIENTSECRET__FILE: /run/secrets/authentik_WUDClientSecret
+      WUD_AUTH_OIDC_AUTHENTIK_DISCOVERY: "https://authentik.${HOST_DSM_PUBLIC_DNS_SUFFIX}/application/o/wud/.well-known/openid-configuration"
+      WUD_AUTH_OIDC_AUTHENTIK_REDIRECT: true # optional (to skip internal login page)
+      # Watchers https://getwud.github.io/wud/#/configuration/watchers/
+      WUD_WATCHER_LOCAL_CRON: "0 */6 * * *"
       WUD_WATCHER_LOCAL_WATCHALL: true
-      WUD_WATCHER_LOCAL_WATCHBYDEFAULT: true
+      # Docker Triggers https://getwud.github.io/wud/#/configuration/triggers/docker/
       WUD_TRIGGER_DOCKER_UPDATE_PRUNE: true
       WUD_TRIGGER_DOCKER_DOWNLOAD_DRYRUN: true # Downloads new images, needed for socket-proxy and wud
+      # SMTP Triggers https://getwud.github.io/wud/#/configuration/triggers/smtp/
       WUD_TRIGGER_SMTP_GMAIL_HOST: "smtp.gmail.com"
       WUD_TRIGGER_SMTP_GMAIL_PORT: "465"
       WUD_TRIGGER_SMTP_GMAIL_USER__FILE: /run/secrets/common_EmailAddress
       WUD_TRIGGER_SMTP_GMAIL_PASS__FILE: /run/secrets/wud_TriggerSMTPPassword
       WUD_TRIGGER_SMTP_GMAIL_FROM__FILE: /run/secrets/common_EmailAddress
       WUD_TRIGGER_SMTP_GMAIL_TO__FILE: /run/secrets/common_EmailAddress
-      WUD_TRIGGER_SMTP_GMAIL_TLS_ENABLED: true 
+      WUD_TRIGGER_SMTP_GMAIL_TLS_ENABLED: true
     networks:
       - default
       - proxynet
@@ -98,6 +106,8 @@ services:
       - wud_AuthBasicMyHash
       - common_EmailAddress
       - wud_TriggerSMTPPassword
+      - authentik_WUDClientID
+      - authentik_WUDClientSecret
     labels:
       <<: *default_labels
       wud.display.name: "wud"
@@ -117,3 +127,7 @@ secrets:
     file: ${SECRETS_DIR}/common_EmailAddress.txt
   wud_TriggerSMTPPassword:
     file: ${SECRETS_DIR}/wud_TriggerSMTPPassword.txt
+  authentik_WUDClientID:
+    file: ${SECRETS_DIR}/authentik_WUDClientID.txt
+  authentik_WUDClientSecret:
+    file: ${SECRETS_DIR}/authentik_WUDClientSecret.txt

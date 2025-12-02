@@ -7,6 +7,10 @@
 * Documentation: <https://lidarr.audio/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-lidarr/>
 
+### Notes
+
+* Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>
+
 ## overseerr
 
 ### Links
@@ -17,6 +21,7 @@
 ### Notes
 
 * Setup reverse proxy for this app.
+* Uses Plex SSO.
 
 ## prowlarr
 
@@ -25,12 +30,20 @@
 * Documentation: <https://prowlarr.com/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-prowlarr/>
 
+### Notes
+
+* Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>
+
 ## radarr & radarr-4K
 
 ### Links
 
 * Documentation: <https://radarr.video/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-prowlarr/>
+
+### Notes
+
+* Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>
 
 ## recyclarr
 
@@ -51,7 +64,7 @@ sudo docker exec -it recyclarr bash
 recyclarr sync
 ```
 
-#### radarr.yaml and sonarr.yaml
+### radarr.yaml and sonarr.yaml
 
 * Old versions being maintained for when setting quality profiles through recyclarr is no longer desired.
 
@@ -62,12 +75,20 @@ recyclarr sync
 * Documentation: <https://sabnzbd.org/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-sabnzbd/>
 
+### Notes
+
+* Setup reverse proxy for this app if you're using remote apps like nzb360.
+
 ## sonarr & sonarr-anime
 
 ### Links
 
 * Documentation: <https://sonarr.tv/>
 * LinuxServer: <https://docs.linuxserver.io/images/docker-sonarr/>
+
+### Notes
+
+* Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>
 
 ## custom format files
 

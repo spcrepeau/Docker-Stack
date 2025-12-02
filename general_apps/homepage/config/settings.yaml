@@ -51,6 +51,11 @@ layout:
     columns: 4
     tab: Local
     header: false
+  Bookmarks:
+    style: row
+    columns: 4
+    tab: Local
+    header: true
 
   Most Recent:
     style: row
@@ -60,14 +65,3 @@ layout:
   Download Queues:
     tab: Download Queues
     header: false
-
-  Public URLs:
-    style: row
-    columns: 5
-    tab: Public
-    header: true
-  Bookmarks:
-    style: row
-    columns: 4
-    tab: Public
-    header: true

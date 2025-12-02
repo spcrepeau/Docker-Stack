@@ -1,11 +1,10 @@
 # network_apps
 
-## authentik_database
+## authentik_database (postgres)
 
 ### Links
 
-* Documentation: <https://docs.goauthentik.io/>
-* GitHub: <https://github.com/goauthentik/authentik>
+* GitHub: <https://hub.docker.com/layers/library/postgres/16-alpine/>
 
 ## authentik_server
 

@@ -5,6 +5,7 @@
 - Download Group:
   - Download Calendars:
     - release list:
+        icon: mdi-calendar-month-outline-#ffffff
         widget:
           type: calendar # https://gethomepage.dev/widgets/services/calendar/
           firstDayInWeek: sunday # optional - defaults to monday
@@ -34,6 +35,7 @@
               color: red # optional - defaults to pre-defined color for the service (teal for sonarr)
               baseUrl: {{HOMEPAGE_VAR_RADARR4K_URL}} # optional - adds links to sonarr/radarr pages
     - release calendar:
+        icon: mdi-calendar-month-outline-#ffffff
         widget:
           type: calendar # https://gethomepage.dev/widgets/services/calendar/
           firstDayInWeek: sunday # optional - defaults to monday
@@ -45,7 +47,8 @@
 
   - Download Applications:
     - sabnzbd:
-        href: {{HOMEPAGE_VAR_SABNZBD_URL}}
+        # href: {{HOMEPAGE_VAR_SABNZBD_URL}}
+        href: "https://sabnzbd.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
         icon: sabnzbd
         server: my-docker
         container: sabnzbd
@@ -54,7 +57,8 @@
           url: {{HOMEPAGE_VAR_SABNZBD_URL}}
           key: {{HOMEPAGE_FILE_SABNZBD_API}}
     - overseerr:
-        href: {{HOMEPAGE_VAR_OVERSEERR_URL}}
+        # href: {{HOMEPAGE_VAR_OVERSEERR_URL}}
+        href: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
         icon: overseerr
         server: my-docker
         container: overseerr
@@ -63,7 +67,8 @@
           url: {{HOMEPAGE_VAR_OVERSEERR_URL}}
           key: {{HOMEPAGE_FILE_OVERSEERR_API}}
     - radarr:
-        href: {{HOMEPAGE_VAR_RADARR_URL}}
+        # href: {{HOMEPAGE_VAR_RADARR_URL}}
+        href: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
         icon: radarr
         server: my-docker
         container: radarr
@@ -72,7 +77,8 @@
           url: {{HOMEPAGE_VAR_RADARR_URL}}
           key: {{HOMEPAGE_FILE_RADARR_API}}
     - radarr-4K:
-        href: {{HOMEPAGE_VAR_RADARR4K_URL}}
+        # href: {{HOMEPAGE_VAR_RADARR4K_URL}}
+        href: "https://radarr4k.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
         icon: radarr-4k
         server: my-docker
         container: radarr-4K
@@ -81,7 +87,8 @@
           url: {{HOMEPAGE_VAR_RADARR4K_URL}}
           key: {{HOMEPAGE_FILE_RADARR4K_API}}
     - sonarr:
-        href: {{HOMEPAGE_VAR_SONARR_URL}}
+        # href: {{HOMEPAGE_VAR_SONARR_URL}}
+        href: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
         icon: sonarr
         server: my-docker
         container: sonarr
@@ -90,7 +97,8 @@
           url: {{HOMEPAGE_VAR_SONARR_URL}}
           key: {{HOMEPAGE_FILE_SONARR_API}}
     - sonarr-anime:
-        href: {{HOMEPAGE_VAR_SONARRANIME_URL}}
+        # href: {{HOMEPAGE_VAR_SONARRANIME_URL}}
+        href: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
         icon: /icons/sonarr-anime.png
         server: my-docker
         container: sonarr-anime
@@ -99,7 +107,8 @@
           url: {{HOMEPAGE_VAR_SONARRANIME_URL}}
           key: {{HOMEPAGE_FILE_SONARRANIME_API}}
     - lidarr:
-        href: {{HOMEPAGE_VAR_LIDARR_URL}}
+        # href: {{HOMEPAGE_VAR_LIDARR_URL}}
+        href: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
         icon: lidarr
         server: my-docker
         container: lidarr
@@ -108,7 +117,8 @@
           url: {{HOMEPAGE_VAR_LIDARR_URL}}
           key: {{HOMEPAGE_FILE_LIDARR_API}}
     - prowlarr:
-        href: {{HOMEPAGE_VAR_PROWLARR_URL}}
+        # href: {{HOMEPAGE_VAR_PROWLARR_URL}}
+        href: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
         icon: prowlarr
         server: my-docker
         container: prowlarr
@@ -128,7 +138,8 @@
         username: {{HOMEPAGE_FILE_SYNOLOGY_USERNAME}}
         password: {{HOMEPAGE_FILE_SYNOLOGY_PASSWORD}}
   - portainer:
-      href: {{HOMEPAGE_VAR_PORTAINER_URL}}
+      # href: {{HOMEPAGE_VAR_PORTAINER_URL}}
+      href: "https://portainer.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: portainer
       server: my-docker
       container: portainer
@@ -139,7 +150,8 @@
         #kubernetes: true # optional, defaults to false
         key: {{HOMEPAGE_FILE_PORTAINER_API}}
   - wud:
-      href: {{HOMEPAGE_VAR_WUD_URL}}
+      # href: {{HOMEPAGE_VAR_WUD_URL}}
+      href: "https://wud.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: whats-up-docker
       server: my-docker
       container: wud
@@ -149,7 +161,8 @@
         username: {{HOMEPAGE_FILE_COMMON_USERNAME}} # optional
         password: {{HOMEPAGE_FILE_WUD_PASSWORD}} # optional
   - authentik_server:
-      href: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
+      # href: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
+      href: "https://authentik.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: authentik
       server: my-docker
       container: authentik_server
@@ -179,7 +192,8 @@
         url: {{HOMEPAGE_FILE_PLEX_URL}}
         key: {{HOMEPAGE_FILE_PLEX_TOKEN}} # see https://www.plexopedia.com/plex-media-server/general/plex-token/
   - tautulli:
-      href: {{HOMEPAGE_VAR_TAUTULLI_URL}}
+      # href: {{HOMEPAGE_VAR_TAUTULLI_URL}}
+      href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: tautulli
       server: my-docker
       container: tautulli
@@ -191,7 +205,8 @@
         showEpisodeNumber: true # optional, defaults to false
         expandOneStreamToTwoRows: false # optional, defaults to true
   - calibre-web:
-      href: {{HOMEPAGE_VAR_CALIBREWEB_URL}}
+      # href: {{HOMEPAGE_VAR_CALIBREWEB_URL}}
+      href: "https://calibreweb.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: calibre-web
       server: my-docker
       container: calibre-web
@@ -201,7 +216,8 @@
         username: {{HOMEPAGE_FILE_COMMON_USERNAME}}
         password: {{HOMEPAGE_FILE_CALIBREWEB_PASSWORD}}
   - romm:
-      href: {{HOMEPAGE_VAR_ROMM_URL}}
+      # href: {{HOMEPAGE_VAR_ROMM_URL}}
+      href: "https://romm.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: romm
       server: my-docker
       container: romm
@@ -231,12 +247,14 @@
       server: my-docker
       container: quickstart
   - shinkro:
-      href: {{HOMEPAGE_VAR_SHINKRO_URL}}
+      # href: {{HOMEPAGE_VAR_SHINKRO_URL}}
+      href: "https://shinkro.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: shinkro
       server: my-docker
       container: shinkro
   - wizarr:
-      href: {{HOMEPAGE_VAR_WIZARR_URL}}
+      # href: {{HOMEPAGE_VAR_WIZARR_URL}}
+      href: "https://wizarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: wizarr
       server: my-docker
       container: wizarr	
@@ -409,73 +427,3 @@
         <<: *lidarr_widget
         enableQueue: true # optional, defaults to false
         fields: [""]
-
-- Public URLs:
-  # - agregarr:
-  #     href: "https://agregarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  #     icon: agregarr
-  #     siteMonitor: "https://agregarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - authentik:
-      href: "https://authentik.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: authentik
-      siteMonitor: "https://authentik.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - calibre-web:
-      href: "https://calibreweb.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: calibre-web
-      siteMonitor: "https://calibreweb.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - homepage:
-      href: "https://homepage.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: homepage
-      siteMonitor: "https://homepage.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  # - lidarr:
-  #     href: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  #     icon: lidarr
-  #     siteMonitor: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - overseerr:
-      href: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: overseerr
-      siteMonitor: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  # - pihole:
-  #     href: "https://pihole.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/admin"
-  #     icon: pi-hole
-  #     siteMonitor: "https://pihole.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/admin"
-  # - prowlarr:
-  #     href: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  #     icon: prowlarr
-  #     siteMonitor: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  # - radarr:
-  #     href: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  #     icon: radarr
-  #     siteMonitor: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  # - radarr-4K:
-  #     href: "https://radarr4K.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  #     icon: radarr-4k
-  #     siteMonitor: "https://radarr4K.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - romm:
-      href: "https://romm.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: romm
-      siteMonitor: "https://romm.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  # - sabnzbd:
-  #     href: "https://sabnzbd.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  #     icon: sabnzbd
-  #     siteMonitor: "https://sabnzbd.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - shinkro:
-      href: "https://shinkro.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: shinkro
-      siteMonitor: "https://shinkro.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  # - sonarr:
-  #     href: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  #     icon: sonarr
-  #     siteMonitor: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  # - sonarr-anime:
-  #     href: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  #     icon: /icons/sonarr-anime.png
-  #     siteMonitor: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  # - tautulli:
-  #     href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  #     icon: tautulli
-  #     siteMonitor: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-  - wizarr:
-      href: "https://wizarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: wizarr
-      siteMonitor: "https://wizarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
