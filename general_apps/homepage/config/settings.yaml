@@ -19,49 +19,55 @@ layout:
   Download Group:
     style: row
     columns: 2
-    tab: Local
+    tab: Services
     header: false
     Download Calendars:
       style: row
       columns: 2
-      tab: Local
+      tab: Services
       header: false
     Download Applications:
       style: row
       columns: 2
-      tab: Local
+      tab: Services
       header: false
   Server Applications:
     style: row
     columns: 5
-    tab: Local
+    tab: Services
     header: false
   Media Applications:
     style: row
     columns: 4
-    tab: Local
+    tab: Services
     header: false
   Misc Applications:
     style: row
     columns: 6
-    tab: Local
+    tab: Services
     header: false
   Service Applications:
     style: row
     columns: 4
-    tab: Local
+    tab: Services
     header: false
   Bookmarks:
     style: row
     columns: 4
-    tab: Local
+    tab: Services
     header: true
 
-  Most Recent:
+  Recently Added:
     style: row
     columns: 5
-    tab: Download Queues
+    tab: Recently Added & Download Queues
     header: false
   Download Queues:
-    tab: Download Queues
+    tab: Recently Added & Download Queues
+    header: false
+
+  Download History:
+    style: row
+    columns: 2
+    tab: Download History
     header: false

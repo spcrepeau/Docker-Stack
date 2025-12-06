@@ -39,17 +39,18 @@ services:
     container_name: socket-proxy
     environment:
       TZ: ${TZ}
-      ALLOW_START: "1"
-      ALLOW_STOP: "1"
-      ALLOW_RESTARTS: "1"
-      CONTAINERS: "1"
-      IMAGES: "1"
-      INFO: "1"
-      NETWORKS: "1"
-      POST: "1"
-      SERVICES: "1"
+      # API access controls (1 to grant, 0 to revoke)
+      ALLOW_START: "1" # This option will work even if POST=0
+      ALLOW_STOP: "1" # This option will work even if POST=0
+      ALLOW_RESTARTS: "1" # This option will work even if POST=0
+      CONTAINERS: "1" # Allow listing and managing containers (essential for Portainer)
+      IMAGES: "1" # Allow listing images
+      INFO: "1" # Allow access to Docker daemon information
+      NETWORKS: "1" # Allow listing networks
+      POST: "1" # When set to 0, only GET and HEAD operations are allowed, making API access read-only
+      SERVICES: "1" # Allow listing and managing services (for Swarm mode)
       TASKS: "1"
-      VOLUMES: "1"
+      VOLUMES: "1" # Allow listing volumes
     networks:
       - proxynet
     read_only: true
@@ -80,7 +81,7 @@ services:
       WUD_AUTH_OIDC_AUTHENTIK_DISCOVERY: "https://authentik.${HOST_DSM_PUBLIC_DNS_SUFFIX}/application/o/wud/.well-known/openid-configuration"
       WUD_AUTH_OIDC_AUTHENTIK_REDIRECT: true # optional (to skip internal login page)
       # Watchers https://getwud.github.io/wud/#/configuration/watchers/
-      WUD_WATCHER_LOCAL_CRON: "0 */6 * * *"
+      WUD_WATCHER_LOCAL_CRON: "0 */8 * * *"
       WUD_WATCHER_LOCAL_WATCHALL: true
       # Docker Triggers https://getwud.github.io/wud/#/configuration/triggers/docker/
       WUD_TRIGGER_DOCKER_UPDATE_PRUNE: true
