@@ -60,6 +60,7 @@
 
 * Setup reverse proxy for this app if you're using remote apps like nzb360.
 * Uses Plex SSO.
+* To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en>
 
 ## wizarr
 
@@ -70,4 +71,5 @@
 
 ### Notes
 
-* Setup reverse proxy for this app.
+* Setup reverse proxy for this app, but point to the authentik port instead. <https://docs.wizarr.dev/using-wizarr/single-sign-on-sso#authentik-other>
+* In the authentik provider, edit the unauthenticated paths to include the regex exceptions in the above URL. Remove the dash and quotes from each line.

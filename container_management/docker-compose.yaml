@@ -65,7 +65,7 @@ services:
 
   wud:
     <<: *default_container
-    image: getwud/wud:latest
+    image: ghcr.io/getwud/wud:latest
     container_name: wud
     depends_on:
       - socket-proxy

@@ -27,6 +27,7 @@
 
 * Setup reverse proxy for this app.
 * Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
+* To setup OAuth with authentik <https://docs.romm.app/latest/OIDC-Guides/OIDC-Setup-With-Authentik/>
 
 ## romm-db (MariaDB)
 

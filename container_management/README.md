@@ -31,3 +31,4 @@
 * WUD_AUTH_BASIC_MY_HASH__FILE: Leave the \$ as a single character.
 * Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
 * To setup OAuth with authentik: <https://integrations.goauthentik.io/monitoring/whats-up-docker/>. Requires reverse proxy setup for this app, as redirect will fail with local URL and port.
+* To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en>

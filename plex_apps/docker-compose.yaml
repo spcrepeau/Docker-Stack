@@ -15,7 +15,7 @@ x-default_labels: &default_labels
 services:
   agregarr:
     <<: *default_container
-    image: agregarr/agregarr:latest
+    image: ghcr.io/agregarr/agregarr:latest
     container_name: agregarr
     environment:
       TZ: ${TZ}
@@ -91,7 +91,7 @@ services:
 
   plexautolanguages:
     <<: *default_container
-    image: journeyover/plex-auto-languages:latest
+    image: ghcr.io/journeydocker/plex-auto-languages:latest
     container_name: plexautolanguages
     environment:
       PLEX_URL: ${PLEXAUTOLANGUAGES_PLEXURL}
@@ -161,7 +161,7 @@ services:
     container_name: wizarr
     environment:
       <<: *default_environment
-      DISABLE_BUILTIN_AUTH: false
+      DISABLE_BUILTIN_AUTH: true
     ports:
       - ${WIZARR_PORT_5690}:5690 # Web GUI HTTP
     volumes:

@@ -174,6 +174,7 @@
         version: 2 # optional, default is 1
   - pihole:
       href: "{{HOMEPAGE_VAR_PIHOLE_URL}}/admin"
+      description: local access only
       icon: pi-hole
       server: my-docker
       container: pihole
@@ -216,7 +217,7 @@
         url: {{HOMEPAGE_VAR_CALIBREWEB_URL}}
         username: {{HOMEPAGE_FILE_COMMON_USERNAME}}
         password: {{HOMEPAGE_FILE_CALIBREWEB_PASSWORD}}
-  - romm:
+  - romm (authentik SSO):
       # href: {{HOMEPAGE_VAR_ROMM_URL}}
       href: "https://romm.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: romm
@@ -227,23 +228,27 @@
         url: {{HOMEPAGE_VAR_ROMM_URL}}
 
 - Misc Applications:
-  - agregarr:
+  - agregarr (plex SSO):
       href: {{HOMEPAGE_VAR_AGREGARR_URL}}
+      description: local access only
       icon: agregarr
       server: my-docker
       container: agregarr
   - calibre:
       href: {{HOMEPAGE_VAR_CALIBRE_URL}}
+      description: local access only
       icon: calibre
       server: my-docker
       container: calibre
   - librespeed:
       href: {{HOMEPAGE_VAR_LIBRESPEED_URL}}
+      description: local access only
       icon: librespeed
       server: my-docker
       container: librespeed
   - quickstart:
       href: {{HOMEPAGE_VAR_QUICKSTART_URL}}
+      description: local access only
       icon: kometa
       server: my-docker
       container: quickstart
@@ -253,7 +258,7 @@
       icon: shinkro
       server: my-docker
       container: shinkro
-  - wizarr:
+  - wizarr (authentik SSO):
       # href: {{HOMEPAGE_VAR_WIZARR_URL}}
       href: "https://wizarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: wizarr
@@ -261,36 +266,44 @@
       container: wizarr	
 
 - Service Applications:
-  - status:authentik_database:
+  - authentik_database:
       icon: authentik
+      description: container status only
       server: my-docker
       container: authentik_database
-  - status:authentik_worker:
+  - authentik_worker:
       icon: authentik
+      description: container status only
       server: my-docker
       container: authentik_worker
-  - status:kometa:
+  - kometa:
       icon: kometa
+      description: container status only
       server: my-docker
       container: kometa
-  - status:plexautolanguages:
+  - plexautolanguages:
       icon: plex
+      description: container status only
       server: my-docker
       container: plexautolanguages
-  - status:recyclarr:
+  - recyclarr:
       icon: recyclarr
+      description: container status only
       server: my-docker
       container: recyclarr
-  - status:romm-db:
+  - romm-db:
       icon: mariadb
+      description: container status only
       server: my-docker
       container: romm-db
-  - status:socket-proxy:
+  - socket-proxy:
       icon: docker
+      description: container status only
       server: my-docker
       container: socket-proxy
-  - status:theme-park:
+  - theme-park:
       icon: themepark
+      description: container status only
       server: my-docker
       container: theme-park
 

@@ -17,6 +17,7 @@
 
 * Setup reverse proxy for this app.
 * Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
+* To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en>
 
 ## authentik_worker
 

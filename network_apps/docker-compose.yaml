@@ -76,7 +76,21 @@ services:
       AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePassword
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_SecretKey
+      # SMTP Host Emails are sent to
+      AUTHENTIK_EMAIL__HOST: smtp.gmail.com
+      AUTHENTIK_EMAIL__PORT: 587
+      # Optionally authenticate (don't add quotation marks to your password)
+      AUTHENTIK_EMAIL__USERNAME: file:///run/secrets/common_EmailAddress
+      AUTHENTIK_EMAIL__PASSWORD: file:///run/secrets/authentik_SMTPPassword
+      # Use StartTLS
+      AUTHENTIK_EMAIL__USE_TLS: true
+      # Use SSL
+      AUTHENTIK_EMAIL__USE_SSL: false
+      AUTHENTIK_EMAIL__TIMEOUT: 10
+      # Email address authentik will send from, should have a correct @domain
+      AUTHENTIK_EMAIL__FROM: file:///run/secrets/common_EmailAddress
     networks:
+      - default
       - authentiknet
       - container_management_proxynet
     user: ${DOCKER_UID}:${DOCKER_GID}
@@ -85,7 +99,9 @@ services:
       - ./authentik/certs:/certs
       - ./authentik/custom-templates:/templates
     secrets:
+      - common_EmailAddress
       - authentik_DatabasePassword
+      - authentik_SMTPPassword
       - authentik_SecretKey
     labels:
       wud.watch: false
@@ -125,8 +141,12 @@ networks:
     external: true
 
 secrets:
+  common_EmailAddress:
+    file: ${SECRETS_DIR}/common_EmailAddress.txt
   authentik_DatabasePassword:
     file: ${SECRETS_DIR}/authentik_DatabasePassword.txt
+  authentik_SMTPPassword:
+    file: ${SECRETS_DIR}/authentik_SMTPPassword.txt
   authentik_SecretKey:
     file: ${SECRETS_DIR}/authentik_SecretKey.txt
   pihole_WebServerAPIPassword:

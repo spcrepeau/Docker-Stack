@@ -7,6 +7,7 @@
 ## To-Do's
 
 * Waiting on plexautolanguages to add PLEX_URL_FILE docker secret support.
+* romm authentik SSO broken.
 
 ## Projects
 
@@ -68,3 +69,11 @@
 * Notepad++ keymap by Microsoft
 * PowerShell by Microsoft
 * YAML by Red Hat
+
+## Icon Repos
+
+* Dashboard Icons <https://dashboardicons.com/>, <https://github.com/homarr-labs/dashboard-icons>
+* Material Design Icons <https://pictogrammers.com/library/mdi/>
+* Simple Icons <https://simpleicons.org/?q=agenda>
+* Self-Hosted Dashboard Icons <https://selfh.st/icons/>
+* Font Awesome Icon <https://fontawesome.com/>
