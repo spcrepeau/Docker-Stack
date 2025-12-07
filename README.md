@@ -11,53 +11,42 @@
 
 ## Projects
 
-### [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
-
-* portainer
-* socket-proxy
-* wud/whatsupdocker
-
-### [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
-
-* homepage
-* librespeed
-* theme-park
-
-### [media_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/media_apps)
-
-* calibre
-* calibre-web
-* romm
-* romm-db (mariadb)
-
-### [media_management](https://github.com/spcrepeau/Docker-Stack/tree/main/media_management)
-
-* lidarr
-* overseerr
-* prowlarr
-* radarr
-* radarr-4K (radarr)
-* recyclarr
-* sabnzbd
-* sonarr
-* sonarr-anime (sonarr)
-
-### [network_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/network_apps)
-
-* authentik_database (postgres)
-* authentik_server
-* authentik_worker
-* pihole
-
-### [plex_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/plex_apps)
-
-* agregarr
-* kometa
-* plexautolanguages
-* quickstart
-* shinkro
-* tautulli
-* wizarr
+* [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
+  * portainer
+  * socket-proxy
+  * wud/whatsupdocker
+* [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
+  * homepage
+  * librespeed
+  * theme-park
+* [media_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/media_apps)
+  * calibre
+  * calibre-web
+  * romm
+  * romm-db (mariadb)
+* [media_management](https://github.com/spcrepeau/Docker-Stack/tree/main/media_management)
+  * lidarr
+  * overseerr
+  * prowlarr
+  * radarr
+  * radarr-4K (radarr)
+  * recyclarr
+  * sabnzbd
+  * sonarr
+  * sonarr-anime (sonarr)
+* [network_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/network_apps)
+  * authentik_database (postgres)
+  * authentik_server
+  * authentik_worker
+  * pihole
+* [plex_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/plex_apps)
+  * agregarr
+  * kometa
+  * plexautolanguages
+  * quickstart
+  * shinkro
+  * tautulli
+  * wizarr
 
 ## VSCode Extensions
 
