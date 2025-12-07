@@ -2,15 +2,15 @@
 
 ## homepage
 
-### Notes
-
-* This application does not have any built-in authentication and we'll use authentik to do so.
-* Setup reverse proxy for this app, but point to the authentik port instead.
-
 ### Links
 
 * Documentation: <https://gethomepage.dev/>
 * GitHub: <https://github.com/gethomepage/homepage/>
+
+### Notes
+
+* This application does not have any built-in authentication and we'll use authentik to do so.
+* Setup reverse proxy for this app, but point to the authentik port instead.
 
 ## librespeed
 
