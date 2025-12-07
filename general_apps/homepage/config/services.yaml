@@ -147,7 +147,7 @@
       widget:
         type: portainer # https://gethomepage.dev/widgets/services/portainer/
         url: {{HOMEPAGE_VAR_PORTAINER_URL}}
-        env: 29
+        env: 1
         #kubernetes: true # optional, defaults to false
         key: {{HOMEPAGE_FILE_PORTAINER_API}}
   - wud (authentik SSO):

@@ -108,7 +108,7 @@ services:
 
   pihole:
     <<: *default_container
-    image: pihole/pihole:latest
+    image: ghcr.io/pi-hole/pihole:latest
     container_name: pihole
     environment:
       # Config located at /etc/pihole/pihole.toml

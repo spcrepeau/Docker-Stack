@@ -66,8 +66,8 @@ services:
       OIDC_ENABLED: true
       OIDC_PROVIDER: authentik
       OIDC_CLAIM_ROLES: groups email-verified
-      OIDC_CLIENT_ID_FILE: /run/secrets/romm_OIDCClientID
-      OIDC_CLIENT_SECRET_FILE: /run/secrets/romm_OIDCClientSecret
+      OIDC_CLIENT_ID_FILE: /run/secrets/authentik_rommClientID
+      OIDC_CLIENT_SECRET_FILE: /run/secrets/authentik_rommClientSecret
       OIDC_REDIRECT_URI: https://romm.${HOST_DSM_PUBLIC_DNS_SUFFIX}/api/oauth/openid
       OIDC_SERVER_APPLICATION_URL: https://authentik.${HOST_DSM_PUBLIC_DNS_SUFFIX}/application/o/romm
       # metadata providers
@@ -80,8 +80,8 @@ services:
     ports:
       - ${ROMM_PORT_8080}:8080 # Web GUI HTTP
     secrets:
-      - romm_OIDCClientID
-      - romm_OIDCClientSecret
+      - authentik_rommClientID
+      - authentik_rommClientSecret
       - external_IGDBClientID
       - external_IGDBClientSecret
       - romm_AuthSecretKey
@@ -128,10 +128,10 @@ networks:
     internal: true
 
 secrets:
-  romm_OIDCClientID:
-    file: ${SECRETS_DIR}/romm_OIDCClientID.txt
-  romm_OIDCClientSecret:
-    file: ${SECRETS_DIR}/romm_OIDCClientSecret.txt
+  authentik_rommClientID:
+    file: ${SECRETS_DIR}/authentik_rommClientID.txt
+  authentik_rommClientSecret:
+    file: ${SECRETS_DIR}/authentik_rommClientSecret.txt
   external_IGDBClientID:
     file: ${SECRETS_DIR}/external_IGDBClientID.txt
   external_IGDBClientSecret:
