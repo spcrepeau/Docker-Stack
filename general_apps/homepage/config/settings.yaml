@@ -16,6 +16,7 @@ background:
   opacity: 50 # 0-100
 
 layout:
+  # Tab 1, Services
   Download Group:
     style: row
     columns: 2
@@ -48,7 +49,7 @@ layout:
     header: false
   Service Applications:
     style: row
-    columns: 4
+    columns: 6
     tab: Services
     header: false
   Bookmarks:
@@ -57,6 +58,7 @@ layout:
     tab: Services
     header: true
 
+  # Tab 2, Recently Added & Download Queues
   Recently Added:
     style: row
     columns: 5
@@ -66,6 +68,7 @@ layout:
     tab: Recently Added & Download Queues
     header: false
 
+  # Tab 3, Download History
   Download History:
     style: row
     columns: 2

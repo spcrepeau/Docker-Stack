@@ -10,28 +10,28 @@
           type: calendar # https://gethomepage.dev/widgets/services/calendar/
           firstDayInWeek: sunday # optional - defaults to monday
           view: agenda # optional - possible values monthly, agenda
-          maxEvents: 11 # optional - defaults to 10
+          maxEvents: 17 # optional - defaults to 10
           showTime: true # optional - show time for event happening today - defaults to false
           timezone: America/New_York # optional and only when timezone is not detected properly (slightly slower performance) - force timezone for ical events (if it's the same - no change, if missing or different in ical - will be converted to this timezone)
           integrations: &common_integrations # optional
             - type: sonarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
               service_group: Download Applications # group name where widget exists
-              service_name: sonarr (authentik SSO) # service name for that widget
+              service_name: sonarr # service name for that widget
               color: blue # optional - defaults to pre-defined color for the service (teal for sonarr)
               baseUrl: {{HOMEPAGE_VAR_SONARR_URL}} # optional - adds links to sonarr/radarr pages
             - type: sonarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
               service_group: Download Applications # group name where widget exists
-              service_name: sonarr-anime (authentik SSO) # service name for that widget
+              service_name: sonarr-anime # service name for that widget
               color: green # optional - defaults to pre-defined color for the service (teal for sonarr)
               baseUrl: {{HOMEPAGE_VAR_SONARRANIME_URL}} # optional - adds links to sonarr/radarr pages
             - type: radarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
               service_group: Download Applications # group name where widget exists
-              service_name: radarr (authentik SSO) # service name for that widget
+              service_name: radarr # service name for that widget
               color: orange # optional - defaults to pre-defined color for the service (teal for sonarr)
               baseUrl: {{HOMEPAGE_VAR_RADARR_URL}} # optional - adds links to sonarr/radarr pages
             - type: radarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
               service_group: Download Applications # group name where widget exists
-              service_name: radarr-4K (authentik SSO) # service name for that widget
+              service_name: radarr-4K # service name for that widget
               color: red # optional - defaults to pre-defined color for the service (teal for sonarr)
               baseUrl: {{HOMEPAGE_VAR_RADARR4K_URL}} # optional - adds links to sonarr/radarr pages
     - release calendar:
@@ -56,9 +56,10 @@
           type: sabnzbd # https://gethomepage.dev/widgets/services/sabnzbd/
           url: {{HOMEPAGE_VAR_SABNZBD_URL}}
           key: {{HOMEPAGE_FILE_SABNZBD_API}}
-    - overseerr (plex SSO):
+    - overseerr:
         # href: {{HOMEPAGE_VAR_OVERSEERR_URL}}
         href: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+        description: plex sso
         icon: overseerr
         server: my-docker
         container: overseerr
@@ -66,9 +67,10 @@
           type: overseerr # https://gethomepage.dev/widgets/services/overseerr/
           url: {{HOMEPAGE_VAR_OVERSEERR_URL}}
           key: {{HOMEPAGE_FILE_OVERSEERR_API}}
-    - radarr (authentik SSO):
+    - radarr:
         # href: {{HOMEPAGE_VAR_RADARR_URL}}
         href: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+        description: authentik sso
         icon: radarr
         server: my-docker
         container: radarr
@@ -76,9 +78,10 @@
           type: radarr # https://gethomepage.dev/widgets/services/radarr/
           url: {{HOMEPAGE_VAR_RADARR_URL}}
           key: {{HOMEPAGE_FILE_RADARR_API}}
-    - radarr-4K (authentik SSO):
+    - radarr-4K:
         # href: {{HOMEPAGE_VAR_RADARR4K_URL}}
         href: "https://radarr4k.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+        description: authentik sso
         icon: radarr-4k
         server: my-docker
         container: radarr-4K
@@ -86,9 +89,10 @@
           type: radarr # https://gethomepage.dev/widgets/services/radarr/
           url: {{HOMEPAGE_VAR_RADARR4K_URL}}
           key: {{HOMEPAGE_FILE_RADARR4K_API}}
-    - sonarr (authentik SSO):
+    - sonarr:
         # href: {{HOMEPAGE_VAR_SONARR_URL}}
         href: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+        description: authentik sso
         icon: sonarr
         server: my-docker
         container: sonarr
@@ -96,9 +100,10 @@
           type: sonarr # https://gethomepage.dev/widgets/services/sonarr/
           url: {{HOMEPAGE_VAR_SONARR_URL}}
           key: {{HOMEPAGE_FILE_SONARR_API}}
-    - sonarr-anime (authentik SSO):
+    - sonarr-anime:
         # href: {{HOMEPAGE_VAR_SONARRANIME_URL}}
         href: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+        description: authentik sso
         icon: /icons/sonarr-anime.png
         server: my-docker
         container: sonarr-anime
@@ -106,9 +111,10 @@
           type: sonarr # https://gethomepage.dev/widgets/services/sonarr/
           url: {{HOMEPAGE_VAR_SONARRANIME_URL}}
           key: {{HOMEPAGE_FILE_SONARRANIME_API}}
-    - lidarr (authentik SSO):
+    - lidarr:
         # href: {{HOMEPAGE_VAR_LIDARR_URL}}
         href: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+        description: authentik sso
         icon: lidarr
         server: my-docker
         container: lidarr
@@ -116,9 +122,10 @@
           type: lidarr # https://gethomepage.dev/widgets/services/lidarr/
           url: {{HOMEPAGE_VAR_LIDARR_URL}}
           key: {{HOMEPAGE_FILE_LIDARR_API}}
-    - prowlarr (authentik SSO):
+    - prowlarr:
         # href: {{HOMEPAGE_VAR_PROWLARR_URL}}
         href: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+        description: authentik sso
         icon: prowlarr
         server: my-docker
         container: prowlarr
@@ -138,9 +145,10 @@
         url: {{HOMEPAGE_VAR_NAS_URL}}
         username: {{HOMEPAGE_FILE_SYNOLOGY_USERNAME}}
         password: {{HOMEPAGE_FILE_SYNOLOGY_PASSWORD}}
-  - portainer (authentik SSO):
+  - portainer:
       # href: {{HOMEPAGE_VAR_PORTAINER_URL}}
       href: "https://portainer.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: authentik sso
       icon: portainer
       server: my-docker
       container: portainer
@@ -150,9 +158,10 @@
         env: 1
         #kubernetes: true # optional, defaults to false
         key: {{HOMEPAGE_FILE_PORTAINER_API}}
-  - wud (authentik SSO):
+  - wud:
       # href: {{HOMEPAGE_VAR_WUD_URL}}
       href: "https://wud.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: authentik sso
       icon: whats-up-docker
       server: my-docker
       container: wud
@@ -193,9 +202,10 @@
         type: plex # https://gethomepage.dev/widgets/services/plex/
         url: {{HOMEPAGE_FILE_PLEX_URL}}
         key: {{HOMEPAGE_FILE_PLEX_TOKEN}} # see https://www.plexopedia.com/plex-media-server/general/plex-token/
-  - tautulli (plex SSO):
+  - tautulli:
       # href: {{HOMEPAGE_VAR_TAUTULLI_URL}}
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: plex sso
       icon: tautulli
       server: my-docker
       container: tautulli
@@ -217,9 +227,10 @@
         url: {{HOMEPAGE_VAR_CALIBREWEB_URL}}
         username: {{HOMEPAGE_FILE_COMMON_USERNAME}}
         password: {{HOMEPAGE_FILE_CALIBREWEB_PASSWORD}}
-  - romm (authentik SSO):
+  - romm:
       # href: {{HOMEPAGE_VAR_ROMM_URL}}
       href: "https://romm.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: authentik sso
       icon: romm
       server: my-docker
       container: romm
@@ -228,9 +239,9 @@
         url: {{HOMEPAGE_VAR_ROMM_URL}}
 
 - Misc Applications:
-  - agregarr (plex SSO):
+  - agregarr:
       href: {{HOMEPAGE_VAR_AGREGARR_URL}}
-      description: local access only
+      description: plex sso/local access only
       icon: agregarr
       server: my-docker
       container: agregarr
@@ -258,16 +269,17 @@
       icon: shinkro
       server: my-docker
       container: shinkro
-  - wizarr (authentik SSO):
+  - wizarr:
       # href: {{HOMEPAGE_VAR_WIZARR_URL}}
       href: "https://wizarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: authentik sso
       icon: wizarr
       server: my-docker
       container: wizarr	
 
 - Service Applications:
   - authentik_database:
-      icon: authentik
+      icon: postgres
       description: container status only
       server: my-docker
       container: authentik_database
