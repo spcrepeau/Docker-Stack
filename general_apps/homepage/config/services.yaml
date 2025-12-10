@@ -49,6 +49,7 @@
     - sabnzbd:
         # href: {{HOMEPAGE_VAR_SABNZBD_URL}}
         href: "https://sabnzbd.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+        description: local account
         icon: sabnzbd
         server: my-docker
         container: sabnzbd
@@ -145,6 +146,17 @@
         url: {{HOMEPAGE_VAR_NAS_URL}}
         username: {{HOMEPAGE_FILE_SYNOLOGY_USERNAME}}
         password: {{HOMEPAGE_FILE_SYNOLOGY_PASSWORD}}
+  - authentik_server:
+      # href: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
+      href: "https://authentik.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      icon: authentik
+      server: my-docker
+      container: authentik_server
+      widget:
+        type: authentik # https://gethomepage.dev/widgets/services/authentik/
+        url: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
+        key: {{HOMEPAGE_FILE_AUTHENTIK_API}}
+        version: 2 # optional, default is 1
   - portainer:
       # href: {{HOMEPAGE_VAR_PORTAINER_URL}}
       href: "https://portainer.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -170,17 +182,6 @@
         url: {{HOMEPAGE_VAR_WUD_URL}}
         username: {{HOMEPAGE_FILE_COMMON_USERNAME}} # optional
         password: {{HOMEPAGE_FILE_WUD_PASSWORD}} # optional
-  - authentik_server:
-      # href: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
-      href: "https://authentik.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: authentik
-      server: my-docker
-      container: authentik_server
-      widget:
-        type: authentik # https://gethomepage.dev/widgets/services/authentik/
-        url: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
-        key: {{HOMEPAGE_FILE_AUTHENTIK_API}}
-        version: 2 # optional, default is 1
   - pihole:
       href: "{{HOMEPAGE_VAR_PIHOLE_URL}}/admin"
       description: local access only
@@ -219,6 +220,7 @@
   - calibre-web:
       # href: {{HOMEPAGE_VAR_CALIBREWEB_URL}}
       href: "https://calibreweb.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: local accounts
       icon: calibre-web
       server: my-docker
       container: calibre-web
@@ -266,6 +268,7 @@
   - shinkro:
       # href: {{HOMEPAGE_VAR_SHINKRO_URL}}
       href: "https://shinkro.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: local account
       icon: shinkro
       server: my-docker
       container: shinkro

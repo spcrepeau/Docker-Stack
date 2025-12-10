@@ -94,8 +94,7 @@ services:
     image: ghcr.io/journeydocker/plex-auto-languages:latest
     container_name: plexautolanguages
     environment:
-      PLEX_URL: ${PLEXAUTOLANGUAGES_PLEXURL}
-      #PLEX_URL_FILE: /run/secrets/plex_URL # waiting for this to make it to latest tag
+      PLEX_URL_FILE: /run/secrets/plex_URL
       PLEX_TOKEN_FILE: /run/secrets/plex_Token
       TZ: ${TZ}
     user: ${DOCKER_UID}:${DOCKER_GID}

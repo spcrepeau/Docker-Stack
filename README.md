@@ -6,7 +6,6 @@
 
 ## To-Do's
 
-* Waiting on plexautolanguages to add PLEX_URL_FILE docker secret support.
 * romm authentik SSO broken.
 
 ## Projects
