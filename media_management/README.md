@@ -81,7 +81,8 @@ recyclarr sync
 
 ### Notes
 
-* Setup reverse proxy for this app if you're using remote apps like nzb360.
+* Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. Disable authentication.
+* In the authentik provider, edit the unauthenticated paths to include the regex ^/api.* to allow nzb360 access to API.
 
 ## sonarr & sonarr-anime
 

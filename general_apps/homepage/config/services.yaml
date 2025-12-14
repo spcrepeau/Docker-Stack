@@ -6,51 +6,50 @@
   - Download Calendars:
     - release list:
         icon: mdi-calendar-month-outline-#ffffff
-        widget:
+        widget: &common_calendar_widget
           type: calendar # https://gethomepage.dev/widgets/services/calendar/
           firstDayInWeek: sunday # optional - defaults to monday
           view: agenda # optional - possible values monthly, agenda
-          maxEvents: 17 # optional - defaults to 10
+          maxEvents: 15 # optional - defaults to 10
           showTime: true # optional - show time for event happening today - defaults to false
           timezone: America/New_York # optional and only when timezone is not detected properly (slightly slower performance) - force timezone for ical events (if it's the same - no change, if missing or different in ical - will be converted to this timezone)
-          integrations: &common_integrations # optional
-            - type: sonarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
-              service_group: Download Applications # group name where widget exists
-              service_name: sonarr # service name for that widget
-              color: blue # optional - defaults to pre-defined color for the service (teal for sonarr)
-              baseUrl: {{HOMEPAGE_VAR_SONARR_URL}} # optional - adds links to sonarr/radarr pages
-            - type: sonarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
-              service_group: Download Applications # group name where widget exists
-              service_name: sonarr-anime # service name for that widget
-              color: green # optional - defaults to pre-defined color for the service (teal for sonarr)
-              baseUrl: {{HOMEPAGE_VAR_SONARRANIME_URL}} # optional - adds links to sonarr/radarr pages
+          integrations: # optional
             - type: radarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
               service_group: Download Applications # group name where widget exists
               service_name: radarr # service name for that widget
               color: orange # optional - defaults to pre-defined color for the service (teal for sonarr)
-              baseUrl: {{HOMEPAGE_VAR_RADARR_URL}} # optional - adds links to sonarr/radarr pages
+              # baseUrl: {{HOMEPAGE_VAR_RADARR_URL}} # optional - adds links to sonarr/radarr pages
+              baseUrl: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}" # optional - adds links to sonarr/radarr pages
             - type: radarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
               service_group: Download Applications # group name where widget exists
               service_name: radarr-4K # service name for that widget
               color: red # optional - defaults to pre-defined color for the service (teal for sonarr)
-              baseUrl: {{HOMEPAGE_VAR_RADARR4K_URL}} # optional - adds links to sonarr/radarr pages
+              # baseUrl: {{HOMEPAGE_VAR_RADARR4K_URL}} # optional - adds links to sonarr/radarr pages
+              baseUrl: "https://radarr4k.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}" # optional - adds links to sonarr/radarr pages
+            - type: sonarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
+              service_group: Download Applications # group name where widget exists
+              service_name: sonarr # service name for that widget
+              color: blue # optional - defaults to pre-defined color for the service (teal for sonarr)
+              # baseUrl: {{HOMEPAGE_VAR_SONARR_URL}} # optional - adds links to sonarr/radarr pages
+              baseUrl: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}" # optional - adds links to sonarr/radarr pages
+            - type: sonarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
+              service_group: Download Applications # group name where widget exists
+              service_name: sonarr-anime # service name for that widget
+              color: green # optional - defaults to pre-defined color for the service (teal for sonarr)
+              # baseUrl: {{HOMEPAGE_VAR_SONARRANIME_URL}} # optional - adds links to sonarr/radarr pages
+              baseUrl: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}" # optional - adds links to sonarr/radarr pages
     - release calendar:
         icon: mdi-calendar-month-outline-#ffffff
         widget:
-          type: calendar # https://gethomepage.dev/widgets/services/calendar/
-          firstDayInWeek: sunday # optional - defaults to monday
+          <<: *common_calendar_widget
           view: monthly # optional - possible values monthly, agenda
-          maxEvents: 10 # optional - defaults to 10
-          showTime: true # optional - show time for event happening today - defaults to false
-          timezone: America/New_York # optional and only when timezone is not detected properly (slightly slower performance) - force timezone for ical events (if it's the same - no change, if missing or different in ical - will be converted to this timezone)
-          integrations: *common_integrations
+          maxEvents: 4 # optional - defaults to 10
 
   - Download Applications:
     - sabnzbd:
         # href: {{HOMEPAGE_VAR_SABNZBD_URL}}
         href: "https://sabnzbd.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-        description: local account
-        icon: sabnzbd
+        icon: /icons/sabnzbd_authentik.png
         server: my-docker
         container: sabnzbd
         widget:
@@ -60,8 +59,7 @@
     - overseerr:
         # href: {{HOMEPAGE_VAR_OVERSEERR_URL}}
         href: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-        description: plex sso
-        icon: overseerr
+        icon: /icons/overseerr_plex.png
         server: my-docker
         container: overseerr
         widget:
@@ -71,8 +69,7 @@
     - radarr:
         # href: {{HOMEPAGE_VAR_RADARR_URL}}
         href: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-        description: authentik sso
-        icon: radarr
+        icon: /icons/radarr_authentik.png
         server: my-docker
         container: radarr
         widget: &radarr_widget
@@ -82,8 +79,7 @@
     - radarr-4K:
         # href: {{HOMEPAGE_VAR_RADARR4K_URL}}
         href: "https://radarr4k.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-        description: authentik sso
-        icon: radarr-4k
+        icon: /icons/radarr-4K_authentik.png
         server: my-docker
         container: radarr-4K
         widget: &radarr-4K_widget
@@ -93,8 +89,7 @@
     - sonarr:
         # href: {{HOMEPAGE_VAR_SONARR_URL}}
         href: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-        description: authentik sso
-        icon: sonarr
+        icon: /icons/sonarr_authentik.png
         server: my-docker
         container: sonarr
         widget: &sonarr_widget
@@ -104,8 +99,7 @@
     - sonarr-anime:
         # href: {{HOMEPAGE_VAR_SONARRANIME_URL}}
         href: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-        description: authentik sso
-        icon: /icons/sonarr-anime.png
+        icon: /icons/sonarr-anime_authentik.png
         server: my-docker
         container: sonarr-anime
         widget: &sonarranime_widget
@@ -115,8 +109,7 @@
     - lidarr:
         # href: {{HOMEPAGE_VAR_LIDARR_URL}}
         href: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-        description: authentik sso
-        icon: lidarr
+        icon: /icons/lidarr_authentik.png
         server: my-docker
         container: lidarr
         widget: &lidarr_widget
@@ -126,8 +119,7 @@
     - prowlarr:
         # href: {{HOMEPAGE_VAR_PROWLARR_URL}}
         href: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-        description: authentik sso
-        icon: prowlarr
+        icon: /icons/prowlarr_authentik.png
         server: my-docker
         container: prowlarr
         widget:
@@ -160,21 +152,18 @@
   - portainer:
       # href: {{HOMEPAGE_VAR_PORTAINER_URL}}
       href: "https://portainer.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      description: authentik sso
-      icon: portainer
+      icon: /icons/portainer_authentik.png
       server: my-docker
       container: portainer
       widget:
         type: portainer # https://gethomepage.dev/widgets/services/portainer/
         url: {{HOMEPAGE_VAR_PORTAINER_URL}}
         env: 1
-        #kubernetes: true # optional, defaults to false
         key: {{HOMEPAGE_FILE_PORTAINER_API}}
   - wud:
       # href: {{HOMEPAGE_VAR_WUD_URL}}
       href: "https://wud.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      description: authentik sso
-      icon: whats-up-docker
+      icon: /icons/whats-up-docker_authentik.png
       server: my-docker
       container: wud
       widget:
@@ -203,11 +192,11 @@
         type: plex # https://gethomepage.dev/widgets/services/plex/
         url: {{HOMEPAGE_FILE_PLEX_URL}}
         key: {{HOMEPAGE_FILE_PLEX_TOKEN}} # see https://www.plexopedia.com/plex-media-server/general/plex-token/
+        fields: ["albums", "movies", "tv"]
   - tautulli:
       # href: {{HOMEPAGE_VAR_TAUTULLI_URL}}
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      description: plex sso
-      icon: tautulli
+      icon: /icons/tautulli_plex.png
       server: my-docker
       container: tautulli
       widget:
@@ -220,7 +209,6 @@
   - calibre-web:
       # href: {{HOMEPAGE_VAR_CALIBREWEB_URL}}
       href: "https://calibreweb.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      description: local accounts
       icon: calibre-web
       server: my-docker
       container: calibre-web
@@ -232,8 +220,7 @@
   - romm:
       # href: {{HOMEPAGE_VAR_ROMM_URL}}
       href: "https://romm.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      description: authentik sso
-      icon: romm
+      icon: /icons/romm_authentik.png
       server: my-docker
       container: romm
       widget:
@@ -243,8 +230,8 @@
 - Misc Applications:
   - agregarr:
       href: {{HOMEPAGE_VAR_AGREGARR_URL}}
-      description: plex sso/local access only
-      icon: agregarr
+      description: local access only
+      icon: /icons/agregarr_plex.png
       server: my-docker
       container: agregarr
   - calibre:
@@ -268,15 +255,13 @@
   - shinkro:
       # href: {{HOMEPAGE_VAR_SHINKRO_URL}}
       href: "https://shinkro.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      description: local account
       icon: shinkro
       server: my-docker
       container: shinkro
   - wizarr:
       # href: {{HOMEPAGE_VAR_WIZARR_URL}}
       href: "https://wizarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      description: authentik sso
-      icon: wizarr
+      icon: /icons/wizarr_authentik.png
       server: my-docker
       container: wizarr	
 
@@ -330,13 +315,13 @@
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/library?section_id=1"
       widget:
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
-        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=1&count=6"
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=1&count=10"
         display: dynamic-list
         mappings: &recent_mappings
           items: response.data.recently_added # optional, the path to the array in the API response. Omit this option if the array is at the root level
           name: title # required, field in each item to use as the item name (left side)
           label: added_at # required, field in each item to use as the item label (right side)
-          limit: 6 # optional, limit the number of items to display
+          limit: 10 # optional, limit the number of items to display
           format: relativeDate # optional - format of the label field
           scale: 1000 # Corrects the date
   - recently added 4k movies (tautulli):
@@ -345,7 +330,7 @@
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/library?section_id=4"
       widget:
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
-        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=4&count=6"
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=4&count=10"
         display: dynamic-list
         mappings: *recent_mappings
   - recently added tv (tautulli):
@@ -354,7 +339,7 @@
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/library?section_id=2"
       widget:
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
-        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=2&count=6"
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=2&count=10"
         display: dynamic-list
         mappings:
           <<: *recent_mappings
@@ -365,7 +350,7 @@
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/library?section_id=3"
       widget:
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
-        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=3&count=6"
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=3&count=10"
         display: dynamic-list
         mappings:
           <<: *recent_mappings
@@ -376,7 +361,7 @@
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/library?section_id=5"
       widget:
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
-        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=5&count=6"
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=5&count=10"
         display: dynamic-list
         mappings: *recent_mappings
 
@@ -427,39 +412,34 @@
       # href: "{{HOMEPAGE_VAR_RADARR_URL}}/activity/history"
       href: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/activity/history"
       icon: radarr
-      widget:
+      widget: &common_history_widget
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
         url: "{{HOMEPAGE_VAR_RADARR_URL}}/api/v3/history?apikey={{HOMEPAGE_FILE_RADARR_API}}&page=1&pageSize=10&eventType=3"
         display: dynamic-list
-        mappings: &history_mappings
+        mappings:
           items: records # optional, the path to the array in the API response. Omit this option if the array is at the root level
           name: sourceTitle # required, field in each item to use as the item name (left side)
           label: date # required, field in each item to use as the item label (right side)
           limit: 10 # optional, limit the number of items to display
+          format: relativeDate # optional - format of the label field
   - radarr-4K history (imported only):
       # href: "{{HOMEPAGE_VAR_RADARR4K_URL}}/activity/history"
       href: "https://radarr4k.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/activity/history"
       icon: radarr-4k
       widget:
-        type: customapi # https://gethomepage.dev/widgets/services/customapi/
+        <<: *common_history_widget
         url: "{{HOMEPAGE_VAR_RADARR4K_URL}}/api/v3/history?apikey={{HOMEPAGE_FILE_RADARR4K_API}}&page=1&pageSize=10&eventType=3"
-        display: dynamic-list
-        mappings: *history_mappings
   - sonarr history (imported only):
       # href: "{{HOMEPAGE_VAR_SONARR_URL}}/activity/history"
       href: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/activity/history"
       icon: sonarr
       widget:
-        type: customapi # https://gethomepage.dev/widgets/services/customapi/
+        <<: *common_history_widget
         url: "{{HOMEPAGE_VAR_SONARR_URL}}/api/v3/history?apikey={{HOMEPAGE_FILE_SONARR_API}}&page=1&pageSize=10&eventType=3"
-        display: dynamic-list
-        mappings: *history_mappings
   - sonarr-anime history (imported only):
       # href: "{{HOMEPAGE_VAR_SONARRANIME_URL}}/activity/history"
       href: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/activity/history"
       icon: /icons/sonarr-anime.png
       widget:
-        type: customapi # https://gethomepage.dev/widgets/services/customapi/
+        <<: *common_history_widget
         url: "{{HOMEPAGE_VAR_SONARRANIME_URL}}/api/v3/history?apikey={{HOMEPAGE_FILE_SONARRANIME_API}}&page=1&pageSize=10&eventType=3"
-        display: dynamic-list
-        mappings: *history_mappings
