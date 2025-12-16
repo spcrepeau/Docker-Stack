@@ -2,7 +2,185 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/bookmarks
 
-- Bookmarks:
-    - GitHub - spcrepeau - Docker-Stack:
-        - abbr: GH
-          href: https://github.com/spcrepeau/Docker-Stack
+- Documentation:
+  - spcrepeau Docker-Stack:
+    - icon: github-light
+      href: https://github.com/spcrepeau/Docker-Stack
+  - authentik:
+    - icon: authentik
+      href: https://docs.goauthentik.io
+  - homepage:
+    - icon: homepage
+      href: https://gethomepage.dev
+  - kometa:
+    - icon: kometa
+      href: https://kometa.wiki/en/latest
+  - lidarr:
+    - icon: lidarr
+      href: https://lidarr.audio
+  - overseerr:
+    - icon: overseerr
+      href: https://overseerr.dev
+  - pihole:
+    - icon: pi-hole
+      href: https://pi-hole.net
+  - portainer:
+    - icon: portainer-dark
+      href: https://docs.portainer.io
+  - prowlarr:
+    - icon: prowlarr
+      href: https://prowlarr.com
+  - radarr:
+    - icon: radarr
+      href: https://radarr.video
+  - recyclarr:
+    - icon: recyclarr
+      href: https://recyclarr.dev/wiki
+  - romm:
+    - icon: romm
+      href: https://romm.app
+  - sabnzbd:
+    - icon: sabnzbd
+      href: https://sabnzbd.org
+  - shinkro:
+    - icon: shinkro
+      href: https://docs.shinkro.com
+  - sonarr:
+    - icon: sonarr
+      href: https://sonarr.tv
+  - tautulli:
+    - icon: tautulli
+      href: https://tautulli.com
+  - trash guides:
+    - icon: trash-guides
+      href: https://trash-guides.info
+  - theme-park:
+    - icon: themepark
+      href: https://docs.theme-park.dev
+  - wizarr:
+    - icon: wizarr
+      href: https://docs.wizarr.dev
+  - wud:
+    - icon: whats-up-docker
+      href: https://getwud.github.io/wud
+
+- Github:
+  - agregarr:
+    - icon: agregarr
+      href: https://github.com/agregarr/agregarr
+  - authentik:
+    - icon: authentik
+      href: https://github.com/goauthentik/authentik
+  - calibre:
+    - icon: calibre
+      href: https://github.com/kovidgoyal/calibre
+  - calibre-web:
+    - icon: calibre-web
+      href: https://github.com/crocodilestick/Calibre-Web-Automated
+  - homepage:
+    - icon: homepage
+      href: https://github.com/gethomepage/homepage
+  - kometa:
+    - icon: kometa
+      href: https://github.com/Kometa-Team/Kometa
+  - librespeed:
+    - icon: librespeed
+      href: https://github.com/librespeed/speedtest
+  - lidarr:
+    - icon: lidarr
+      href: https://github.com/Lidarr/Lidarr
+  - mariadb:
+    - icon: mariadb
+      href: https://github.com/MariaDB/mariadb-docker
+  - overseerr:
+    - icon: overseerr
+      href: https://github.com/sct/overseerr
+  - pihole:
+    - icon: pi-hole
+      href: https://github.com/pi-hole/pi-hole
+  - plexautolanguages:
+    - icon: plex
+      href: https://github.com/JourneyDocker/Plex-Auto-Languages
+  - portainer:
+    - icon: portainer-dark
+      href: https://github.com/portainer/portainer
+  - postgres:
+    - icon: postgres
+      href: https://hub.docker.com/layers/library/postgres/16-alpine
+  - prowlarr:
+    - icon: prowlarr
+      href: https://github.com/Prowlarr/Prowlarr
+  - quickstart:
+    - icon: kometa
+      href: https://github.com/Kometa-Team/Quickstart
+  - radarr:
+    - icon: radarr
+      href: https://github.com/Radarr/Radarr
+  - recyclarr:
+    - icon: recyclarr
+      href: https://github.com/recyclarr/recyclarr
+  - romm:
+    - icon: romm
+      href: https://github.com/rommapp/romm
+  - sabnzbd:
+    - icon: sabnzbd
+      href: https://github.com/sabnzbd/sabnzbd
+  - shinkro:
+    - icon: shinkro
+      href: https://github.com/varoOP/shinkro
+  - sonarr:
+    - icon: sonarr
+      href: https://github.com/Sonarr/Sonarr
+  - tautulli:
+    - icon: tautulli
+      href: https://github.com/Tautulli/Tautulli
+  - theme-park:
+    - icon: themepark
+      href: https://github.com/themepark-dev/theme.park
+  - wizarr:
+    - icon: wizarr
+      href: https://github.com/wizarrrr/wizarr
+  - wud:
+    - icon: whats-up-docker
+      href: https://github.com/getwud/wud
+
+- LinuxServer:
+  - calibre:
+    - icon: calibre
+      href: https://docs.linuxserver.io/images/docker-calibre
+  - calibre-web:
+    - icon: calibre-web
+      href: https://docs.linuxserver.io/images/docker-calibre-web
+  - kometa:
+    - icon: kometa
+      href: https://docs.linuxserver.io/images/docker-kometa
+  - librespeed:
+    - icon: librespeed
+      href: https://docs.linuxserver.io/images/docker-librespeed
+  - lidarr:
+    - icon: lidarr
+      href: https://docs.linuxserver.io/images/docker-lidarr
+  - mariadb:
+    - icon: mariadb
+      href: https://docs.linuxserver.io/images/docker-mariadb
+  - overseerr:
+    - icon: overseerr
+      href: https://docs.linuxserver.io/images/docker-overseerr
+  - prowlarr:
+    - icon: prowlarr
+      href: https://docs.linuxserver.io/images/docker-prowlarr
+  - radarr:
+    - icon: radarr
+      href: https://docs.linuxserver.io/images/docker-prowlarr
+  - sabnzbd:
+    - icon: sabnzbd
+      href: https://docs.linuxserver.io/images/docker-sabnzbd
+  - socket-proxy:
+    - icon: docker
+      href: https://docs.linuxserver.io/images/docker-socket-proxy
+  - sonarr:
+    - icon: sonarr
+      href: https://docs.linuxserver.io/images/docker-sonarr
+  - tautulli:
+    - icon: tautulli
+      href: https://docs.linuxserver.io/images/docker-tautulli

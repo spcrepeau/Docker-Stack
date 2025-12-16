@@ -52,11 +52,6 @@ layout:
     columns: 6
     tab: Services
     header: false
-  Bookmarks:
-    style: row
-    columns: 4
-    tab: Services
-    header: true
 
   # Tab 2, Recently Added & Download Queues
   Recently Added:
@@ -74,3 +69,20 @@ layout:
     columns: 2
     tab: Download History
     header: false
+
+  # Tab 4, Bookmarks
+  Documentation:
+    style: row
+    columns: 5
+    tab: Bookmarks
+    header: true
+  Github:
+    style: row
+    columns: 5
+    tab: Bookmarks
+    header: true
+  LinuxServer:
+    style: row
+    columns: 5
+    tab: Bookmarks
+    header: true

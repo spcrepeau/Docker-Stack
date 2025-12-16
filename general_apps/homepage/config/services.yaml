@@ -129,7 +129,7 @@
 
 - Server Applications:
   - synology:
-      icon: synology
+      icon: synology-dsm
       # href: {{HOMEPAGE_VAR_NAS_URL}}
       href: "https://nas.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       siteMonitor: {{HOMEPAGE_VAR_NAS_URL}}

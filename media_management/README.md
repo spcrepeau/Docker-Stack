@@ -54,7 +54,7 @@
 ### Links
 
 * Documentation: <https://recyclarr.dev/wiki/>
-* GitHib: <https://github.com/recyclarr/recyclarr>
+* GitHub: <https://github.com/recyclarr/recyclarr>
 
 ### Notes
 
