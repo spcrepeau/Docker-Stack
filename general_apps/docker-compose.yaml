@@ -74,7 +74,7 @@ services:
       HOMEPAGE_VAR_WIZARR_URL: "http://${HOST_DSM_HOSTNAME}:${WIZARR_PORT_5690}"
     networks:
       - default
-      - container_management_proxynet
+      - proxynet
     ports:
       - ${HOMEPAGE_PORT_3000}:3000 # Web GUI HTTP
     volumes:
@@ -113,6 +113,28 @@ services:
       wud.display.icon: "mdi:view-dashboard"
       wud.display.name: "homepage"
 
+  homepage-socket-proxy:
+    <<: *default_container
+    image: ghcr.io/linuxserver/socket-proxy:latest
+    container_name: homepage-socket-proxy
+    hostname: socket-proxy
+    environment:
+      TZ: ${TZ}
+      # API access controls (1 to grant, 0 to revoke)
+      CONTAINERS: "1" # Allow listing and managing containers (essential for Portainer)
+      POST: "0" # When set to 0, only GET and HEAD operations are allowed, making API access read-only
+    networks:
+      - proxynet
+    read_only: true
+    tmpfs:
+      - /run
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      <<: *default_labels
+      wud.display.name: "homepage-socket-proxy"
+      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, manually clean and rebuild project
+
   librespeed:
     <<: *default_container
     image: ghcr.io/linuxserver/librespeed:latest
@@ -149,8 +171,8 @@ services:
 
 networks:
   default:
-  container_management_proxynet:
-    external: true
+  proxynet:
+    internal: true
 
 secrets:
   # homepage common

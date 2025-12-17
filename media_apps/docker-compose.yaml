@@ -53,7 +53,9 @@ services:
     image: ghcr.io/rommapp/romm:latest
     container_name: romm
     depends_on:
-      - romm-db
+      romm-db:
+        condition: service_started
+        restart: true
     environment:
       TZ: ${TZ}
       # database

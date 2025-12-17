@@ -1,7 +1,13 @@
 name: network_apps
 
 x-default_container: &default_container
+  networks: ["default"]
+  security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
+# x-default_environment: &default_environment
+#   PGID: ${DOCKER_GID}
+#   PUID: ${DOCKER_UID}
+#   TZ: ${TZ}
 x-default_labels: &default_labels
   wud.tag.include: "^latest$"
   wud.watch.digest: "true"
@@ -19,9 +25,7 @@ services:
       interval: 30s
       retries: 5
       start_period: 20s
-      test:
-        - CMD-SHELL
-        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       timeout: 5s
     networks:
       - authentiknet
@@ -40,6 +44,7 @@ services:
     depends_on:
       authentik_database:
         condition: service_healthy
+        restart: true
     environment:
       AUTHENTIK_POSTGRESQL__HOST: authentik_database
       AUTHENTIK_POSTGRESQL__NAME: authentik
@@ -70,29 +75,24 @@ services:
     depends_on:
       authentik_database:
         condition: service_healthy
+        restart: true
     environment:
       AUTHENTIK_POSTGRESQL__HOST: authentik_database
       AUTHENTIK_POSTGRESQL__NAME: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePassword
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_SecretKey
-      # SMTP Host Emails are sent to
       AUTHENTIK_EMAIL__HOST: smtp.gmail.com
       AUTHENTIK_EMAIL__PORT: 587
-      # Optionally authenticate (don't add quotation marks to your password)
       AUTHENTIK_EMAIL__USERNAME: file:///run/secrets/common_EmailAddress
       AUTHENTIK_EMAIL__PASSWORD: file:///run/secrets/authentik_SMTPPassword
-      # Use StartTLS
       AUTHENTIK_EMAIL__USE_TLS: true
-      # Use SSL
       AUTHENTIK_EMAIL__USE_SSL: false
       AUTHENTIK_EMAIL__TIMEOUT: 10
-      # Email address authentik will send from, should have a correct @domain
       AUTHENTIK_EMAIL__FROM: file:///run/secrets/common_EmailAddress
     networks:
       - default
       - authentiknet
-      - container_management_proxynet
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./authentik/media:/media
@@ -117,8 +117,6 @@ services:
       TZ: ${TZ}
       WEBPASSWORD_FILE: /run/secrets/pihole_WebServerAPIPassword
       FTLCONF_dns_listeningMode: all
-    networks:
-      - default
     ports:
       - 53:53/tcp # DNS
       - 53:53/udp # DNS
@@ -126,6 +124,7 @@ services:
       - ${PIHOLE_PORT_443}:443 # Web GUI HTTPS
     volumes:
       - ./pihole/etc-pihole:/etc/pihole
+    security_opt: ["no-new-privileges:false"]
     secrets:
       - pihole_WebServerAPIPassword
     labels:
@@ -137,8 +136,6 @@ networks:
   default:
   authentiknet:
     internal: true
-  container_management_proxynet:
-    external: true
 
 secrets:
   common_EmailAddress:

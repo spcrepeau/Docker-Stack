@@ -17,8 +17,6 @@ services:
     <<: *default_container
     image: ghcr.io/linuxserver/lidarr:latest
     container_name: lidarr
-    depends_on:
-      - prowlarr
     environment:
       <<: *default_environment
       DOCKER_MODS: ghcr.io/themepark-dev/theme.park:lidarr
@@ -39,11 +37,6 @@ services:
     <<: *default_container
     image: ghcr.io/linuxserver/overseerr:latest
     container_name: overseerr
-    depends_on:
-      - radarr
-      - radarr-4K
-      - sonarr
-      - sonarr-anime
     environment:
       <<: *default_environment
     ports:
@@ -59,8 +52,6 @@ services:
     <<: *default_container
     image: ghcr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
-    depends_on:
-      - sabnzbd
     environment:
       <<: *default_environment
       DOCKER_MODS: ghcr.io/themepark-dev/theme.park:prowlarr
@@ -78,8 +69,6 @@ services:
     <<: *default_container
     image: ghcr.io/linuxserver/radarr:latest
     container_name: radarr
-    depends_on:
-      - prowlarr
     environment:
       <<: *default_environment
       DOCKER_MODS: ghcr.io/themepark-dev/theme.park:radarr
@@ -100,8 +89,6 @@ services:
     <<: *default_container
     image: ghcr.io/linuxserver/radarr:latest
     container_name: radarr-4K
-    depends_on:
-      - prowlarr
     environment:
       <<: *default_environment
       DOCKER_MODS: ghcr.io/themepark-dev/theme.park:radarr
@@ -161,8 +148,6 @@ services:
     <<: *default_container
     image: ghcr.io/linuxserver/sonarr:latest
     container_name: sonarr
-    depends_on:
-      - prowlarr
     environment:
       <<: *default_environment
       DOCKER_MODS: ghcr.io/themepark-dev/theme.park:sonarr
@@ -184,8 +169,6 @@ services:
     <<: *default_container
     image: ghcr.io/linuxserver/sonarr:latest
     container_name: sonarr-anime
-    depends_on:
-      - prowlarr
     environment:
       <<: *default_environment
       DOCKER_MODS: ghcr.io/themepark-dev/theme.park:sonarr
