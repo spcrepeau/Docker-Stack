@@ -39,7 +39,7 @@ layout:
     header: false
   Media Applications:
     style: row
-    columns: 4
+    columns: 5
     tab: Services
     header: false
   Misc Applications:

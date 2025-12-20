@@ -206,6 +206,16 @@
         enableUser: true # optional, defaults to false
         showEpisodeNumber: true # optional, defaults to false
         expandOneStreamToTwoRows: false # optional, defaults to true
+  - audiobookshelf:
+      # href: {{HOMEPAGE_VAR_AUDIOBOOKSHELF_URL}}
+      href: "https://audiobookshelf.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      icon: /icons/audiobookshelf_authentik.png
+      server: my-docker
+      container: audiobookshelf
+      widget:
+        type: audiobookshelf # https://gethomepage.dev/widgets/services/audiobookshelf/
+        url: {{HOMEPAGE_VAR_AUDIOBOOKSHELF_URL}}
+        key: {{HOMEPAGE_FILE_AUDIOBOOKSHELF_API}}
   - calibre-web:
       # href: {{HOMEPAGE_VAR_CALIBREWEB_URL}}
       href: "https://calibreweb.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -276,6 +286,11 @@
       description: container status only
       server: my-docker
       container: authentik_worker
+  - homepage-socket-proxy:
+      icon: docker
+      description: container status only
+      server: my-docker
+      container: homepage-socket-proxy
   - kometa:
       icon: kometa
       description: container status only

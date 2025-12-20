@@ -37,6 +37,8 @@ services:
       # general_apps
       HOMEPAGE_VAR_LIBRESPEED_URL: "http://${HOST_DSM_HOSTNAME}:${LIBRESPEED_PORT_80}"
       # media_apps
+      HOMEPAGE_VAR_AUDIOBOOKSHELF_URL: http://${HOST_DSM_HOSTNAME}:${AUDIOBOOKSHELF_PORT_8080}
+      HOMEPAGE_FILE_AUDIOBOOKSHELF_API: /run/secrets/audiobookshelf_API
       HOMEPAGE_VAR_CALIBRE_URL: https://${HOST_DSM_HOSTNAME}:${CALIBRE_PORT_8181}
       HOMEPAGE_VAR_CALIBREWEB_URL: http://${HOST_DSM_HOSTNAME}:${CALIBREWEB_PORT_8083}
       HOMEPAGE_FILE_CALIBREWEB_PASSWORD: /run/secrets/calibre-web_Password
@@ -74,7 +76,7 @@ services:
       HOMEPAGE_VAR_WIZARR_URL: "http://${HOST_DSM_HOSTNAME}:${WIZARR_PORT_5690}"
     networks:
       - default
-      - proxynet
+      - homepage_internal
     ports:
       - ${HOMEPAGE_PORT_3000}:3000 # Web GUI HTTP
     volumes:
@@ -91,6 +93,7 @@ services:
       - portainer_API
       - wud_Password
       # media_apps
+      - audiobookshelf_API
       - calibre-web_Password
       # media_management
       - lidarr_API
@@ -122,9 +125,8 @@ services:
       TZ: ${TZ}
       # API access controls (1 to grant, 0 to revoke)
       CONTAINERS: "1" # Allow listing and managing containers (essential for Portainer)
-      POST: "0" # When set to 0, only GET and HEAD operations are allowed, making API access read-only
     networks:
-      - proxynet
+      - homepage_internal
     read_only: true
     tmpfs:
       - /run
@@ -171,7 +173,7 @@ services:
 
 networks:
   default:
-  proxynet:
+  homepage_internal:
     internal: true
 
 secrets:
@@ -189,6 +191,8 @@ secrets:
   wud_Password:
     file: ${SECRETS_DIR}/wud_Password.txt
   # homepage media_apps
+  audiobookshelf_API:
+    file: ${SECRETS_DIR}/audiobookshelf_API.txt
   calibre-web_Password:
     file: ${SECRETS_DIR}/calibre-web_Password.txt
   # homepage media_management

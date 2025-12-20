@@ -10,15 +10,22 @@
 
 ## Projects
 
+* [access_management](https://github.com/spcrepeau/Docker-Stack/tree/main/access_management)
+  * authentik_database (postgres)
+  * authentik_server
+  * authentik_worker
+  * wizarr
 * [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
   * portainer
   * socket-proxy
   * wud/whatsupdocker
 * [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
   * homepage
+  * homepage-socket-proxy
   * librespeed
   * theme-park
 * [media_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/media_apps)
+  * audiobookshelf
   * calibre
   * calibre-web
   * romm
@@ -34,9 +41,6 @@
   * sonarr
   * sonarr-anime (sonarr)
 * [network_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/network_apps)
-  * authentik_database (postgres)
-  * authentik_server
-  * authentik_worker
   * pihole
 * [plex_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/plex_apps)
   * agregarr
@@ -45,7 +49,6 @@
   * quickstart
   * shinkro
   * tautulli
-  * wizarr
 
 ## VSCode Extensions
 

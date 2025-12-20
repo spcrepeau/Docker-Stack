@@ -15,6 +15,7 @@
 
 ### Notes
 
+* Uses PUID and PGID environment variables to run rootless.
 * The KOMETA_PLEXURL value should be in the <https://#-#-#-#.##########.plex.direct:32400> format.
 * Follow the kometa wiki for configuring any other connections.
 
@@ -38,6 +39,10 @@
 
 * GitHub: <https://github.com/Kometa-Team/Quickstart/>
 
+### Notes
+
+* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
+
 ## shinkro
 
 ### Links
@@ -47,6 +52,7 @@
 
 ### Notes
 
+* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
 * Setup reverse proxy for this app.
 
 ## tautulli
@@ -58,18 +64,7 @@
 
 ### Notes
 
+* Uses PUID and PGID environment variables to run rootless.
 * Setup reverse proxy for this app if you're using remote apps like nzb360.
 * Uses Plex SSO.
 * To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en>
-
-## wizarr
-
-### Links
-
-* Documentation: <https://docs.wizarr.dev/>
-* GitHub: <https://github.com/wizarrrr/wizarr/>
-
-### Notes
-
-* Setup reverse proxy for this app, but point to the authentik port instead. <https://docs.wizarr.dev/using-wizarr/single-sign-on-sso#authentik-other>
-* In the authentik provider, edit the unauthenticated paths to include the regex exceptions in the above URL. Remove the dash and quotes from each line.

@@ -113,9 +113,10 @@ services:
     image: kometateam/quickstart:latest
     container_name: quickstart
     environment:
-      <<: *default_environment
+      TZ: ${TZ}
     ports:
       - ${QUICKSTART_PORT_7171}:7171 # Web GUI HTTP
+    user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./quickstart:/config
     labels:
@@ -153,22 +154,6 @@ services:
       <<: *default_labels
       wud.display.icon: "mdi:plex"
       wud.display.name: "quickstart"
-
-  wizarr:
-    <<: *default_container
-    image: ghcr.io/wizarrrr/wizarr:latest
-    container_name: wizarr
-    environment:
-      <<: *default_environment
-      DISABLE_BUILTIN_AUTH: true
-    ports:
-      - ${WIZARR_PORT_5690}:5690 # Web GUI HTTP
-    volumes:
-      - ./wizarr/database:/data/database
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:plex"
-      wud.display.name: "wizarr"
 
 networks:
   default:

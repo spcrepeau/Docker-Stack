@@ -13,99 +13,6 @@ x-default_labels: &default_labels
   wud.watch.digest: "true"
 
 services:
-  authentik_database:
-    <<: *default_container
-    image: postgres:16-alpine
-    container_name: authentik_database
-    environment:
-      POSTGRES_DB: authentik
-      POSTGRES_PASSWORD: file:///run/secrets/authentik_DatabasePassword
-      POSTGRES_USER: authentik
-    healthcheck:
-      interval: 30s
-      retries: 5
-      start_period: 20s
-      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
-      timeout: 5s
-    networks:
-      - authentiknet
-    volumes:
-      - ./authentik/database:/var/lib/postgresql/data
-    secrets:
-      - authentik_DatabasePassword
-    labels:
-      wud.watch: false
-
-  authentik_server:
-    <<: *default_container
-    image: ghcr.io/goauthentik/server:2025.10.2
-    container_name: authentik_server
-    command: server
-    depends_on:
-      authentik_database:
-        condition: service_healthy
-        restart: true
-    environment:
-      AUTHENTIK_POSTGRESQL__HOST: authentik_database
-      AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePassword
-      AUTHENTIK_POSTGRESQL__USER: authentik
-      AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_SecretKey
-    networks:
-      - default
-      - authentiknet
-    ports:
-      - ${AUTHENTIK_PORT_9000}:9000 # Web GUI HTTP
-      - ${AUTHENTIK_PORT_9443}:9443 # Web GUI HTTPS
-    user: ${DOCKER_UID}:${DOCKER_GID}
-    volumes:
-      - ./authentik/media:/media
-      - ./authentik/custom-templates:/templates
-    secrets:
-      - authentik_DatabasePassword
-      - authentik_SecretKey
-    labels:
-      wud.watch: false
-
-  authentik_worker:
-    <<: *default_container
-    image: ghcr.io/goauthentik/server:2025.10.2
-    container_name: authentik_worker
-    command: worker
-    depends_on:
-      authentik_database:
-        condition: service_healthy
-        restart: true
-    environment:
-      AUTHENTIK_POSTGRESQL__HOST: authentik_database
-      AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePassword
-      AUTHENTIK_POSTGRESQL__USER: authentik
-      AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_SecretKey
-      AUTHENTIK_EMAIL__HOST: smtp.gmail.com
-      AUTHENTIK_EMAIL__PORT: 587
-      AUTHENTIK_EMAIL__USERNAME: file:///run/secrets/common_EmailAddress
-      AUTHENTIK_EMAIL__PASSWORD: file:///run/secrets/authentik_SMTPPassword
-      AUTHENTIK_EMAIL__USE_TLS: true
-      AUTHENTIK_EMAIL__USE_SSL: false
-      AUTHENTIK_EMAIL__TIMEOUT: 10
-      AUTHENTIK_EMAIL__FROM: file:///run/secrets/common_EmailAddress
-    networks:
-      - default
-      - authentiknet
-    user: ${DOCKER_UID}:${DOCKER_GID}
-    volumes:
-      - ./authentik/media:/media
-      - ./authentik/certs:/certs
-      - ./authentik/custom-templates:/templates
-    secrets:
-      - common_EmailAddress
-      - authentik_DatabasePassword
-      - authentik_SMTPPassword
-      - authentik_SecretKey
-    labels:
-      wud.watch: false
-
   pihole:
     <<: *default_container
     image: ghcr.io/pi-hole/pihole:latest
@@ -134,17 +41,7 @@ services:
 
 networks:
   default:
-  authentiknet:
-    internal: true
 
 secrets:
-  common_EmailAddress:
-    file: ${SECRETS_DIR}/common_EmailAddress.txt
-  authentik_DatabasePassword:
-    file: ${SECRETS_DIR}/authentik_DatabasePassword.txt
-  authentik_SMTPPassword:
-    file: ${SECRETS_DIR}/authentik_SMTPPassword.txt
-  authentik_SecretKey:
-    file: ${SECRETS_DIR}/authentik_SecretKey.txt
   pihole_WebServerAPIPassword:
     file: ${SECRETS_DIR}/pihole_WebServerAPIPassword.txt

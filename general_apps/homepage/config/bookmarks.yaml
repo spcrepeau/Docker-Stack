@@ -6,6 +6,9 @@
   - spcrepeau Docker-Stack:
     - icon: github-light
       href: https://github.com/spcrepeau/Docker-Stack
+  - audiobookshelf:
+    - icon: audiobookshelf
+      href: https://www.audiobookshelf.org
   - authentik:
     - icon: authentik
       href: https://docs.goauthentik.io
@@ -68,6 +71,9 @@
   - agregarr:
     - icon: agregarr
       href: https://github.com/agregarr/agregarr
+  - audiobookshelf:
+    - icon: audiobookshelf
+      href: https://github.com/advplyr/audiobookshelf
   - authentik:
     - icon: authentik
       href: https://github.com/goauthentik/authentik

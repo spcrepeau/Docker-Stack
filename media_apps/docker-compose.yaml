@@ -13,6 +13,26 @@ x-default_labels: &default_labels
   wud.watch.digest: "true"
 
 services:
+  audiobookshelf:
+    <<: *default_container
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    environment:
+      TZ: ${TZ}
+      PORT: "8080" # Leaving port at default value 80 causes an error when running as non-root user
+    ports:
+      - ${AUDIOBOOKSHELF_PORT_8080}:8080 # Web GUI HTTP
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./audiobookshelf/config:/config
+      - ./audiobookshelf/metadata:/metadata
+      - ${DATA_DIR}/media/books:/audiobooks
+      - ${DATA_DIR}/media/podcasts:/podcasts
+    labels:
+      <<: *default_labels
+      wud.display.icon: "si:audiobookshelf"
+      wud.display.name: "audiobookshelf"
+
   calibre:
     <<: *default_container
     image: ghcr.io/linuxserver/calibre:latest
@@ -78,7 +98,7 @@ services:
       STEAMGRIDDB_API_KEY_FILE: /run/secrets/external_SteamGrimDBAPI
     networks:
       - default
-      - rommnet
+      - romm_internal
     ports:
       - ${ROMM_PORT_8080}:8080 # Web GUI HTTP
     secrets:
@@ -112,7 +132,7 @@ services:
       MYSQL_USER: romm-user
       MYSQL_PASSWORD_FILE: /run/secrets/romm-db_MySQLPassword
     networks:
-      - rommnet
+      - romm_internal
     ports:
       - ${ROMMDB_PORT_3306}:3306 # DB Connection
     secrets:
@@ -126,7 +146,7 @@ services:
 
 networks:
   default:
-  rommnet:
+  romm_internal:
     internal: true
 
 secrets:
