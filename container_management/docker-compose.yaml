@@ -84,6 +84,9 @@ services:
       # Docker Triggers https://getwud.github.io/wud/#/configuration/triggers/docker/
       WUD_TRIGGER_DOCKER_UPDATE_PRUNE: true
       WUD_TRIGGER_DOCKER_DOWNLOAD_DRYRUN: true # Downloads new images, needed for socket-proxy and wud
+      # Gotify Triggers https://getwud.github.io/wud/#/configuration/triggers/gotify/
+      WUD_TRIGGER_GOTIFY_LOCAL_URL: "https://gotify.${HOST_DSM_PUBLIC_DNS_SUFFIX}"
+      WUD_TRIGGER_GOTIFY_LOCAL_TOKEN__FILE: /run/secrets/gotify_wudToken
       # SMTP Triggers https://getwud.github.io/wud/#/configuration/triggers/smtp/
       WUD_TRIGGER_SMTP_GMAIL_HOST: "smtp.gmail.com"
       WUD_TRIGGER_SMTP_GMAIL_PORT: "465"
@@ -107,6 +110,7 @@ services:
       - wud_TriggerSMTPPassword
       - authentik_WUDClientID
       - authentik_WUDClientSecret
+      - gotify_wudToken
     labels:
       <<: *default_labels
       wud.display.name: "wud"
@@ -130,3 +134,5 @@ secrets:
     file: ${SECRETS_DIR}/authentik_WUDClientID.txt
   authentik_WUDClientSecret:
     file: ${SECRETS_DIR}/authentik_WUDClientSecret.txt
+  gotify_wudToken:
+    file: ${SECRETS_DIR}/gotify_wudToken.txt

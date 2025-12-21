@@ -158,7 +158,7 @@
       widget:
         type: gotify
         url: {{HOMEPAGE_VAR_GOTIFY_URL}}
-        key: {{HOMEPAGE_FILE_GOTIFY_TOKEN}}
+        key: {{HOMEPAGE_FILE_GOTIFY_HOMEPAGE_TOKEN}}
   - portainer:
       # href: {{HOMEPAGE_VAR_PORTAINER_URL}}
       href: "https://portainer.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
