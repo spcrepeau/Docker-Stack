@@ -1,5 +1,17 @@
 # general_apps
 
+## gotify
+
+### Links
+
+* Documentation: <https://gotify.net/>
+* GitHub: <https://github.com/gotify/server>
+
+### Notes
+
+* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
+* Setup reverse proxy for this app. Also add the default websocket fields.
+
 ## homepage
 
 ### Links

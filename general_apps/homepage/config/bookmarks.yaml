@@ -6,12 +6,18 @@
   - spcrepeau Docker-Stack:
     - icon: github-light
       href: https://github.com/spcrepeau/Docker-Stack
+  - audiobookrequest:
+    - icon: /icons/audiobookrequest.png
+      href: https://markbeep.github.io/AudioBookRequest
   - audiobookshelf:
     - icon: audiobookshelf
       href: https://www.audiobookshelf.org
   - authentik:
     - icon: authentik
       href: https://docs.goauthentik.io
+  - gotify:
+    - icon: gotify
+      href: https://gotify.net
   - homepage:
     - icon: homepage
       href: https://gethomepage.dev
@@ -71,6 +77,9 @@
   - agregarr:
     - icon: agregarr
       href: https://github.com/agregarr/agregarr
+  - audiobookrequest:
+    - icon: /icons/audiobookrequest.png
+      href: https://github.com/markbeep/AudioBookRequest
   - audiobookshelf:
     - icon: audiobookshelf
       href: https://github.com/advplyr/audiobookshelf
@@ -83,6 +92,9 @@
   - calibre-web:
     - icon: calibre-web
       href: https://github.com/crocodilestick/Calibre-Web-Automated
+  - gotify:
+    - icon: gotify
+      href: https://github.com/gotify/server
   - homepage:
     - icon: homepage
       href: https://github.com/gethomepage/homepage

@@ -1,5 +1,18 @@
 # media_management
 
+## audiobookrequest
+
+### Links
+
+* Documentation: <https://markbeep.github.io/AudioBookRequest/>
+* GitHub: <https://github.com/markbeep/AudioBookRequest>
+
+### Notes
+
+* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
+* Setup reverse proxy for this app.
+* To setup OAuth with authentik: <https://markbeep.github.io/AudioBookRequest/docs/tutorials/oidc/>
+
 ## lidarr
 
 ### Links

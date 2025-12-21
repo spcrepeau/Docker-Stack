@@ -5,7 +5,7 @@
 ### Links
 
 * Documentation: <https://www.audiobookshelf.org/>
-* Documentation: <https://github.com/advplyr/audiobookshelf>
+* GitHub: <https://github.com/advplyr/audiobookshelf>
 
 ### Notes
 

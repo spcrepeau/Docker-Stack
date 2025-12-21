@@ -34,7 +34,7 @@ layout:
       header: false
   Server Applications:
     style: row
-    columns: 5
+    columns: 6
     tab: Services
     header: false
   Media Applications:
@@ -44,7 +44,7 @@ layout:
     header: false
   Misc Applications:
     style: row
-    columns: 6
+    columns: 7
     tab: Services
     header: false
   Service Applications:

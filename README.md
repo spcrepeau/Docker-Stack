@@ -6,7 +6,9 @@
 
 ## To-Do's
 
-* romm authentik SSO broken.
+* romm authentik SSO broken. Temp fix: <https://github.com/rommapp/romm/issues/2626>
+* Waiting on OIDC/Proxy login for gotify
+* Waiting on chaptarr, the readarr replacement to release.
 
 ## Projects
 
@@ -20,6 +22,7 @@
   * socket-proxy
   * wud/whatsupdocker
 * [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
+  * gotify
   * homepage
   * homepage-socket-proxy
   * librespeed
@@ -31,6 +34,7 @@
   * romm
   * romm-db (mariadb)
 * [media_management](https://github.com/spcrepeau/Docker-Stack/tree/main/media_management)
+  * audiobookrequest
   * lidarr
   * overseerr
   * prowlarr

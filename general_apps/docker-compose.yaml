@@ -13,6 +13,22 @@ x-default_labels: &default_labels
   wud.watch.digest: "true"
 
 services:
+  gotify:
+    <<: *default_container
+    image: ghcr.io/gotify/server:latest
+    container_name: gotify
+    environment:
+      GOTIFY_SERVER_PORT: "8080"
+    ports:
+      - ${GOTIFY_PORT_8080}:8080
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./gotify:/app/data
+    labels:
+      <<: *default_labels
+      wud.display.icon: "mdi:bell"
+      wud.display.name: "gotify"
+
   homepage:
     <<: *default_container
     image: ghcr.io/gethomepage/homepage:latest
@@ -29,12 +45,18 @@ services:
       HOMEPAGE_FILE_SYNOLOGY_PASSWORD: /run/secrets/synology_Password
       # bookmarks
       HOMEPAGE_VAR_NAS_URL: "https://${HOST_DSM_HOSTNAME}:${HOST_DSM_HTTPS_PORT}"
+      # access_management
+      HOMEPAGE_VAR_AUTHENTIK_URL: https://${HOST_DSM_HOSTNAME}:${AUTHENTIK_PORT_9443}
+      HOMEPAGE_FILE_AUTHENTIK_API: /run/secrets/authentik_API
+      HOMEPAGE_VAR_WIZARR_URL: "http://${HOST_DSM_HOSTNAME}:${WIZARR_PORT_5690}"
       # container_management
       HOMEPAGE_VAR_PORTAINER_URL: "http://${HOST_DSM_HOSTNAME}:${PORTAINER_PORT_9000}"
       HOMEPAGE_FILE_PORTAINER_API: /run/secrets/portainer_API
       HOMEPAGE_VAR_WUD_URL: "http://${HOST_DSM_HOSTNAME}:${WUD_PORT_3000}"
       HOMEPAGE_FILE_WUD_PASSWORD: /run/secrets/wud_Password
       # general_apps
+      HOMEPAGE_VAT_GOTIFY_URL: "http://${HOST_DSM_HOSTNAME}:${GOTIFY_PORT_8080}"
+      HOMEPAGE_FILE_GOTIFY_TOKEN: /run/secrets/gotify_Token
       HOMEPAGE_VAR_LIBRESPEED_URL: "http://${HOST_DSM_HOSTNAME}:${LIBRESPEED_PORT_80}"
       # media_apps
       HOMEPAGE_VAR_AUDIOBOOKSHELF_URL: http://${HOST_DSM_HOSTNAME}:${AUDIOBOOKSHELF_PORT_8080}
@@ -44,6 +66,7 @@ services:
       HOMEPAGE_FILE_CALIBREWEB_PASSWORD: /run/secrets/calibre-web_Password
       HOMEPAGE_VAR_ROMM_URL: http://${HOST_DSM_HOSTNAME}:${ROMM_PORT_8080}
       # media_management
+      HOMEPAGE_VAR_AUDIOBOOKREQUEST_URL: http://${HOST_DSM_HOSTNAME}:${AUDIOBOOKREQUEST_PORT_8000}
       HOMEPAGE_VAR_LIDARR_URL: http://${HOST_DSM_HOSTNAME}:${LIDARR_PORT_8686}
       HOMEPAGE_FILE_LIDARR_API: /run/secrets/lidarr_API
       HOMEPAGE_VAR_PROWLARR_URL: http://${HOST_DSM_HOSTNAME}:${PROWLARR_PORT_9696}
@@ -61,8 +84,6 @@ services:
       HOMEPAGE_VAR_SONARRANIME_URL: http://${HOST_DSM_HOSTNAME}:${SONARRANIME_PORT_8989}
       HOMEPAGE_FILE_SONARRANIME_API: /run/secrets/sonar-anime_API
       # network_apps
-      HOMEPAGE_VAR_AUTHENTIK_URL: https://${HOST_DSM_HOSTNAME}:${AUTHENTIK_PORT_9443}
-      HOMEPAGE_FILE_AUTHENTIK_API: /run/secrets/authentik_API
       HOMEPAGE_VAR_PIHOLE_URL: https://${HOST_DSM_HOSTNAME}:${PIHOLE_PORT_443}
       HOMEPAGE_FILE_PIHOLE_API: /run/secrets/pihole_API
       # plex_apps
@@ -73,7 +94,6 @@ services:
       HOMEPAGE_VAR_SHINKRO_URL: "http://${HOST_DSM_HOSTNAME}:${SHINKRO_PORT_7011}"
       HOMEPAGE_VAR_TAUTULLI_URL: "http://${HOST_DSM_HOSTNAME}:${TAUTULLI_PORT_8181}"
       HOMEPAGE_FILE_TAUTULLI_API: /run/secrets/tautulli_API
-      HOMEPAGE_VAR_WIZARR_URL: "http://${HOST_DSM_HOSTNAME}:${WIZARR_PORT_5690}"
     networks:
       - default
       - homepage_internal
@@ -89,6 +109,10 @@ services:
       # synology
       - synology_Username
       - synology_Password
+      # access_management
+      - authentik_API
+      # general_apps
+      - gotify_Token
       # container_management
       - portainer_API
       - wud_Password
@@ -105,7 +129,6 @@ services:
       - sonarr_API
       - sonar-anime_API
       # network_apps
-      - authentik_API
       - pihole_API
       # plex_apps
       - plex_URL
@@ -185,6 +208,12 @@ secrets:
     file: ${SECRETS_DIR}/synology_Username.txt
   synology_Password:
     file: ${SECRETS_DIR}/synology_Password.txt
+  # homepage access_management
+  authentik_API:
+    file: ${SECRETS_DIR}/authentik_API.txt
+  # homepage general_apps
+  gotify_Token:
+    file: ${SECRETS_DIR}/gotify_Token.txt
   # homepage container_management
   portainer_API:
     file: ${SECRETS_DIR}/portainer_API.txt
@@ -213,8 +242,6 @@ secrets:
   sonar-anime_API:
     file: ${SECRETS_DIR}/sonar-anime_API.txt
   # homepage network_apps
-  authentik_API:
-    file: ${SECRETS_DIR}/authentik_API.txt
   pihole_API:
     file: ${SECRETS_DIR}/pihole_API.txt
   # homepage plex_apps

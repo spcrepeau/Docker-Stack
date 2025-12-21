@@ -149,6 +149,16 @@
         url: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
         key: {{HOMEPAGE_FILE_AUTHENTIK_API}}
         version: 2 # optional, default is 1
+  - gotify:
+      # href: {{HOMEPAGE_VAR_GOTIFY_URL}}
+      href: "https://gotify.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      icon: gotify
+      server: my-docker
+      container: gotify
+      widget:
+        type: gotify
+        url: {{HOMEPAGE_VAR_GOTIFY_URL}}
+        key: {{HOMEPAGE_FILE_GOTIFY_TOKEN}}
   - portainer:
       # href: {{HOMEPAGE_VAR_PORTAINER_URL}}
       href: "https://portainer.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -244,6 +254,12 @@
       icon: /icons/agregarr_plex.png
       server: my-docker
       container: agregarr
+  - audiobookrequest:
+      # href: {{HOMEPAGE_VAR_AUDIOBOOKREQUEST_URL}}
+      href: "https://audiobookrequest.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      icon: /icons/audiobookrequest_authentik.png
+      server: my-docker
+      container: audiobookrequest
   - calibre:
       href: {{HOMEPAGE_VAR_CALIBRE_URL}}
       description: local access only

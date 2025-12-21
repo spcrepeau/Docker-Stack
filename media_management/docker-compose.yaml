@@ -13,6 +13,22 @@ x-default_labels: &default_labels
   wud.watch.digest: "true"
 
 services:
+  audiobookrequest:
+    <<: *default_container
+    image: markbeep/audiobookrequest:latest
+    container_name: audiobookrequest
+    environment:
+      ABR_APP__FORCE_LOGIN_TYPE: oidc
+    ports:
+      - ${AUDIOBOOKREQUEST_PORT_8000}:8000 # Web GUI HTTP
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./audiobookrequest:/config
+    labels:
+      <<: *default_labels
+      wud.display.icon: "mdi:audiobookshelf"
+      wud.display.name: "audiobookrequest"
+
   lidarr:
     <<: *default_container
     image: ghcr.io/linuxserver/lidarr:latest
