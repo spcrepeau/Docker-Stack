@@ -122,7 +122,7 @@ recyclarr sync
 
 * Rootless: Uses PUID and PGID environment variables.
 * Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>.
-* Notifications: None at this time.
+* Notifications: Setup gotify.
 * Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
 
 ## custom format files

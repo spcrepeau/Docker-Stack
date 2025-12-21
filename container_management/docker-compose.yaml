@@ -88,6 +88,7 @@ services:
       WUD_TRIGGER_GOTIFY_LOCAL_URL: "https://gotify.${HOST_DSM_PUBLIC_DNS_SUFFIX}"
       WUD_TRIGGER_GOTIFY_LOCAL_TOKEN__FILE: /run/secrets/gotify_wudToken
       # SMTP Triggers https://getwud.github.io/wud/#/configuration/triggers/smtp/
+      WUD_TRIGGER_SMTP_GMAIL_AUTO: false # setting to false and leaving gotify as true
       WUD_TRIGGER_SMTP_GMAIL_HOST: "smtp.gmail.com"
       WUD_TRIGGER_SMTP_GMAIL_PORT: "465"
       WUD_TRIGGER_SMTP_GMAIL_USER__FILE: /run/secrets/common_EmailAddress
