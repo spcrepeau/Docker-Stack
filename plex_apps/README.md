@@ -6,6 +6,13 @@
 
 * GitHub: <https://github.com/agregarr/agregarr>
 
+### Notes
+
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: None.
+* Notifications: N/A
+* Authentication: Plex SSO.
+
 ## kometa
 
 ### Links
@@ -15,7 +22,10 @@
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: N/A
+* Notifications: N/A
+* Authentication: N/A
 * The KOMETA_PLEXURL value should be in the <https://#-#-#-#.##########.plex.direct:32400> format.
 * Follow the kometa wiki for configuring any other connections.
 
@@ -31,7 +41,10 @@
 
 ### Notes
 
-* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: N/A
+* Notifications: N/A
+* Authentication: N/A
 
 ## quickstart
 
@@ -41,7 +54,10 @@
 
 ### Notes
 
-* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: N/A
+* Notifications: N/A
+* Authentication: N/A
 
 ## shinkro
 
@@ -52,8 +68,10 @@
 
 ### Notes
 
-* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
-* Setup reverse proxy for this app.
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: Setup reverse proxy for this app in DSN.
+* Notifications: None at this time.
+* Authentication: Built-in.
 
 ## tautulli
 
@@ -64,7 +82,7 @@
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
-* Setup reverse proxy for this app if you're using remote apps like nzb360.
-* Uses Plex SSO.
-* To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en>
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360.
+* Notifications: Setup gotify. To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en>
+* Authentication: Plex SSO.

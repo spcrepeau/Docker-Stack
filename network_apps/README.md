@@ -9,4 +9,7 @@
 
 ### Notes
 
-* Requires use of PIHOLE_UID and PIHOLE_GID environment variables and does not support PUID and PGID environment variables.
+* Rootless: Requires use of PIHOLE_UID and PIHOLE_GID environment variables.
+* Reverse Proxy: None.
+* Notifications: None at this time.
+* Authentication: Built-in.

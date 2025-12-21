@@ -9,9 +9,10 @@
 
 ### Notes
 
-* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
-* Setup reverse proxy for this app.
-* To setup OAuth with authentik: <https://markbeep.github.io/AudioBookRequest/docs/tutorials/oidc/>
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: Setup reverse proxy for this app.
+* Notifications: Setup gotify.
+* Authentication: To setup OAuth with authentik: <https://markbeep.github.io/AudioBookRequest/docs/tutorials/oidc/>
 
 ## lidarr
 
@@ -22,9 +23,10 @@
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
-* Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>
-* In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>.
+* Notifications: None at this time.
+* Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
 
 ## overseerr
 
@@ -35,10 +37,10 @@
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
-* Setup reverse proxy for this app.
-* Uses Plex SSO.
-* To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en>
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: Setup reverse proxy for this app.
+* Notifications: Setup gotify. To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en>
+* Authentication: Plex SSO.
 
 ## prowlarr
 
@@ -49,9 +51,10 @@
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
-* Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>
-* In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>.
+* Notifications: None at this time.
+* Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
 
 ## radarr & radarr-4K
 
@@ -62,9 +65,10 @@
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
-* Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>
-* In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>.
+* Notifications: Setup gotify.
+* Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
 
 ## recyclarr
 
@@ -75,7 +79,11 @@
 
 ### Notes
 
-* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: N/A
+* Notifications: N/A
+* Authentication: N/A
+
 * Manually run recyclarr sync with these commands:
 
 ```bash
@@ -98,9 +106,10 @@ recyclarr sync
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
-* Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. Disable authentication.
-* In the authentik provider, edit the unauthenticated paths to include the regex ^/api.* to allow nzb360 access to API.
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: * Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. Disable authentication.
+* Notifications: None at this time.
+* Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api.* to allow nzb360 access to API.
 
 ## sonarr & sonarr-anime
 
@@ -111,9 +120,10 @@ recyclarr sync
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
-* Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>
-* In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>.
+* Notifications: None at this time.
+* Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
 
 ## custom format files
 

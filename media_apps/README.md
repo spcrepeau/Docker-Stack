@@ -9,10 +9,10 @@
 
 ### Notes
 
-* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
-* Container will error out if running as non-root user and trying to bind to port 80. Change the default port to anything besides 80 with a PORT variable.
-* Setup reverse proxy for this app. Also add the default websocket fields.
-* To setup OAuth with authentik <https://www.audiobookshelf.org/guides/oidc_authentication/>
+* Rootless: Uses "user: UID:GID". Container will error out if running as non-root user and trying to bind to port 80. Change the default port to anything besides 80 with a PORT variable.
+* Reverse Proxy: Setup reverse proxy for this app. Also add the default websocket fields.
+* Notifications: None at this time.
+* Authentication: To setup OAuth with authentik <https://www.audiobookshelf.org/guides/oidc_authentication/>
   * Subfolder for Redirect URLs: None
   * Match existing users by: Match by username
 
@@ -22,6 +22,13 @@
 
 * LinuxServer: <https://docs.linuxserver.io/images/docker-calibre/>
 
+### Notes
+
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: None.
+* Notifications: N/A
+* Authentication: None
+
 ## calibre-web
 
 ### Links
@@ -30,7 +37,10 @@
 
 ### Notes
 
-* Setup reverse proxy for this app.
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: Setup reverse proxy for this app.
+* Notifications: N/A
+* Authentication: Built-in.
 
 ## romm
 
@@ -41,9 +51,10 @@
 
 ### Notes
 
-* Setup reverse proxy for this app.
-* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
-* To setup OAuth with authentik <https://docs.romm.app/latest/OIDC-Guides/OIDC-Setup-With-Authentik/>
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: Setup reverse proxy for this app.
+* Notifications: None at this time.
+* Authentication: To setup OAuth with authentik <https://docs.romm.app/latest/OIDC-Guides/OIDC-Setup-With-Authentik/>
 
 ## romm-db (MariaDB)
 
@@ -53,4 +64,7 @@
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: N/A
+* Notifications: N/A
+* Authentication: N/A

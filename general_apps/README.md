@@ -9,8 +9,10 @@
 
 ### Notes
 
-* Requires "user: UID:GID" field and does not support PUID and PGID environment variables.
-* Setup reverse proxy for this app. Also add the default websocket fields.
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: Setup reverse proxy for this app in DSM and also add the default websocket fields.
+* Notifications: Connect to mobile app.
+* Authentication: Built-in.
 
 ## homepage
 
@@ -21,9 +23,10 @@
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
-* This application does not have any built-in authentication and we'll use authentik to do so.
-* Setup reverse proxy for this app, but point to the authentik port instead.
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: Setup reverse proxy for this app, but point to the authentik port instead.
+* Notifications: N/A
+* Authentication: This application does not have any built-in authentication and we'll use an authentik proxy provider to do so.
 
 ## homepage-socket-proxy
 
@@ -33,7 +36,10 @@
 
 ### Notes
 
-* Runs as root.
+* Rootless: Runs as root.
+* Reverse Proxy: N/A
+* Notifications: N/A
+* Authentication: N/A
 
 ## librespeed
 
@@ -43,7 +49,10 @@
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: None.
+* Notifications: N/A
+* Authentication: N/A
 
 ## theme-park
 
@@ -54,4 +63,7 @@
 
 ### Notes
 
-* Uses PUID and PGID environment variables to run rootless.
+* Rootless: Uses PUID and PGID environment variables.
+* Reverse Proxy: None.
+* Notifications: N/A
+* Authentication: N/A
