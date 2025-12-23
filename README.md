@@ -9,6 +9,8 @@
 * romm authentik SSO broken. Temp fix: <https://github.com/rommapp/romm/issues/2626>
 * Waiting on OIDC/Proxy login for gotify
 * Waiting on chaptarr, the readarr replacement to release.
+* Remove calibre-web? Is ABS a good replacement>
+* Explore other DNS servers?
 
 ## Projects
 

@@ -12,7 +12,7 @@
           view: agenda # optional - possible values monthly, agenda
           maxEvents: 15 # optional - defaults to 10
           showTime: true # optional - show time for event happening today - defaults to false
-          timezone: America/New_York # optional and only when timezone is not detected properly (slightly slower performance) - force timezone for ical events (if it's the same - no change, if missing or different in ical - will be converted to this timezone)
+          timezone: {{HOMEPAGE_VAR_TZ}} # optional and only when timezone is not detected properly (slightly slower performance) - force timezone for ical events (if it's the same - no change, if missing or different in ical - will be converted to this timezone)
           integrations: # optional
             - type: radarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
               service_group: Download Applications # group name where widget exists
