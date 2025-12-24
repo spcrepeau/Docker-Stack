@@ -2,6 +2,12 @@
 delete_old_custom_formats: false
 replace_existing_custom_formats: true
 custom_formats:
+  ########## Special Editions, scores at 1,000,000 ##########
+  - trash_ids:
+    - 957d0f44b592285f26449575e8b1167e # Special Edition
+    assign_scores_to:
+      - name: 1080p
+        score: 1000000
   ########## Video Sources, scores using 100,000's ##########
   # Bluray (JSON file must be manually imported)
   #   score: 400000
@@ -181,9 +187,9 @@ quality_profiles:
     upgrade:
       allowed: true
       until_quality: 1080p
-      until_score: 431573
+      until_score: 1431573
     min_format_score: 100000
-    min_format_upgrade_score: 1
+    min_upgrade_format_score: 1
     quality_sort: top
     qualities:
       - name: 1080p

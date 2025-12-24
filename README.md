@@ -11,6 +11,7 @@
 * Waiting on chaptarr, the readarr replacement to release.
 * Remove calibre-web? Is ABS a good replacement>
 * Explore other DNS servers?
+* romm-db change?
 
 ## Projects
 

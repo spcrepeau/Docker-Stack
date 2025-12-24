@@ -55,7 +55,7 @@ services:
       HOMEPAGE_VAR_WUD_URL: "http://${HOST_DSM_HOSTNAME}:${WUD_PORT_3000}"
       HOMEPAGE_FILE_WUD_PASSWORD: /run/secrets/wud_Password
       # general_apps
-      HOMEPAGE_VAT_GOTIFY_URL: "http://${HOST_DSM_HOSTNAME}:${GOTIFY_PORT_8080}"
+      HOMEPAGE_VAR_GOTIFY_URL: "http://${HOST_DSM_HOSTNAME}:${GOTIFY_PORT_8080}"
       HOMEPAGE_FILE_GOTIFY_HOMEPAGE_TOKEN: /run/secrets/gotify_homepageToken
       HOMEPAGE_VAR_LIBRESPEED_URL: "http://${HOST_DSM_HOSTNAME}:${LIBRESPEED_PORT_80}"
       # media_apps

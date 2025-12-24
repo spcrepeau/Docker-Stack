@@ -3,6 +3,8 @@ delete_old_custom_formats: false
 replace_existing_custom_formats: true
 custom_formats:
   - trash_ids:
+    ########## Special Editions, scores at 1,000,000 ##########
+    - 957d0f44b592285f26449575e8b1167e # Special Edition
     ########## Video Sources, scores using 100,000's ##########
     # Remux (in radarr-4K)
     # Bluray

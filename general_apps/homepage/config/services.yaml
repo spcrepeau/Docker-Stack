@@ -149,6 +149,7 @@
         url: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
         key: {{HOMEPAGE_FILE_AUTHENTIK_API}}
         version: 2 # optional, default is 1
+        fields: ["loginsLast24H", "failedLoginsLast24H"]
   - gotify:
       # href: {{HOMEPAGE_VAR_GOTIFY_URL}}
       href: "https://gotify.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
