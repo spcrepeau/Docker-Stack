@@ -1,18 +1,23 @@
 name: container_management
 
+############################## ANCHORS SECTION ##############################
 x-default_container: &default_container
   networks: ["default"]
   security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
+
 x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
+
 x-default_labels: &default_labels
   wud.tag.include: "^latest$"
   wud.watch.digest: "true"
 
+############################## SERVICES SECTION ##############################
 services:
+
   portainer:
     <<: *default_container
     image: portainer/portainer-ce:latest
@@ -117,11 +122,13 @@ services:
       wud.display.name: "wud"
       wud.trigger.exclude: "docker.update" # Prevents WUD from updating itself, manually clean and rebuild project
 
+############################## NETWORKS SECTION ##############################
 networks:
   default:
   socket_internal:
     internal: true
 
+############################## SECRETS SECTION ##############################
 secrets:
   common_Username:
     file: ${SECRETS_DIR}/common_Username.txt

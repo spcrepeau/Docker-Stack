@@ -70,7 +70,7 @@
 
 * Rootless: Uses "user: UID:GID".
 * Reverse Proxy: Setup reverse proxy for this app in DSN.
-* Notifications: None at this time.
+* Notifications: Setup gotify.
 * Authentication: Built-in.
 
 ## tautulli

@@ -1,18 +1,23 @@
 name: media_apps
 
+############################## ANCHORS SECTION ##############################
 x-default_container: &default_container
   networks: ["default"]
   security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
+
 x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
+
 x-default_labels: &default_labels
   wud.tag.include: "^latest$"
   wud.watch.digest: "true"
 
+############################## SERVICES SECTION ##############################
 services:
+
   audiobookshelf:
     <<: *default_container
     image: ghcr.io/advplyr/audiobookshelf:latest
@@ -96,12 +101,29 @@ services:
       # metadata providers
       IGDB_CLIENT_ID_FILE: /run/secrets/external_IGDBClientID
       IGDB_CLIENT_SECRET_FILE: /run/secrets/external_IGDBClientSecret
+      # SCREENSCRAPER_USER:
+      # SCREENSCRAPER_PASSWORD:
+      # MOBYGAMES_API_KEY:
       STEAMGRIDDB_API_KEY_FILE: /run/secrets/external_SteamGrimDBAPI
+      # RETROACHIEVEMENTS_API_KEY:
+      # REFRESH_RETROACHIEVEMENTS_CACHE_DAYS:
+      LAUNCHBOX_API_ENABLED: true
+      PLAYMATCH_API_ENABLED: true
+      HASHEOUS_API_ENABLED: true
+      FLASHPOINT_API_ENABLED: true
+      HLTB_API_ENABLED: true
     networks:
       - default
       - romm_internal
     ports:
       - ${ROMM_PORT_8080}:8080 # Web GUI HTTP
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ./romm/assets:/romm/assets
+      - ./romm/config:/romm/config
+      - ./romm/redis-data:/redis-data
+      - ./romm/resources:/romm/resources
+      - ${DATA_DIR}/media/emulation:/romm/library
     secrets:
       - authentik_rommClientID
       - authentik_rommClientSecret
@@ -110,13 +132,6 @@ services:
       - romm_AuthSecretKey
       - external_SteamGrimDBAPI
       - romm-db_MySQLPassword
-    user: ${DOCKER_UID}:${DOCKER_GID}
-    volumes:
-      - ./romm/assets:/romm/assets
-      - ./romm/config:/romm/config
-      - ./romm/redis-data:/redis-data
-      - ./romm/resources:/romm/resources
-      - ${DATA_DIR}/media/emulation:/romm/library
     labels:
       <<: *default_labels
       wud.display.icon: "mdi:controller"
@@ -136,20 +151,22 @@ services:
       - romm_internal
     ports:
       - ${ROMMDB_PORT_3306}:3306 # DB Connection
-    secrets:
-      - romm-db_MySQLPassword
     volumes:
       - ./romm-db:/config
+    secrets:
+      - romm-db_MySQLPassword
     labels:
       <<: *default_labels
       wud.display.icon: "si:mariadb"
       wud.display.name: "romm-db"
 
+############################## NETWORKS SECTION ##############################
 networks:
   default:
   romm_internal:
     internal: true
 
+############################## SECRETS SECTION ##############################
 secrets:
   authentik_rommClientID:
     file: ${SECRETS_DIR}/authentik_rommClientID.txt

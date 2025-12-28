@@ -1,18 +1,23 @@
 name: plex_apps
 
+############################## ANCHORS SECTION ##############################
 x-default_container: &default_container
   networks: ["default"]
   security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
+
 x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
+
 x-default_labels: &default_labels
   wud.tag.include: "^latest$"
   wud.watch.digest: "true"
 
+############################## SERVICES SECTION ##############################
 services:
+
   agregarr:
     <<: *default_container
     image: ghcr.io/agregarr/agregarr:latest
@@ -26,7 +31,7 @@ services:
       - ./agregarr:/app/config
       # Optional: For Coming Soon feature, mount media matching Radarr/Sonarr paths
       - ${DATA_DIR}/media/movies:/data/movies:ro # radarr
-      - ${DATA_DIR}/media/movies-4K:/data/movies:ro # radarr-4K
+      - ${DATA_DIR}/media/movies-4K:/data/movies-4K:ro # radarr-4K
       - ${DATA_DIR}/media/tv:/data/tv:ro # sonarr
       - ${DATA_DIR}/media/tv-kids:/data/tv-kids:ro # sonarr
       - ${DATA_DIR}/media/anime:/data/anime:ro # sonarr-anime
@@ -155,9 +160,11 @@ services:
       wud.display.icon: "mdi:plex"
       wud.display.name: "quickstart"
 
+############################## NETWORKS SECTION ##############################
 networks:
   default:
 
+############################## SECRETS SECTION ##############################
 secrets:
   common_Username:
     file: ${SECRETS_DIR}/common_Username.txt

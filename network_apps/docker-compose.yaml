@@ -1,18 +1,23 @@
 name: network_apps
 
+############################## ANCHORS SECTION ##############################
 x-default_container: &default_container
   networks: ["default"]
   security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
+
 # x-default_environment: &default_environment
 #   PGID: ${DOCKER_GID}
 #   PUID: ${DOCKER_UID}
 #   TZ: ${TZ}
+
 x-default_labels: &default_labels
   wud.tag.include: "^latest$"
   wud.watch.digest: "true"
 
+############################## SERVICES SECTION ##############################
 services:
+
   pihole:
     <<: *default_container
     image: ghcr.io/pi-hole/pihole:latest
@@ -39,9 +44,11 @@ services:
       wud.display.icon: "si:pihole"
       wud.display.name: "pihole"
 
+############################## NETWORKS SECTION ##############################
 networks:
   default:
 
+############################## SECRETS SECTION ##############################
 secrets:
   pihole_WebServerAPIPassword:
     file: ${SECRETS_DIR}/pihole_WebServerAPIPassword.txt

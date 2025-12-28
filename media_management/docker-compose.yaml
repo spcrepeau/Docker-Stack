@@ -1,18 +1,23 @@
 name: media_management
 
+############################## ANCHORS SECTION ##############################
 x-default_container: &default_container
   networks: ["default"]
   security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
+
 x-default_environment: &default_environment
   PGID: ${DOCKER_GID}
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
+
 x-default_labels: &default_labels
   wud.tag.include: "^latest$"
   wud.watch.digest: "true"
 
+############################## SERVICES SECTION ##############################
 services:
+
   audiobookrequest:
     <<: *default_container
     image: markbeep/audiobookrequest:latest
@@ -203,9 +208,11 @@ services:
       wud.display.icon: "si:sonarr"
       wud.display.name: "sonarr-anime"
 
+############################## NETWORKS SECTION ##############################
 networks:
   default:
 
+############################## SECRETS SECTION ##############################
 secrets:
   radarr_API:
     file: ${SECRETS_DIR}/radarr_API.txt
