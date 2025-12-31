@@ -81,6 +81,9 @@ services:
       authentik_database:
         condition: service_healthy
         restart: true
+      authentik_server:
+        condition: service_healthy
+        restart: true
     environment:
       AUTHENTIK_POSTGRESQL__HOST: authentik_database
       AUTHENTIK_POSTGRESQL__NAME: authentik

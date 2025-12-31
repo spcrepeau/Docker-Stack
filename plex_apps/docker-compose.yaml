@@ -51,6 +51,8 @@ services:
       KOMETA_RUN: false
       KOMETA_TEST: false
       KOMETA_NO_MISSING: false
+      KOMETA_GOTIFYURL: "https://gotify.${HOST_DSM_PUBLIC_DNS_SUFFIX}"
+      FILE__KOMETA_GOTIFYTOKEN: /run/secrets/gotify_Token
       FILE__KOMETA_PLEXURL: /run/secrets/plex_URL
       FILE__KOMETA_PLEXTOKEN: /run/secrets/plex_Token
       KOMETA_TAUTULLIURL: "http://${HOST_DSM_HOSTNAME}:${TAUTULLI_PORT_8181}"
@@ -73,6 +75,7 @@ services:
       - ./kometa:/config
     secrets:
       - common_Username
+      - gotify_Token
       - plex_URL
       - plex_Token
       - tautulli_API
@@ -168,6 +171,8 @@ networks:
 secrets:
   common_Username:
     file: ${SECRETS_DIR}/common_Username.txt
+  gotify_Token:
+    file: ${SECRETS_DIR}/gotify_Token.txt
   plex_URL:
     file: ${SECRETS_DIR}/plex_URL.txt
   plex_Token:

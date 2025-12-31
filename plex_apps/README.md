@@ -24,7 +24,7 @@
 
 * Rootless: Uses PUID and PGID environment variables.
 * Reverse Proxy: N/A
-* Notifications: N/A
+* Notifications: Setup gotify <https://kometa.wiki/en/latest/config/gotify/>
 * Authentication: N/A
 * The KOMETA_PLEXURL value should be in the <https://#-#-#-#.##########.plex.direct:32400> format.
 * Follow the kometa wiki for configuring any other connections.

@@ -12,6 +12,7 @@
 * Remove calibre-web? Is ABS a good replacement>
 * Explore other DNS servers?
 * romm-db change?
+* recyclarr gotify support
 
 ## Projects
 

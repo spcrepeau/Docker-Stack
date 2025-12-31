@@ -1,0 +1,64 @@
+from datetime import datetime
+from zoneinfo import ZoneInfo
+import ipaddress
+
+notification_data = notification.event.context
+
+# Extract with safe defaults
+action = getattr(notification.event, "action", "N/A")
+client_ip = getattr(notification.event, "client_ip", "N/A")
+
+# username: fallback, if not in data
+username = notification_data.get("username") or getattr(notification.event, "username", "unknown-user")
+
+stage_model_name = notification_data.get("stage", {}).get("model_name", "N/A")
+method = notification_data.get("http_request", {}).get("method", "N/A")
+useragent = notification_data.get("http_request", {}).get("user_agent", "N/A")
+
+# ASN info with fallbacks
+asn_data = notification_data.get("asn", {})
+as_org = asn_data.get("as_org", "N/A")
+network = asn_data.get("network", "N/A")
+
+# Private IP check
+if client_ip != "N/A":
+    try:
+        client_ip_address = ipaddress.ip_address(client_ip)
+        private_ip_ranges = [
+            ipaddress.IPv4Network("10.0.0.0/8"),
+            ipaddress.IPv4Network("172.16.0.0/12"),
+            ipaddress.IPv4Network("192.168.0.0/16"),
+        ]
+        if any(client_ip_address in private_range for private_range in private_ip_ranges):
+            as_org = "N/A"
+            network = "N/A"
+    except ValueError:
+        # invalid IP in logs
+        pass
+
+# Time handling
+local_now = datetime.now(tz=ZoneInfo("America/New_York"))
+time_difference_hours = local_now.utcoffset().total_seconds() / 3600
+formatted_time = local_now.strftime("%H:%M %d.%m.%Y")
+
+# Check if user exists
+user_exists = notification.event.user is not None
+user_status = "existing user" if user_exists else "nonexistent user"
+
+# Build message
+formatted_message = (
+    f"User: {username}\n"
+    f"Action: {action}\n"
+    f"Stage: {stage_model_name}\n"
+    f"Client IP: {client_ip}\n"
+    f"Network: {network}\n"
+    f"AS Organization: {as_org}\n"
+    f"Time: {formatted_time} (UTC{time_difference_hours:.0f})\n"
+    f"Method: {method}\n"
+    f"User-Agent: {useragent}\n"
+)
+
+return {
+    "title": f"Authentik failed login ({user_status})",
+    "message": formatted_message
+}

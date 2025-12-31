@@ -24,7 +24,9 @@
 
 * Rootless: Uses "user: UID:GID".
 * Reverse Proxy: Setup reverse proxy for this app in DSM.
-* Notifications: To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en> then use in in authentik <https://docs.goauthentik.io/install-config/email/>.
+* Notifications:
+  * SMTP: To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en> then use in in authentik <https://docs.goauthentik.io/install-config/email/>.
+  * Gotify: Use gotify-webhook-mapping-body.txt to create a webhook property mapping. Then create a notification transport for a generic webhook, URL in format <https://gotify.domain.com/message?token=api_key>, and select the newly created mapping for the body. Create a notification rule, select the newly created transport, select send notification to event user, and severity to warning. Expand the rule and create and event matcher policy binding, and select login failed for the action.
 * Authentication: Uses itself.
 
 ## authentik_worker

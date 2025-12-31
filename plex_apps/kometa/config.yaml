@@ -185,12 +185,15 @@ settings: # https://kometa.wiki/en/latest/config/settings/
   overlay_artwork_quality: 75
 # <<VARIABLES>> loaded from environment variables which have KOMETA_ prefix and can't contain any other underscores. The FILE__ prefix is used to call secrets files.
 webhooks: # https://kometa.wiki/en/latest/config/webhooks/
-  error:
+  error: gotify
   version:
   run_start:
   run_end:
   changes:
   delete:
+gotify:
+  url: <<GOTIFYURL>>
+  token: <<GOTIFYTOKEN>>
 plex: # https://kometa.wiki/en/latest/config/plex/
   url: <<PLEXURL>>
   token: <<PLEXTOKEN>>
