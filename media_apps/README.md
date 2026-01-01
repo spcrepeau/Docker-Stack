@@ -11,7 +11,7 @@
 
 * Rootless: Uses "user: UID:GID". Container will error out if running as non-root user and trying to bind to port 80. Change the default port to anything besides 80 with a PORT variable.
 * Reverse Proxy: Setup reverse proxy for this app. Also add the default websocket fields.
-* Notifications: None at this time.
+* Notifications: Connect to apprise API URL and then forward to gotify apprise formatted URL.
 * Authentication: To setup OAuth with authentik <https://www.audiobookshelf.org/guides/oidc_authentication/>
   * Subfolder for Redirect URLs: None
   * Match existing users by: Match by username

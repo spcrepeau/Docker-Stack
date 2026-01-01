@@ -1,5 +1,18 @@
 # general_apps
 
+## apprise
+
+### Links
+
+* GitHub: <https://github.com/caronc/apprise-api>
+
+### Notes
+
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: None.
+* Notifications: None.
+* Authentication: None.
+
 ## gotify
 
 ### Links
@@ -13,6 +26,11 @@
 * Reverse Proxy: Setup reverse proxy for this app in DSM and also add the default websocket fields.
 * Notifications: Connect to mobile app.
 * Authentication: Built-in.
+* To get Gotify working with Synology:
+  * Go to Control Panel > System > Notification > Webhooks > Add
+  * Custom, use one of their rules or create your own.
+  * Provider name: Gotify, Webhook URL: <https://gotifydomain/message?token=yoursecrettoken>
+  * HTTP Method: POST, Content-Type: application/json, HTTP Body: {"message": "@@TEXT@@"}
 
 ## homepage
 

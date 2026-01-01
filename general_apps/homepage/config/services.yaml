@@ -293,6 +293,11 @@
       container: wizarr	
 
 - Service Applications:
+  - apprise:
+      icon: apprise
+      description: container status only
+      server: my-docker
+      container: apprise
   - authentik_database:
       icon: postgres
       description: container status only

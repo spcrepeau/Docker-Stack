@@ -81,7 +81,7 @@
 
 * Rootless: Uses "user: UID:GID".
 * Reverse Proxy: N/A
-* Notifications: N/A
+* Notifications: Connect to apprise API URL and then forward to gotify apprise formatted URL. <https://recyclarr.dev/reference/settings/notifications/>
 * Authentication: N/A
 
 * Manually run recyclarr sync with these commands:

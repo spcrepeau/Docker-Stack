@@ -18,6 +18,22 @@ x-default_labels: &default_labels
 ############################## SERVICES SECTION ##############################
 services:
 
+  apprise:
+    <<: *default_container
+    image: ghcr.io/caronc/apprise:latest
+    container_name: apprise
+    ports:
+      - ${APPRISE_PORT_8000}:8000
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    labels:
+      <<: *default_labels
+      wud.display.icon: "mdi:bell"
+      wud.display.name: "apprise"
+
   gotify:
     <<: *default_container
     image: ghcr.io/gotify/server:latest

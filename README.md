@@ -26,6 +26,7 @@
   * socket-proxy
   * wud/whatsupdocker
 * [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
+  * apprise
   * gotify
   * homepage
   * homepage-socket-proxy
