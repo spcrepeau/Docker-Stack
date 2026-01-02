@@ -1,23 +1,25 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/recyclarr/recyclarr/master/schemas/config-schema.json
+
 # Comments in base_url and api_key are to prevent vscode from complaining
 sonarr:
   sonarr_main:
-    base_url: #!env_var SONARR_URL
-    api_key: #!file /run/secrets/sonarr_API
+    # base_url: !env_var SONARR_URL
+    # api_key: !file /run/secrets/sonarr_API
     include: 
       - config: sonarr_main.yaml
   sonarr_anime:
-    base_url: #!env_var SONARRANIME_URL
-    api_key: #!file /run/secrets/sonar-anime_API
+    # base_url: !env_var SONARRANIME_URL
+    # api_key: !file /run/secrets/sonar-anime_API
     include: 
       - config: sonarr_anime.yaml
 radarr:
   radarr_main:
-    base_url: #!env_var RADARR_URL
-    api_key: #!file /run/secrets/radarr_API
+    # base_url: !env_var RADARR_URL
+    # api_key: !file /run/secrets/radarr_API
     include: 
       - config: radarr_main.yaml
   radarr_4k:
-    base_url: #!env_var RADARR4K_URL
-    api_key: #!file /run/secrets/radarr-4k_API
+    # base_url: !env_var RADARR4K_URL
+    # api_key: !file /run/secrets/radarr-4k_API
     include: 
       - config: radarr_4k.yaml
