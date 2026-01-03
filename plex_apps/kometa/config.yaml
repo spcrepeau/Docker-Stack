@@ -1,70 +1,17 @@
-common_movies: &common_movies
-  collection_files: # https://kometa.wiki/en/latest/defaults/collections/
-    - default: imdb # https://kometa.wiki/en/latest/defaults/chart/imdb/
-    - default: universe # https://kometa.wiki/en/latest/defaults/both/universe/
-    - default: seasonal # https://kometa.wiki/en/latest/defaults/movie/seasonal/
-  overlay_files: # https://kometa.wiki/en/latest/defaults/overlays/
-    - default: ratings # https://kometa.wiki/en/latest/defaults/overlays/ratings/
-      template_variables:
-        horizontal_position: right
-        vertical_align: bottom
-        back_color: '#212122B3'
-        rating1: critic
-        rating1_image: rt_tomato
-        rating2: audience
-        rating2_image: rt_popcorn
-  operations: # https://kometa.wiki/en/latest/config/operations/
-    mass_critic_rating_update: mdb_tomatoes
-    mass_audience_rating_update: mdb_tomatoesaudience
-common_tv_anime_status_variables: &common_tv_anime_status_variables
-  text_airing: airing
-  back_color_airing: '#A8E4A0' # green
-  text_returning: coming back
-  back_color_returning: '#A8E4A0' # green
-  text_canceled: cancelled
-  back_color_canceled: '#f85845' # red
-  text_ended: ended
-  back_color_ended: '#f85845' # red
-  font_color: '#000000FF'
-  font_size: 75
-  back_width:
-  back_height: 85
-  back_radius: 20
-  back_padding: 10
-  vertical_align: top
-  vertical_offset: 0
-  horizontal_align: left
-  horizontal_offset: 10
-common_tv_network_anime_studio_variables: &common_tv_network_anime_studio_variables
-  horizontal_align: left
-  horizontal_offset: 20
-  vertical_offset: 0
-  vertical_align: bottom
-  weight: 10
+## yaml-language-server: $schema=https://raw.githubusercontent.com/kometa-team/kometa/nightly/json-schema/config-schema.json
+
+############################## LIBRARIES SECTION ##############################
 libraries:
-  Movies: # https://kometa.wiki/en/latest/config/libraries/
+
+  Movies: &common_movies # https://kometa.wiki/en/latest/config/libraries/
     report_path: /config/missing/missing_movies.yaml
-    <<: *common_movies
-  Movies-4K: # https://kometa.wiki/en/latest/config/libraries/
-    report_path: /config/missing/missing_movies-4k.yaml
-    <<: *common_movies
-  TV Shows: # https://kometa.wiki/en/latest/config/libraries/
-    report_path: /config/missing/missing_tv_shows.yaml
     collection_files: # https://kometa.wiki/en/latest/defaults/collections/
       - default: imdb # https://kometa.wiki/en/latest/defaults/chart/imdb/
-      - default: emmy # https://kometa.wiki/en/latest/defaults/award/emmy/
       - default: universe # https://kometa.wiki/en/latest/defaults/both/universe/
-      - default: franchise # https://kometa.wiki/en/latest/defaults/show/franchise/
+      - default: seasonal # https://kometa.wiki/en/latest/defaults/movie/seasonal/
     overlay_files: # https://kometa.wiki/en/latest/defaults/overlays/
-      - default: status # https://kometa.wiki/en/latest/defaults/overlays/status/
-        template_variables:
-          <<: *common_tv_anime_status_variables
-      - default: network # https://kometa.wiki/en/latest/defaults/overlays/network
-        template_variables:
-          <<: *common_tv_network_anime_studio_variables
-          style: color
       - default: ratings # https://kometa.wiki/en/latest/defaults/overlays/ratings/
-        template_variables:
+        template_variables: &common_movie_tv_ratings_variables
           horizontal_position: right
           vertical_align: bottom
           back_color: '#212122B3'
@@ -75,6 +22,52 @@ libraries:
     operations: # https://kometa.wiki/en/latest/config/operations/
       mass_critic_rating_update: mdb_tomatoes
       mass_audience_rating_update: mdb_tomatoesaudience
+
+  Movies-4K: # https://kometa.wiki/en/latest/config/libraries/
+    report_path: /config/missing/missing_movies-4k.yaml
+    <<: *common_movies
+
+  TV Shows: # https://kometa.wiki/en/latest/config/libraries/
+    report_path: /config/missing/missing_tv_shows.yaml
+    collection_files: # https://kometa.wiki/en/latest/defaults/collections/
+      - default: imdb # https://kometa.wiki/en/latest/defaults/chart/imdb/
+      - default: emmy # https://kometa.wiki/en/latest/defaults/award/emmy/
+      - default: universe # https://kometa.wiki/en/latest/defaults/both/universe/
+      - default: franchise # https://kometa.wiki/en/latest/defaults/show/franchise/
+    overlay_files: # https://kometa.wiki/en/latest/defaults/overlays/
+      - default: status # https://kometa.wiki/en/latest/defaults/overlays/status/
+        template_variables: &common_tv_anime_status_variables
+          text_airing: airing
+          back_color_airing: '#A8E4A0' # green
+          text_returning: coming back
+          back_color_returning: '#A8E4A0' # green
+          text_canceled: cancelled
+          back_color_canceled: '#f85845' # red
+          text_ended: ended
+          back_color_ended: '#f85845' # red
+          font_color: '#000000FF'
+          font_size: 75
+          back_width: 305
+          back_height: 85
+          back_radius: 20
+          back_padding: 10
+          vertical_align: top
+          vertical_offset: 0
+          horizontal_align: left
+          horizontal_offset: 10
+      - default: network # https://kometa.wiki/en/latest/defaults/overlays/network
+        template_variables: &common_tv_network_anime_studio_variables
+          horizontal_align: left
+          horizontal_offset: 20
+          vertical_offset: 0
+          vertical_align: bottom
+          style: color
+      - default: ratings # https://kometa.wiki/en/latest/defaults/overlays/ratings/
+        template_variables: *common_movie_tv_ratings_variables
+    operations: # https://kometa.wiki/en/latest/config/operations/
+      mass_critic_rating_update: mdb_tomatoes
+      mass_audience_rating_update: mdb_tomatoesaudience
+
   Anime: # https://kometa.wiki/en/latest/config/libraries/
     report_path: /config/missing/missing_anime.yaml
     collection_files: # https://kometa.wiki/en/latest/defaults/collections/
@@ -88,31 +81,21 @@ libraries:
             - Enishiya
             - Studio Massket
           append_addons:
-            Bones:
-              - BONES
-            Bones Film:
-              - BONES Film
-            Enishiya:
-              - ENISHIYA
-            Nut:
-              - NUT
-            Gonzo:
-              - GONZO
-            Shaft:
-              - SHAFT
-            Studio Massket:
-              - STUDIO MASSKET
-            Sunrise:
-              - SUNRISE
-            Trigger:
-              - TRIGGER
-            Wit Studio:
-              - WIT STUDIO
+            Bandai Namco Pictures: ["BN Pictures"]
+            Bones: ["BONES"]
+            Bones Film: ["BONES Film"]
+            Enishiya: ["ENISHIYA"]
+            Nut: ["NUT"]
+            Gonzo: ["GONZO"]
+            Shaft: ["SHAFT"]
+            Studio Massket: ["STUDIO MASSKET"]
+            Sunrise: ["SUNRISE"]
+            Trigger: ["TRIGGER"]
+            Wit Studio: ["WIT STUDIO"]
           minimum_items: 1
     overlay_files: # https://kometa.wiki/en/latest/defaults/overlays/
       - default: status # https://kometa.wiki/en/latest/defaults/overlays/status/
-        template_variables:
-          <<: *common_tv_anime_status_variables
+        template_variables: *common_tv_anime_status_variables
       - default: studio # https://kometa.wiki/en/latest/defaults/overlays/studio/
         template_variables:
           <<: *common_tv_network_anime_studio_variables
@@ -132,6 +115,8 @@ libraries:
           rating1_style: ''
     operations: # https://kometa.wiki/en/latest/config/operations/
       mass_audience_rating_update: mal
+
+############################## SETTINGS SECTION ##############################
 settings: # https://kometa.wiki/en/latest/config/settings/
   run_order:
     - operations
@@ -183,7 +168,10 @@ settings: # https://kometa.wiki/en/latest/config/settings/
   custom_repo:
   overlay_artwork_filetype: jpg
   overlay_artwork_quality: 75
+
+############################## CONNECTIONS SECTION ##############################
 # <<VARIABLES>> loaded from environment variables which have KOMETA_ prefix and can't contain any other underscores. The FILE__ prefix is used to call secrets files.
+
 webhooks: # https://kometa.wiki/en/latest/config/webhooks/
   error: gotify
   version:
@@ -191,9 +179,11 @@ webhooks: # https://kometa.wiki/en/latest/config/webhooks/
   run_end:
   changes:
   delete:
-gotify:
+
+gotify: # https://kometa.wiki/en/latest/config/gotify/
   url: <<GOTIFYURL>>
   token: <<GOTIFYTOKEN>>
+
 plex: # https://kometa.wiki/en/latest/config/plex/
   url: <<PLEXURL>>
   token: <<PLEXTOKEN>>
@@ -202,18 +192,22 @@ plex: # https://kometa.wiki/en/latest/config/plex/
   clean_bundles: false
   empty_trash: false
   optimize: false
-  verify_ssl:
+  verify_ssl: true
+
 tmdb: # https://kometa.wiki/en/latest/config/tmdb/
   apikey: <<TMBDAPIKEY>>
   language: en
   region: US
   cache_expiration: 60
+
 mdblist: # https://kometa.wiki/en/latest/config/mdblist/
   apikey: <<MDBLISTAPIKEY>>
   cache_expiration: 60
+
 tautulli: # https://kometa.wiki/en/latest/config/tautulli/
   url: <<TAUTULLIURL>>
   apikey: <<TAUTULLIAPIKEY>>
+
 mal: # https://kometa.wiki/en/latest/config/myanimelist/
   client_id: <<MALCLIENTID>>
   client_secret: <<MALCLIENTSECRET>>
@@ -224,6 +218,7 @@ mal: # https://kometa.wiki/en/latest/config/myanimelist/
     token_type: Bearer
     expires_in: 2678400 # This value will change for your environment
     refresh_token: <<MALREFRESHTOKEN>>
+
 trakt: # https://kometa.wiki/en/latest/config/trakt/
   client_id: <<TRAKTCLIENTID>>
   client_secret: <<TRAKTCLIENTSECRET>>
@@ -235,6 +230,7 @@ trakt: # https://kometa.wiki/en/latest/config/trakt/
     refresh_token: <<TRAKTREFRESHTOKEN>>
     scope: public
     created_at: 1767238136 # This value will change for your environment
+
 anidb: # https://kometa.wiki/en/latest/config/anidb/
   client: <<ANIDBCLIENT>>
   version: 1

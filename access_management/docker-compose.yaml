@@ -39,11 +39,14 @@ services:
     secrets:
       - authentik_DatabasePassword
     labels:
-      wud.watch: false
+      <<: *default_labels
+      wud.tag.include: ^16-alpine$
+      wud.display.name: "authentik_database"
+      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, manually clean and rebuild project
 
   authentik_server:
     <<: *default_container
-    image: ghcr.io/goauthentik/server:2025.10.2
+    image: ghcr.io/goauthentik/server:2025.10.3
     container_name: authentik_server
     command: server
     depends_on:
@@ -70,11 +73,14 @@ services:
       - authentik_DatabasePassword
       - authentik_SecretKey
     labels:
-      wud.watch: false
+      <<: *default_labels
+      wud.tag.include: ^2025\.10\.\d+$$
+      wud.display.name: "authentik_server"
+      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, manually clean and rebuild project
 
   authentik_worker:
     <<: *default_container
-    image: ghcr.io/goauthentik/server:2025.10.2
+    image: ghcr.io/goauthentik/server:2025.10.3
     container_name: authentik_worker
     command: worker
     depends_on:
@@ -112,7 +118,10 @@ services:
       - authentik_SMTPPassword
       - authentik_SecretKey
     labels:
-      wud.watch: false
+      <<: *default_labels
+      wud.tag.include: ^2025\.10\.\d+$$
+      wud.display.name: "authentik_worker"
+      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, manually clean and rebuild project
 
   wizarr:
     <<: *default_container
