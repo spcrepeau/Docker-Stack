@@ -56,16 +56,16 @@
           type: sabnzbd # https://gethomepage.dev/widgets/services/sabnzbd/
           url: {{HOMEPAGE_VAR_SABNZBD_URL}}
           key: {{HOMEPAGE_FILE_SABNZBD_API}}
-    - overseerr:
-        # href: {{HOMEPAGE_VAR_OVERSEERR_URL}}
-        href: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-        icon: /icons/overseerr_plex.png
+    - prowlarr:
+        # href: {{HOMEPAGE_VAR_PROWLARR_URL}}
+        href: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+        icon: /icons/prowlarr_authentik.png
         server: my-docker
-        container: overseerr
+        container: prowlarr
         widget:
-          type: overseerr # https://gethomepage.dev/widgets/services/overseerr/
-          url: {{HOMEPAGE_VAR_OVERSEERR_URL}}
-          key: {{HOMEPAGE_FILE_OVERSEERR_API}}
+          type: prowlarr # https://gethomepage.dev/widgets/services/prowlarr/
+          url: {{HOMEPAGE_VAR_PROWLARR_URL}}
+          key: {{HOMEPAGE_FILE_PROWLARR_API}}
     - radarr:
         # href: {{HOMEPAGE_VAR_RADARR_URL}}
         href: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -116,43 +116,22 @@
           type: lidarr # https://gethomepage.dev/widgets/services/lidarr/
           url: {{HOMEPAGE_VAR_LIDARR_URL}}
           key: {{HOMEPAGE_FILE_LIDARR_API}}
-    - prowlarr:
-        # href: {{HOMEPAGE_VAR_PROWLARR_URL}}
-        href: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-        icon: /icons/prowlarr_authentik.png
+    - overseerr:
+        # href: {{HOMEPAGE_VAR_OVERSEERR_URL}}
+        href: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+        icon: /icons/overseerr_plex.png
         server: my-docker
-        container: prowlarr
+        container: overseerr
         widget:
-          type: prowlarr # https://gethomepage.dev/widgets/services/prowlarr/
-          url: {{HOMEPAGE_VAR_PROWLARR_URL}}
-          key: {{HOMEPAGE_FILE_PROWLARR_API}}
+          type: overseerr # https://gethomepage.dev/widgets/services/overseerr/
+          url: {{HOMEPAGE_VAR_OVERSEERR_URL}}
+          key: {{HOMEPAGE_FILE_OVERSEERR_API}}
 
-- Server Applications:
-  - synology:
-      icon: synology-dsm
-      # href: {{HOMEPAGE_VAR_NAS_URL}}
-      href: "https://nas.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      siteMonitor: {{HOMEPAGE_VAR_NAS_URL}}
-      widget:
-        type: diskstation # https://gethomepage.dev/widgets/services/diskstation/
-        url: {{HOMEPAGE_VAR_NAS_URL}}
-        username: {{HOMEPAGE_FILE_SYNOLOGY_USERNAME}}
-        password: {{HOMEPAGE_FILE_SYNOLOGY_PASSWORD}}
-  - authentik_server:
-      # href: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
-      href: "https://authentik.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: authentik
-      server: my-docker
-      container: authentik_server
-      widget:
-        type: authentik # https://gethomepage.dev/widgets/services/authentik/
-        url: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
-        key: {{HOMEPAGE_FILE_AUTHENTIK_API}}
-        version: 2 # optional, default is 1
-        fields: ["loginsLast24H", "failedLoginsLast24H"]
+- Widget Applications:
   - gotify:
       # href: {{HOMEPAGE_VAR_GOTIFY_URL}}
       href: "https://gotify.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: remote access
       icon: gotify
       server: my-docker
       container: gotify
@@ -163,6 +142,7 @@
   - wud:
       # href: {{HOMEPAGE_VAR_WUD_URL}}
       href: "https://wud.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: remote access
       icon: /icons/whats-up-docker_authentik.png
       server: my-docker
       container: wud
@@ -171,31 +151,10 @@
         url: {{HOMEPAGE_VAR_WUD_URL}}
         username: {{HOMEPAGE_FILE_COMMON_USERNAME}} # optional
         password: {{HOMEPAGE_FILE_WUD_PASSWORD}} # optional
-  - pihole:
-      href: "{{HOMEPAGE_VAR_PIHOLE_URL}}/admin"
-      description: local access only
-      icon: pi-hole
-      server: my-docker
-      container: pihole
-      widget:
-        type: pihole # https://gethomepage.dev/widgets/services/pihole/
-        url: {{HOMEPAGE_VAR_PIHOLE_URL}}
-        version: 6 # required if running v6 or higher, defaults to 5
-        key: {{HOMEPAGE_FILE_PIHOLE_API}} # optional, in v6 can be your password or app password
-
-- Media Applications:
-  - plex:
-      href: {{HOMEPAGE_FILE_PLEX_URL}}
-      icon: plex
-      siteMonitor: {{HOMEPAGE_FILE_PLEX_URL}}
-      widget:
-        type: plex # https://gethomepage.dev/widgets/services/plex/
-        url: {{HOMEPAGE_FILE_PLEX_URL}}
-        key: {{HOMEPAGE_FILE_PLEX_TOKEN}} # see https://www.plexopedia.com/plex-media-server/general/plex-token/
-        fields: ["albums", "movies", "tv"]
   - tautulli:
       # href: {{HOMEPAGE_VAR_TAUTULLI_URL}}
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: remote access
       icon: /icons/tautulli_plex.png
       server: my-docker
       container: tautulli
@@ -206,38 +165,8 @@
         enableUser: true # optional, defaults to false
         showEpisodeNumber: true # optional, defaults to false
         expandOneStreamToTwoRows: false # optional, defaults to true
-  - audiobookshelf:
-      # href: {{HOMEPAGE_VAR_AUDIOBOOKSHELF_URL}}
-      href: "https://audiobookshelf.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: /icons/audiobookshelf_authentik.png
-      server: my-docker
-      container: audiobookshelf
-      widget:
-        type: audiobookshelf # https://gethomepage.dev/widgets/services/audiobookshelf/
-        url: {{HOMEPAGE_VAR_AUDIOBOOKSHELF_URL}}
-        key: {{HOMEPAGE_FILE_AUDIOBOOKSHELF_API}}
-  - calibre-web:
-      # href: {{HOMEPAGE_VAR_CALIBREWEB_URL}}
-      href: "https://calibreweb.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: calibre-web
-      server: my-docker
-      container: calibre-web
-      widget:
-        type: calibreweb # https://gethomepage.dev/widgets/services/calibre-web/
-        url: {{HOMEPAGE_VAR_CALIBREWEB_URL}}
-        username: {{HOMEPAGE_FILE_COMMON_USERNAME}}
-        password: {{HOMEPAGE_FILE_CALIBREWEB_PASSWORD}}
-  - romm:
-      # href: {{HOMEPAGE_VAR_ROMM_URL}}
-      href: "https://romm.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: /icons/romm_authentik.png
-      server: my-docker
-      container: romm
-      widget:
-        type: romm # https://gethomepage.dev/widgets/services/romm/
-        url: {{HOMEPAGE_VAR_ROMM_URL}}
 
-- Misc Applications:
+- Normal Applications:
   - agregarr:
       href: {{HOMEPAGE_VAR_AGREGARR_URL}}
       description: local access only
@@ -246,19 +175,45 @@
       container: agregarr
   - apprise:
       href: {{HOMEPAGE_VAR_APPRISE_URL}}
-      icon: apprise
       description: local access only
+      icon: apprise
       server: my-docker
       container: apprise
   - audiobookrequest:
       # href: {{HOMEPAGE_VAR_AUDIOBOOKREQUEST_URL}}
       href: "https://audiobookrequest.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: remote access
       icon: /icons/audiobookrequest_authentik.png
       server: my-docker
       container: audiobookrequest
+  - audiobookshelf:
+      # href: {{HOMEPAGE_VAR_AUDIOBOOKSHELF_URL}}
+      href: "https://audiobookshelf.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: remote access
+      icon: /icons/audiobookshelf_authentik.png
+      server: my-docker
+      container: audiobookshelf
+      # widget:
+      #   type: audiobookshelf # https://gethomepage.dev/widgets/services/audiobookshelf/
+      #   url: {{HOMEPAGE_VAR_AUDIOBOOKSHELF_URL}}
+      #   key: {{HOMEPAGE_FILE_AUDIOBOOKSHELF_API}}
+  - authentik_server:
+      # href: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
+      href: "https://authentik.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: remote access
+      icon: authentik
+      server: my-docker
+      container: authentik_server
+      # widget:
+      #   type: authentik # https://gethomepage.dev/widgets/services/authentik/
+      #   url: {{HOMEPAGE_VAR_AUTHENTIK_URL}}
+      #   key: {{HOMEPAGE_FILE_AUTHENTIK_API}}
+      #   version: 2 # optional, default is 1
+      #   fields: ["loginsLast24H", "failedLoginsLast24H"]
   - dockhand:
       # href: {{HOMEPAGE_VAR_DOCKHAND_URL}}
       href: "https://dockhand.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: remote access
       icon: /icons/dockhand_authentik.png
       server: my-docker
       container: dockhand
@@ -274,69 +229,113 @@
       icon: librespeed
       server: my-docker
       container: librespeed
+  - pihole:
+      href: "{{HOMEPAGE_VAR_PIHOLE_URL}}/admin"
+      description: local access only
+      icon: pi-hole
+      server: my-docker
+      container: pihole
+      # widget:
+      #   type: pihole # https://gethomepage.dev/widgets/services/pihole/
+      #   url: {{HOMEPAGE_VAR_PIHOLE_URL}}
+      #   version: 6 # required if running v6 or higher, defaults to 5
+      #   key: {{HOMEPAGE_FILE_PIHOLE_API}} # optional, in v6 can be your password or app password
+  - plex:
+      href: {{HOMEPAGE_FILE_PLEX_URL}}
+      description: remote access
+      icon: plex
+      siteMonitor: {{HOMEPAGE_FILE_PLEX_URL}}
+      # widget:
+      #   type: plex # https://gethomepage.dev/widgets/services/plex/
+      #   url: {{HOMEPAGE_FILE_PLEX_URL}}
+      #   key: {{HOMEPAGE_FILE_PLEX_TOKEN}} # see https://www.plexopedia.com/plex-media-server/general/plex-token/
+      #   fields: ["albums", "movies", "tv"]
   - quickstart:
       href: {{HOMEPAGE_VAR_QUICKSTART_URL}}
       description: local access only
       icon: kometa
       server: my-docker
       container: quickstart
+  - romm:
+      # href: {{HOMEPAGE_VAR_ROMM_URL}}
+      href: "https://romm.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: remote access
+      icon: /icons/romm_authentik.png
+      server: my-docker
+      container: romm
+      # widget:
+      #   type: romm # https://gethomepage.dev/widgets/services/romm/
+      #   url: {{HOMEPAGE_VAR_ROMM_URL}}
   - shinkro:
       # href: {{HOMEPAGE_VAR_SHINKRO_URL}}
       href: "https://shinkro.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: remote access
       icon: shinkro
       server: my-docker
       container: shinkro
+  - synology:
+      # href: {{HOMEPAGE_VAR_NAS_URL}}
+      href: "https://nas.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: remote access
+      icon: synology-dsm
+      siteMonitor: {{HOMEPAGE_VAR_NAS_URL}}
+      # widget:
+      #   type: diskstation # https://gethomepage.dev/widgets/services/diskstation/
+      #   url: {{HOMEPAGE_VAR_NAS_URL}}
+      #   username: {{HOMEPAGE_FILE_SYNOLOGY_USERNAME}}
+      #   password: {{HOMEPAGE_FILE_SYNOLOGY_PASSWORD}}
   - wizarr:
       # href: {{HOMEPAGE_VAR_WIZARR_URL}}
       href: "https://wizarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      description: remote access
       icon: /icons/wizarr_authentik.png
       server: my-docker
       container: wizarr	
 
 - Service Applications:
   - authentik_database:
-      icon: postgres
       description: container status only
+      icon: postgres
       server: my-docker
       container: authentik_database
   - authentik_worker:
-      icon: authentik
       description: container status only
+      icon: authentik
       server: my-docker
       container: authentik_worker
   - homepage-socket-proxy:
-      icon: docker
       description: container status only
+      icon: docker
       server: my-docker
       container: homepage-socket-proxy
   - kometa:
-      icon: kometa
       description: container status only
+      icon: kometa
       server: my-docker
       container: kometa
   - plexautolanguages:
-      icon: plex
       description: container status only
+      icon: plex
       server: my-docker
       container: plexautolanguages
   - recyclarr:
-      icon: recyclarr
       description: container status only
+      icon: recyclarr
       server: my-docker
       container: recyclarr
   - romm-db:
-      icon: mariadb
       description: container status only
+      icon: mariadb
       server: my-docker
       container: romm-db
   - socket-proxy:
-      icon: docker
       description: container status only
+      icon: docker
       server: my-docker
       container: socket-proxy
   - theme-park:
-      icon: themepark
       description: container status only
+      icon: themepark
       server: my-docker
       container: theme-park
 

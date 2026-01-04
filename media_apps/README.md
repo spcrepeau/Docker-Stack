@@ -29,19 +29,6 @@
 * Notifications: N/A
 * Authentication: None
 
-## calibre-web
-
-### Links
-
-* LinuxServer: <https://docs.linuxserver.io/images/docker-calibre-web/>
-
-### Notes
-
-* Rootless: Uses PUID and PGID environment variables.
-* Reverse Proxy: Setup reverse proxy for this app.
-* Notifications: N/A
-* Authentication: Built-in.
-
 ## romm
 
 ### Links

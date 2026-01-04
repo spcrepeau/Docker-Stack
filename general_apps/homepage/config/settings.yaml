@@ -32,19 +32,14 @@ layout:
       columns: 2
       tab: Services
       header: false
-  Server Applications:
+  Widget Applications:
     style: row
-    columns: 5
+    columns: 3
     tab: Services
     header: false
-  Media Applications:
+  Normal Applications:
     style: row
     columns: 6
-    tab: Services
-    header: false
-  Misc Applications:
-    style: row
-    columns: 5
     tab: Services
     header: false
   Service Applications:

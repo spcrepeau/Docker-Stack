@@ -92,9 +92,6 @@
   - calibre:
     - icon: calibre
       href: https://github.com/kovidgoyal/calibre
-  - calibre-web:
-    - icon: calibre-web
-      href: https://github.com/crocodilestick/Calibre-Web-Automated
   - dockhand:
     - icon: /icons/dockhand.png
       href: https://github.com/Finsys/dockhand
@@ -169,9 +166,6 @@
   - calibre:
     - icon: calibre
       href: https://docs.linuxserver.io/images/docker-calibre
-  - calibre-web:
-    - icon: calibre-web
-      href: https://docs.linuxserver.io/images/docker-calibre-web
   - kometa:
     - icon: kometa
       href: https://docs.linuxserver.io/images/docker-kometa

@@ -58,23 +58,6 @@ services:
       wud.display.icon: "si:calibreweb"
       wud.display.name: "calibre"
 
-  calibre-web:
-    <<: *default_container
-    image: ghcr.io/linuxserver/calibre-web:latest
-    container_name: calibre-web
-    environment:
-      <<: *default_environment
-      OAUTHLIB_RELAX_TOKEN_SCOPE: "1"
-    ports:
-      - ${CALIBREWEB_PORT_8083}:8083 # Web GUI HTTP
-    volumes:
-      - ./calibre-web:/config
-      - ${DATA_DIR}/media/books:/books
-    labels:
-      <<: *default_labels
-      wud.display.icon: "si:calibreweb"
-      wud.display.name: "calibre-web"
-
   romm:
     <<: *default_container
     image: ghcr.io/rommapp/romm:latest

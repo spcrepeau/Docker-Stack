@@ -85,8 +85,6 @@ services:
       HOMEPAGE_VAR_AUDIOBOOKSHELF_URL: http://${HOST_DSM_HOSTNAME}:${AUDIOBOOKSHELF_PORT_8080}
       HOMEPAGE_FILE_AUDIOBOOKSHELF_API: /run/secrets/audiobookshelf_API
       HOMEPAGE_VAR_CALIBRE_URL: https://${HOST_DSM_HOSTNAME}:${CALIBRE_PORT_8181}
-      HOMEPAGE_VAR_CALIBREWEB_URL: http://${HOST_DSM_HOSTNAME}:${CALIBREWEB_PORT_8083}
-      HOMEPAGE_FILE_CALIBREWEB_PASSWORD: /run/secrets/calibre-web_Password
       HOMEPAGE_VAR_ROMM_URL: http://${HOST_DSM_HOSTNAME}:${ROMM_PORT_8080}
       # media_management
       HOMEPAGE_VAR_AUDIOBOOKREQUEST_URL: http://${HOST_DSM_HOSTNAME}:${AUDIOBOOKREQUEST_PORT_8000}
@@ -140,7 +138,6 @@ services:
       - wud_Password
       # media_apps
       - audiobookshelf_API
-      - calibre-web_Password
       # media_management
       - lidarr_API
       - overseer_API
@@ -244,8 +241,6 @@ secrets:
   # homepage media_apps
   audiobookshelf_API:
     file: ${SECRETS_DIR}/audiobookshelf_API.txt
-  calibre-web_Password:
-    file: ${SECRETS_DIR}/calibre-web_Password.txt
   # homepage media_management
   lidarr_API:
     file: ${SECRETS_DIR}/lidarr_API.txt

@@ -9,7 +9,6 @@
 * romm authentik SSO broken. Temp fix: <https://github.com/rommapp/romm/issues/2626>
 * Waiting on OIDC/Proxy login for gotify
 * Waiting on chaptarr, the readarr replacement to release.
-* Remove calibre-web? Is ABS a good replacement>
 * Explore other DNS servers?
 * romm-db change?
 * recyclarr gotify support
@@ -35,7 +34,6 @@
 * [media_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/media_apps)
   * audiobookshelf
   * calibre
-  * calibre-web
   * romm
   * romm-db (mariadb)
 * [media_management](https://github.com/spcrepeau/Docker-Stack/tree/main/media_management)

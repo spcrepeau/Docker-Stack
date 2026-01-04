@@ -39,15 +39,15 @@ libraries:
         template_variables: &common_tv_anime_status_variables
           text_airing: airing
           back_color_airing: '#A8E4A0' # green
-          text_returning: coming back
+          text_returning: returning
           back_color_returning: '#A8E4A0' # green
-          text_canceled: cancelled
+          text_canceled: canceled
           back_color_canceled: '#f85845' # red
           text_ended: ended
           back_color_ended: '#f85845' # red
           font_color: '#000000FF'
           font_size: 75
-          # back_width:
+          back_width:
           back_height: 85
           back_radius: 20
           back_padding: 10
@@ -127,7 +127,8 @@ settings: # https://kometa.wiki/en/latest/config/settings/
   cache: true
   cache_expiration: 60
   # ASSETS
-  asset_directory: config/assets
+  asset_directory: 
+    - config/assets
   asset_folders: true
   asset_depth: 2
   create_asset_folders: true
