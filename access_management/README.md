@@ -54,5 +54,5 @@
 
 * Rootless: Uses PUID and PGID environment variables.
 * Reverse Proxy: Setup reverse proxy for this app, but point to the authentik port instead. <https://docs.wizarr.dev/using-wizarr/single-sign-on-sso#authentik-other>
-* Notifications: Setup gotify. Select Apprise and use URL gotifys://{hostname}/{token}.
+* Notifications: Setup gotify. Select Apprise and use URL <gotifys://gotify.mydomain.com/myToken>.
 * Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex exceptions in the above URL. Remove the dash and quotes from each line.

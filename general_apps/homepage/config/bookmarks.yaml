@@ -15,6 +15,9 @@
   - authentik:
     - icon: authentik
       href: https://docs.goauthentik.io
+  - dockhand:
+    - icon: /icons/dockhand.png
+      href: https://dockhand.pro/manual/#
   - gotify:
     - icon: gotify
       href: https://gotify.net
@@ -33,9 +36,6 @@
   - pihole:
     - icon: pi-hole
       href: https://pi-hole.net
-  - portainer:
-    - icon: portainer-dark
-      href: https://docs.portainer.io
   - prowlarr:
     - icon: prowlarr
       href: https://prowlarr.com
@@ -95,6 +95,9 @@
   - calibre-web:
     - icon: calibre-web
       href: https://github.com/crocodilestick/Calibre-Web-Automated
+  - dockhand:
+    - icon: /icons/dockhand.png
+      href: https://github.com/Finsys/dockhand
   - gotify:
     - icon: gotify
       href: https://github.com/gotify/server
@@ -122,9 +125,6 @@
   - plexautolanguages:
     - icon: plex
       href: https://github.com/JourneyDocker/Plex-Auto-Languages
-  - portainer:
-    - icon: portainer-dark
-      href: https://github.com/portainer/portainer
   - postgres:
     - icon: postgres
       href: https://hub.docker.com/layers/library/postgres/16-alpine

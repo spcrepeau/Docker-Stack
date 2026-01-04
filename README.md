@@ -22,7 +22,7 @@
   * authentik_worker
   * wizarr
 * [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
-  * portainer
+  * dockhand
   * socket-proxy
   * wud/whatsupdocker
 * [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)

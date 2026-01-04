@@ -136,6 +136,7 @@ services:
       RADARR4K_URL: http://${HOST_DSM_HOSTNAME}:${RADARR4K_PORT_7878}
       SONARR_URL: http://${HOST_DSM_HOSTNAME}:${SONARR_PORT_8989}
       SONARRANIME_URL: http://${HOST_DSM_HOSTNAME}:${SONARRANIME_PORT_8989}
+      APPRISE_URL: http://${HOST_DSM_HOSTNAME}:${APPRISE_PORT_8000}
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ./recyclarr:/config
@@ -144,6 +145,7 @@ services:
       - radarr-4k_API
       - sonarr_API
       - sonar-anime_API
+      - gotify_recyclarrURL
     labels:
       <<: *default_labels
       wud.display.icon: "mdi:cog"
@@ -222,3 +224,5 @@ secrets:
     file: ${SECRETS_DIR}/sonarr_API.txt
   sonar-anime_API:
     file: ${SECRETS_DIR}/sonar-anime_API.txt
+  gotify_recyclarrURL:
+    file: ${SECRETS_DIR}/gotify_recyclarrURL.txt

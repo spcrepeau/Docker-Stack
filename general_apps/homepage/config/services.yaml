@@ -160,17 +160,6 @@
         type: gotify
         url: {{HOMEPAGE_VAR_GOTIFY_URL}}
         key: {{HOMEPAGE_FILE_GOTIFY_HOMEPAGE_TOKEN}}
-  - portainer:
-      # href: {{HOMEPAGE_VAR_PORTAINER_URL}}
-      href: "https://portainer.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      icon: /icons/portainer_authentik.png
-      server: my-docker
-      container: portainer
-      widget:
-        type: portainer # https://gethomepage.dev/widgets/services/portainer/
-        url: {{HOMEPAGE_VAR_PORTAINER_URL}}
-        env: 1
-        key: {{HOMEPAGE_FILE_PORTAINER_API}}
   - wud:
       # href: {{HOMEPAGE_VAR_WUD_URL}}
       href: "https://wud.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -255,12 +244,24 @@
       icon: /icons/agregarr_plex.png
       server: my-docker
       container: agregarr
+  - apprise:
+      href: {{HOMEPAGE_VAR_APPRISE_URL}}
+      icon: apprise
+      description: local access only
+      server: my-docker
+      container: apprise
   - audiobookrequest:
       # href: {{HOMEPAGE_VAR_AUDIOBOOKREQUEST_URL}}
       href: "https://audiobookrequest.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
       icon: /icons/audiobookrequest_authentik.png
       server: my-docker
       container: audiobookrequest
+  - dockhand:
+      # href: {{HOMEPAGE_VAR_DOCKHAND_URL}}
+      href: "https://dockhand.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+      icon: /icons/dockhand_authentik.png
+      server: my-docker
+      container: dockhand
   - calibre:
       href: {{HOMEPAGE_VAR_CALIBRE_URL}}
       description: local access only
@@ -293,11 +294,6 @@
       container: wizarr	
 
 - Service Applications:
-  - apprise:
-      icon: apprise
-      description: container status only
-      server: my-docker
-      container: apprise
   - authentik_database:
       icon: postgres
       description: container status only

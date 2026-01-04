@@ -1,18 +1,18 @@
 # container_management
 
-## portainer
+## dockhand
 
 ### Links
 
-* Documentation: <https://docs.portainer.io/>
-* GitHub: <https://github.com/portainer/portainer>
+* Documentation: <https://dockhand.pro/manual/#>
+* GitHub: <https://github.com/Finsys/dockhand>
 
 ### Notes
 
-* Rootless: Uses "user: UID:GID".
+* Rootless: Uses PUID and PGID environment variables.
 * Reverse Proxy: Setup reverse proxy for this app.
-* Notifications: Note at this time.
-* Authentication: To setup OAuth with authentik: <https://integrations.goauthentik.io/hypervisors-orchestrators/portainer/>
+* Notifications: Setup gotify and use URL <gotifys://gotify.mydomain.com/myToken>.
+* Authentication: To setup OAuth with authentik: <https://dockhand.pro/manual/#appendix-oidc>. The Issuer URL format is <https://authentik.mydomain.com/application/o/dockhand/>.
 
 ## socket-proxy
 

@@ -1,14 +1,14 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/recyclarr/recyclarr/master/schemas/settings-schema.json
+## yaml-language-server: $schema=https://raw.githubusercontent.com/recyclarr/recyclarr/master/schemas/settings-schema.json
 
 # Edit this file to customize the behavior of Recyclarr beyond its defaults
 # For the settings file reference guide, visit the link to the wiki below:
 # https://recyclarr.dev/wiki/yaml/settings-reference/
 
-# Uncomment and edit below if needed
-# notifications:
-#   verbosity: normal # Options: normal, detailed, minimal
-#   apprise:
-#     mode: stateless
-#     base_url: http://nas-hostname:8000 # Point to the apprise API service URL, not Gotify
-#     urls:
-#       - gotifys://gotify.mydomain.com/mySecretToken
+# Comments in base_url and urls are to prevent vscode from complaining
+notifications:
+  verbosity: normal # Options: normal, detailed, minimal
+  apprise:
+    mode: stateless
+    # base_url: !env_var APPRISE_URL # Point to the apprise API service URL, not Gotify
+    # urls:
+    #   - !file /run/secrets/gotify_recyclarrURL

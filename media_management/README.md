@@ -108,7 +108,7 @@ recyclarr sync
 
 * Rootless: Uses PUID and PGID environment variables.
 * Reverse Proxy: * Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. Disable authentication.
-* Notifications: Setup gotify. Select Apprise and use URL gotifys://{hostname}/{token}.
+* Notifications: Setup gotify. Select Apprise and use URL <gotifys://gotify.mydomain.com/myToken>.
 * Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api.* to allow nzb360 access to API.
 
 ## sonarr & sonarr-anime

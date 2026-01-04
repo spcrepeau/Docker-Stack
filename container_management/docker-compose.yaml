@@ -18,25 +18,22 @@ x-default_labels: &default_labels
 ############################## SERVICES SECTION ##############################
 services:
 
-  portainer:
+  dockhand:
     <<: *default_container
-    image: portainer/portainer-ce:latest
-    command: -H tcp://socket-proxy:2375
-    container_name: portainer
+    image: fnsys/dockhand:latest
+    container_name: dockhand
     environment:
       <<: *default_environment
     networks:
       - default
       - socket_internal
     ports:
-      - ${PORTAINER_PORT_9000}:9000 # Web GUI HTTP
-    user: ${DOCKER_UID}:${DOCKER_GID}
+      - ${DOCKHAND_PORT_3000}:3000
     volumes:
-      - ./portainer:/data
+      - ./dockhand:/app/data
     labels:
       <<: *default_labels
-      wud.display.icon: "si:portainer"
-      wud.display.name: "portainer"
+      wud.display.name: "dockhand"
 
   socket-proxy:
     <<: *default_container
@@ -44,18 +41,26 @@ services:
     container_name: socket-proxy
     environment:
       TZ: ${TZ}
-      # API access controls (1 to grant, 0 to revoke)
-      ALLOW_START: "1" # This option will work even if POST=0
-      ALLOW_STOP: "1" # This option will work even if POST=0
-      ALLOW_RESTARTS: "1" # This option will work even if POST=0
-      CONTAINERS: "1" # Allow listing and managing containers (essential for Portainer)
-      IMAGES: "1" # Allow listing images
-      INFO: "1" # Allow access to Docker daemon information
-      NETWORKS: "1" # Allow listing networks
-      POST: "1" # When set to 0, only GET and HEAD operations are allowed, making API access read-only
-      SERVICES: "1" # Allow listing and managing services (for Swarm mode)
+      # Required for core functionality
+      CONTAINERS: "1"
+      DELETE: "1"
+      EVENTS: "1"
+      IMAGES: "1"
+      NETWORKS: "1"
+      POST: "1"
+      VOLUMES: "1"
+      # Required for dashboard host info and disk usage
+      DF: "1"
+      INFO: "1"
+      SYSTEM: "1"
+      # Required for vulnerability scanning
+      ALLOW_START: "1"
+      ALLOW_STOP: "1"
+      ALLOW_RESTARTS: "1"
+      # Other
+      EXEC: "1"
       TASKS: "1"
-      VOLUMES: "1" # Allow listing volumes
+      SERVICES: "1"
     networks:
       - socket_internal
     read_only: true
@@ -88,7 +93,7 @@ services:
       WUD_WATCHER_LOCAL_WATCHALL: true
       # Docker Triggers https://getwud.github.io/wud/#/configuration/triggers/docker/
       WUD_TRIGGER_DOCKER_UPDATE_PRUNE: true
-      WUD_TRIGGER_DOCKER_DOWNLOAD_DRYRUN: true # Downloads new images, needed for socket-proxy and wud
+      WUD_TRIGGER_DOCKER_DOWNLOAD_DRYRUN: true # Downloads new images, needed for socket-proxy, wud, authentik
       # Gotify Triggers https://getwud.github.io/wud/#/configuration/triggers/gotify/
       WUD_TRIGGER_GOTIFY_LOCAL_URL: "https://gotify.${HOST_DSM_PUBLIC_DNS_SUFFIX}"
       WUD_TRIGGER_GOTIFY_LOCAL_TOKEN__FILE: /run/secrets/gotify_wudToken
