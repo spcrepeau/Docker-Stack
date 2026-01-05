@@ -39,12 +39,12 @@ layout:
     header: false
   Normal Applications:
     style: row
-    columns: 6
+    columns: 5
     tab: Services
     header: false
   Service Applications:
     style: row
-    columns: 6
+    columns: 5
     tab: Services
     header: false
 

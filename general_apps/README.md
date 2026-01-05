@@ -12,6 +12,7 @@
 * Reverse Proxy: None.
 * Notifications: None.
 * Authentication: None.
+* Running in stateless mode with no configs. Only used as API URL for apps which need it.
 
 ## gotify
 

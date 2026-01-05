@@ -11,7 +11,7 @@
 * Waiting on chaptarr, the readarr replacement to release.
 * Explore other DNS servers?
 * romm-db change?
-* recyclarr gotify support
+* remove wud once dockhand meets all needs.
 
 ## Projects
 
