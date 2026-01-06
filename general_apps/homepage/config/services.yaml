@@ -56,6 +56,15 @@
           type: sabnzbd # https://gethomepage.dev/widgets/services/sabnzbd/
           url: {{HOMEPAGE_VAR_SABNZBD_URL}}
           key: {{HOMEPAGE_FILE_SABNZBD_API}}
+          highlight: 
+            queue: &common_highlights
+              numeric:
+                - level: danger
+                  when: gte
+                  value: 5
+                - level: warn
+                  when: gte
+                  value: 1
     - prowlarr:
         # href: {{HOMEPAGE_VAR_PROWLARR_URL}}
         href: "https://prowlarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -76,6 +85,8 @@
           type: radarr # https://gethomepage.dev/widgets/services/radarr/
           url: {{HOMEPAGE_VAR_RADARR_URL}}
           key: {{HOMEPAGE_FILE_RADARR_API}}
+          highlight: 
+            queued: *common_highlights
     - radarr-4K:
         # href: {{HOMEPAGE_VAR_RADARR4K_URL}}
         href: "https://radarr4k.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -86,6 +97,8 @@
           type: radarr # https://gethomepage.dev/widgets/services/radarr/
           url: {{HOMEPAGE_VAR_RADARR4K_URL}}
           key: {{HOMEPAGE_FILE_RADARR4K_API}}
+          highlight: 
+            queued: *common_highlights
     - sonarr:
         # href: {{HOMEPAGE_VAR_SONARR_URL}}
         href: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -96,6 +109,8 @@
           type: sonarr # https://gethomepage.dev/widgets/services/sonarr/
           url: {{HOMEPAGE_VAR_SONARR_URL}}
           key: {{HOMEPAGE_FILE_SONARR_API}}
+          highlight:
+            queued: *common_highlights
     - sonarr-anime:
         # href: {{HOMEPAGE_VAR_SONARRANIME_URL}}
         href: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -106,6 +121,8 @@
           type: sonarr # https://gethomepage.dev/widgets/services/sonarr/
           url: {{HOMEPAGE_VAR_SONARRANIME_URL}}
           key: {{HOMEPAGE_FILE_SONARRANIME_API}}
+          highlight:
+            queued: *common_highlights
     - lidarr:
         # href: {{HOMEPAGE_VAR_LIDARR_URL}}
         href: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -116,6 +133,8 @@
           type: lidarr # https://gethomepage.dev/widgets/services/lidarr/
           url: {{HOMEPAGE_VAR_LIDARR_URL}}
           key: {{HOMEPAGE_FILE_LIDARR_API}}
+          highlight:
+            queued: *common_highlights
     - overseerr:
         # href: {{HOMEPAGE_VAR_OVERSEERR_URL}}
         href: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -126,6 +145,8 @@
           type: overseerr # https://gethomepage.dev/widgets/services/overseerr/
           url: {{HOMEPAGE_VAR_OVERSEERR_URL}}
           key: {{HOMEPAGE_FILE_OVERSEERR_API}}
+          highlight: 
+            pending: *common_highlights
 
 - Widget Applications:
   - gotify:
@@ -139,6 +160,8 @@
         type: gotify
         url: {{HOMEPAGE_VAR_GOTIFY_URL}}
         key: {{HOMEPAGE_FILE_GOTIFY_HOMEPAGE_TOKEN}}
+        highlight:
+          messages: *common_highlights
   - wud:
       # href: {{HOMEPAGE_VAR_WUD_URL}}
       href: "https://wud.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -151,6 +174,8 @@
         url: {{HOMEPAGE_VAR_WUD_URL}}
         username: {{HOMEPAGE_FILE_COMMON_USERNAME}} # optional
         password: {{HOMEPAGE_FILE_WUD_PASSWORD}} # optional
+        highlight:
+          updates: *common_highlights
   - tautulli:
       # href: {{HOMEPAGE_VAR_TAUTULLI_URL}}
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"

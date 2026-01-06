@@ -27,8 +27,12 @@ services:
     ports:
       - ${APPRISE_PORT_8000}:8000
     user: ${DOCKER_UID}:${DOCKER_GID}
+    read_only: true
     tmpfs:
       - /tmp
+      - /config
+      - /attach
+      - /plugin
     cap_drop:
       - ALL
     labels:
