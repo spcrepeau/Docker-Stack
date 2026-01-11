@@ -135,7 +135,7 @@ services:
     ports:
       - ${ROMMDB_PORT_3306}:3306 # DB Connection
     volumes:
-      - ./romm-db:/config
+      - ./romm/database:/config
     secrets:
       - romm-db_MySQLPassword
     labels:

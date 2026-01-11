@@ -30,7 +30,7 @@ services:
       interval: 30s
       retries: 5
       start_period: 20s
-      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      test: ["CMD-SHELL", "pg_isready -d authentik -U authentik"]
       timeout: 5s
     networks:
       - authentik_internal
@@ -53,7 +53,7 @@ services:
       authentik_database:
         condition: service_healthy
         restart: true
-    environment:
+    environment: &authentik_common
       AUTHENTIK_POSTGRESQL__HOST: authentik_database
       AUTHENTIK_POSTGRESQL__NAME: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePassword
@@ -91,11 +91,7 @@ services:
         condition: service_healthy
         restart: true
     environment:
-      AUTHENTIK_POSTGRESQL__HOST: authentik_database
-      AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePassword
-      AUTHENTIK_POSTGRESQL__USER: authentik
-      AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_SecretKey
+      <<: *authentik_common
       AUTHENTIK_EMAIL__HOST: smtp.gmail.com
       AUTHENTIK_EMAIL__PORT: 587
       AUTHENTIK_EMAIL__USERNAME: file:///run/secrets/common_EmailAddress

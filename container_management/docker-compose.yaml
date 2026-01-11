@@ -31,6 +31,7 @@ services:
       - ${DOCKHAND_PORT_3000}:3000
     volumes:
       - ./dockhand:/app/data
+      - ${DOCKER_DIR}:/external_stacks
     labels:
       <<: *default_labels
       wud.display.name: "dockhand"
