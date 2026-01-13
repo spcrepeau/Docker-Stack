@@ -11,10 +11,6 @@ x-default_environment: &default_environment
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
 
-x-default_labels: &default_labels
-  wud.tag.include: "^latest$"
-  wud.watch.digest: "true"
-
 ############################## SERVICES SECTION ##############################
 services:
 
@@ -23,9 +19,10 @@ services:
     image: postgres:16-alpine
     container_name: authentik_database
     environment:
+      TZ: ${TZ}
       POSTGRES_DB: authentik
-      POSTGRES_PASSWORD: file:///run/secrets/authentik_DatabasePassword
       POSTGRES_USER: authentik
+      POSTGRES_PASSWORD: file:///run/secrets/authentik_DatabasePassword
     healthcheck:
       interval: 30s
       retries: 5
@@ -35,14 +32,9 @@ services:
     networks:
       - authentik_internal
     volumes:
-      - ./authentik/database:/var/lib/postgresql/data
+      - ${DOCKER_DIR}/access_management/authentik/database:/var/lib/postgresql/data
     secrets:
       - authentik_DatabasePassword
-    labels:
-      <<: *default_labels
-      wud.tag.include: ^16-alpine$
-      wud.display.name: "authentik_database"
-      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, manually clean and rebuild project
 
   authentik_server:
     <<: *default_container
@@ -54,10 +46,11 @@ services:
         condition: service_healthy
         restart: true
     environment: &authentik_common
+      TZ: ${TZ}
       AUTHENTIK_POSTGRESQL__HOST: authentik_database
       AUTHENTIK_POSTGRESQL__NAME: authentik
-      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePassword
       AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/authentik_DatabasePassword
       AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_SecretKey
     networks:
       - default
@@ -67,16 +60,11 @@ services:
       - ${AUTHENTIK_PORT_9443}:9443 # Web GUI HTTPS
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./authentik/media:/media
-      - ./authentik/custom-templates:/templates
+      - ${DOCKER_DIR}/access_management/authentik/media:/media
+      - ${DOCKER_DIR}/access_management/authentik/custom-templates:/templates
     secrets:
       - authentik_DatabasePassword
       - authentik_SecretKey
-    labels:
-      <<: *default_labels
-      wud.tag.include: ^2025\.10\.\d+$$
-      wud.display.name: "authentik_server"
-      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, manually clean and rebuild project
 
   authentik_worker:
     <<: *default_container
@@ -105,19 +93,14 @@ services:
       - authentik_internal
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./authentik/media:/media
-      - ./authentik/certs:/certs
-      - ./authentik/custom-templates:/templates
+      - ${DOCKER_DIR}/access_management/authentik/media:/media
+      - ${DOCKER_DIR}/access_management/authentik/certs:/certs
+      - ${DOCKER_DIR}/access_management/authentik/custom-templates:/templates
     secrets:
       - common_EmailAddress
       - authentik_DatabasePassword
       - authentik_SMTPPassword
       - authentik_SecretKey
-    labels:
-      <<: *default_labels
-      wud.tag.include: ^2025\.10\.\d+$$
-      wud.display.name: "authentik_worker"
-      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, manually clean and rebuild project
 
   wizarr:
     <<: *default_container
@@ -129,11 +112,7 @@ services:
     ports:
       - ${WIZARR_PORT_5690}:5690 # Web GUI HTTP
     volumes:
-      - ./wizarr/database:/data/database
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:plex"
-      wud.display.name: "wizarr"
+      - ${DOCKER_DIR}/access_management/wizarr/database:/data/database
 
 ############################## NETWORKS SECTION ##############################
 networks:

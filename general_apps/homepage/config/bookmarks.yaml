@@ -69,9 +69,6 @@
   - wizarr:
     - icon: wizarr
       href: https://docs.wizarr.dev
-  - wud:
-    - icon: whats-up-docker
-      href: https://getwud.github.io/wud
 
 - Github:
   - agregarr:
@@ -158,9 +155,6 @@
   - wizarr:
     - icon: wizarr
       href: https://github.com/wizarrrr/wizarr
-  - wud:
-    - icon: whats-up-docker
-      href: https://github.com/getwud/wud
 
 - LinuxServer:
   - calibre:

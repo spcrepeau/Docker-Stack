@@ -42,8 +42,15 @@
 * Reverse Proxy: Setup reverse proxy for this app.
 * Notifications: None at this time.
 * Authentication: To setup OAuth with authentik <https://docs.romm.app/latest/OIDC-Guides/OIDC-Setup-With-Authentik/>
+  * In Authentik create a Property Mapping:
+    * Type: Scope Mapping
+    * Name: verified-email
+    * Scope Name: email
+    * Expression: return { "email": user.email, "email_verified": True, }
+  * Attach this custom mapping to romm's provider used by romm.
+  * Disable the default managed email scope mapping for the provider.
 
-## romm-db (MariaDB)
+## romm_database (MariaDB)
 
 ### Links
 

@@ -11,10 +11,6 @@ x-default_environment: &default_environment
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
 
-x-default_labels: &default_labels
-  wud.tag.include: "^latest$"
-  wud.watch.digest: "true"
-
 ############################## SERVICES SECTION ##############################
 services:
 
@@ -23,6 +19,7 @@ services:
     image: ghcr.io/caronc/apprise:latest
     container_name: apprise
     environment:
+      TZ: ${TZ}
       ALLOWED_HOSTS: ${HOST_DSM_HOSTNAME} *.${HOST_DSM_PUBLIC_DNS_SUFFIX}
     ports:
       - ${APPRISE_PORT_8000}:8000
@@ -35,26 +32,19 @@ services:
       - /plugin
     cap_drop:
       - ALL
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:bell"
-      wud.display.name: "apprise"
 
   gotify:
     <<: *default_container
     image: ghcr.io/gotify/server:latest
     container_name: gotify
     environment:
+      TZ: ${TZ}
       GOTIFY_SERVER_PORT: "8080"
     ports:
       - ${GOTIFY_PORT_8080}:8080
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./gotify:/app/data
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:bell"
-      wud.display.name: "gotify"
+      - ${DOCKER_DIR}/general_apps/gotify:/app/data
 
   homepage:
     <<: *default_container
@@ -78,8 +68,6 @@ services:
       HOMEPAGE_VAR_WIZARR_URL: "http://${HOST_DSM_HOSTNAME}:${WIZARR_PORT_5690}"
       # container_management
       HOMEPAGE_VAR_DOCKHAND_URL: "http://${HOST_DSM_HOSTNAME}:${DOCKHAND_PORT_3000}"
-      HOMEPAGE_VAR_WUD_URL: "http://${HOST_DSM_HOSTNAME}:${WUD_PORT_3000}"
-      HOMEPAGE_FILE_WUD_PASSWORD: /run/secrets/wud_Password
       # general_apps
       HOMEPAGE_VAR_APPRISE_URL: "http://${HOST_DSM_HOSTNAME}:${APPRISE_PORT_8000}"
       HOMEPAGE_VAR_GOTIFY_URL: "http://${HOST_DSM_HOSTNAME}:${GOTIFY_PORT_8080}"
@@ -125,9 +113,9 @@ services:
     ports:
       - ${HOMEPAGE_PORT_3000}:3000 # Web GUI HTTP
     volumes:
-      - ./homepage/config:/app/config
-      - ./homepage/images:/app/public/images # Used to add background image and favicon
-      - ./homepage/icons:/app/public/icons # Used to add service icons
+      - ${DOCKER_DIR}/general_apps/homepage/config:/app/config
+      - ${DOCKER_DIR}/general_apps/homepage/images:/app/public/images # Used to add background image and favicon
+      - ${DOCKER_DIR}/general_apps/homepage/icons:/app/public/icons # Used to add service icons
     secrets:
       # common
       - common_Username
@@ -138,8 +126,6 @@ services:
       - authentik_API
       # general_apps
       - gotify_homepageToken
-      # container_management
-      - wud_Password
       # media_apps
       - audiobookshelf_API
       # media_management
@@ -157,20 +143,15 @@ services:
       - plex_URL
       - plex_Token
       - tautulli_API
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:view-dashboard"
-      wud.display.name: "homepage"
 
-  homepage-socket-proxy:
+  homepage_socket-proxy:
     <<: *default_container
     image: ghcr.io/linuxserver/socket-proxy:latest
-    container_name: homepage-socket-proxy
+    container_name: homepage_socket-proxy
     hostname: socket-proxy
     environment:
       TZ: ${TZ}
-      # API access controls (1 to grant, 0 to revoke)
-      CONTAINERS: "1" # Allow listing and managing containers
+      CONTAINERS: "1"
     networks:
       - homepage_internal
     read_only: true
@@ -178,10 +159,6 @@ services:
       - /run
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    labels:
-      <<: *default_labels
-      wud.display.name: "homepage-socket-proxy"
-      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, manually clean and rebuild project
 
   librespeed:
     <<: *default_container
@@ -195,11 +172,7 @@ services:
       - ${LIBRESPEED_PORT_80}:80 # Web GUI HTTP
       - ${LIBRESPEED_PORT_443}:443 # Web GUI HTTPS
     volumes:
-      - ./librespeed:/config
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:speedometer"
-      wud.display.name: "librespeed"
+      - ${DOCKER_DIR}/general_apps/librespeed:/config
 
   theme-park:
     <<: *default_container
@@ -211,11 +184,7 @@ services:
       - ${THEMEPARK_PORT_80}:80 # Web GUI HTTP
       - ${THEMEPARK_PORT_443}:443 # Web GUI HTTPS
     volumes:
-      - ./theme-park:/config
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:brush"
-      wud.display.name: "theme-park"
+      - ${DOCKER_DIR}/general_apps/theme-park:/config
 
 ############################## NETWORKS SECTION ##############################
 networks:
@@ -239,9 +208,6 @@ secrets:
   # homepage general_apps
   gotify_homepageToken:
     file: ${SECRETS_DIR}/gotify_homepageToken.txt
-  # homepage container_management
-  wud_Password:
-    file: ${SECRETS_DIR}/wud_Password.txt
   # homepage media_apps
   audiobookshelf_API:
     file: ${SECRETS_DIR}/audiobookshelf_API.txt

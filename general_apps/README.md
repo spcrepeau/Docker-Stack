@@ -47,7 +47,7 @@
 * Notifications: N/A
 * Authentication: This application does not have any built-in authentication and we'll use an authentik proxy provider to do so.
 
-## homepage-socket-proxy
+## homepage_socket-proxy
 
 ### Links
 

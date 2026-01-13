@@ -2,16 +2,12 @@
 
 * Please see the Wiki for all information
 * env and secrets files have been stripped of all personal information, edit REPLACE_ME in each to reflect your environment.
-* When using wud to update your containers, change the lscr.io in the image field to ghcr.io.
 
 ## To-Do's
 
-* romm authentik SSO broken. Temp fix: <https://github.com/rommapp/romm/issues/2626>
 * Waiting on OIDC/Proxy login for gotify
 * Waiting on chaptarr, the readarr replacement to release.
 * Explore other DNS servers?
-* romm-db change?
-* remove wud once dockhand meets all needs.
 
 ## Projects
 
@@ -22,20 +18,19 @@
   * wizarr
 * [container_management](https://github.com/spcrepeau/Docker-Stack/tree/main/container_management)
   * dockhand
-  * socket-proxy
-  * wud/whatsupdocker
+  * dockhand_socket-proxy
 * [general_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/general_apps)
   * apprise
   * gotify
   * homepage
-  * homepage-socket-proxy
+  * homepage_socket-proxy
   * librespeed
   * theme-park
 * [media_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/media_apps)
   * audiobookshelf
   * calibre
   * romm
-  * romm-db (mariadb)
+  * romm_database (mariadb)
 * [media_management](https://github.com/spcrepeau/Docker-Stack/tree/main/media_management)
   * audiobookrequest
   * lidarr

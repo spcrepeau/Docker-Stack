@@ -11,10 +11,6 @@ x-default_container: &default_container
 #   PUID: ${DOCKER_UID}
 #   TZ: ${TZ}
 
-x-default_labels: &default_labels
-  wud.tag.include: "^latest$"
-  wud.watch.digest: "true"
-
 ############################## SERVICES SECTION ##############################
 services:
 
@@ -35,14 +31,10 @@ services:
       - ${PIHOLE_PORT_80}:80 # Web GUI HTTP
       - ${PIHOLE_PORT_443}:443 # Web GUI HTTPS
     volumes:
-      - ./pihole/etc-pihole:/etc/pihole
+      - ${DOCKER_DIR}/network_apps/pihole/etc-pihole:/etc/pihole
     security_opt: ["no-new-privileges:false"]
     secrets:
       - pihole_WebServerAPIPassword
-    labels:
-      <<: *default_labels
-      wud.display.icon: "si:pihole"
-      wud.display.name: "pihole"
 
 ############################## NETWORKS SECTION ##############################
 networks:

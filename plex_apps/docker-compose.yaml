@@ -11,10 +11,6 @@ x-default_environment: &default_environment
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
 
-x-default_labels: &default_labels
-  wud.tag.include: "^latest$"
-  wud.watch.digest: "true"
-
 ############################## SERVICES SECTION ##############################
 services:
 
@@ -28,17 +24,13 @@ services:
       - ${AGREGARR_PORT_7171}:7171 # Web GUI HTTP
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./agregarr:/app/config
+      - ${DOCKER_DIR}/plex_apps/agregarr:/app/config
       # Optional: For Coming Soon feature, mount media matching Radarr/Sonarr paths
       - ${DATA_DIR}/media/movies:/data/movies:ro # radarr
       - ${DATA_DIR}/media/movies-4K:/data/movies-4K:ro # radarr-4K
       - ${DATA_DIR}/media/tv:/data/tv:ro # sonarr
       - ${DATA_DIR}/media/tv-kids:/data/tv-kids:ro # sonarr
       - ${DATA_DIR}/media/anime:/data/anime:ro # sonarr-anime
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:plex"
-      wud.display.name: "agregarr"
 
   kometa:
     <<: *default_container
@@ -72,7 +64,7 @@ services:
       FILE__KOMETA_TRAKTACCESSTOKEN: /run/secrets/external_TraktAccessToken
       FILE__KOMETA_TRAKTREFRESHTOKEN: /run/secrets/external_TraktRefreshToken
     volumes:
-      - ./kometa:/config
+      - ${DOCKER_DIR}/plex_apps/kometa:/config
     secrets:
       - common_Username
       - gotify_kometaToken
@@ -92,29 +84,21 @@ services:
       - external_TraktClientSecret
       - external_TraktAccessToken
       - external_TraktRefreshToken
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:plex"
-      wud.display.name: "kometa"
 
   plexautolanguages:
     <<: *default_container
     image: ghcr.io/journeydocker/plex-auto-languages:latest
     container_name: plexautolanguages
     environment:
+      TZ: ${TZ}
       PLEX_URL_FILE: /run/secrets/plex_URL
       PLEX_TOKEN_FILE: /run/secrets/plex_Token
-      TZ: ${TZ}
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./plexautolanguages:/config
+      - ${DOCKER_DIR}/plex_apps/plexautolanguages:/config
     secrets:
       - plex_URL
       - plex_Token
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:plex"
-      wud.display.name: "plexautolanguages"
 
   quickstart:
     <<: *default_container
@@ -126,11 +110,7 @@ services:
       - ${QUICKSTART_PORT_7171}:7171 # Web GUI HTTP
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./quickstart:/config
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:plex"
-      wud.display.name: "quickstart"
+      - ${DOCKER_DIR}/plex_apps/quickstart:/config
 
   shinkro:
     <<: *default_container
@@ -142,11 +122,7 @@ services:
       - ${SHINKRO_PORT_7011}:7011 # Web GUI HTTP
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./shinkro/config:/config
-    labels:
-      <<: *default_labels
-      wud.display.icon: "si:myanimelist"
-      wud.display.name: "shinkro"
+      - ${DOCKER_DIR}/plex_apps/shinkro/config:/config
 
   tautulli:
     <<: *default_container
@@ -157,11 +133,7 @@ services:
     ports:
       - ${TAUTULLI_PORT_8181}:8181 # Web GUI HTTP
     volumes:
-      - ./tautulli:/config
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:plex"
-      wud.display.name: "quickstart"
+      - ${DOCKER_DIR}/plex_apps/tautulli:/config
 
 ############################## NETWORKS SECTION ##############################
 networks:

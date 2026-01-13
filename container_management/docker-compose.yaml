@@ -11,10 +11,6 @@ x-default_environment: &default_environment
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
 
-x-default_labels: &default_labels
-  wud.tag.include: "^latest$"
-  wud.watch.digest: "true"
-
 ############################## SERVICES SECTION ##############################
 services:
 
@@ -26,20 +22,18 @@ services:
       <<: *default_environment
     networks:
       - default
-      - socket_internal
+      - dockhand_internal
     ports:
       - ${DOCKHAND_PORT_3000}:3000
     volumes:
-      - ./dockhand:/app/data
+      - ${DOCKER_DIR}/container_management/dockhand:/app/data
       - ${DOCKER_DIR}:/external_stacks
-    labels:
-      <<: *default_labels
-      wud.display.name: "dockhand"
 
-  socket-proxy:
+  dockhand_socket-proxy:
     <<: *default_container
     image: ghcr.io/linuxserver/socket-proxy:latest
-    container_name: socket-proxy
+    container_name: dockhand_socket-proxy
+    hostname: socket-proxy
     environment:
       TZ: ${TZ}
       # Required for core functionality
@@ -63,90 +57,17 @@ services:
       TASKS: "1"
       SERVICES: "1"
     networks:
-      - socket_internal
+      - dockhand_internal
     read_only: true
     tmpfs:
       - /run
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    labels:
-      <<: *default_labels
-      wud.display.name: "socket-proxy"
-      wud.trigger.exclude: "docker.update" # Prevents WUD from updating it, manually clean and rebuild project
-
-  wud:
-    <<: *default_container
-    image: ghcr.io/getwud/wud:latest
-    container_name: wud
-    environment:
-      TZ: ${TZ}
-      DOCKER_HOST: "tcp://socket-proxy:2375"
-      # Basic Authentication https://getwud.github.io/wud/#/configuration/authentications/basic/
-      WUD_AUTH_BASIC_MY_USER__FILE: /run/secrets/common_Username
-      WUD_AUTH_BASIC_MY_HASH__FILE: /run/secrets/wud_AuthBasicMyHash
-      # Openid Connect Authentication https://getwud.github.io/wud/#/configuration/authentications/oidc/?id=openid-connect-authentication
-      WUD_AUTH_OIDC_AUTHENTIK_CLIENTID__FILE: /run/secrets/authentik_WUDClientID
-      WUD_AUTH_OIDC_AUTHENTIK_CLIENTSECRET__FILE: /run/secrets/authentik_WUDClientSecret
-      WUD_AUTH_OIDC_AUTHENTIK_DISCOVERY: "https://authentik.${HOST_DSM_PUBLIC_DNS_SUFFIX}/application/o/wud/.well-known/openid-configuration"
-      WUD_AUTH_OIDC_AUTHENTIK_REDIRECT: true # optional (to skip internal login page)
-      # Watchers https://getwud.github.io/wud/#/configuration/watchers/
-      WUD_WATCHER_LOCAL_CRON: "0 */8 * * *"
-      WUD_WATCHER_LOCAL_WATCHALL: true
-      # Docker Triggers https://getwud.github.io/wud/#/configuration/triggers/docker/
-      WUD_TRIGGER_DOCKER_UPDATE_PRUNE: true
-      WUD_TRIGGER_DOCKER_DOWNLOAD_DRYRUN: true # Downloads new images, needed for socket-proxy, wud, authentik
-      # Gotify Triggers https://getwud.github.io/wud/#/configuration/triggers/gotify/
-      WUD_TRIGGER_GOTIFY_LOCAL_URL: "https://gotify.${HOST_DSM_PUBLIC_DNS_SUFFIX}"
-      WUD_TRIGGER_GOTIFY_LOCAL_TOKEN__FILE: /run/secrets/gotify_wudToken
-      # SMTP Triggers https://getwud.github.io/wud/#/configuration/triggers/smtp/
-      WUD_TRIGGER_SMTP_GMAIL_AUTO: false # setting to false and leaving gotify as true
-      WUD_TRIGGER_SMTP_GMAIL_HOST: "smtp.gmail.com"
-      WUD_TRIGGER_SMTP_GMAIL_PORT: "465"
-      WUD_TRIGGER_SMTP_GMAIL_USER__FILE: /run/secrets/common_EmailAddress
-      WUD_TRIGGER_SMTP_GMAIL_PASS__FILE: /run/secrets/wud_TriggerSMTPPassword
-      WUD_TRIGGER_SMTP_GMAIL_FROM__FILE: /run/secrets/common_EmailAddress
-      WUD_TRIGGER_SMTP_GMAIL_TO__FILE: /run/secrets/common_EmailAddress
-      WUD_TRIGGER_SMTP_GMAIL_TLS_ENABLED: true
-    networks:
-      - default
-      - socket_internal
-    ports:
-      - ${WUD_PORT_3000}:3000 # Web GUI HTTP
-    user: ${DOCKER_UID}:${DOCKER_GID}
-    volumes:
-      - ./wud:/store
-    secrets:
-      - common_Username
-      - wud_AuthBasicMyHash
-      - common_EmailAddress
-      - wud_TriggerSMTPPassword
-      - authentik_WUDClientID
-      - authentik_WUDClientSecret
-      - gotify_wudToken
-    labels:
-      <<: *default_labels
-      wud.display.name: "wud"
-      wud.trigger.exclude: "docker.update" # Prevents WUD from updating itself, manually clean and rebuild project
 
 ############################## NETWORKS SECTION ##############################
 networks:
   default:
-  socket_internal:
+  dockhand_internal:
     internal: true
 
 ############################## SECRETS SECTION ##############################
-secrets:
-  common_Username:
-    file: ${SECRETS_DIR}/common_Username.txt
-  wud_AuthBasicMyHash:
-    file: ${SECRETS_DIR}/wud_AuthBasicMyHash.txt
-  common_EmailAddress:
-    file: ${SECRETS_DIR}/common_EmailAddress.txt
-  wud_TriggerSMTPPassword:
-    file: ${SECRETS_DIR}/wud_TriggerSMTPPassword.txt
-  authentik_WUDClientID:
-    file: ${SECRETS_DIR}/authentik_WUDClientID.txt
-  authentik_WUDClientSecret:
-    file: ${SECRETS_DIR}/authentik_WUDClientSecret.txt
-  gotify_wudToken:
-    file: ${SECRETS_DIR}/gotify_wudToken.txt

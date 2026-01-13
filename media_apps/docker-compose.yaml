@@ -11,10 +11,6 @@ x-default_environment: &default_environment
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
 
-x-default_labels: &default_labels
-  wud.tag.include: "^latest$"
-  wud.watch.digest: "true"
-
 ############################## SERVICES SECTION ##############################
 services:
 
@@ -29,15 +25,11 @@ services:
       - ${AUDIOBOOKSHELF_PORT_8080}:8080 # Web GUI HTTP
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./audiobookshelf/config:/config
-      - ./audiobookshelf/metadata:/metadata
+      - ${DOCKER_DIR}/media_apps/audiobookshelf/config:/config
+      - ${DOCKER_DIR}/media_apps/audiobookshelf/metadata:/metadata
       - ${DATA_DIR}/media/books:/books
       - ${DATA_DIR}/media/audiobooks:/audiobooks
       - ${DATA_DIR}/media/podcasts:/podcasts
-    labels:
-      <<: *default_labels
-      wud.display.icon: "si:audiobookshelf"
-      wud.display.name: "audiobookshelf"
 
   calibre:
     <<: *default_container
@@ -50,29 +42,25 @@ services:
       - ${CALIBRE_PORT_8181}:8181 # Web GUI HTTPS
       - ${CALIBRE_PORT_8081}:8081 # Server Connection, configured in Web GUI settings
     volumes:
-      - ./calibre:/config
+      - ${DOCKER_DIR}/media_apps/calibre:/config
       - ${DATA_DIR}/media/books:/books
       - ${DATA_DIR}/usenet/completed/books:/downloads
-    labels:
-      <<: *default_labels
-      wud.display.icon: "si:calibreweb"
-      wud.display.name: "calibre"
 
   romm:
     <<: *default_container
     image: ghcr.io/rommapp/romm:latest
     container_name: romm
     depends_on:
-      romm-db:
+      romm_database:
         condition: service_started
         restart: true
     environment:
       TZ: ${TZ}
       # database
-      DB_HOST: romm-db
+      DB_HOST: romm_database
       DB_NAME: romm
       DB_USER: romm-user
-      DB_PASSWD_FILE: /run/secrets/romm-db_MySQLPassword
+      DB_PASSWD_FILE: /run/secrets/romm_database_MySQLPassword
       ROMM_AUTH_SECRET_KEY_FILE: /run/secrets/romm_AuthSecretKey
       # OIDC
       OIDC_ENABLED: true
@@ -102,10 +90,10 @@ services:
       - ${ROMM_PORT_8080}:8080 # Web GUI HTTP
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./romm/assets:/romm/assets
-      - ./romm/config:/romm/config
-      - ./romm/redis-data:/redis-data
-      - ./romm/resources:/romm/resources
+      - ${DOCKER_DIR}/media_apps/romm/assets:/romm/assets
+      - ${DOCKER_DIR}/media_apps/romm/config:/romm/config
+      - ${DOCKER_DIR}/media_apps/romm/redis-data:/redis-data
+      - ${DOCKER_DIR}/media_apps/romm/resources:/romm/resources
       - ${DATA_DIR}/media/emulation:/romm/library
     secrets:
       - authentik_rommClientID
@@ -114,34 +102,26 @@ services:
       - external_IGDBClientSecret
       - romm_AuthSecretKey
       - external_SteamGrimDBAPI
-      - romm-db_MySQLPassword
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:controller"
-      wud.display.name: "romm"
+      - romm_database_MySQLPassword
 
-  romm-db:
+  romm_database:
     <<: *default_container
     image: ghcr.io/linuxserver/mariadb:latest
-    container_name: romm-db
+    container_name: romm_database
     environment:
       <<: *default_environment
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/romm-db_MySQLPassword
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/romm_database_MySQLPassword
       MYSQL_DATABASE: romm
       MYSQL_USER: romm-user
-      MYSQL_PASSWORD_FILE: /run/secrets/romm-db_MySQLPassword
+      MYSQL_PASSWORD_FILE: /run/secrets/romm_database_MySQLPassword
     networks:
       - romm_internal
     ports:
-      - ${ROMMDB_PORT_3306}:3306 # DB Connection
+      - ${ROMM_DATABASE_PORT_3306}:3306 # DB Connection
     volumes:
-      - ./romm/database:/config
+      - ${DOCKER_DIR}/media_apps/romm/database:/config
     secrets:
-      - romm-db_MySQLPassword
-    labels:
-      <<: *default_labels
-      wud.display.icon: "si:mariadb"
-      wud.display.name: "romm-db"
+      - romm_database_MySQLPassword
 
 ############################## NETWORKS SECTION ##############################
 networks:
@@ -163,5 +143,5 @@ secrets:
     file: ${SECRETS_DIR}/romm_AuthSecretKey.txt
   external_SteamGrimDBAPI:
     file: ${SECRETS_DIR}/external_SteamGrimDBAPI.txt
-  romm-db_MySQLPassword:
-    file: ${SECRETS_DIR}/romm-db_MySQLPassword.txt
+  romm_database_MySQLPassword:
+    file: ${SECRETS_DIR}/romm_database_MySQLPassword.txt

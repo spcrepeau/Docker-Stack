@@ -11,10 +11,6 @@ x-default_environment: &default_environment
   PUID: ${DOCKER_UID}
   TZ: ${TZ}
 
-x-default_labels: &default_labels
-  wud.tag.include: "^latest$"
-  wud.watch.digest: "true"
-
 ############################## SERVICES SECTION ##############################
 services:
 
@@ -23,16 +19,13 @@ services:
     image: markbeep/audiobookrequest:latest
     container_name: audiobookrequest
     environment:
+      TZ: ${TZ}
       ABR_APP__FORCE_LOGIN_TYPE: oidc
     ports:
       - ${AUDIOBOOKREQUEST_PORT_8000}:8000 # Web GUI HTTP
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./audiobookrequest:/config
-    labels:
-      <<: *default_labels
-      wud.display.icon: "si:audiobookshelf"
-      wud.display.name: "audiobookrequest"
+      - ${DOCKER_DIR}/media_management/audiobookrequest:/config
 
   lidarr:
     <<: *default_container
@@ -45,14 +38,10 @@ services:
     ports:
       - ${LIDARR_PORT_8686}:8686 # Web GUI HTTP
     volumes:
-      - ./lidarr:/config
+      - ${DOCKER_DIR}/media_management/lidarr:/config
       - ${DATA_DIR}/usenet:/downloads
       - ${DATA_DIR}/media/music:/music
       - ${DATA_DIR}/trash/lidarr:/recycle
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:music"
-      wud.display.name: "lidarr"
 
   overseerr:
     <<: *default_container
@@ -63,11 +52,7 @@ services:
     ports:
       - ${OVERSEERR_PORT_5055}:5055 # Web GUI HTTP
     volumes:
-      - ./overseerr:/config
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:view-dashboard"
-      wud.display.name: "overseer"
+      - ${DOCKER_DIR}/media_management/overseerr:/config
 
   prowlarr:
     <<: *default_container
@@ -80,11 +65,7 @@ services:
     ports:
       - ${PROWLARR_PORT_9696}:9696 # Web GUI HTTP
     volumes:
-      - ./prowlarr:/config
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:download"
-      wud.display.name: "prowlarr"
+      - ${DOCKER_DIR}/media_management/prowlarr:/config
 
   radarr:
     <<: *default_container
@@ -97,14 +78,10 @@ services:
     ports:
       - ${RADARR_PORT_7878}:7878 # Web GUI HTTP
     volumes:
-      - ./radarr:/config
+      - ${DOCKER_DIR}/media_management/radarr:/config
       - ${DATA_DIR}/usenet:/downloads
       - ${DATA_DIR}/media/movies:/movies
       - ${DATA_DIR}/trash/radarr:/recycle
-    labels:
-      <<: *default_labels
-      wud.display.icon: "si:radarr"
-      wud.display.name: "radarr"
 
   radarr-4K:
     <<: *default_container
@@ -117,14 +94,10 @@ services:
     ports:
       - ${RADARR4K_PORT_7878}:7878 # Web GUI HTTP
     volumes:
-      - ./radarr-4K:/config
+      - ${DOCKER_DIR}/media_management/radarr-4K:/config
       - ${DATA_DIR}/usenet:/downloads
       - ${DATA_DIR}/media/movies-4K:/movies
       - ${DATA_DIR}/trash/radarr-4K:/recycle
-    labels:
-      <<: *default_labels
-      wud.display.icon: "si:radarr"
-      wud.display.name: "radarr-4K"
 
   recyclarr:
     <<: *default_container
@@ -139,17 +112,13 @@ services:
       APPRISE_URL: http://${HOST_DSM_HOSTNAME}:${APPRISE_PORT_8000}
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ./recyclarr:/config
+      - ${DOCKER_DIR}/media_management/recyclarr:/config
     secrets:
       - radarr_API
       - radarr-4k_API
       - sonarr_API
       - sonar-anime_API
       - gotify_recyclarrURL
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:cog"
-      wud.display.name: "recyclarr"
 
   sabnzbd:
     <<: *default_container
@@ -160,12 +129,8 @@ services:
     ports:
       - ${SABNZBD_PORT_8080}:8080 # Web GUI HTTP
     volumes:
-      - ./sabnzbd:/config
+      - ${DOCKER_DIR}/media_management/sabnzbd:/config
       - ${DATA_DIR}/usenet:/downloads
-    labels:
-      <<: *default_labels
-      wud.display.icon: "mdi:download"
-      wud.display.name: "sabnzbd"
 
   sonarr:
     <<: *default_container
@@ -178,15 +143,11 @@ services:
     ports:
       - ${SONARR_PORT_8989}:8989 # Web GUI HTTP
     volumes:
-      - ./sonarr:/config
+      - ${DOCKER_DIR}/media_management/sonarr:/config
       - ${DATA_DIR}/usenet:/downloads
       - ${DATA_DIR}/media/tv:/tv
       - ${DATA_DIR}/media/tv-kids:/tv-kids
       - ${DATA_DIR}/trash/sonarr:/recycle
-    labels:
-      <<: *default_labels
-      wud.display.icon: "si:sonarr"
-      wud.display.name: "sonarr"
 
   sonarr-anime:
     <<: *default_container
@@ -201,14 +162,10 @@ services:
     ports:
       - ${SONARRANIME_PORT_8989}:8989 # Web GUI HTTP
     volumes:
-      - ./sonarr-anime:/config
+      - ${DOCKER_DIR}/media_management/sonarr-anime:/config
       - ${DATA_DIR}/usenet:/downloads
       - ${DATA_DIR}/media/anime:/anime
       - ${DATA_DIR}/trash/sonarr-anime:/recycle
-    labels:
-      <<: *default_labels
-      wud.display.icon: "si:sonarr"
-      wud.display.name: "sonarr-anime"
 
 ############################## NETWORKS SECTION ##############################
 networks:

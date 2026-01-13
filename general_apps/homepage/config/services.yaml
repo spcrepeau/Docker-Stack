@@ -162,20 +162,6 @@
         key: {{HOMEPAGE_FILE_GOTIFY_HOMEPAGE_TOKEN}}
         highlight:
           messages: *common_highlights
-  - wud:
-      # href: {{HOMEPAGE_VAR_WUD_URL}}
-      href: "https://wud.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-      description: remote access
-      icon: /icons/whats-up-docker_authentik.png
-      server: my-docker
-      container: wud
-      widget:
-        type: whatsupdocker # https://gethomepage.dev/widgets/services/whatsupdocker/
-        url: {{HOMEPAGE_VAR_WUD_URL}}
-        username: {{HOMEPAGE_FILE_COMMON_USERNAME}} # optional
-        password: {{HOMEPAGE_FILE_WUD_PASSWORD}} # optional
-        highlight:
-          updates: *common_highlights
   - tautulli:
       # href: {{HOMEPAGE_VAR_TAUTULLI_URL}}
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -328,11 +314,16 @@
       icon: authentik
       server: my-docker
       container: authentik_worker
-  - homepage-socket-proxy:
+  - dockhand_socket-proxy:
       description: container status only
       icon: docker
       server: my-docker
-      container: homepage-socket-proxy
+      container: dockhand_socket-proxy
+  - homepage_socket-proxy:
+      description: container status only
+      icon: docker
+      server: my-docker
+      container: homepage_socket-proxy
   - kometa:
       description: container status only
       icon: kometa
@@ -348,16 +339,11 @@
       icon: recyclarr
       server: my-docker
       container: recyclarr
-  - romm-db:
+  - romm_database:
       description: container status only
       icon: mariadb
       server: my-docker
-      container: romm-db
-  - socket-proxy:
-      description: container status only
-      icon: docker
-      server: my-docker
-      container: socket-proxy
+      container: romm_database
   - theme-park:
       description: container status only
       icon: themepark
