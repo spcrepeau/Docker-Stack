@@ -143,9 +143,15 @@
   - shinkro:
     - icon: shinkro
       href: https://github.com/varoOP/shinkro
+  - slskd:
+    - icon: slskd
+      href: https://github.com/slskd/slskd
   - sonarr:
     - icon: sonarr
       href: https://github.com/Sonarr/Sonarr
+  - soularr:
+    - icon: soulseek
+      href: https://github.com/mrusse/soularr
   - tautulli:
     - icon: tautulli
       href: https://github.com/Tautulli/Tautulli

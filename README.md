@@ -40,8 +40,10 @@
   * radarr-4K (radarr)
   * recyclarr
   * sabnzbd
+  * slskd
   * sonarr
   * sonarr-anime (sonarr)
+  * soularr
 * [network_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/network_apps)
   * pihole
 * [plex_apps](https://github.com/spcrepeau/Docker-Stack/tree/main/plex_apps)

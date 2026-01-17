@@ -24,7 +24,7 @@
 ### Notes
 
 * Rootless: Uses PUID and PGID environment variables.
-* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>.
+* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>. Custom header: Upgrade=$http_upgrade, Connection=$http_connection
 * Notifications: Setup gotify.
 * Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
 
@@ -52,7 +52,7 @@
 ### Notes
 
 * Rootless: Uses PUID and PGID environment variables.
-* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>.
+* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>. Custom header: Upgrade=$http_upgrade, Connection=$http_connection
 * Notifications: Setup gotify.
 * Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
 
@@ -66,7 +66,7 @@
 ### Notes
 
 * Rootless: Uses PUID and PGID environment variables.
-* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>.
+* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>. Custom header: Upgrade=$http_upgrade, Connection=$http_connection
 * Notifications: Setup gotify.
 * Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
 
@@ -111,6 +111,19 @@ recyclarr sync
 * Notifications: Setup gotify. Select Apprise and use URL <gotifys://gotify.mydomain.com/myToken>.
 * Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api.* to allow nzb360 access to API.
 
+## slskd
+
+### Links
+
+* GitHub: <https://github.com/slskd/slskd>
+
+### Notes
+
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: None
+* Notifications: N/A
+* Authentication: Built-in.
+
 ## sonarr & sonarr-anime
 
 ### Links
@@ -121,9 +134,22 @@ recyclarr sync
 ### Notes
 
 * Rootless: Uses PUID and PGID environment variables.
-* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>.
+* Reverse Proxy: Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. <https://wiki.servarr.com/radarr/faq#forced-authentication>, <https://integrations.goauthentik.io/media/sonarr/>. Custom header: Upgrade=$http_upgrade, Connection=$http_connection
 * Notifications: Setup gotify.
 * Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
+
+## soularr
+
+### Links
+
+* GitHub: <https://github.com/mrusse/soularr>
+
+### Notes
+
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: N/A
+* Notifications: N/A
+* Authentication: N/A
 
 ## custom format files
 

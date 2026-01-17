@@ -284,6 +284,17 @@
       icon: shinkro
       server: my-docker
       container: shinkro
+  - slskd:
+      href: {{HOMEPAGE_VAR_SLSKD_URL}}
+      description: local access only
+      icon: slskd
+      server: my-docker
+      container: slskd
+      # widget:
+      #   type: slskd
+      #   url: {{HOMEPAGE_VAR_SLSKD_URL}}
+      #   key: {{HOMEPAGE_FILE_SLSKD_API}}
+      #   fields: ["slskStatus", "updateStatus", "downloads", "uploads", "sharedFiles"] # Maximum of 4
   - synology:
       # href: {{HOMEPAGE_VAR_NAS_URL}}
       href: "https://nas.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -344,6 +355,11 @@
       icon: mariadb
       server: my-docker
       container: romm_database
+  - soularr:
+      description: container status only
+      icon: soulseek
+      server: my-docker
+      container: soularr
   - theme-park:
       description: container status only
       icon: themepark

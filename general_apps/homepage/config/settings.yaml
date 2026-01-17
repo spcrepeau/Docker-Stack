@@ -39,7 +39,7 @@ layout:
     header: false
   Normal Applications:
     style: row
-    columns: 5
+    columns: 6
     tab: Services
     header: false
   Service Applications:

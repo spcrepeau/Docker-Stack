@@ -38,7 +38,7 @@ services:
 
   authentik_server:
     <<: *default_container
-    image: ghcr.io/goauthentik/server:2025.10.3
+    image: ghcr.io/goauthentik/server:2025.12.1
     container_name: authentik_server
     command: server
     depends_on:
@@ -60,7 +60,7 @@ services:
       - ${AUTHENTIK_PORT_9443}:9443 # Web GUI HTTPS
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ${DOCKER_DIR}/access_management/authentik/media:/media
+      - ${DOCKER_DIR}/access_management/authentik/data:/data
       - ${DOCKER_DIR}/access_management/authentik/custom-templates:/templates
     secrets:
       - authentik_DatabasePassword
@@ -68,7 +68,7 @@ services:
 
   authentik_worker:
     <<: *default_container
-    image: ghcr.io/goauthentik/server:2025.10.3
+    image: ghcr.io/goauthentik/server:2025.12.1
     container_name: authentik_worker
     command: worker
     depends_on:
@@ -93,7 +93,7 @@ services:
       - authentik_internal
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
-      - ${DOCKER_DIR}/access_management/authentik/media:/media
+      - ${DOCKER_DIR}/access_management/authentik/data:/data
       - ${DOCKER_DIR}/access_management/authentik/certs:/certs
       - ${DOCKER_DIR}/access_management/authentik/custom-templates:/templates
     secrets:

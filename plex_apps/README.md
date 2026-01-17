@@ -69,7 +69,7 @@
 ### Notes
 
 * Rootless: Uses "user: UID:GID".
-* Reverse Proxy: Setup reverse proxy for this app in DSN.
+* Reverse Proxy: Setup reverse proxy for this app in DSM. Custom header: Upgrade=$http_upgrade, Connection=$http_connection
 * Notifications: Setup gotify.
 * Authentication: Built-in.
 

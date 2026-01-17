@@ -42,6 +42,7 @@ services:
       - ${DATA_DIR}/usenet:/downloads
       - ${DATA_DIR}/media/music:/music
       - ${DATA_DIR}/trash/lidarr:/recycle
+      - ${DOCKER_DIR}/media_management/slskd/downloads:/slskd_downloads
 
   overseerr:
     <<: *default_container
@@ -132,6 +133,20 @@ services:
       - ${DOCKER_DIR}/media_management/sabnzbd:/config
       - ${DATA_DIR}/usenet:/downloads
 
+  slskd:
+    <<: *default_container
+    image: ghcr.io/slskd/slskd:latest
+    container_name: slskd
+    environment:
+      SLSKD_REMOTE_CONFIGURATION: true
+    ports:
+      - ${SLSKD_PORT_5030}:5030 # Web GUI HTTP
+      - ${SLSKD_PORT_5031}:5031 # Web GUI HTTPS
+      - ${SLSKD_PORT_50300}:50300 # Incoming connections from the Soulseek network
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ${DOCKER_DIR}/media_management/slskd:/app
+
   sonarr:
     <<: *default_container
     image: ghcr.io/linuxserver/sonarr:latest
@@ -166,6 +181,18 @@ services:
       - ${DATA_DIR}/usenet:/downloads
       - ${DATA_DIR}/media/anime:/anime
       - ${DATA_DIR}/trash/sonarr-anime:/recycle
+
+  soularr:
+    <<: *default_container
+    image: mrusse08/soularr:latest
+    container_name: soularr
+    environment:
+      TZ: ${TZ}
+      SCRIPT_INTERVAL: 300 # In seconds
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ${DOCKER_DIR}/media_management/soularr:/data
+      - ${DOCKER_DIR}/media_management/slskd/downloads:/downloads
 
 ############################## NETWORKS SECTION ##############################
 networks:
