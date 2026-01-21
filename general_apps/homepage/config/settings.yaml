@@ -9,7 +9,7 @@ fullWidth: true
 
 theme: dark
 color: slate
-cardBlur: xl # xs, md, etc... see https://tailwindcss.com/docs/backdrop-blur
+cardBlur: xs # xs, md, etc... see https://tailwindcss.com/docs/backdrop-blur
 favicon: /images/favicon.ico
 background:
   image: /images/background.jpg

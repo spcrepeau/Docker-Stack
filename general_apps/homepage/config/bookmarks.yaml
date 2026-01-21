@@ -57,6 +57,9 @@
   - sonarr:
     - icon: sonarr
       href: https://sonarr.tv
+  - soularr:
+    - icon: /icons/soularr.png
+      href: https://soularr.net
   - tautulli:
     - icon: tautulli
       href: https://tautulli.com
@@ -150,7 +153,7 @@
     - icon: sonarr
       href: https://github.com/Sonarr/Sonarr
   - soularr:
-    - icon: soulseek
+    - icon: /icons/soularr.png
       href: https://github.com/mrusse/soularr
   - tautulli:
     - icon: tautulli

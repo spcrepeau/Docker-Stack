@@ -121,7 +121,7 @@ recyclarr sync
 
 * Rootless: Uses "user: UID:GID".
 * Reverse Proxy: None
-* Notifications: N/A
+* Notifications: None at this time.
 * Authentication: Built-in.
 
 ## sonarr & sonarr-anime
@@ -148,7 +148,7 @@ recyclarr sync
 
 * Rootless: Uses "user: UID:GID".
 * Reverse Proxy: N/A
-* Notifications: N/A
+* Notifications: None at this time.
 * Authentication: N/A
 
 ## custom format files

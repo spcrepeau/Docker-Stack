@@ -8,42 +8,48 @@
         icon: mdi-calendar-month-outline-#ffffff
         widget: &common_calendar_widget
           type: calendar # https://gethomepage.dev/widgets/services/calendar/
-          firstDayInWeek: sunday # optional - defaults to monday
-          view: agenda # optional - possible values monthly, agenda
-          maxEvents: 15 # optional - defaults to 10
-          showTime: true # optional - show time for event happening today - defaults to false
-          timezone: {{HOMEPAGE_VAR_TZ}} # optional and only when timezone is not detected properly (slightly slower performance) - force timezone for ical events (if it's the same - no change, if missing or different in ical - will be converted to this timezone)
-          integrations: # optional
-            - type: radarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
-              service_group: Download Applications # group name where widget exists
-              service_name: radarr # service name for that widget
-              color: orange # optional - defaults to pre-defined color for the service (teal for sonarr)
-              # baseUrl: {{HOMEPAGE_VAR_RADARR_URL}} # optional - adds links to sonarr/radarr pages
-              baseUrl: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}" # optional - adds links to sonarr/radarr pages
-            - type: radarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
-              service_group: Download Applications # group name where widget exists
-              service_name: radarr-4K # service name for that widget
-              color: red # optional - defaults to pre-defined color for the service (teal for sonarr)
-              # baseUrl: {{HOMEPAGE_VAR_RADARR4K_URL}} # optional - adds links to sonarr/radarr pages
-              baseUrl: "https://radarr4k.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}" # optional - adds links to sonarr/radarr pages
-            - type: sonarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
-              service_group: Download Applications # group name where widget exists
-              service_name: sonarr # service name for that widget
-              color: blue # optional - defaults to pre-defined color for the service (teal for sonarr)
-              # baseUrl: {{HOMEPAGE_VAR_SONARR_URL}} # optional - adds links to sonarr/radarr pages
-              baseUrl: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}" # optional - adds links to sonarr/radarr pages
-            - type: sonarr # active widget type that is currently enabled on homepage - possible values: radarr, sonarr, lidarr, readarr, ical
-              service_group: Download Applications # group name where widget exists
-              service_name: sonarr-anime # service name for that widget
-              color: green # optional - defaults to pre-defined color for the service (teal for sonarr)
-              # baseUrl: {{HOMEPAGE_VAR_SONARRANIME_URL}} # optional - adds links to sonarr/radarr pages
-              baseUrl: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}" # optional - adds links to sonarr/radarr pages
+          firstDayInWeek: sunday
+          view: agenda
+          maxEvents: 15
+          showTime: true
+          timezone: {{HOMEPAGE_VAR_TZ}}
+          integrations:
+            - type: radarr
+              service_group: Download Applications
+              service_name: radarr
+              color: amber
+              # baseUrl: {{HOMEPAGE_VAR_RADARR_URL}}
+              baseUrl: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+            - type: radarr
+              service_group: Download Applications
+              service_name: radarr-4K
+              color: red
+              # baseUrl: {{HOMEPAGE_VAR_RADARR4K_URL}}
+              baseUrl: "https://radarr4k.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+            - type: sonarr
+              service_group: Download Applications
+              service_name: sonarr
+              color: teal
+              # baseUrl: {{HOMEPAGE_VAR_SONARR_URL}}
+              baseUrl: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+            - type: sonarr
+              service_group: Download Applications
+              service_name: sonarr-anime
+              color: violet
+              # baseUrl: {{HOMEPAGE_VAR_SONARRANIME_URL}}
+              baseUrl: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
+            - type: lidarr
+              service_group: Download Applications
+              service_name: lidarr
+              color: green
+              # baseUrl: {{HOMEPAGE_VAR_LIDARR_URL}}
+              baseUrl: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
     - release calendar:
         icon: mdi-calendar-month-outline-#ffffff
         widget:
           <<: *common_calendar_widget
-          view: monthly # optional - possible values monthly, agenda
-          maxEvents: 4 # optional - defaults to 10
+          view: monthly
+          maxEvents: 4
 
   - Download Applications:
     - sabnzbd:
@@ -173,9 +179,9 @@
         type: tautulli # https://gethomepage.dev/widgets/services/plex-tautulli/
         url: {{HOMEPAGE_VAR_TAUTULLI_URL}}
         key: {{HOMEPAGE_FILE_TAUTULLI_API}}
-        enableUser: true # optional, defaults to false
-        showEpisodeNumber: true # optional, defaults to false
-        expandOneStreamToTwoRows: false # optional, defaults to true
+        enableUser: true
+        showEpisodeNumber: true
+        expandOneStreamToTwoRows: false
 
 - Normal Applications:
   - agregarr:
@@ -249,8 +255,8 @@
       # widget:
       #   type: pihole # https://gethomepage.dev/widgets/services/pihole/
       #   url: {{HOMEPAGE_VAR_PIHOLE_URL}}
-      #   version: 6 # required if running v6 or higher, defaults to 5
-      #   key: {{HOMEPAGE_FILE_PIHOLE_API}} # optional, in v6 can be your password or app password
+      #   version: 6
+      #   key: {{HOMEPAGE_FILE_PIHOLE_API}}
   - plex:
       href: {{HOMEPAGE_FILE_PLEX_URL}}
       description: remote access
@@ -259,7 +265,7 @@
       # widget:
       #   type: plex # https://gethomepage.dev/widgets/services/plex/
       #   url: {{HOMEPAGE_FILE_PLEX_URL}}
-      #   key: {{HOMEPAGE_FILE_PLEX_TOKEN}} # see https://www.plexopedia.com/plex-media-server/general/plex-token/
+      #   key: {{HOMEPAGE_FILE_PLEX_TOKEN}}
       #   fields: ["albums", "movies", "tv"]
   - quickstart:
       href: {{HOMEPAGE_VAR_QUICKSTART_URL}}
@@ -357,7 +363,7 @@
       container: romm_database
   - soularr:
       description: container status only
-      icon: soulseek
+      icon: /icons/soularr.png
       server: my-docker
       container: soularr
   - theme-park:
@@ -402,7 +408,7 @@
         display: dynamic-list
         mappings:
           <<: *recent_mappings
-          name: grandparent_title # required, field in each item to use as the item name (left side)
+          name: grandparent_title
   - recently added anime (tautulli):
       icon: /icons/sonarr-anime.png
       # href: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/library?section_id=3"
@@ -413,7 +419,7 @@
         display: dynamic-list
         mappings:
           <<: *recent_mappings
-          name: grandparent_title # required, field in each item to use as the item name (left side)
+          name: grandparent_title
   - recently added music (tautulli):
       icon: lidarr
       # href: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/library?section_id=5"
@@ -431,7 +437,7 @@
       icon: radarr
       widget:
         <<: *radarr_widget
-        enableQueue: true # optional, defaults to false
+        enableQueue: true
         fields: [""]
   - radarr-4K queue:
       # href: "{{HOMEPAGE_VAR_RADARR4K_URL}}/activity/queue"
@@ -439,7 +445,7 @@
       icon: radarr-4k
       widget:
         <<: *radarr-4K_widget
-        enableQueue: true # optional, defaults to false
+        enableQueue: true
         fields: [""]
   - sonarr queue:
       # href: "{{HOMEPAGE_VAR_SONARR_URL}}/activity/queue"
@@ -447,7 +453,7 @@
       icon: sonarr
       widget: 
         <<: *sonarr_widget
-        enableQueue: true # optional, defaults to false
+        enableQueue: true
         fields: [""]
   - sonarr-anime queue:
       # href: "{{HOMEPAGE_VAR_SONARRANIME_URL}}/activity/queue"
@@ -455,15 +461,7 @@
       icon: /icons/sonarr-anime.png
       widget:
         <<: *sonarranime_widget
-        enableQueue: true # optional, defaults to false
-        fields: [""]
-  - lidarr queue:
-      # href: "{{HOMEPAGE_VAR_LIDARR_URL}}/activity/queue"
-      href: "https://lidarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/activity/queue"
-      icon: lidarr
-      widget:
-        <<: *lidarr_widget
-        enableQueue: true # optional, defaults to false
+        enableQueue: true
         fields: [""]
 
 - Download History:
