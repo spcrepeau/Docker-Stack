@@ -135,7 +135,7 @@
         icon: /icons/lidarr_authentik.png
         server: my-docker
         container: lidarr
-        widget: &lidarr_widget
+        widget:
           type: lidarr # https://gethomepage.dev/widgets/services/lidarr/
           url: {{HOMEPAGE_VAR_LIDARR_URL}}
           key: {{HOMEPAGE_FILE_LIDARR_API}}
@@ -203,6 +203,18 @@
       icon: /icons/audiobookrequest_authentik.png
       server: my-docker
       container: audiobookrequest
+      # widget:
+      #   type: customapi # https://gethomepage.dev/widgets/services/customapi/
+      #   method: GET
+      #   url: "https://audiobookrequest.iwantbread.synology.me/api/requests"
+      #   headers:
+      #     Authorization: "Bearer Issqau74jL9fUh6gifyjAy2C3DeHHvIcKvyN9GVCy6I"
+      #   display: block
+      #   mappings:
+      #     - label: Requests
+      #       format: size
+      #   highlight: 
+      #     Requests: *common_highlights
   - audiobookshelf:
       # href: {{HOMEPAGE_VAR_AUDIOBOOKSHELF_URL}}
       href: "https://audiobookshelf.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
@@ -471,7 +483,9 @@
       icon: radarr
       widget: &common_history_widget
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
-        url: "{{HOMEPAGE_VAR_RADARR_URL}}/api/v3/history?apikey={{HOMEPAGE_FILE_RADARR_API}}&page=1&pageSize=10&eventType=3"
+        url: "{{HOMEPAGE_VAR_RADARR_URL}}/api/v3/history?page=1&pageSize=10&eventType=3"
+        headers:
+          X-Api-Key: {{HOMEPAGE_FILE_RADARR_API}}
         display: dynamic-list
         mappings:
           items: records # optional, the path to the array in the API response. Omit this option if the array is at the root level
@@ -485,18 +499,24 @@
       icon: radarr-4k
       widget:
         <<: *common_history_widget
-        url: "{{HOMEPAGE_VAR_RADARR4K_URL}}/api/v3/history?apikey={{HOMEPAGE_FILE_RADARR4K_API}}&page=1&pageSize=10&eventType=3"
+        url: "{{HOMEPAGE_VAR_RADARR4K_URL}}/api/v3/history?page=1&pageSize=10&eventType=3"
+        headers:
+          X-Api-Key: {{HOMEPAGE_FILE_RADARR4K_API}}
   - sonarr history (imported only):
       # href: "{{HOMEPAGE_VAR_SONARR_URL}}/activity/history"
       href: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/activity/history"
       icon: sonarr
       widget:
         <<: *common_history_widget
-        url: "{{HOMEPAGE_VAR_SONARR_URL}}/api/v3/history?apikey={{HOMEPAGE_FILE_SONARR_API}}&page=1&pageSize=10&eventType=3"
+        url: "{{HOMEPAGE_VAR_SONARR_URL}}/api/v3/history?page=1&pageSize=10&eventType=3"
+        headers:
+          X-Api-Key: {{HOMEPAGE_FILE_SONARR_API}}
   - sonarr-anime history (imported only):
       # href: "{{HOMEPAGE_VAR_SONARRANIME_URL}}/activity/history"
       href: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/activity/history"
       icon: /icons/sonarr-anime.png
       widget:
         <<: *common_history_widget
-        url: "{{HOMEPAGE_VAR_SONARRANIME_URL}}/api/v3/history?apikey={{HOMEPAGE_FILE_SONARRANIME_API}}&page=1&pageSize=10&eventType=3"
+        url: "{{HOMEPAGE_VAR_SONARRANIME_URL}}/api/v3/history?page=1&pageSize=10&eventType=3"
+        headers:
+          X-Api-Key: {{HOMEPAGE_FILE_SONARRANIME_API}}

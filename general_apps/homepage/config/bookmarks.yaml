@@ -6,6 +6,9 @@
   - spcrepeau Docker-Stack:
     - icon: github-light
       href: https://github.com/spcrepeau/Docker-Stack
+  - agregarr:
+    - icon: agregarr
+      href: https://agregarr.org/
   - audiobookrequest:
     - icon: /icons/audiobookrequest.png
       href: https://markbeep.github.io/AudioBookRequest
@@ -51,6 +54,9 @@
   - sabnzbd:
     - icon: sabnzbd
       href: https://sabnzbd.org
+  - servarr:
+    - icon: servarr
+      href: https://wiki.servarr.com/
   - shinkro:
     - icon: shinkro
       href: https://docs.shinkro.com

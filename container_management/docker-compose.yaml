@@ -18,8 +18,12 @@ services:
     <<: *default_container
     image: fnsys/dockhand:latest
     container_name: dockhand
+    depends_on:
+      - dockhand_socket-proxy
     environment:
       <<: *default_environment
+      DISABLE_LOCAL_LOGIN: true
+      SKIP_DF_COLLECTION: true
     networks:
       - default
       - dockhand_internal

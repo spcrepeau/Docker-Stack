@@ -26,11 +26,7 @@ services:
     volumes:
       - ${DOCKER_DIR}/plex_apps/agregarr:/app/config
       # Optional: For Coming Soon feature, mount media matching Radarr/Sonarr paths
-      - ${DATA_DIR}/media/movies:/data/movies:ro # radarr
-      - ${DATA_DIR}/media/movies-4K:/data/movies-4K:ro # radarr-4K
-      - ${DATA_DIR}/media/tv:/data/tv:ro # sonarr
-      - ${DATA_DIR}/media/tv-kids:/data/tv-kids:ro # sonarr
-      - ${DATA_DIR}/media/anime:/data/anime:ro # sonarr-anime
+      - ${DATA_DIR}:/data:ro
 
   kometa:
     <<: *default_container

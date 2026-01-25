@@ -27,7 +27,11 @@ libraries:
     report_path: /config/missing/missing_movies-4k.yaml
     <<: *common_movies
 
-  TV Shows: # https://kometa.wiki/en/latest/config/libraries/
+  Kid's Movies: # https://kometa.wiki/en/latest/config/libraries/
+    report_path: /config/missing/missing_kids_movies.yaml
+    <<: *common_movies
+
+  TV Shows: &common_tv # https://kometa.wiki/en/latest/config/libraries/
     report_path: /config/missing/missing_tv_shows.yaml
     collection_files: # https://kometa.wiki/en/latest/defaults/collections/
       - default: imdb # https://kometa.wiki/en/latest/defaults/chart/imdb/
@@ -67,6 +71,10 @@ libraries:
     operations: # https://kometa.wiki/en/latest/config/operations/
       mass_critic_rating_update: mdb_tomatoes
       mass_audience_rating_update: mdb_tomatoesaudience
+
+  Kid's TV Shows: # https://kometa.wiki/en/latest/config/libraries/
+    report_path: /config/missing/missing_kids_tv_shows.yaml
+    <<: *common_tv
 
   Anime: # https://kometa.wiki/en/latest/config/libraries/
     report_path: /config/missing/missing_anime.yaml

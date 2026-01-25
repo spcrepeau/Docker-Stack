@@ -4,6 +4,7 @@
 
 ### Links
 
+* Documentation: <https://agregarr.org/>
 * GitHub: <https://github.com/agregarr/agregarr>
 
 ### Notes

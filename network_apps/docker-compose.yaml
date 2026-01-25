@@ -6,13 +6,41 @@ x-default_container: &default_container
   security_opt: ["no-new-privileges:true"]
   restart: unless-stopped
 
-# x-default_environment: &default_environment
-#   PGID: ${DOCKER_GID}
-#   PUID: ${DOCKER_UID}
-#   TZ: ${TZ}
+x-default_environment: &default_environment
+  PGID: ${DOCKER_GID}
+  PUID: ${DOCKER_UID}
+  TZ: ${TZ}
 
 ############################## SERVICES SECTION ##############################
 services:
+
+  # fail2ban:
+  #   image: lscr.io/linuxserver/fail2ban:latest
+  #   container_name: fail2ban
+  #   environment:
+  #     <<: *default_environment
+  #     VERBOSITY: "-vv"
+  #   network_mode: host
+  #   cap_add:
+  #     - NET_ADMIN
+  #     - NET_RAW
+  #   security_opt: ["no-new-privileges:true"]
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ${DOCKER_DIR}/network_apps/fail2ban:/config
+  #     - /var/log:/var/log:ro
+  #     # - ${DOCKER_DIR}/media_apps/audiobookshelf/metadata/logs:/remotelogs/audiobookshelf:ro
+  #     # - ${DOCKER_DIR}/media_management/overseerr/logs:/remotelogs/overseerr:ro
+  #     # - ${DOCKER_DIR}/media_management/prowlarr/logs:/remotelogs/prowlarr:ro
+  #     # - ${DOCKER_DIR}/media_management/lidarr/logs:/remotelogs/lidarr:ro
+  #     # - ${DOCKER_DIR}/media_management/radarr/logs:/remotelogs/radarr:ro
+  #     # - ${DOCKER_DIR}/media_management/radarr-4K/logs:/remotelogs/radarr-4K:ro
+  #     # - ${DOCKER_DIR}/media_management/sabnzbd/logs:/remotelogs/sabnzbd:ro
+  #     # - ${DOCKER_DIR}/media_management/sonarr/logs:/remotelogs/sonarr:ro
+  #     # - ${DOCKER_DIR}/media_management/sonarr-anime/logs:/remotelogs/sonarr-anime:ro
+  #     # - ${DOCKER_DIR}/plex_apps/agregarr/logs:/remotelogs/agregarr:ro
+  #     # - ${DOCKER_DIR}/plex_apps/shinkro/config/logs:/remotelogs/shinkro:ro
+  #     # - ${DOCKER_DIR}/plex_apps/tautulli/logs:/remotelogs/tautulli:ro
 
   pihole:
     <<: *default_container

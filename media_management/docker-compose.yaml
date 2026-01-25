@@ -39,9 +39,7 @@ services:
       - ${LIDARR_PORT_8686}:8686 # Web GUI HTTP
     volumes:
       - ${DOCKER_DIR}/media_management/lidarr:/config
-      - ${DATA_DIR}/usenet:/downloads
-      - ${DATA_DIR}/media/music:/music
-      - ${DATA_DIR}/trash/lidarr:/recycle
+      - ${DATA_DIR}:/data
       - ${DOCKER_DIR}/media_management/slskd/downloads:/slskd_downloads
 
   overseerr:
@@ -80,9 +78,7 @@ services:
       - ${RADARR_PORT_7878}:7878 # Web GUI HTTP
     volumes:
       - ${DOCKER_DIR}/media_management/radarr:/config
-      - ${DATA_DIR}/usenet:/downloads
-      - ${DATA_DIR}/media/movies:/movies
-      - ${DATA_DIR}/trash/radarr:/recycle
+      - ${DATA_DIR}:/data
 
   radarr-4K:
     <<: *default_container
@@ -96,9 +92,7 @@ services:
       - ${RADARR4K_PORT_7878}:7878 # Web GUI HTTP
     volumes:
       - ${DOCKER_DIR}/media_management/radarr-4K:/config
-      - ${DATA_DIR}/usenet:/downloads
-      - ${DATA_DIR}/media/movies-4K:/movies
-      - ${DATA_DIR}/trash/radarr-4K:/recycle
+      - ${DATA_DIR}:/data
 
   recyclarr:
     <<: *default_container
@@ -159,10 +153,7 @@ services:
       - ${SONARR_PORT_8989}:8989 # Web GUI HTTP
     volumes:
       - ${DOCKER_DIR}/media_management/sonarr:/config
-      - ${DATA_DIR}/usenet:/downloads
-      - ${DATA_DIR}/media/tv:/tv
-      - ${DATA_DIR}/media/tv-kids:/tv-kids
-      - ${DATA_DIR}/trash/sonarr:/recycle
+      - ${DATA_DIR}:/data
 
   sonarr-anime:
     <<: *default_container
@@ -178,9 +169,7 @@ services:
       - ${SONARRANIME_PORT_8989}:8989 # Web GUI HTTP
     volumes:
       - ${DOCKER_DIR}/media_management/sonarr-anime:/config
-      - ${DATA_DIR}/usenet:/downloads
-      - ${DATA_DIR}/media/anime:/anime
-      - ${DATA_DIR}/trash/sonarr-anime:/recycle
+      - ${DATA_DIR}:/data
 
   soularr:
     <<: *default_container
