@@ -8,6 +8,8 @@
 * Waiting on OIDC/Proxy login for gotify
 * Waiting on chaptarr, the readarr replacement to release.
 * Explore other DNS servers?
+* ABR homepage custom widget
+* fail2ban
 
 ## Projects
 
