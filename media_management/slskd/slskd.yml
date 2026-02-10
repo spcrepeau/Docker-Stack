@@ -1,0 +1,23 @@
+flags:
+  force_share_scan: false
+shares:
+  directories:
+    - /data/media/music
+web:
+  authentication:
+    username: REPLACE_ME
+    password: REPLACE_ME
+    api_keys:
+      my_api_key:
+        key: REPLACE_ME
+      homepage_widget:
+        key: REPLACE_ME
+        role: readonly
+metrics:
+  enabled: true
+  authentication:
+    username: REPLACE_ME
+    password: REPLACE_ME
+soulseek:
+  username: REPLACE_ME
+  password: REPLACE_ME
