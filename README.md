@@ -36,12 +36,12 @@
 * [media_management](https://github.com/spcrepeau/Docker-Stack/tree/main/media_management)
   * audiobookrequest
   * lidarr
-  * overseerr
   * prowlarr
   * radarr
   * radarr-4K (radarr)
   * recyclarr
   * sabnzbd
+  * seerr
   * slskd
   * sonarr
   * sonarr-anime (sonarr)

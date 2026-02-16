@@ -35,23 +35,15 @@ services:
       <<: *default_environment
       DOCKER_MODS: ghcr.io/themepark-dev/theme.park:lidarr
       TP_ADDON: lidarr-darker
+    networks:
+      - default
+      - soularr_internal
     ports:
       - ${LIDARR_PORT_8686}:8686 # Web GUI HTTP
     volumes:
       - ${DOCKER_DIR}/media_management/lidarr:/config
       - ${DATA_DIR}:/data
       - ${DOCKER_DIR}/media_management/slskd/downloads:/slskd_downloads
-
-  overseerr:
-    <<: *default_container
-    image: ghcr.io/linuxserver/overseerr:latest
-    container_name: overseerr
-    environment:
-      <<: *default_environment
-    ports:
-      - ${OVERSEERR_PORT_5055}:5055 # Web GUI HTTP
-    volumes:
-      - ${DOCKER_DIR}/media_management/overseerr:/config
 
   prowlarr:
     <<: *default_container
@@ -129,6 +121,19 @@ services:
       - ${DOCKER_DIR}/media_management/sabnzbd:/config
       - ${DATA_DIR}/usenet:/downloads
 
+  seerr:
+    <<: *default_container
+    image: ghcr.io/seerr-team/seerr:latest
+    container_name: seerr
+    init: true
+    environment:
+      TZ: ${TZ}
+    ports:
+      - ${SEERR_PORT_5055}:5055 # Web GUI HTTP
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    volumes:
+      - ${DOCKER_DIR}/media_management/seerr:/app/config
+
   slskd:
     <<: *default_container
     image: ghcr.io/slskd/slskd:latest
@@ -139,6 +144,9 @@ services:
       - ${SLSKD_PORT_5030}:5030 # Web GUI HTTP
       - ${SLSKD_PORT_5031}:5031 # Web GUI HTTPS
       - ${SLSKD_PORT_50300}:50300 # Incoming connections from the Soulseek network
+    networks:
+      - default
+      - soularr_internal
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ${DOCKER_DIR}/media_management/slskd:/app
@@ -166,8 +174,6 @@ services:
       <<: *default_environment
       DOCKER_MODS: ghcr.io/themepark-dev/theme.park:sonarr
       TP_ADDON: sonarr-anime-text-logo|sonarr-anime-favicon|sonarr-darker
-    networks:
-      - default
     ports:
       - ${SONARRANIME_PORT_8989}:8989 # Web GUI HTTP
     volumes:
@@ -181,6 +187,8 @@ services:
     environment:
       TZ: ${TZ}
       SCRIPT_INTERVAL: 300 # In seconds
+    networks:
+      - soularr_internal
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ${DOCKER_DIR}/media_management/soularr:/data
@@ -189,6 +197,8 @@ services:
 ############################## NETWORKS SECTION ##############################
 networks:
   default:
+  soularr_internal:
+    internal: true
 
 ############################## SECRETS SECTION ##############################
 secrets:

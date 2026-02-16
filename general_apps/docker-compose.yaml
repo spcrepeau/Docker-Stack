@@ -84,14 +84,14 @@ services:
       HOMEPAGE_FILE_LIDARR_API: /run/secrets/lidarr_API
       HOMEPAGE_VAR_PROWLARR_URL: http://${HOST_DSM_HOSTNAME}:${PROWLARR_PORT_9696}
       HOMEPAGE_FILE_PROWLARR_API: /run/secrets/prowlarr_API
-      HOMEPAGE_VAR_OVERSEERR_URL: http://${HOST_DSM_HOSTNAME}:${OVERSEERR_PORT_5055}
-      HOMEPAGE_FILE_OVERSEERR_API: /run/secrets/overseer_API
       HOMEPAGE_VAR_RADARR_URL: http://${HOST_DSM_HOSTNAME}:${RADARR_PORT_7878}
       HOMEPAGE_FILE_RADARR_API: /run/secrets/radarr_API
       HOMEPAGE_VAR_RADARR4K_URL: http://${HOST_DSM_HOSTNAME}:${RADARR4K_PORT_7878}
       HOMEPAGE_FILE_RADARR4K_API: /run/secrets/radarr-4k_API
       HOMEPAGE_VAR_SABNZBD_URL: http://${HOST_DSM_HOSTNAME}:${SABNZBD_PORT_8080}
       HOMEPAGE_FILE_SABNZBD_API: /run/secrets/sabnzbd_API
+      HOMEPAGE_VAR_SEERR_URL: http://${HOST_DSM_HOSTNAME}:${SEERR_PORT_5055}
+      HOMEPAGE_FILE_SEERR_API: /run/secrets/seerr_API
       HOMEPAGE_VAR_SLSKD_URL: http://${HOST_DSM_HOSTNAME}:${SLSKD_PORT_5030}
       HOMEPAGE_VAR_SONARR_URL: http://${HOST_DSM_HOSTNAME}:${SONARR_PORT_8989}
       HOMEPAGE_FILE_SONARR_API: /run/secrets/sonarr_API
@@ -131,11 +131,11 @@ services:
       - audiobookshelf_API
       # media_management
       - lidarr_API
-      - overseer_API
       - prowlarr_API
       - radarr_API
       - radarr-4k_API
       - sabnzbd_API
+      - seerr_API
       - sonarr_API
       - sonar-anime_API
       # network_apps
@@ -215,8 +215,6 @@ secrets:
   # homepage media_management
   lidarr_API:
     file: ${SECRETS_DIR}/lidarr_API.txt
-  overseer_API:
-    file: ${SECRETS_DIR}/overseer_API.txt
   prowlarr_API:
     file: ${SECRETS_DIR}/prowlarr_API.txt
   radarr_API:
@@ -225,6 +223,8 @@ secrets:
     file: ${SECRETS_DIR}/radarr-4k_API.txt
   sabnzbd_API:
     file: ${SECRETS_DIR}/sabnzbd_API.txt
+  seerr_API:
+    file: ${SECRETS_DIR}/seerr_API.txt
   sonarr_API:
     file: ${SECRETS_DIR}/sonarr_API.txt
   sonar-anime_API:

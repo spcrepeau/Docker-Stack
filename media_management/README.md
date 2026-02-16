@@ -28,20 +28,6 @@
 * Notifications: Setup gotify.
 * Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api/.* to allow nzb360 access to API.
 
-## overseerr
-
-### Links
-
-* Documentation: <https://overseerr.dev/>
-* LinuxServer: <https://docs.linuxserver.io/images/docker-overseerr/>
-
-### Notes
-
-* Rootless: Uses PUID and PGID environment variables.
-* Reverse Proxy: Setup reverse proxy for this app.
-* Notifications: Setup gotify. To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en>
-* Authentication: Plex SSO.
-
 ## prowlarr
 
 ### Links
@@ -110,6 +96,20 @@ recyclarr sync
 * Reverse Proxy: * Setup reverse proxy for this app if you're using remote apps like nzb360, but point to the authentik port instead. Disable authentication.
 * Notifications: Setup gotify. Select Apprise and use URL <gotifys://gotify.mydomain.com/myToken>.
 * Authentication: Create authentik app and proxy provider. In the authentik provider, edit the unauthenticated paths to include the regex ^/api.* to allow nzb360 access to API.
+
+## seerr
+
+### Links
+
+* Documentation: <https://seerr.dev/>
+* GitHub: <https://github.com/seerr-team/seerr>
+
+### Notes
+
+* Rootless: Uses "user: UID:GID".
+* Reverse Proxy: Setup reverse proxy for this app.
+* Notifications: Setup gotify. To setup SMTP app password <https://support.google.com/mail/answer/185833?hl=en>
+* Authentication: Plex SSO.
 
 ## slskd
 

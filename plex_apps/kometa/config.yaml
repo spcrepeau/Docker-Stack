@@ -229,17 +229,17 @@ mal: # https://kometa.wiki/en/latest/config/myanimelist/
     expires_in: 2678400 # This value will change for your environment
     refresh_token: <<MALREFRESHTOKEN>>
 
-trakt: # https://kometa.wiki/en/latest/config/trakt/
-  client_id: <<TRAKTCLIENTID>>
-  client_secret: <<TRAKTCLIENTSECRET>>
-  pin:
-  authorization:
-    access_token: <<TRAKTACCESSTOKEN>>
-    token_type: Bearer
-    expires_in: 604799 # This value will change for your environment
-    refresh_token: <<TRAKTREFRESHTOKEN>>
-    scope: public
-    created_at: 1767238136 # This value will change for your environment
+# trakt: # https://kometa.wiki/en/latest/config/trakt/
+#   client_id: <<TRAKTCLIENTID>>
+#   client_secret: <<TRAKTCLIENTSECRET>>
+#   pin:
+#   authorization:
+#     access_token: <<TRAKTACCESSTOKEN>>
+#     token_type: Bearer
+#     expires_in: 604799 # This value will change for your environment
+#     refresh_token: <<TRAKTREFRESHTOKEN>>
+#     scope: public
+#     created_at: 1767238136 # This value will change for your environment
 
 anidb: # https://kometa.wiki/en/latest/config/anidb/
   client: <<ANIDBCLIENT>>

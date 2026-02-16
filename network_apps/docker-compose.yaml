@@ -30,7 +30,7 @@ services:
   #     - ${DOCKER_DIR}/network_apps/fail2ban:/config
   #     - /var/log:/var/log:ro
   #     # - ${DOCKER_DIR}/media_apps/audiobookshelf/metadata/logs:/remotelogs/audiobookshelf:ro
-  #     # - ${DOCKER_DIR}/media_management/overseerr/logs:/remotelogs/overseerr:ro
+  #     # - ${DOCKER_DIR}/media_management/seerr/logs:/remotelogs/seerr:ro
   #     # - ${DOCKER_DIR}/media_management/prowlarr/logs:/remotelogs/prowlarr:ro
   #     # - ${DOCKER_DIR}/media_management/lidarr/logs:/remotelogs/lidarr:ro
   #     # - ${DOCKER_DIR}/media_management/radarr/logs:/remotelogs/radarr:ro

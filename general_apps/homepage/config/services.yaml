@@ -141,16 +141,16 @@
           key: {{HOMEPAGE_FILE_LIDARR_API}}
           highlight:
             queued: *common_highlights
-    - overseerr:
-        # href: {{HOMEPAGE_VAR_OVERSEERR_URL}}
+    - seerr:
+        # href: {{HOMEPAGE_VAR_SEERR_URL}}
         href: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
         icon: /icons/overseerr_plex.png
         server: my-docker
-        container: overseerr
+        container: seerr
         widget:
           type: overseerr # https://gethomepage.dev/widgets/services/overseerr/
-          url: {{HOMEPAGE_VAR_OVERSEERR_URL}}
-          key: {{HOMEPAGE_FILE_OVERSEERR_API}}
+          url: {{HOMEPAGE_VAR_SEERR_URL}}
+          key: {{HOMEPAGE_FILE_SEERR_API}}
           highlight: 
             pending: *common_highlights
 

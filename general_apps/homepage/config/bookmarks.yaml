@@ -33,9 +33,6 @@
   - lidarr:
     - icon: lidarr
       href: https://lidarr.audio
-  - overseerr:
-    - icon: overseerr
-      href: https://overseerr.dev
   - pihole:
     - icon: pi-hole
       href: https://pi-hole.net
@@ -54,6 +51,9 @@
   - sabnzbd:
     - icon: sabnzbd
       href: https://sabnzbd.org
+  - seerr:
+    - icon: overseerr
+      href: https://seerr.dev
   - servarr:
     - icon: servarr
       href: https://wiki.servarr.com/
@@ -119,9 +119,6 @@
   - mariadb:
     - icon: mariadb
       href: https://github.com/MariaDB/mariadb-docker
-  - overseerr:
-    - icon: overseerr
-      href: https://github.com/sct/overseerr
   - pihole:
     - icon: pi-hole
       href: https://github.com/pi-hole/pi-hole
@@ -149,6 +146,9 @@
   - sabnzbd:
     - icon: sabnzbd
       href: https://github.com/sabnzbd/sabnzbd
+  - seerr:
+    - icon: overseerr
+      href: https://github.com/seerr-team/seerr
   - shinkro:
     - icon: shinkro
       href: https://github.com/varoOP/shinkro
@@ -187,9 +187,6 @@
   - mariadb:
     - icon: mariadb
       href: https://docs.linuxserver.io/images/docker-mariadb
-  - overseerr:
-    - icon: overseerr
-      href: https://docs.linuxserver.io/images/docker-overseerr
   - prowlarr:
     - icon: prowlarr
       href: https://docs.linuxserver.io/images/docker-prowlarr
