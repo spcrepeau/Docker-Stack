@@ -186,7 +186,7 @@ services:
     container_name: soularr
     environment:
       TZ: ${TZ}
-      SCRIPT_INTERVAL: 300 # In seconds
+      SCRIPT_INTERVAL: 3600 # In seconds
     networks:
       - soularr_internal
     user: ${DOCKER_UID}:${DOCKER_GID}

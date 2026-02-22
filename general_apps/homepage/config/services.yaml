@@ -87,7 +87,7 @@
         icon: /icons/radarr_authentik.png
         server: my-docker
         container: radarr
-        widget: &radarr_widget
+        widget:
           type: radarr # https://gethomepage.dev/widgets/services/radarr/
           url: {{HOMEPAGE_VAR_RADARR_URL}}
           key: {{HOMEPAGE_FILE_RADARR_API}}
@@ -99,7 +99,7 @@
         icon: /icons/radarr-4K_authentik.png
         server: my-docker
         container: radarr-4K
-        widget: &radarr-4K_widget
+        widget:
           type: radarr # https://gethomepage.dev/widgets/services/radarr/
           url: {{HOMEPAGE_VAR_RADARR4K_URL}}
           key: {{HOMEPAGE_FILE_RADARR4K_API}}
@@ -111,7 +111,7 @@
         icon: /icons/sonarr_authentik.png
         server: my-docker
         container: sonarr
-        widget: &sonarr_widget
+        widget:
           type: sonarr # https://gethomepage.dev/widgets/services/sonarr/
           url: {{HOMEPAGE_VAR_SONARR_URL}}
           key: {{HOMEPAGE_FILE_SONARR_API}}
@@ -123,7 +123,7 @@
         icon: /icons/sonarr-anime_authentik.png
         server: my-docker
         container: sonarr-anime
-        widget: &sonarranime_widget
+        widget:
           type: sonarr # https://gethomepage.dev/widgets/services/sonarr/
           url: {{HOMEPAGE_VAR_SONARRANIME_URL}}
           key: {{HOMEPAGE_FILE_SONARRANIME_API}}
@@ -441,40 +441,6 @@
         url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=5&count=10"
         display: dynamic-list
         mappings: *recent_mappings
-
-- Download Queues:
-  - radarr queue:
-      # href: "{{HOMEPAGE_VAR_RADARR_URL}}/activity/queue"
-      href: "https://radarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/activity/queue"
-      icon: radarr
-      widget:
-        <<: *radarr_widget
-        enableQueue: true
-        fields: [""]
-  - radarr-4K queue:
-      # href: "{{HOMEPAGE_VAR_RADARR4K_URL}}/activity/queue"
-      href: "https://radarr4k.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/activity/queue"
-      icon: radarr-4k
-      widget:
-        <<: *radarr-4K_widget
-        enableQueue: true
-        fields: [""]
-  - sonarr queue:
-      # href: "{{HOMEPAGE_VAR_SONARR_URL}}/activity/queue"
-      href: "https://sonarr.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/activity/queue"
-      icon: sonarr
-      widget: 
-        <<: *sonarr_widget
-        enableQueue: true
-        fields: [""]
-  - sonarr-anime queue:
-      # href: "{{HOMEPAGE_VAR_SONARRANIME_URL}}/activity/queue"
-      href: "https://sonarr-anime.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/activity/queue"
-      icon: /icons/sonarr-anime.png
-      widget:
-        <<: *sonarranime_widget
-        enableQueue: true
-        fields: [""]
 
 - Download History:
   - radarr history (imported only):

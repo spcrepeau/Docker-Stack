@@ -52,10 +52,7 @@ layout:
   Recently Added:
     style: row
     columns: 5
-    tab: Recently Added & Download Queues
-    header: false
-  Download Queues:
-    tab: Recently Added & Download Queues
+    tab: Recently Added
     header: false
 
   # Tab 3, Download History
