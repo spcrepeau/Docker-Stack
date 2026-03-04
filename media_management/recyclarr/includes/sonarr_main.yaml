@@ -1,6 +1,5 @@
 # https://trash-guides.info/Sonarr/sonarr-collection-of-custom-formats/
 delete_old_custom_formats: false
-replace_existing_custom_formats: true
 custom_formats:
   ########## Video Sources, scores using 100,000's ##########
   # Bluray (JSON file must be manually imported)

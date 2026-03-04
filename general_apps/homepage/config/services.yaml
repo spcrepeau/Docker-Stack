@@ -392,13 +392,13 @@
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/library?section_id=1"
       widget:
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
-        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=1&count=10"
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=1&count=20"
         display: dynamic-list
         mappings: &recent_mappings
           items: response.data.recently_added # optional, the path to the array in the API response. Omit this option if the array is at the root level
           name: title # required, field in each item to use as the item name (left side)
           label: added_at # required, field in each item to use as the item label (right side)
-          limit: 10 # optional, limit the number of items to display
+          limit: 20 # optional, limit the number of items to display
           format: relativeDate # optional - format of the label field
           scale: 1000 # Corrects the date
   - recently added 4k movies (tautulli):
@@ -407,7 +407,7 @@
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/library?section_id=4"
       widget:
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
-        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=4&count=10"
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=4&count=20"
         display: dynamic-list
         mappings: *recent_mappings
   - recently added tv (tautulli):
@@ -416,7 +416,7 @@
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/library?section_id=2"
       widget:
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
-        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=2&count=10"
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=2&count=20"
         display: dynamic-list
         mappings:
           <<: *recent_mappings
@@ -427,7 +427,7 @@
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/library?section_id=3"
       widget:
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
-        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=3&count=10"
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=3&count=20"
         display: dynamic-list
         mappings:
           <<: *recent_mappings
@@ -438,7 +438,7 @@
       href: "https://tautulli.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}/library?section_id=5"
       widget:
         type: customapi # https://gethomepage.dev/widgets/services/customapi/
-        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=5&count=10"
+        url: "{{HOMEPAGE_VAR_TAUTULLI_URL}}/api/v2?apikey={{HOMEPAGE_FILE_TAUTULLI_API}}&cmd=get_recently_added&section_id=5&count=20"
         display: dynamic-list
         mappings: *recent_mappings
 

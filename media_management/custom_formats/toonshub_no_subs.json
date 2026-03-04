@@ -19,6 +19,15 @@
       "fields": {
         "value": "ESub|MSub|SUB"
       }
+    },
+    {
+      "name": "Dual Audio",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": true,
+      "required": true,
+      "fields": {
+        "value": "dual[ ._-]?(audio|dub)|[([]dual[])]|\\b(JA)(?= ?\\+ ?.*?\\b(EN))|\\b(EN)(?= ?\\+ ?.*?\\b(JA))|\\b(Japanese) ?[ ._\\+&-] ?\\b(English)|\\b(English) ?[ ._\\+&-] ?\\b(Japanese)|\\b(\\d{3,4}(p|i)|4K|U(ltra)?HD)\\b.*\\b(DUAL)\\b(?!.*\\(|\\))"
+      }
     }
   ]
 }

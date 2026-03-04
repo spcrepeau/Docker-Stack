@@ -1,6 +1,5 @@
 # https://trash-guides.info/Radarr/Radarr-collection-of-custom-formats/
 delete_old_custom_formats: false
-replace_existing_custom_formats: true
 custom_formats:
   - trash_ids:
     ########## Special Editions, scores at 1,000,000 ##########
