@@ -144,11 +144,11 @@
     - seerr:
         # href: {{HOMEPAGE_VAR_SEERR_URL}}
         href: "https://requests.{{HOMEPAGE_VAR_PUBLIC_DNS_SUFFIX}}"
-        icon: /icons/overseerr_plex.png
+        icon: /icons/seerr_plex.png
         server: my-docker
         container: seerr
         widget:
-          type: overseerr # https://gethomepage.dev/widgets/services/overseerr/
+          type: seerr # https://gethomepage.dev/widgets/services/seerr/
           url: {{HOMEPAGE_VAR_SEERR_URL}}
           key: {{HOMEPAGE_FILE_SEERR_API}}
           highlight: 

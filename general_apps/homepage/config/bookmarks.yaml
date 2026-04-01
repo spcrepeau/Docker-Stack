@@ -52,7 +52,7 @@
     - icon: sabnzbd
       href: https://sabnzbd.org
   - seerr:
-    - icon: overseerr
+    - icon: seerr
       href: https://seerr.dev
   - servarr:
     - icon: servarr
@@ -147,7 +147,7 @@
     - icon: sabnzbd
       href: https://github.com/sabnzbd/sabnzbd
   - seerr:
-    - icon: overseerr
+    - icon: seerr
       href: https://github.com/seerr-team/seerr
   - shinkro:
     - icon: shinkro
