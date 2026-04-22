@@ -38,7 +38,7 @@ services:
 
   authentik_server:
     <<: *default_container
-    image: ghcr.io/goauthentik/server:2026.2.1
+    image: ghcr.io/goauthentik/server:2026.2.2
     container_name: authentik_server
     command: server
     depends_on:
@@ -68,7 +68,7 @@ services:
 
   authentik_worker:
     <<: *default_container
-    image: ghcr.io/goauthentik/server:2026.2.1
+    image: ghcr.io/goauthentik/server:2026.2.2
     container_name: authentik_worker
     command: worker
     depends_on:

@@ -101,6 +101,7 @@ libraries:
             Sunrise: ["SUNRISE"]
             Trigger: ["TRIGGER"]
             Wit Studio: ["WIT STUDIO"]
+            Zexcs: ["ZEXCS"]
           minimum_items: 1
     overlay_files: # https://kometa.wiki/en/latest/defaults/overlays/
       - default: status # https://kometa.wiki/en/latest/defaults/overlays/status/
