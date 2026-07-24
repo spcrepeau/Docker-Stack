@@ -26,6 +26,8 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ${DOCKER_DIR}/media_management/audiobookrequest:/config
+    labels:
+      dockhand.update: "true"
 
   lidarr:
     <<: *default_container
@@ -44,6 +46,8 @@ services:
       - ${DOCKER_DIR}/media_management/lidarr:/config
       - ${DATA_DIR}:/data
       - ${DOCKER_DIR}/media_management/slskd/downloads:/slskd_downloads
+    labels:
+      dockhand.update: "true"
 
   prowlarr:
     <<: *default_container
@@ -57,6 +61,8 @@ services:
       - ${PROWLARR_PORT_9696}:9696 # Web GUI HTTP
     volumes:
       - ${DOCKER_DIR}/media_management/prowlarr:/config
+    labels:
+      dockhand.update: "true"
 
   radarr:
     <<: *default_container
@@ -71,6 +77,8 @@ services:
     volumes:
       - ${DOCKER_DIR}/media_management/radarr:/config
       - ${DATA_DIR}:/data
+    labels:
+      dockhand.update: "true"
 
   radarr-4K:
     <<: *default_container
@@ -85,6 +93,8 @@ services:
     volumes:
       - ${DOCKER_DIR}/media_management/radarr-4K:/config
       - ${DATA_DIR}:/data
+    labels:
+      dockhand.update: "true"
 
   recyclarr:
     <<: *default_container
@@ -108,6 +118,8 @@ services:
       - sonarr_API
       - sonar-anime_API
       - gotify_recyclarrURL
+    labels:
+      dockhand.update: "true"
 
   sabnzbd:
     <<: *default_container
@@ -120,6 +132,8 @@ services:
     volumes:
       - ${DOCKER_DIR}/media_management/sabnzbd:/config
       - ${DATA_DIR}/usenet:/downloads
+    labels:
+      dockhand.update: "true"
 
   seerr:
     <<: *default_container
@@ -133,6 +147,8 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ${DOCKER_DIR}/media_management/seerr:/app/config
+    labels:
+      dockhand.update: "true"
 
   slskd:
     <<: *default_container
@@ -151,6 +167,8 @@ services:
     volumes:
       - ${DOCKER_DIR}/media_management/slskd:/app
       - ${DATA_DIR}:/data
+    labels:
+      dockhand.update: "true"
 
   sonarr:
     <<: *default_container
@@ -165,6 +183,8 @@ services:
     volumes:
       - ${DOCKER_DIR}/media_management/sonarr:/config
       - ${DATA_DIR}:/data
+    labels:
+      dockhand.update: "true"
 
   sonarr-anime:
     <<: *default_container
@@ -179,6 +199,8 @@ services:
     volumes:
       - ${DOCKER_DIR}/media_management/sonarr-anime:/config
       - ${DATA_DIR}:/data
+    labels:
+      dockhand.update: "true"
 
   soularr:
     <<: *default_container
@@ -193,6 +215,8 @@ services:
     volumes:
       - ${DOCKER_DIR}/media_management/soularr:/data
       - ${DOCKER_DIR}/media_management/slskd/downloads:/downloads
+    labels:
+      dockhand.update: "true"
 
 ############################## NETWORKS SECTION ##############################
 networks:

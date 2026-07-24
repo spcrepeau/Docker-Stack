@@ -163,6 +163,11 @@ custom_formats:
       - name: 1080p - Anime
         score: -10000000
   ########## Unwanted, scores at -10,000,000 ##########
+  - trash_ids:
+    - 44ccbcbc74506f208973e1463b11705f # With Audio Description
+    assign_scores_to:
+      - name: 1080p - Anime
+        score: -10000000
   # Non-English Dual Audio (JSON file must be manually imported)
   #   score: -10000000
   # ToonsHub No Subs (JSON file must be manually imported)

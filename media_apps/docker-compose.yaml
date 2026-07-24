@@ -30,6 +30,8 @@ services:
       - ${DATA_DIR}/media/books:/books
       - ${DATA_DIR}/media/audiobooks:/audiobooks
       - ${DATA_DIR}/media/podcasts:/podcasts
+    labels:
+      dockhand.update: "true"
 
   calibre:
     <<: *default_container
@@ -45,6 +47,8 @@ services:
       - ${DOCKER_DIR}/media_apps/calibre:/config
       - ${DATA_DIR}/media/books:/books
       - ${DATA_DIR}/usenet/completed/books:/downloads
+    labels:
+      dockhand.update: "true"
 
   romm:
     <<: *default_container
@@ -103,6 +107,8 @@ services:
       - romm_AuthSecretKey
       - external_SteamGrimDBAPI
       - romm_database_MySQLPassword
+    labels:
+      dockhand.update: "true"
 
   romm_database:
     <<: *default_container
@@ -122,6 +128,8 @@ services:
       - ${DOCKER_DIR}/media_apps/romm/database:/config
     secrets:
       - romm_database_MySQLPassword
+    labels:
+      dockhand.update: "true"
 
 ############################## NETWORKS SECTION ##############################
 networks:

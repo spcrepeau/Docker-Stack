@@ -32,6 +32,8 @@ services:
       - /plugin
     cap_drop:
       - ALL
+    labels:
+      dockhand.update: "true"
 
   gotify:
     <<: *default_container
@@ -45,6 +47,8 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ${DOCKER_DIR}/general_apps/gotify:/app/data
+    labels:
+      dockhand.update: "true"
 
   homepage:
     <<: *default_container
@@ -144,6 +148,8 @@ services:
       - plex_URL
       - plex_Token
       - tautulli_API
+    labels:
+      dockhand.update: "true"
 
   homepage_socket-proxy:
     <<: *default_container
@@ -160,6 +166,8 @@ services:
       - /run
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      dockhand.update: "true"
 
   librespeed:
     <<: *default_container
@@ -174,6 +182,8 @@ services:
       - ${LIBRESPEED_PORT_443}:443 # Web GUI HTTPS
     volumes:
       - ${DOCKER_DIR}/general_apps/librespeed:/config
+    labels:
+      dockhand.update: "true"
 
   theme-park:
     <<: *default_container
@@ -186,6 +196,8 @@ services:
       - ${THEMEPARK_PORT_443}:443 # Web GUI HTTPS
     volumes:
       - ${DOCKER_DIR}/general_apps/theme-park:/config
+    labels:
+      dockhand.update: "true"
 
 ############################## NETWORKS SECTION ##############################
 networks:

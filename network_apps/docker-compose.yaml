@@ -63,6 +63,8 @@ services:
     security_opt: ["no-new-privileges:false"]
     secrets:
       - pihole_WebServerAPIPassword
+    labels:
+      dockhand.update: "true"
 
 ############################## NETWORKS SECTION ##############################
 networks:

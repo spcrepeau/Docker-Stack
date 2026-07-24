@@ -27,6 +27,8 @@ services:
       - ${DOCKER_DIR}/plex_apps/agregarr:/app/config
       # Optional: For Coming Soon feature, mount media matching Radarr/Sonarr paths
       - ${DATA_DIR}:/data:ro
+    labels:
+      dockhand.update: "true"
 
   kometa:
     <<: *default_container
@@ -55,10 +57,10 @@ services:
       FILE__KOMETA_MALREFRESHTOKEN: /run/secrets/external_MALRefreshToken
       FILE__KOMETA_MDBLISTAPIKEY: /run/secrets/external_MDBListAPI
       FILE__KOMETA_TMBDAPIKEY: /run/secrets/external_TMBDAPI
-      FILE__KOMETA_TRAKTCLIENTID: /run/secrets/external_TraktClientID
-      FILE__KOMETA_TRAKTCLIENTSECRET: /run/secrets/external_TraktClientSecret
-      FILE__KOMETA_TRAKTACCESSTOKEN: /run/secrets/external_TraktAccessToken
-      FILE__KOMETA_TRAKTREFRESHTOKEN: /run/secrets/external_TraktRefreshToken
+      # FILE__KOMETA_TRAKTCLIENTID: /run/secrets/external_TraktClientID
+      # FILE__KOMETA_TRAKTCLIENTSECRET: /run/secrets/external_TraktClientSecret
+      # FILE__KOMETA_TRAKTACCESSTOKEN: /run/secrets/external_TraktAccessToken
+      # FILE__KOMETA_TRAKTREFRESHTOKEN: /run/secrets/external_TraktRefreshToken
     volumes:
       - ${DOCKER_DIR}/plex_apps/kometa:/config
     secrets:
@@ -76,10 +78,12 @@ services:
       - external_MALRefreshToken
       - external_MDBListAPI
       - external_TMBDAPI
-      - external_TraktClientID
-      - external_TraktClientSecret
-      - external_TraktAccessToken
-      - external_TraktRefreshToken
+      # - external_TraktClientID
+      # - external_TraktClientSecret
+      # - external_TraktAccessToken
+      # - external_TraktRefreshToken
+    labels:
+      dockhand.update: "true"
 
   plexautolanguages:
     <<: *default_container
@@ -95,6 +99,8 @@ services:
     secrets:
       - plex_URL
       - plex_Token
+    labels:
+      dockhand.update: "true"
 
   quickstart:
     <<: *default_container
@@ -107,6 +113,8 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ${DOCKER_DIR}/plex_apps/quickstart:/config
+    labels:
+      dockhand.update: "true"
 
   shinkro:
     <<: *default_container
@@ -119,6 +127,8 @@ services:
     user: ${DOCKER_UID}:${DOCKER_GID}
     volumes:
       - ${DOCKER_DIR}/plex_apps/shinkro/config:/config
+    labels:
+      dockhand.update: "true"
 
   tautulli:
     <<: *default_container
@@ -130,6 +140,8 @@ services:
       - ${TAUTULLI_PORT_8181}:8181 # Web GUI HTTP
     volumes:
       - ${DOCKER_DIR}/plex_apps/tautulli:/config
+    labels:
+      dockhand.update: "true"
 
 ############################## NETWORKS SECTION ##############################
 networks:
@@ -165,11 +177,11 @@ secrets:
     file: ${SECRETS_DIR}/external_MDBListAPI.txt
   external_TMBDAPI:
     file: ${SECRETS_DIR}/external_TMBDAPI.txt
-  external_TraktClientID:
-    file: ${SECRETS_DIR}/external_TraktClientID.txt
-  external_TraktClientSecret:
-    file: ${SECRETS_DIR}/external_TraktClientSecret.txt
-  external_TraktAccessToken:
-    file: ${SECRETS_DIR}/external_TraktAccessToken.txt
-  external_TraktRefreshToken:
-    file: ${SECRETS_DIR}/external_TraktRefreshToken.txt
+  # external_TraktClientID:
+  #   file: ${SECRETS_DIR}/external_TraktClientID.txt
+  # external_TraktClientSecret:
+  #   file: ${SECRETS_DIR}/external_TraktClientSecret.txt
+  # external_TraktAccessToken:
+  #   file: ${SECRETS_DIR}/external_TraktAccessToken.txt
+  # external_TraktRefreshToken:
+  #   file: ${SECRETS_DIR}/external_TraktRefreshToken.txt

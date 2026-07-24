@@ -160,6 +160,11 @@ custom_formats:
       - name: 1080p - TV
         score: 0
   ########## Unwanted, scores at -10,000,000 ##########
+  - trash_ids:
+    - 44ccbcbc74506f208973e1463b11705f # With Audio Description
+    assign_scores_to:
+      - name: 1080p - TV
+        score: -10000000
   # Remux (JSON file must be manually imported)
   #   score: -10000000
   # Not 1080p (JSON file must be manually imported)

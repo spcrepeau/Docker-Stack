@@ -10,6 +10,7 @@
 * Explore other DNS servers?
 * ABR homepage custom widget
 * fail2ban
+* dockhand API for homepage
 
 ## Projects
 

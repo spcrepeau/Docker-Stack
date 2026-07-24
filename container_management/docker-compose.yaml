@@ -67,6 +67,8 @@ services:
       - /run
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      dockhand.update: "false"
 
 ############################## NETWORKS SECTION ##############################
 networks:
