@@ -5,7 +5,7 @@
 ### Links
 
 * Documentation: <https://agregarr.org/>
-* GitHub: <https://github.com/agregarr/agregarr>
+* GitHub: <https://github.com/bitr8/agregarr-dev>
 
 ### Notes
 

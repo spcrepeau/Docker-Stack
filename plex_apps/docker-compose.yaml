@@ -16,7 +16,7 @@ services:
 
   agregarr:
     <<: *default_container
-    image: ghcr.io/agregarr/agregarr:latest
+    image: bitr8/agregarr:latest
     container_name: agregarr
     environment:
       TZ: ${TZ}
